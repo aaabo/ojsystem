@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.ClassesMapper">
+
+    <resultMap id="BaseClassesAnswerResultMap" type="com.example.ojsystem.entity.Classes">
+        <id column="classesId" jdbcType="BIGINT" property="classesId" />
+        <result column="classesName" jdbcType="VARCHAR" property="classesName" />
+    </resultMap>
+    <insert id="addClasses"  parameterType="com.example.ojsystem.entity.Classes" useGeneratedKeys="true" keyProperty="classes.classesId" keyColumn="classesId">
+               insert into classes(classesName) values(#{classes.classesName})
+    </insert>
+    <update id="modifyClassesInfo"  parameterType="com.example.ojsystem.entity.Classes">
+         update classes set classesName=#{classes.classesName} where classesId=#{classes.classesId}
+    </update>
+    <delete id="deleteClasses" parameterType="java.lang.Integer">
+          delete from classes where classesId=#{classesId}
+    </delete>
+    <select id="queryClassesInfo" resultType="com.example.ojsystem.entity.Classes">
+        select * from classes
+    </select>
+
+
+</mapper>

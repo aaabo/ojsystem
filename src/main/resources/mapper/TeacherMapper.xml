@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.TeacherMapper">
+
+    <resultMap id="BaseTeacherResultMap" type="com.example.ojsystem.entity.Teacher">
+        <id column="teacherId" jdbcType="BIGINT" property="teacherId" />
+        <result column="teacherAccount" jdbcType="VARCHAR" property="teacherAccount" />
+        <result column="teacherPassword" jdbcType="VARCHAR" property="teacherPassword" />
+        <result column="teacherName" jdbcType="VARCHAR" property="teacherName" />
+    </resultMap>
+    <insert id="addTeacher" parameterType="com.example.ojsystem.entity.Teacher" useGeneratedKeys="true" keyProperty="teacher.teacherId" keyColumn="teacherId">
+          insert into teacher (teacherAccount,teacherPassword,teacherName) values(#{teacher.teacherAccount},#{teacher.teacherPassword},#{teacher.teacherName})
+    </insert>
+    <update id="modifyTeacherInfo" parameterType="com.example.ojsystem.entity.Teacher">
+          update teacher set teacherName=#{teacher.teacherName} where teacherId=#{teacher.teacherId}
+    </update>
+    <update id="modifyTeacherPassword" >
+         update teacher set teacherPassword=#{teacherPassword} where teacherId=#{teacherId}
+    </update>
+    <delete id="deleteTeacher" parameterType="java.lang.Integer">
+            delete from teacher where teacherId=#{teacherId}
+    </delete>
+    <select id="queryTeacherInfo" resultType="com.example.ojsystem.entity.Teacher">
+        select * from teacher
+    </select>
+    <select id="queryTeacherInfoById" resultType="com.example.ojsystem.entity.Teacher">
+        select * from teacher where teacherId=#{teacherId}
+    </select>
+    <select id="queryTeacherPasswordInfo" resultType="java.lang.String" parameterType="java.lang.Integer">
+         select  teacherPassword from teacher where teacherId=#{teacherId}
+    </select>
+    <select id="teacherLogin" resultType="com.example.ojsystem.entity.Teacher" parameterType="com.example.ojsystem.entity.Teacher">
+        select * from teacher where teacherAccount=#{teacherAccount}
+    </select>
+
+
+</mapper>

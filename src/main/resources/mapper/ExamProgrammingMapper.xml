@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.ExamProgrammingMapper">
+
+    <resultMap id="BaseExamProgrammingResultMap" type="com.example.ojsystem.entity.ExamProgramming">
+        <id column="examProgrammingId" jdbcType="BIGINT" property="examProgrammingId" />
+        <result column="examProgrammingTitle" jdbcType="VARCHAR" property="examProgrammingTitle" />
+        <result column="examProgrammingDescription" jdbcType="VARCHAR" property="examProgrammingDescription" />
+        <result column="examProgrammingInput" jdbcType="VARCHAR" property="examProgrammingInput" />
+        <result column="examProgrammingOutPut" jdbcType="VARCHAR" property="examProgrammingOutPut" />
+        <result column="examProgrammingSampleInput" jdbcType="VARCHAR" property="examProgrammingSampleInput" />
+        <result column="examProgrammingSampleOutput" jdbcType="VARCHAR" property="examProgrammingSampleOutput" />
+        <result column="examProgrammingScore" jdbcType="BIGINT" property="examProgrammingScore" />
+    </resultMap>
+    <insert id="addProgramExamInfo" parameterType="com.example.ojsystem.entity.ExamProgramming"  useGeneratedKeys="true" keyProperty="examProgramming.examProgrammingId" keyColumn="examProgrammingId">
+           insert into examprogramming(examId,examProgrammingTitle,examProgrammingDescription,examProgrammingInput,examProgrammingOutPut,examProgrammingSampleInput,examProgrammingSampleOutput,examProgrammingScore)
+            values(#{examProgramming.exam.examId},#{examProgramming.examProgrammingTitle},#{examProgramming.examProgrammingDescription},#{examProgramming.examProgrammingInput},
+            #{examProgramming.examProgrammingOutPut},#{examProgramming.examProgrammingSampleInput},#{examProgramming.examProgrammingSampleOutput},#{examProgramming.examProgrammingScore})
+    </insert>
+    <update id="modifyProgramExamInfo"  parameterType="com.example.ojsystem.entity.ExamProgramming">
+         update examprogramming set examProgrammingTitle=#{examProgramming.examProgrammingTitle},examProgrammingDescription=#{examProgramming.examProgrammingDescription}
+         ,examProgrammingInput=#{examProgramming.examProgrammingInput},examProgrammingOutPut=#{examProgramming.examProgrammingOutPut}
+         ,examProgrammingSampleInput=#{examProgramming.examProgrammingSampleInput},examProgrammingSampleOutput=#{examProgramming.examProgrammingSampleOutput},examProgrammingScore=#{examProgramming.examProgrammingScore} where examProgrammingId=#{examProgramming.examProgrammingId}
+    </update>
+    <delete id="deleteProgramExamInfo" parameterType="java.lang.Integer">
+       delete from examprogramming where examProgrammingId=#{examProgrammingId}
+    </delete>
+    <select id="queryProgrammingInfoById" resultType="com.example.ojsystem.entity.ExamProgramming" parameterType="java.lang.Integer" resultMap="BaseExamProgrammingResultMap">
+        select * from examprogramming where examId=#{examId}
+    </select>
+
+
+</mapper>

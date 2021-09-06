@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.ExerciseMapper">
+
+    <resultMap id="BaseExerciseResultMap" type="com.example.ojsystem.entity.Exercise">
+        <id column="exerciseId" jdbcType="BIGINT" property="exerciseId" />
+        <result column="exerciseTitle" jdbcType="VARCHAR" property="exerciseTitle" />
+        <result column="exerciseCorrectTimes" jdbcType="BIGINT" property="exerciseCorrectTimes" />
+        <result column="exerciseSubmitTimes" jdbcType="BIGINT" property="exerciseSubmitTimes" />
+        <result column="exerciseDescription" jdbcType="VARCHAR" property="exerciseDescription" />
+        <result column="exerciseInput" jdbcType="VARCHAR" property="exerciseInput" />
+        <result column="exerciseOutPut" jdbcType="VARCHAR" property="exerciseOutPut" />
+        <result column="exerciseSampleInput" jdbcType="VARCHAR" property="exerciseSampleInput" />
+        <result column="exerciseSampleOutput" jdbcType="VARCHAR" property="exerciseSampleOutput" />
+    </resultMap>
+    <insert id="addExercise" parameterType="com.example.ojsystem.entity.Exercise" useGeneratedKeys="true" keyProperty="exercise.exerciseId" keyColumn="exerciseId">
+        insert into exercise (exerciseTitle,exerciseCorrectTimes,exerciseSubmitTimes,exerciseDescription,exerciseInput,exerciseOutPut,exerciseSampleInput,exerciseSampleOutput)
+         values(#{exercise.exerciseTitle},#{exercise.exerciseCorrectTimes},#{exercise.exerciseSubmitTimes},#{exercise.exerciseDescription},#{exercise.exerciseInput},#{exercise.exerciseOutPut},#{exercise.exerciseSampleInput},#{exercise.exerciseSampleOutput})
+    </insert>
+    <update id="modifyExerciseInfo" parameterType="com.example.ojsystem.entity.Exercise">
+         update exercise set exerciseTitle=#{exercise.exerciseTitle},exerciseDescription=#{exercise.exerciseDescription},exerciseInput=#{exercise.exerciseInput},exerciseOutPut=#{exercise.exerciseOutPut},
+         exerciseSampleInput=#{exercise.exerciseSampleInput},exerciseSampleOutput=#{exercise.exerciseSampleOutput} where exerciseId=#{exercise.exerciseId}
+    </update>
+    <delete id="deleteExercise"  parameterType="java.lang.Integer">
+        delete from exercise where exerciseId=#{exerciseId}
+    </delete>
+
+    <select id="queryExerciseInfo" resultType="com.example.ojsystem.entity.Exercise"  parameterType="com.example.ojsystem.entity.Exercise">
+        select * from exercise
+    </select>
+    <select id="queryExerciseDetailsInfoByExerciseId" resultType="com.example.ojsystem.entity.Exercise">
+        select * from exercise where exerciseId=#{exerciseId}
+    </select>
+
+
+</mapper>

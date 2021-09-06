@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.ExamMapper">
+
+    <resultMap id="BaseExamResultMap" type="com.example.ojsystem.entity.Exam">
+        <id column="examId" jdbcType="BIGINT" property="examId" />
+        <result column="examStartTime" jdbcType="VARCHAR" property="examStartTime" />
+        <result column="examEndTime" jdbcType="VARCHAR" property="examEndTime" />
+        <result column="examIsPublish" jdbcType="BIT" property="examIsPublish" />
+        <result column="examChoiceTotals" jdbcType="BIGINT" property="examChoiceTotals" />
+        <result column="examProgrammingTotals" jdbcType="BIGINT" property="examProgrammingTotals" />
+        <result column="examLanguage" jdbcType="VARCHAR" property="examLanguage" />
+        <association property="classes" javaType="com.example.ojsystem.entity.Classes">
+            <id column="classesId" jdbcType="BIGINT" property="classesId" />
+            <result column="classesName" jdbcType="VARCHAR" property="classesName" />
+        </association>
+    </resultMap>
+
+
+    <insert id="addExamInfo"  parameterType="com.example.ojsystem.entity.Exam" useGeneratedKeys="true" keyProperty="exam.examId" keyColumn="examId">
+        insert into exam(examStartTime,examEndTime,teacherId,classesId,examIsPublish,examChoiceTotals,examProgrammingTotals,examLanguage)
+        values(#{exam.examStartTime},#{exam.examEndTime},#{exam.teacher.teacherId},#{exam.classes.classesId},#{exam.examIsPublish},#{exam.examChoiceTotals},#{exam.examProgrammingTotals},#{exam.examLanguage})
+    </insert>
+    <update id="modifyExamInfo" parameterType="com.example.ojsystem.entity.Exam">
+             update exam set examStartTime=#{exam.examStartTime},examEndTime=#{exam.examEndTime},examChoiceTotals=#{exam.examChoiceTotals},examProgrammingTotals=#{exam.examProgrammingTotals},
+              examLanguage=#{exam.examLanguage},classesId=#{exam.classes.classesId} where examId=#{exam.examId}
+    </update>
+    <delete id="deleteExamInfo" parameterType="java.lang.Integer">
+        delete from exam where examId=#{examId}
+    </delete>
+    <select id="queryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
+       select * from exam,student where exam.classesId=student.classesId and student.studentId=#{studentId}
+    </select>
+    <select id="teacherQueryExamInfo" resultType="com.example.ojsystem.entity.Exam">
+          select * from exam where teacherId=#{teacherId}
+    </select>
+
+</mapper>

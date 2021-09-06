@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.ExerciseAnswerMapper">
+
+    <resultMap id="BaseExerciseAnswerResultMap" type="com.example.ojsystem.entity.ExerciseAnswer">
+        <id column="exerciseAnswerId" jdbcType="BIGINT" property="exerciseAnswerId" />
+        <result column="exerciseAnswerInput" jdbcType="VARCHAR" property="exerciseAnswerInput" />
+        <result column="exerciseAnswerOutput" jdbcType="VARCHAR" property="exerciseAnswerOutput" />
+    </resultMap>
+
+    <insert id="addExerciseAnswer" parameterType="com.example.ojsystem.entity.ExerciseAnswer" useGeneratedKeys="true" keyProperty="exerciseAnswer.exerciseAnswerId" keyColumn="exerciseAnswerId">
+        insert into exerciseanswer(exerciseId,exerciseAnswerInput,exerciseAnswerOutput) values(#{exerciseAnswer.exercise.exerciseId},#{exerciseAnswer.exerciseAnswerInput},#{exerciseAnswer.exerciseAnswerOutput})
+    </insert>
+    <update id="modifyExerciseAnswerInfo" parameterType="com.example.ojsystem.entity.ExerciseAnswer">
+         update exerciseanswer set exerciseAnswerInput=#{exerciseAnswer.exerciseAnswerInput},exerciseAnswerOutput=#{exerciseAnswer.exerciseAnswerOutput} where exerciseAnswerId=#{exerciseAnswer.exerciseAnswerId}
+    </update>
+    <delete id="deleteExerciseAnswer" parameterType="java.lang.Integer">
+           delete from exerciseanswer where exerciseAnswerId=#{exerciseAnswerId}
+    </delete>
+    <select id="queryExerciseAnswerInfoByExerciseId" resultType="com.example.ojsystem.entity.ExerciseAnswer" parameterType="java.lang.Integer">
+        select * from exerciseanswer where exerciseId=#{exerciseId}
+    </select>
+
+</mapper>
