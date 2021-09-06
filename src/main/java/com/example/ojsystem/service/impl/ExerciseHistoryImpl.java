@@ -4,6 +4,7 @@ import com.example.ojsystem.dao.ExerciseHistoryMapper;
 import com.example.ojsystem.dao.ExerciseMapper;
 import com.example.ojsystem.entity.ExerciseHistory;
 import com.example.ojsystem.service.ExerciseHistoryService;
+import com.example.ojsystem.tool.ResultTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,5 +81,16 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
      */
     public List<Integer>  queryExerciseIdByStudentId(int studentId) {
         return exerciseHistoryMapper.queryExerciseIdByStudentId(studentId);
+    }
+
+    /**
+     * 根据习题id查询结果信息
+     * 输入exerciseId
+     * 输出查到的习题结果信息
+     *
+     * @param exerciseId
+     */
+    public List<ResultTool> queryExerciseResultInfo(int exerciseId) {
+        return exerciseHistoryMapper.queryExerciseResultInfo(exerciseId);
     }
 }

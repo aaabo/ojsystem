@@ -4,6 +4,7 @@ import com.example.ojsystem.entity.Exercise;
 import com.example.ojsystem.entity.ExerciseHistory;
 import com.example.ojsystem.entity.Student;
 import com.example.ojsystem.service.ExerciseHistoryService;
+import com.example.ojsystem.tool.ResultTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -103,6 +104,17 @@ public class ExerciseHistoryController {
     @RequestMapping(value="/queryExerciseIdByStudentId",method = RequestMethod.POST)
     public Object queryExerciseIdByStudentId(HttpServletRequest request){
         return exerciseHistoryService.queryExerciseIdByStudentId(Integer.valueOf(request.getParameter("studentId")));
+    }
+
+
+    /**
+     * 根据习题id查询习题结果信息
+     * 输入exerciseId
+     * 输出查到的习题结果信息
+     */
+    @RequestMapping(value="/queryExerciseResultInfo",method = RequestMethod.POST)
+    public Object queryExerciseResultInfo(HttpServletRequest request){
+        return exerciseHistoryService.queryExerciseResultInfo(Integer.valueOf(request.getParameter("exerciseId")));
     }
 
 }

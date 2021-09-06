@@ -40,6 +40,9 @@
     <select id="queryExerciseIdByStudentId" resultType="java.lang.Integer">
         select exerciseId from exercisehistory where exerciseId not in (select distinct exerciseId from exercisehistory where studentId=#{studentId} and exerciseResult="accept") and studentId=#{studentId}
     </select>
+    <select id="queryExerciseResultInfo" resultType="com.example.ojsystem.tool.ResultTool">
+        SELECT exerciseResult,count(*) as number FROM `exercisehistory` where exerciseId=#{exerciseId} group BY exerciseResult
+    </select>
 
 
 </mapper>

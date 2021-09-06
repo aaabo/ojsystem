@@ -1,6 +1,7 @@
 package com.example.ojsystem.service;
 
 import com.example.ojsystem.entity.ExerciseHistory;
+import com.example.ojsystem.tool.ResultTool;
 
 import java.util.List;
 
@@ -47,5 +48,12 @@ public interface ExerciseHistoryService {
      * 输出查到的习题id
      */
     public List<Integer>  queryExerciseIdByStudentId(int studentId);
+
+    /**
+     * 根据习题id查询习题结果信息
+     * 输入exerciseId
+     * 输出查到的习题结果信息
+     */
+    public List<ResultTool> queryExerciseResultInfo(int exerciseId);
 
 }

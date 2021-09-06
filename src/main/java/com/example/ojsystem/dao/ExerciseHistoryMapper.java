@@ -1,6 +1,7 @@
 package com.example.ojsystem.dao;
 
 import com.example.ojsystem.entity.ExerciseHistory;
+import com.example.ojsystem.tool.ResultTool;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -49,4 +50,11 @@ public interface ExerciseHistoryMapper {
      * 输出查到的习题id
      */
     public List<Integer>   queryExerciseIdByStudentId(@Param("studentId") int studentId);
+
+    /**
+     * 根据习题id查询习题结果信息
+     * 输入exerciseId
+     * 输出查到的习题结果信息
+     */
+    public List<ResultTool> queryExerciseResultInfo(@Param("exerciseId") int exerciseId);
 }
