@@ -105,7 +105,14 @@ public class StudentController {
      */
     @RequestMapping(value="/queryStudentInfo",method = RequestMethod.POST)
     public Object queryStudentInfo(HttpServletRequest request){
-        return studentService.queryStudentInfoById((Integer)request.getSession().getAttribute("studentId"));
+        Object studentId=request.getSession().getAttribute("studentId");
+        if(studentId==null){
+            return 0;
+        }
+        else{
+            return studentService.queryStudentInfoById((Integer)studentId);
+        }
+
     }
 
     /**

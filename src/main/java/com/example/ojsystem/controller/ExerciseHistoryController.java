@@ -28,7 +28,7 @@ public class ExerciseHistoryController {
     @RequestMapping(value="/addCodeInfo",method = RequestMethod.POST)
     public Boolean addCodeInfo(HttpServletRequest request){
         int i=0;
-//        int studentId=(Integer)request.getSession().getAttribute("studentId");
+        int studentId=(Integer)request.getSession().getAttribute("studentId");
         int exerciseId=Integer.valueOf(request.getParameter("exerciseId"));
         String exerciseSubmitTime=request.getParameter("exerciseSubmitTime");
         String exerciseSubmitLanguage=request.getParameter("exerciseSubmitLanguage");
@@ -38,7 +38,7 @@ public class ExerciseHistoryController {
         exerciseHistory.setExerciseSubmitTime(exerciseSubmitTime);
         exerciseHistory.setExerciseSubmitLanguage(exerciseSubmitLanguage);
         Student student=new Student();
-        student.setStudentId(1);
+        student.setStudentId(studentId);
         Exercise exercise=new Exercise();
         exercise.setExerciseId(exerciseId);
         exerciseHistory.setStudent(student);

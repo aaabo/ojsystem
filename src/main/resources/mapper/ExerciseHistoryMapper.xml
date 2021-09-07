@@ -27,6 +27,7 @@
             <if test="studentId != null and studentId!=0">
                 and student.studentId =#{studentId}
             </if>
+                order by exercisehistory.exerciseSubmitTime DESC
     </select>
     <select id="queryExerciseStatisticsInfo" resultType="com.example.ojsystem.entity.ExerciseHistory" resultMap="BaseExerciseHistoryResultMap">
          select  * from exercisehistory,student where exercisehistory.studentId=student.studentId and exercisehistory.exerciseId =#{exerciseId} and exerciseResult="accept" GROUP BY exercisehistory.studentId order by exerciseSubmitTime
