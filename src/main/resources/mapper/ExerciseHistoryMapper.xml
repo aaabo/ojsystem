@@ -14,6 +14,9 @@
             <id column="studentId" jdbcType="BIGINT" property="studentId" />
             <result column="studentName" jdbcType="VARCHAR" property="studentName" />
         </association>
+        <association property="exercise" javaType="com.example.ojsystem.entity.Exercise">
+            <id column="exerciseId" jdbcType="BIGINT" property="exerciseId" />
+        </association>
     </resultMap>
     <insert id="addCodeInfo" parameterType="com.example.ojsystem.entity.ExerciseHistory" >
            insert into exercisehistory(studentId,exerciseId,exerciseSubmitTime,exerciseSubmitLanguage,exerciseCode)

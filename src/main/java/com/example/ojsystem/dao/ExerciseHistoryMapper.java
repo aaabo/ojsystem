@@ -17,11 +17,11 @@ public interface ExerciseHistoryMapper {
     public int addCodeInfo(@Param("exerciseHistory") ExerciseHistory exerciseHistory);
 
     /**
-     * 根据习题id或者学生id来查询习题记录
-     * 输入exerciseId和studentId
+     * 根据习题id或者学生id来查询习题记录 新增通过语言和结果查询
+     * 输入exerciseHistory
      * 输出List<ExerciseHistory>
      */
-    public List<ExerciseHistory> queryExerciseRealtimeStatusInfo(@Param("exerciseId") int exerciseId,@Param("studentId") int studentId);
+    public List<ExerciseHistory> queryExerciseRealtimeStatusInfo(@Param("exerciseHistory") ExerciseHistory exerciseHistory);
 
     /**
      * 根据习题id来查询习题的排行

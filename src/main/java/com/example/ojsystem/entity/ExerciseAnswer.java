@@ -36,7 +36,7 @@ public class ExerciseAnswer {
         return exerciseAnswerOutput;
     }
 
-    public void setExerciseAnswerOutput(String exerciseAnswerOuput) {
+    public void setExerciseAnswerOutput(String exerciseAnswerOutput) {
         this.exerciseAnswerOutput = exerciseAnswerOutput;
     }
 

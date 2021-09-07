@@ -54,15 +54,17 @@ public class ExerciseHistoryController {
 
 
     /**
-     * 根据习题id或者学生id来查询习题记录
+     * 根据习题id或者学生id来查询习题记录 新增通过语言和结果查询
      * 输入exerciseId和studentId
      * 输出List<ExerciseHistory>
      */
-    @RequestMapping(value="/queryExerciseRealtimeStatusInfo",method = RequestMethod.POST)
-    public Object queryExerciseRealtimeStatusInfo(HttpServletRequest request){
-        return exerciseHistoryService.queryExerciseRealtimeStatusInfo(Integer.valueOf(request.getParameter("exerciseId")),Integer.valueOf(request.getParameter("studentId")));
-
-    }
+//    @RequestMapping(value="/queryExerciseRealtimeStatusInfo",method = RequestMethod.POST)
+//    public Object queryExerciseRealtimeStatusInfo(HttpServletRequest request){
+//        int exerciseId=Integer.valueOf(request.getParameter("exerciseId"));
+//        int studentId=Integer.valueOf(request.getParameter("studentId"));
+//        return exerciseHistoryService.queryExerciseRealtimeStatusInfo();
+//
+//    }
 
     /**
      * 根据习题id来查询习题的排行

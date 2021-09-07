@@ -26,16 +26,15 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
     }
 
     /**
-     * 根据习题id或者学生id来查询习题记录
+     * 根据习题id或者学生id来查询习题记录 新增通过语言和结果查询
      * 输入exerciseId和studentId
      * 输出List<ExerciseHistory>
      *
-     * @param exerciseId
-     * @param studentId
+     * @param exerciseHistory
      */
-    public List<ExerciseHistory> queryExerciseRealtimeStatusInfo(int exerciseId, int studentId) {
+    public List<ExerciseHistory> queryExerciseRealtimeStatusInfo(ExerciseHistory exerciseHistory) {
 
-        return exerciseHistoryMapper.queryExerciseRealtimeStatusInfo(exerciseId,studentId);
+        return exerciseHistoryMapper.queryExerciseRealtimeStatusInfo(exerciseHistory);
     }
 
     /**
