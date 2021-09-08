@@ -27,14 +27,14 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
 
     /**
      * 根据习题id或者学生id来查询习题记录 新增通过语言和结果查询
-     * 输入exerciseId和studentId
+     * 输入exerciseHistory
      * 输出List<ExerciseHistory>
      *
      * @param exerciseHistory
      */
-    public List<ExerciseHistory> queryExerciseRealtimeStatusInfo(ExerciseHistory exerciseHistory) {
+    public List<ExerciseHistory> queryExerciseRealTimeStatusInfo(ExerciseHistory exerciseHistory) {
 
-        return exerciseHistoryMapper.queryExerciseRealtimeStatusInfo(exerciseHistory);
+        return exerciseHistoryMapper.queryExerciseRealTimeStatusInfo(exerciseHistory);
     }
 
     /**
@@ -56,8 +56,8 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
      * @param studentId
      * @param exerciseId
      */
-    public int queryStudnetExerciseIsSuccess(int studentId, int exerciseId) {
-        return exerciseHistoryMapper.queryStudnetExerciseIsSuccess(studentId,exerciseId);
+    public int queryStudentExerciseIsSuccess(int studentId, int exerciseId) {
+        return exerciseHistoryMapper.queryStudentExerciseIsSuccess(studentId,exerciseId);
     }
 
     /**

@@ -18,7 +18,7 @@ public interface ExerciseHistoryService {
      * 输入exerciseHistory
      * 输出List<ExerciseHistory>
      */
-    public List<ExerciseHistory> queryExerciseRealtimeStatusInfo(ExerciseHistory exerciseHistory);
+    public List<ExerciseHistory> queryExerciseRealTimeStatusInfo(ExerciseHistory exerciseHistory);
 
     /**
      * 根据习题id来查询习题的排行
@@ -32,7 +32,7 @@ public interface ExerciseHistoryService {
      * 输入studentId和exerciseId
      * 输出查询到的数量
      */
-    public int queryStudnetExerciseIsSuccess(int studentId,int exerciseId);
+    public int queryStudentExerciseIsSuccess(int studentId,int exerciseId);
 
     /**
      * 根据习题记录id查询提交代码

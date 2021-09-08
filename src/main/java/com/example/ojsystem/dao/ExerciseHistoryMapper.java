@@ -21,7 +21,7 @@ public interface ExerciseHistoryMapper {
      * 输入exerciseHistory
      * 输出List<ExerciseHistory>
      */
-    public List<ExerciseHistory> queryExerciseRealtimeStatusInfo(@Param("exerciseHistory") ExerciseHistory exerciseHistory);
+    public List<ExerciseHistory> queryExerciseRealTimeStatusInfo(@Param("exerciseHistory") ExerciseHistory exerciseHistory);
 
     /**
      * 根据习题id来查询习题的排行
@@ -35,7 +35,7 @@ public interface ExerciseHistoryMapper {
      * 输入studentId和exerciseId
      * 输出查询到的数量
      */
-    public int queryStudnetExerciseIsSuccess(@Param("studentId") int studentId,@Param("exerciseId") int exerciseId);
+    public int queryStudentExerciseIsSuccess(@Param("studentId") int studentId,@Param("exerciseId") int exerciseId);
 
     /**
      * 根据习题记录id查询提交代码

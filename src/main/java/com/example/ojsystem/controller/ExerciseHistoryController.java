@@ -58,13 +58,25 @@ public class ExerciseHistoryController {
      * 输入exerciseId和studentId
      * 输出List<ExerciseHistory>
      */
-//    @RequestMapping(value="/queryExerciseRealtimeStatusInfo",method = RequestMethod.POST)
-//    public Object queryExerciseRealtimeStatusInfo(HttpServletRequest request){
-//        int exerciseId=Integer.valueOf(request.getParameter("exerciseId"));
-//        int studentId=Integer.valueOf(request.getParameter("studentId"));
-//        return exerciseHistoryService.queryExerciseRealtimeStatusInfo();
-//
-//    }
+    @RequestMapping(value="/queryExerciseRealTimeStatusInfo",method = RequestMethod.POST)
+    public Object queryExerciseRealTimeStatusInfo(HttpServletRequest request){
+
+        int exerciseId=Integer.valueOf(request.getParameter("exerciseId"));
+        String studentName=request.getParameter("studentName");
+        String exerciseResult=request.getParameter("exerciseResult");
+        String exerciseSubmitLanguage=request.getParameter("exerciseSubmitLanguage");
+        ExerciseHistory exerciseHistory=new ExerciseHistory();
+        exerciseHistory.setExerciseSubmitLanguage(exerciseSubmitLanguage);
+        exerciseHistory.setExerciseResult(exerciseResult);
+        Exercise exercise=new Exercise();
+        exercise.setExerciseId(exerciseId);
+        Student student=new Student();
+        student.setStudentName("%"+studentName+"%");
+        exerciseHistory.setExercise(exercise);
+        exerciseHistory.setStudent(student);
+        return exerciseHistoryService.queryExerciseRealTimeStatusInfo(exerciseHistory);
+
+    }
 
     /**
      * 根据习题id来查询习题的排行
@@ -81,9 +93,9 @@ public class ExerciseHistoryController {
      * 输入studentId和exerciseId
      * 输出查询到的数量
      */
-    @RequestMapping(value="/queryStudnetExerciseIsSuccess",method = RequestMethod.POST)
-    public int queryStudnetExerciseIsSuccess(HttpServletRequest request){
-        return exerciseHistoryService.queryStudnetExerciseIsSuccess(Integer.valueOf(request.getParameter("studentId")),Integer.valueOf(request.getParameter("exerciseId")));
+    @RequestMapping(value="/queryStudentExerciseIsSuccess",method = RequestMethod.POST)
+    public int queryStudentExerciseIsSuccess(HttpServletRequest request){
+        return exerciseHistoryService.queryStudentExerciseIsSuccess(Integer.valueOf(request.getParameter("studentId")),Integer.valueOf(request.getParameter("exerciseId")));
     }
 
 
