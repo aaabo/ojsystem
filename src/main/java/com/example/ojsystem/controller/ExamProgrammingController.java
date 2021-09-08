@@ -121,4 +121,15 @@ public class ExamProgrammingController {
         }
     }
 
+
+    /**
+     * 根据考试id查询考试编程题总分
+     * 输入examId
+     * 输出int
+     */
+    @RequestMapping(value="/queryProgramExamTotalScoreInfo",method = RequestMethod.POST)
+    public Object queryProgramExamTotalScoreInfo(HttpServletRequest request){
+        return examProgrammingService.queryProgramExamTotalScoreInfo(Integer.valueOf(request.getParameter("examId")));
+    }
+
 }

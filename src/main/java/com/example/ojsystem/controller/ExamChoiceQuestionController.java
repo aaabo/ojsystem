@@ -3,6 +3,7 @@ package com.example.ojsystem.controller;
 import com.example.ojsystem.dao.ExamChoiceQuestionMapper;
 import com.example.ojsystem.entity.Exam;
 import com.example.ojsystem.entity.ExamChoiceQuestion;
+import com.example.ojsystem.service.ExamChoiceQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/examChoiceQuestion")
 public class ExamChoiceQuestionController {
     @Autowired
-    ExamChoiceQuestionMapper examChoiceQuestionMapper;
+    ExamChoiceQuestionService examChoiceQuestionService;
     /**
      * 根据考试id和选择题信息添加选择题信息
      * 输入examChoiceQuestion
@@ -44,7 +45,7 @@ public class ExamChoiceQuestionController {
         examChoiceQuestion.setExamChoiceQuestionTitle(examChoiceQuestionTitle);
         examChoiceQuestion.setExamChoiceQuestionCorrectOption(examChoiceQuestionCorrectOption);
         examChoiceQuestion.setExamChoiceQuestionScore(examChoiceQuestionScore);
-        i=examChoiceQuestionMapper.addChoiceQuestionExamInfo(examChoiceQuestion);
+        i=examChoiceQuestionService.addChoiceQuestionExamInfo(examChoiceQuestion);
         if(i!=0){
             return examChoiceQuestion.getExamChoiceQuestionId();
         }
@@ -59,7 +60,7 @@ public class ExamChoiceQuestionController {
      */
     @RequestMapping(value="/queryChoiceQuestionInfoById",method = RequestMethod.POST)
     public Object queryChoiceInfoById(HttpServletRequest request){
-        return examChoiceQuestionMapper.queryChoiceQuestionInfoById(Integer.valueOf(request.getParameter("examId")));
+        return examChoiceQuestionService.queryChoiceQuestionInfoById(Integer.valueOf(request.getParameter("examId")));
     }
 
 
@@ -88,7 +89,7 @@ public class ExamChoiceQuestionController {
         examChoiceQuestion.setExamChoiceQuestionCorrectOption(examChoiceQuestionCorrectOption);
         examChoiceQuestion.setExamChoiceQuestionScore(examChoiceQuestionScore);
         examChoiceQuestion.setExamChoiceQuestionId(examChoiceQuestionId);
-        i=examChoiceQuestionMapper.modifyChoiceQuestionExamInfo(examChoiceQuestion);
+        i=examChoiceQuestionService.modifyChoiceQuestionExamInfo(examChoiceQuestion);
         if(i!=0){
             return true;
         }
@@ -103,15 +104,26 @@ public class ExamChoiceQuestionController {
      * 输入examChoiceQuestionId
      * 输出int
      */
-    @RequestMapping(value="/deleteChoiceQuestionExamInfo",method = RequestMethod.GET)
+    @RequestMapping(value="/deleteChoiceQuestionExamInfo",method = RequestMethod.POST)
     public Boolean deleteChoiceQuestionExamInfo(HttpServletRequest request){
         int i=0;
-        i=examChoiceQuestionMapper.deleteChoiceQuestionExamInfo(Integer.valueOf(request.getParameter("examChoiceQuestionId")));
+        i=examChoiceQuestionService.deleteChoiceQuestionExamInfo(Integer.valueOf(request.getParameter("examChoiceQuestionId")));
         if(i!=0){
             return true;
         }
         else{
             return false;
         }
+    }
+
+
+    /**
+     * 根据输入的examId查询考试的选择题总分
+     * 输入examId
+     * 输出int
+     */
+    @RequestMapping(value="/queryChoiceQuestionTotalScore",method = RequestMethod.POST)
+    public Object queryChoiceQuestionTotalScore(HttpServletRequest request){
+        return examChoiceQuestionService.queryChoiceQuestionTotalScore(Integer.valueOf(request.getParameter("examId")));
     }
 }

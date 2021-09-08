@@ -30,6 +30,9 @@
     <select id="queryProgrammingInfoById" resultType="com.example.ojsystem.entity.ExamProgramming" parameterType="java.lang.Integer" resultMap="BaseExamProgrammingResultMap">
         select * from examprogramming where examId=#{examId}
     </select>
+    <select id="queryProgramExamTotalScoreInfo" resultType="java.lang.Integer">
+        select SUM(examProgrammingScore) as examProgrammingTotalScore FROM examprogramming where examId=#{examId}
+    </select>
 
 
 </mapper>

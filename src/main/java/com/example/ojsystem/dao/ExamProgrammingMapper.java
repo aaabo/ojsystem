@@ -37,4 +37,11 @@ public interface ExamProgrammingMapper {
      * 输出int
      */
     public int deleteProgramExamInfo(@Param("examProgrammingId") int examProgrammingId);
+
+    /**
+     * 根据考试id查询考试编程题总分
+     * 输入examId
+     * 输出int
+     */
+    public int queryProgramExamTotalScoreInfo(int examId);
 }

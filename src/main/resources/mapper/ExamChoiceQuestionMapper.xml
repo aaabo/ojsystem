@@ -30,6 +30,9 @@
     <select id="queryChoiceQuestionInfoById" resultType="com.example.ojsystem.entity.ExamChoiceQuestion" parameterType="java.lang.Integer" resultMap="BaseExamChoiceQuestionResultMap">
         select * from examchoicequestion where examId=#{examId}
     </select>
+    <select id="queryChoiceQuestionTotalScore" resultType="java.lang.Integer">
+        select SUM(examChoiceQuestionScore) as examChoiceQuestionTotalScore FROM examchoicequestion where examId=#{examId}
+    </select>
 
 
 </mapper>

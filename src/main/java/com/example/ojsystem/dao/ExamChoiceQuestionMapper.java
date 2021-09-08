@@ -35,4 +35,11 @@ public interface ExamChoiceQuestionMapper {
      * 输出int
      */
     public int deleteChoiceQuestionExamInfo(@Param("examChoiceQuestionId") int examChoiceQuestionId);
+
+    /**
+     * 根据输入的examId查询考试的选择题总分
+     * 输入examId
+     * 输出int
+     */
+    public int queryChoiceQuestionTotalScore(@Param("examId") int examId);
 }

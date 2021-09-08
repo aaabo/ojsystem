@@ -55,4 +55,15 @@ public class ExamProgrammingImpl implements ExamProgrammingService{
     public int deleteProgramExamInfo(int examProgrammingId) {
         return examProgrammingMapper.deleteProgramExamInfo(examProgrammingId);
     }
+
+    /**
+     * 根据考试id查询考试编程题总分
+     * 输入examId
+     * 输出int
+     *
+     * @param examId
+     */
+    public int queryProgramExamTotalScoreInfo(int examId) {
+        return examProgrammingMapper.queryProgramExamTotalScoreInfo(examId);
+    }
 }

@@ -57,5 +57,16 @@ public class ExamChoiceQuestionServiceImpl implements ExamChoiceQuestionService 
         return examChoiceQuestionMapper.deleteChoiceQuestionExamInfo(examChoiceQuestionId);
     }
 
+    /**
+     * 根据输入的examId查询考试的选择题总分
+     * 输入examId
+     * 输出int
+     *
+     * @param examId
+     */
+    public int queryChoiceQuestionTotalScore(int examId) {
+        return examChoiceQuestionMapper.queryChoiceQuestionTotalScore(examId);
+    }
+
 
 }

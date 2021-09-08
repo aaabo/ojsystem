@@ -4,6 +4,7 @@ import com.example.ojsystem.dao.ExamChoiceQuestionHistoryMapper;
 import com.example.ojsystem.entity.ExamChoiceQuestion;
 import com.example.ojsystem.entity.ExamChoiceQuestionHistory;
 import com.example.ojsystem.entity.Student;
+import com.example.ojsystem.service.ExamChoiceQuestionHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/examChoiceQuestionHistory")
 public class ExamChoiceQuestionHistoryController {
     @Autowired
-    ExamChoiceQuestionHistoryMapper examChoiceQuestionHistoryMapper;
+    ExamChoiceQuestionHistoryService examChoiceQuestionHistoryService;
     /**
      * 根据学生id 选择题id 学生选项添加学生选择题记录
      * 输入ExamChoiceQuestionHistory
@@ -37,7 +38,7 @@ public class ExamChoiceQuestionHistoryController {
         examChoiceQuestionHistory.setExamChoiceQuestionUserSelection(examChoiceQuestionUserSelection);
         examChoiceQuestionHistory.setStudent(student);
         examChoiceQuestionHistory.setExamChoiceQuestion(examChoiceQuestion);
-        i=examChoiceQuestionHistoryMapper.addExamChoiceQuestionHistory(examChoiceQuestionHistory);
+        i=examChoiceQuestionHistoryService.addExamChoiceQuestionHistory(examChoiceQuestionHistory);
         if(i!=0){
             return true;
         }
