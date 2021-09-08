@@ -28,11 +28,13 @@ public class ExamController {
     @RequestMapping(value="/addExamInfo",method = RequestMethod.POST)
     public int addClasses(HttpServletRequest request){
         int i=0;
+
         String examStartTime=request.getParameter("examStartTime");
         String examEndTime=request.getParameter("examEndTime");
+        String examName=request.getParameter("examName");
         int teacherId=Integer.valueOf((Integer) request.getSession().getAttribute("teacherId"));
         int classesId=Integer.valueOf(request.getParameter("classesId"));
-        Boolean examIsPublish=Boolean.valueOf(request.getParameter("examIsPublish"));
+        String examType=request.getParameter("examType");
         int examChoiceTotals=Integer.valueOf(request.getParameter("examChoiceTotals"));
         int examProgrammingTotals=Integer.valueOf(request.getParameter("examProgrammingTotals"));
         String examLanguage=request.getParameter("examLanguage");
@@ -45,7 +47,8 @@ public class ExamController {
         Classes classes=new Classes();
         classes.setClassesId(classesId);
         exam.setClasses(classes);
-        exam.setExamIsPublish(examIsPublish);
+        exam.setExamType(examType);
+        exam.setExamName(examName);
         exam.setExamChoiceTotals(examChoiceTotals);
         exam.setExamProgrammingTotals(examProgrammingTotals);
         exam.setExamLanguage(examLanguage);
@@ -91,6 +94,7 @@ public class ExamController {
         int examId=Integer.valueOf(request.getParameter("examId"));
         String examStartTime=request.getParameter("examStartTime");
         String examEndTime=request.getParameter("examEndTime");
+        String examName=request.getParameter("examName");
         int classesId=Integer.valueOf(request.getParameter("classesId"));
         int examChoiceTotals=Integer.valueOf(request.getParameter("examChoiceTotals"));
         int examProgrammingTotals=Integer.valueOf(request.getParameter("examProgrammingTotals"));
@@ -105,6 +109,7 @@ public class ExamController {
         exam.setExamChoiceTotals(examChoiceTotals);
         exam.setExamProgrammingTotals(examProgrammingTotals);
         exam.setExamLanguage(examLanguage);
+        exam.setExamName(examName);
         i=examService.modifyExamInfo(exam);
         if(i!=0){
             return true;

@@ -2,9 +2,10 @@ package com.example.ojsystem.entity;
 
 public class Exam {
     private int examId;
+    private String examName;
     private String examStartTime;
     private String examEndTime;
-    private Boolean examIsPublish;//是否发布
+    private String examType;//考试状态
     private int examChoiceTotals;//考试选择总分
     private int examProgrammingTotals;//考试编程总分
     private String examLanguage;
@@ -41,12 +42,21 @@ public class Exam {
         this.examEndTime = examEndTime;
     }
 
-    public Boolean getExamIsPublish() {
-        return examIsPublish;
+
+    public String getExamName() {
+        return examName;
     }
 
-    public void setExamIsPublish(Boolean examIsPublish) {
-        this.examIsPublish = examIsPublish;
+    public void setExamName(String examName) {
+        this.examName = examName;
+    }
+
+    public String getExamType() {
+        return examType;
+    }
+
+    public void setExamType(String examType) {
+        this.examType = examType;
     }
 
     public int getExamChoiceTotals() {
