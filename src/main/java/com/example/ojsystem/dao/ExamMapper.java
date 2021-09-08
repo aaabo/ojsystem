@@ -17,13 +17,19 @@ public interface ExamMapper {
     public int addExamInfo(@Param("exam") Exam exam);
 
     /**
-     * 学生查询全部已发布考试信息
+     *查询学生能参加的考试信息
      * 输入无
      * 输出List<Exam>
      */
-    public List<Exam> queryExamInfo(@Param("studentId") int studentId);
+    public List<Exam> queryExamInfoByStudentId(@Param("studentId") int studentId);
 
 
+    /**
+     * 查询全部的考试信息
+     * 输入无
+     * 输出List<Exam>
+     */
+    public List<Exam> queryExamInfo();
 
     /**
      * 教师查询自己的考试信息
@@ -44,4 +50,18 @@ public interface ExamMapper {
      * 输出int
      */
     public int deleteExamInfo(@Param("examId") int examId);
+
+    /**
+     * 修改考试状态
+     * 输入exam
+     * 输出int
+     */
+    public int updateExamType(@Param("exam") Exam exam);
+
+    /**
+     * 查询考试信息
+     * 输入examId
+     * 输出Exam
+     */
+    public Exam queryExamType(@Param("examId") int examId);
 }

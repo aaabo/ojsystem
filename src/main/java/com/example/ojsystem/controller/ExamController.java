@@ -35,8 +35,6 @@ public class ExamController {
         int teacherId=Integer.valueOf((Integer) request.getSession().getAttribute("teacherId"));
         int classesId=Integer.valueOf(request.getParameter("classesId"));
         String examType=request.getParameter("examType");
-        int examChoiceTotals=Integer.valueOf(request.getParameter("examChoiceTotals"));
-        int examProgrammingTotals=Integer.valueOf(request.getParameter("examProgrammingTotals"));
         String examLanguage=request.getParameter("examLanguage");
         Exam exam=new Exam();
         exam.setExamStartTime(examStartTime);
@@ -49,8 +47,6 @@ public class ExamController {
         exam.setClasses(classes);
         exam.setExamType(examType);
         exam.setExamName(examName);
-        exam.setExamChoiceTotals(examChoiceTotals);
-        exam.setExamProgrammingTotals(examProgrammingTotals);
         exam.setExamLanguage(examLanguage);
         i=examService.addExamInfo(exam);
         if(i!=0){
@@ -68,18 +64,28 @@ public class ExamController {
      */
     @RequestMapping(value="/teacherQueryExamInfo",method = RequestMethod.POST)
     public Object teacherQueryExamInfo(HttpServletRequest request){
-        return  examService.teacherQueryExamInfo(1002);
+        return  examService.teacherQueryExamInfo((Integer) request.getSession().getAttribute("teacherId"));
     }
 
 
     /**
-     * 学生查询全部已发布考试信息
+     * 查询全部的考试信息
      * 输入无
      * 输出List<Exam>
      */
     @RequestMapping(value="/queryExamInfo",method = RequestMethod.POST)
     public Object queryExamInfo(HttpServletRequest request){
-        return  examService.queryExamInfo(1);
+        return  examService.queryExamInfo();
+    }
+
+    /**
+     * 查询学生能参加的考试信息
+     * 输入无
+     * 输出List<Exam>
+     */
+    @RequestMapping(value="/queryExamInfoByStudentId",method = RequestMethod.POST)
+    public Object queryExamInfoByStudentId(HttpServletRequest request){
+        return  examService.queryExamInfoByStudentId((Integer)request.getSession().getAttribute("studentId"));
     }
 
 
@@ -96,8 +102,6 @@ public class ExamController {
         String examEndTime=request.getParameter("examEndTime");
         String examName=request.getParameter("examName");
         int classesId=Integer.valueOf(request.getParameter("classesId"));
-        int examChoiceTotals=Integer.valueOf(request.getParameter("examChoiceTotals"));
-        int examProgrammingTotals=Integer.valueOf(request.getParameter("examProgrammingTotals"));
         String examLanguage=request.getParameter("examLanguage");
         Exam exam=new Exam();
         exam.setExamStartTime(examStartTime);
@@ -106,8 +110,6 @@ public class ExamController {
         classes.setClassesId(classesId);
         exam.setClasses(classes);
         exam.setExamId(examId);
-        exam.setExamChoiceTotals(examChoiceTotals);
-        exam.setExamProgrammingTotals(examProgrammingTotals);
         exam.setExamLanguage(examLanguage);
         exam.setExamName(examName);
         i=examService.modifyExamInfo(exam);
@@ -135,6 +137,39 @@ public class ExamController {
         else{
             return false;
         }
+    }
+
+    /**
+     * 修改考试状态
+     * 输入exam
+     * 输出成功返回true 失败返回false
+     */
+    @RequestMapping(value="/updateExamType",method = RequestMethod.POST)
+    public Boolean updateExamType(HttpServletRequest request){
+        int i=0;
+        int examId=Integer.valueOf(request.getParameter("examId"));
+        String examType=request.getParameter("examType");
+        Exam exam=new Exam();
+        exam.setExamId(examId);
+        exam.setExamType(examType);
+        i=examService.updateExamType(exam);
+        if(i!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
+    /**
+     * 查询考试信息
+     * 输入examId
+     * 输出Exam
+     */
+    @RequestMapping(value="/queryExamType",method = RequestMethod.POST)
+    public Object queryExamType(HttpServletRequest request){
+        return examService.queryExamType(Integer.valueOf(request.getParameter("examId")));
     }
 
 

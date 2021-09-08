@@ -6,8 +6,6 @@ public class Exam {
     private String examStartTime;
     private String examEndTime;
     private String examType;//考试状态
-    private int examChoiceTotals;//考试选择总分
-    private int examProgrammingTotals;//考试编程总分
     private String examLanguage;
 
     private Classes classes;
@@ -59,21 +57,7 @@ public class Exam {
         this.examType = examType;
     }
 
-    public int getExamChoiceTotals() {
-        return examChoiceTotals;
-    }
 
-    public void setExamChoiceTotals(int examChoiceTotals) {
-        this.examChoiceTotals = examChoiceTotals;
-    }
-
-    public int getExamProgrammingTotals() {
-        return examProgrammingTotals;
-    }
-
-    public void setExamProgrammingTotals(int examProgrammingTotals) {
-        this.examProgrammingTotals = examProgrammingTotals;
-    }
 
     public String getExamLanguage() {
         return examLanguage;
