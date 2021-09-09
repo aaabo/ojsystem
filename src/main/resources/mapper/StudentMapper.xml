@@ -10,6 +10,10 @@
         <result column="studentPassword" jdbcType="VARCHAR" property="studentPassword" />
         <result column="studentName" jdbcType="VARCHAR" property="studentName" />
         <result column="studentProfile" jdbcType="VARCHAR" property="studentProfile" />
+        <association property="classes" javaType="com.example.ojsystem.entity.Classes">
+            <id column="classesId" jdbcType="BIGINT" property="classesId" />
+            <result column="classesName" jdbcType="VARCHAR" property="classesName" />
+        </association>
     </resultMap>
     <insert id="addStudentInfo" parameterType="com.example.ojsystem.entity.Student">
           insert into student (classesId,studentAccount,studentPassword,studentName,studnetSolved,studnetSubmit) values(#{student.classes.classesId},#{student.studentAccount},#{student.studentPassword},#{student.studentName},0,0)
@@ -31,8 +35,8 @@
     <select id="isStudentInfoExist" resultType="com.example.ojsystem.entity.Student" resultMap="BaseStudentResultMap">
         select * from Student where studentAccount=#{student.studentAccount}
     </select>
-    <select id="queryStudentInfoById" resultType="com.example.ojsystem.entity.Student">
-        select * from student where studentId=#{studentId}
+    <select id="queryStudentInfoById" resultType="com.example.ojsystem.entity.Student" resultMap="BaseStudentResultMap">
+        select * from student,classes where student.studentId=#{studentId} and student.classesId=classes.classesId
     </select>
     <select id="queryStudentPasswordInfo" resultType="java.lang.Integer">
         select studentPassword from student where studentId=#{studentId}
@@ -40,8 +44,8 @@
     <select id="queryStudnetRankListInfo" resultType="com.example.ojsystem.entity.Student">
         select studentId,classesId,studentName,studentProfile,studnetSolved,studnetSubmit,studnetSolved/studnetSubmit as acRate from student order by studnetSolved desc,acRate desc
     </select>
-    <select id="queryStudentInfo" resultType="com.example.ojsystem.entity.Student">
-         select * from student where studentId=#{studentId}
+    <select id="queryStudentInfo" resultType="com.example.ojsystem.entity.Student" resultMap="BaseStudentResultMap">
+          select * from student,classes where student.studentId=#{studentId} and student.classesId=classes.classesId
     </select>
 
 </mapper>

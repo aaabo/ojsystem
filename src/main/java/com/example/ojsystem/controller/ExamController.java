@@ -195,10 +195,10 @@ public class ExamController {
         String examType=request.getParameter("examType");
         String teacherName=request.getParameter("teacherName");
         Exam exam=new Exam();
-        exam.setExamName(examName);
+        exam.setExamName("%"+examName+"%");
         exam.setExamType(examType);
         Teacher teacher=new Teacher();
-        teacher.setTeacherName(teacherName);
+        teacher.setTeacherName("%"+teacherName+"%");
         exam.setTeacher(teacher);
         return examService.searchExamInfo(exam);
     }
