@@ -163,16 +163,43 @@ public class ExamController {
 
 
     /**
-     * 查询考试信息
+     * 根据考试id查询考试信息
      * 输入examId
      * 输出Exam
      */
-    @RequestMapping(value="/queryExamType",method = RequestMethod.POST)
-    public Object queryExamType(HttpServletRequest request){
-        return examService.queryExamType(Integer.valueOf(request.getParameter("examId")));
+    @RequestMapping(value="/queryExamInfoByExamId",method = RequestMethod.POST)
+    public Object queryExamInfoByExamId(HttpServletRequest request){
+        return examService.queryExamInfoByExamId(Integer.valueOf(request.getParameter("examId")));
     }
 
 
+    /**
+     * 查询为结束的考试信息
+     * 输入null
+     * 输出Exam
+     */
+    @RequestMapping(value="/queryNotFinishedExamInfo",method = RequestMethod.POST)
+    public Object queryNotFinishedExamInfo(HttpServletRequest request){
+        return examService.queryNotFinishedExamInfo();
+    }
 
 
+    /**
+     * 通过考试名称,考试状态，创建人来查询考试信息
+     * 输入exam
+     * 输出 List<Exam>
+     */
+    @RequestMapping(value="/searchExamInfo",method = RequestMethod.POST)
+    public Object searchExamInfo(HttpServletRequest request){
+        String examName=request.getParameter("examName");
+        String examType=request.getParameter("examType");
+        String teacherName=request.getParameter("teacherName");
+        Exam exam=new Exam();
+        exam.setExamName(examName);
+        exam.setExamType(examType);
+        Teacher teacher=new Teacher();
+        teacher.setTeacherName(teacherName);
+        exam.setTeacher(teacher);
+        return examService.searchExamInfo(exam);
+    }
 }

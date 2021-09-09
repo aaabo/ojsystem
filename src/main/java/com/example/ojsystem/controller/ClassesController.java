@@ -42,8 +42,8 @@ public class ClassesController {
 
 
 
-    /**
-     * 根据班级信息添加班级
+     /**
+     * 查询所用班级信息
      * 输入无
      * 输出List<Classes>
      */

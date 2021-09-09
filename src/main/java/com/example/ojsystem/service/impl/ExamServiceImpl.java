@@ -89,13 +89,34 @@ public class ExamServiceImpl implements ExamService{
     }
 
     /**
-     * 查询考试信息
+     * 根据考试id查询考试信息
      * 输入examId
      * 输出Exam
      *
      * @param examId
      */
-    public Exam queryExamType(int examId) {
-        return examMapper.queryExamType(examId);
+    public Exam queryExamInfoByExamId(int examId) {
+        return examMapper.queryExamInfoByExamId(examId);
     }
+
+    /**
+     * 查询为结束的考试信息
+     * 输入null
+     * 输出Exam
+     */
+    public List<Exam> queryNotFinishedExamInfo() {
+        return examMapper.queryNotFinishedExamInfo();
+    }
+
+    /**
+     * 通过考试名称,考试状态，创建人来查询考试信息
+     * 输入exam
+     * 输出 List<Exam>
+     *
+     * @param exam
+     */
+    public List<Exam> searchExamInfo(Exam exam) {
+        return examMapper.searchExamInfo(exam);
+    }
+
 }

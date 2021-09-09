@@ -15,6 +15,10 @@
             <id column="classesId" jdbcType="BIGINT" property="classesId" />
             <result column="classesName" jdbcType="VARCHAR" property="classesName" />
         </association>
+        <association property="teacher" javaType="com.example.ojsystem.entity.Teacher">
+            <id column="teacherId" jdbcType="BIGINT" property="teacherId" />
+            <result column="teacherName" jdbcType="VARCHAR" property="teacherName" />
+        </association>
     </resultMap>
 
 
@@ -35,14 +39,31 @@
     <select id="queryExamInfoByStudentId" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
        select * from exam,student where exam.classesId=student.classesId and student.studentId=#{studentId}
     </select>
-    <select id="teacherQueryExamInfo" resultType="com.example.ojsystem.entity.Exam">
-          select * from exam where teacherId=#{teacherId}
+    <select id="teacherQueryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
+         select * from exam,classes where teacherId=#{teacherId} and exam.classesId=classes.classesId
     </select>
-    <select id="queryExamInfo" resultType="com.example.ojsystem.entity.Exam">
-        select * from exam
+    <select id="queryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
+         select * from exam,teacher,classes where exam.teacherId=teacher.teacherId and exam.classesId=classes.classesId ORDER BY (case exam.examType when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
-    <select id="queryExamType" resultType="com.example.ojsystem.entity.Exam" parameterType="java.lang.Integer">
+    <select id="queryExamInfoByExamId" resultType="com.example.ojsystem.entity.Exam" parameterType="java.lang.Integer">
         select * from exam where examId=#{examId}
+    </select>
+    <select id="queryNotFinishedExamInfo" resultType="com.example.ojsystem.entity.Exam">
+         select * from exam where examType='Pending' or examType='Running'
+    </select>
+    <select id="searchExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
+        select * from exam,teacher,classes
+        where exam.teacherId=teacher.teacherId and exam.classesId=classes.classesId
+        <if test="exam.examName != null and exam.examName!=''">
+            and exam.examName =#{exam.examName}
+        </if>
+        <if test="exam.examType != null and exam.examType!=''">
+            and exam.examType =#{exam.examType}
+        </if>
+        <if test="exam.teacher.teacherName != null and exam.teacher.teacherName!=''">
+            and teacher.teacherName =#{exam.teacher.teacherName}
+        </if>
+        ORDER BY (case exam.examType when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
 
 </mapper>

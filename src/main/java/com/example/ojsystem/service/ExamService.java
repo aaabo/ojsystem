@@ -56,10 +56,27 @@ public interface ExamService {
     public int updateExamType(Exam exam);
 
     /**
-     * 查询考试信息
+     * 根据考试id查询考试信息
      * 输入examId
      * 输出Exam
      */
-    public Exam queryExamType(int examId);
+    public Exam queryExamInfoByExamId(int examId);
+
+
+    /**
+     * 查询为结束的考试信息
+     * 输入null
+     * 输出Exam
+     */
+    public List<Exam> queryNotFinishedExamInfo();
+
+
+
+    /**
+     * 通过考试名称,考试状态，创建人来查询考试信息
+     * 输入exam
+     * 输出 List<Exam>
+     */
+    public List<Exam> searchExamInfo(Exam exam);
 
 }
