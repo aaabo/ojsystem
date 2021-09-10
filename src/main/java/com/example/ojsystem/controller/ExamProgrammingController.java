@@ -33,7 +33,7 @@ public class ExamProgrammingController {
         String examProgrammingTitle=request.getParameter("examProgrammingTitle");
         String examProgrammingDescription=request.getParameter("examProgrammingDescription");
         String examProgrammingInput=request.getParameter("examProgrammingInput");
-        String examProgrammingOutPut=request.getParameter("examProgrammingOutPut");
+        String examProgrammingOutput=request.getParameter("examProgrammingOutput");
         String examProgrammingSampleInput=request.getParameter("examProgrammingSampleInput");
         String examProgrammingSampleOutput=request.getParameter("examProgrammingSampleOutput");
         int examProgrammingScore=Integer.valueOf(request.getParameter("examProgrammingScore"));
@@ -43,7 +43,7 @@ public class ExamProgrammingController {
         examProgramming.setExamProgrammingTitle(examProgrammingTitle);
         examProgramming.setExamProgrammingDescription(examProgrammingDescription);
         examProgramming.setExamProgrammingInput(examProgrammingInput);
-        examProgramming.setExamProgrammingOutPut(examProgrammingOutPut);
+        examProgramming.setExamProgrammingOutput(examProgrammingOutput);
         examProgramming.setExamProgrammingSampleInput(examProgrammingSampleInput);
         examProgramming.setExamProgrammingSampleOutput(examProgrammingSampleOutput);
         examProgramming.setExamProgrammingScore(examProgrammingScore);
@@ -69,7 +69,7 @@ public class ExamProgrammingController {
         String examProgrammingTitle=request.getParameter("examProgrammingTitle");
         String examProgrammingDescription=request.getParameter("examProgrammingDescription");
         String examProgrammingInput=request.getParameter("examProgrammingInput");
-        String examProgrammingOutPut=request.getParameter("examProgrammingOutPut");
+        String examProgrammingOutput=request.getParameter("examProgrammingOutput");
         String examProgrammingSampleInput=request.getParameter("examProgrammingSampleInput");
         String examProgrammingSampleOutput=request.getParameter("examProgrammingSampleOutput");
         int examProgrammingScore=Integer.valueOf(request.getParameter("examProgrammingScore"));
@@ -77,7 +77,7 @@ public class ExamProgrammingController {
         examProgramming.setExamProgrammingTitle(examProgrammingTitle);
         examProgramming.setExamProgrammingDescription(examProgrammingDescription);
         examProgramming.setExamProgrammingInput(examProgrammingInput);
-        examProgramming.setExamProgrammingOutPut(examProgrammingOutPut);
+        examProgramming.setExamProgrammingOutput(examProgrammingOutput);
         examProgramming.setExamProgrammingSampleInput(examProgrammingSampleInput);
         examProgramming.setExamProgrammingSampleOutput(examProgrammingSampleOutput);
         examProgramming.setExamProgrammingScore(examProgrammingScore);

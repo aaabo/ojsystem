@@ -5,19 +5,19 @@ public class ExamProgramming {
     private String examProgrammingTitle;
     private String examProgrammingDescription;
     private String examProgrammingInput;
-    private String examProgrammingOutPut;
+    private String examProgrammingOutput;
     private String examProgrammingSampleInput;
     private String examProgrammingSampleOutput;
     private int examProgrammingScore;
 
     private Exam exam;
 
-    public ExamProgramming(int examProgrammingId, String examProgrammingTitle, String examProgrammingDescription, String examProgrammingInput, String examProgrammingOutPut, String examProgrammingSampleInput, String examProgrammingSampleOutput, int examProgrammingScore) {
+    public ExamProgramming(int examProgrammingId, String examProgrammingTitle, String examProgrammingDescription, String examProgrammingInput, String examProgrammingOutput, String examProgrammingSampleInput, String examProgrammingSampleOutput, int examProgrammingScore) {
         this.examProgrammingId = examProgrammingId;
         this.examProgrammingTitle = examProgrammingTitle;
         this.examProgrammingDescription = examProgrammingDescription;
         this.examProgrammingInput = examProgrammingInput;
-        this.examProgrammingOutPut = examProgrammingOutPut;
+        this.examProgrammingOutput = examProgrammingOutput;
         this.examProgrammingSampleInput = examProgrammingSampleInput;
         this.examProgrammingSampleOutput = examProgrammingSampleOutput;
         this.examProgrammingScore = examProgrammingScore;
@@ -59,12 +59,12 @@ public class ExamProgramming {
         this.examProgrammingInput = examProgrammingInput;
     }
 
-    public String getExamProgrammingOutPut() {
-        return examProgrammingOutPut;
+    public String getExamProgrammingOutput() {
+        return examProgrammingOutput;
     }
 
-    public void setExamProgrammingOutPut(String examProgrammingOutPut) {
-        this.examProgrammingOutPut = examProgrammingOutPut;
+    public void setExamProgrammingOutput(String examProgrammingOutput) {
+        this.examProgrammingOutput = examProgrammingOutput;
     }
 
     public String getExamProgrammingSampleInput() {
