@@ -6,6 +6,8 @@ import com.example.ojsystem.service.ExamProgrammingAnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ExamProgrammingAnswerImpl implements ExamProgrammingAnswerService{
 
@@ -31,6 +33,18 @@ public class ExamProgrammingAnswerImpl implements ExamProgrammingAnswerService{
      */
     public int modifyExamProgrammingAnswer(ExamProgrammingAnswer examProgrammingAnswer) {
         return examProgrammingAnswerMapper.modifyExamProgrammingAnswer(examProgrammingAnswer);
+    }
+
+
+    /**
+     * 根据编程题id查询编程题答案
+     * 输入ProgrammingId
+     * 输出list
+     *
+     * @param programmingId
+     */
+    public List<ExamProgrammingAnswer> queryProgrammingAnswerInfoById(int programmingId){
+        return examProgrammingAnswerMapper.queryProgrammingAnswerInfoById(programmingId);
     }
 
     /**
