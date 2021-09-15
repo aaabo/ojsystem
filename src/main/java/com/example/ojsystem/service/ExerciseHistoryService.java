@@ -1,7 +1,7 @@
 package com.example.ojsystem.service;
 
 import com.example.ojsystem.entity.ExerciseHistory;
-import com.example.ojsystem.tool.ResultTool;
+import com.example.ojsystem.entity.ResultTool;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package com.example.ojsystem.service;
 
 import com.example.ojsystem.entity.Student;
+import com.example.ojsystem.entity.StudentScoreTool;
 
 import java.util.List;
 
@@ -69,14 +70,21 @@ public interface StudentService {
      * 输入无
      * 输出List<Student>
      */
-    public List<Student> queryStudnetRankListInfo();
+    public List<Student> queryStudentRankListInfo();
 
     /**
      * 修改学生提交信息
      * 输入solved 是否要添加解决问题次数  studnetId
      * 输出int
      */
-    public int updateStudnetSubmitInfo(int solved,int studentId);
+    public int updateStudentSubmitInfo(int solved,int studentId);
+
+    /**
+     * 通过考试id查询参加考试的学生信息
+     * 输入examId
+     * 输出 List<StudentScoreTool>
+     */
+    public List<StudentScoreTool> queryExamStudnetInfo(int examId);
 
 
 }

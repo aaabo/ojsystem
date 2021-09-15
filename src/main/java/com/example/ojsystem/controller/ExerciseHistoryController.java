@@ -4,7 +4,6 @@ import com.example.ojsystem.entity.Exercise;
 import com.example.ojsystem.entity.ExerciseHistory;
 import com.example.ojsystem.entity.Student;
 import com.example.ojsystem.service.ExerciseHistoryService;
-import com.example.ojsystem.tool.ResultTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @RestController
 @CrossOrigin

@@ -184,9 +184,9 @@ public class StudentController {
      * 输入无
      * 输出List<Student>
      */
-    @RequestMapping(value="/queryStudnetRankListInfo",method = RequestMethod.POST)
-    public Object queryStudnetRankListInfo(){
-        return studentService.queryStudnetRankListInfo();
+    @RequestMapping(value="/queryStudentRankListInfo",method = RequestMethod.POST)
+    public Object queryStudentRankListInfo(){
+        return studentService.queryStudentRankListInfo();
 
     }
 
@@ -195,10 +195,10 @@ public class StudentController {
      * 输入solved 是否要添加解决问题次数  studnetId
      * 输出成功返回true 失败返回false
      */
-    @RequestMapping(value="/updateStudnetSubmitInfo",method = RequestMethod.POST)
-    public Boolean updateStudnetSubmitInfo(HttpServletRequest request){
+    @RequestMapping(value="/updateStudentSubmitInfo",method = RequestMethod.POST)
+    public Boolean updateStudentSubmitInfo(HttpServletRequest request){
         int i=0;
-        i=studentService.updateStudnetSubmitInfo(Integer.valueOf(request.getParameter("studnetSolved")),Integer.valueOf(request.getParameter("studentId")));
+        i=studentService.updateStudentSubmitInfo(Integer.valueOf(request.getParameter("studnetSolved")),Integer.valueOf(request.getParameter("studentId")));
         if(i!=0){
             return true;
         }

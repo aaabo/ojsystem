@@ -1,7 +1,7 @@
 package com.example.ojsystem.dao;
 
 import com.example.ojsystem.entity.ExerciseHistory;
-import com.example.ojsystem.tool.ResultTool;
+import com.example.ojsystem.entity.ResultTool;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

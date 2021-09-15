@@ -2,6 +2,7 @@ package com.example.ojsystem.service.impl;
 
 import com.example.ojsystem.dao.StudentMapper;
 import com.example.ojsystem.entity.Student;
+import com.example.ojsystem.entity.StudentScoreTool;
 import com.example.ojsystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -105,8 +106,8 @@ public class StudentServiceImpl implements StudentService{
      * 输入无
      * 输出List<Student>
      */
-    public List<Student> queryStudnetRankListInfo() {
-        return studentMapper.queryStudnetRankListInfo();
+    public List<Student> queryStudentRankListInfo() {
+        return studentMapper.queryStudentRankListInfo();
     }
 
     /**
@@ -116,7 +117,19 @@ public class StudentServiceImpl implements StudentService{
      *
      * @param solved
      */
-    public int updateStudnetSubmitInfo(int solved,int studentId) {
-        return studentMapper.updateStudnetSubmitInfo(solved,studentId);
+    public int updateStudentSubmitInfo(int solved,int studentId) {
+        return studentMapper.updateStudentSubmitInfo(solved,studentId);
+    }
+
+
+    /**
+     * 通过考试id查询参加考试的学生信息
+     * 输入examId
+     * 输出 List<StudentScoreTool>
+     *
+     * @param examId
+     */
+    public List<StudentScoreTool> queryExamStudnetInfo(int examId) {
+        return studentMapper.queryExamStudnetInfo(examId);
     }
 }

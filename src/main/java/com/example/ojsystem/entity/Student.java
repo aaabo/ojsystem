@@ -4,10 +4,11 @@ public class Student {
     private int studentId;
     private String studentAccount;
     private String studentPassword;
+    private String studentEmail;
     private String studentName;
     private String studentProfile;
-    private int studnetSolved;
-    private int studnetSubmit;
+    private int studentSolved;
+    private int studentSubmit;
     private Classes classes;
 
 
@@ -70,19 +71,28 @@ public class Student {
     }
 
 
-    public int getStudnetSolved() {
-        return studnetSolved;
+    public int getStudentSolved() {
+        return studentSolved;
     }
 
-    public void setStudnetSolved(int studnetSolved) {
-        this.studnetSolved = studnetSolved;
+    public void setStudentSolved(int studentSolved) {
+        this.studentSolved = studentSolved;
     }
 
-    public int getStudnetSubmit() {
-        return studnetSubmit;
+    public int getStudentSubmit() {
+        return studentSubmit;
     }
 
-    public void setStudnetSubmit(int studnetSubmit) {
-        this.studnetSubmit = studnetSubmit;
+    public void setStudentSubmit(int studentSubmit) {
+        this.studentSubmit = studentSubmit;
+    }
+
+
+    public String getStudentEmail() {
+        return studentEmail;
+    }
+
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
     }
 }

@@ -6,6 +6,7 @@
 
     <resultMap id="BaseStudentResultMap" type="com.example.ojsystem.entity.Student">
         <id column="studentId" jdbcType="BIGINT" property="studentId" />
+        <result column="studentEmail" jdbcType="VARCHAR" property="studentEmail" />
         <result column="studentAccount" jdbcType="VARCHAR" property="studentAccount" />
         <result column="studentPassword" jdbcType="VARCHAR" property="studentPassword" />
         <result column="studentName" jdbcType="VARCHAR" property="studentName" />
@@ -16,7 +17,7 @@
         </association>
     </resultMap>
     <insert id="addStudentInfo" parameterType="com.example.ojsystem.entity.Student">
-          insert into student (classesId,studentAccount,studentPassword,studentName,studnetSolved,studnetSubmit) values(#{student.classes.classesId},#{student.studentAccount},#{student.studentPassword},#{student.studentName},0,0)
+          insert into student (classesId,studentAccount,studentPassword,studentName,studentSolved,studentSubmit,studentEmail) values(#{student.classes.classesId},#{student.studentAccount},#{student.studentPassword},#{student.studentName},0,0,#{student.studentEmail})
     </insert>
     <update id="modifyStudentInfo" parameterType="com.example.ojsystem.entity.Student">
          update student set classesId=#{student.classes.classesId},studentName=#{student.studentName},studentProfile=#{student.studentProfile} where studentId=#{student.studentId}
@@ -24,8 +25,8 @@
     <update id="modifyPassword" parameterType="com.example.ojsystem.entity.Student">
            update student set studentPassword=#{student.studentPassword} where studentId=#{student.studentId}
     </update>
-    <update id="updateStudnetSubmitInfo" parameterType="java.lang.Integer">
-        update student set studnetSolved=studnetSolved+#{solved},studnetSubmit=studnetSubmit+1 where studentId=#{studentId}
+    <update id="updateStudentSubmitInfo" parameterType="java.lang.Integer">
+        update student set studentSolved=studentSolved+#{solved},studentSubmit=studentSubmit+1 where studentId=#{studentId}
     </update>
 
 
@@ -41,11 +42,14 @@
     <select id="queryStudentPasswordInfo" resultType="java.lang.Integer">
         select studentPassword from student where studentId=#{studentId}
     </select>
-    <select id="queryStudnetRankListInfo" resultType="com.example.ojsystem.entity.Student">
-        select studentId,classesId,studentName,studentProfile,studnetSolved,studnetSubmit,studnetSolved/studnetSubmit as acRate from student order by studnetSolved desc,acRate desc
+    <select id="queryStudentRankListInfo" resultType="com.example.ojsystem.entity.Student">
+        select studentId,classesId,studentName,studentProfile,studentSolved,studentSubmit,studentSolved/studentSubmit as acRate from student order by studentSolved desc,acRate desc
     </select>
     <select id="queryStudentInfo" resultType="com.example.ojsystem.entity.Student" resultMap="BaseStudentResultMap">
           select * from student,classes where student.studentId=#{studentId} and student.classesId=classes.classesId
     </select>
 
+    <select id="queryExamStudnetInfo" resultType="com.example.ojsystem.entity.StudentScoreTool">
+        select student.studentId,student.studentName from exam,student,classes where exam.classesId=classes.classesId and student.classesId=classes.classesId and exam.examId=#{examId}
+    </select>
 </mapper>

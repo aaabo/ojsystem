@@ -27,7 +27,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/upload")
-public class ExcelTool {
+public class ExcelToolController {
     @Autowired
     ExamChoiceQuestionService examChoiceQuestionService;
     @RequestMapping(value = "/excel", method = RequestMethod.POST)

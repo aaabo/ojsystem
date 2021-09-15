@@ -18,6 +18,10 @@
           values(#{examProgrammingHistory.student.studentId},#{examProgrammingHistory.examProgramming.examProgrammingId},
           #{examProgrammingHistory.examProgrammingResult},#{examProgrammingHistory.examProgrammingCode})
     </insert>
+    <select id="queryStudentExamProgrammingScore" resultType="com.example.ojsystem.entity.StudentScoreTool">
+        select examprogramminghistory.studentId,Sum(examprogramming.examProgrammingScore) as programmingScore from examprogramming,examprogramminghistory
+where examprogramming.examProgrammingId=examprogramminghistory.examProgrammingId and examprogramming.examId=#{examId}  and examprogramminghistory.examProgrammingResult='Accept' group BY examprogramminghistory.studentId
+    </select>
 
 
 </mapper>

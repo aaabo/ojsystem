@@ -1,6 +1,7 @@
 package com.example.ojsystem.dao;
 
 import com.example.ojsystem.entity.Student;
+import com.example.ojsystem.entity.StudentScoreTool;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -66,14 +67,14 @@ public interface StudentMapper {
      * 输入无
      * 输出List<Student>
      */
-    public List<Student> queryStudnetRankListInfo();
+    public List<Student> queryStudentRankListInfo();
 
     /**
      * 修改学生提交信息
      * 输入solved 添加解决问题次数
      * 输出int
      */
-    public int updateStudnetSubmitInfo(@Param("solved") int solved,@Param("studentId") int studentId);
+    public int updateStudentSubmitInfo(@Param("solved") int solved,@Param("studentId") int studentId);
 
     /**
      * 查询自己的学生信息
@@ -81,4 +82,12 @@ public interface StudentMapper {
      * 输出Student
      */
     public Student queryStudentInfo(@Param("studentId") int studentId);
+
+
+    /**
+     * 通过考试id查询参加考试的学生信息
+     * 输入examId
+     * 输出 List<StudentScoreTool>
+     */
+    public List<StudentScoreTool> queryExamStudnetInfo(@Param("examId") int examId);
 }

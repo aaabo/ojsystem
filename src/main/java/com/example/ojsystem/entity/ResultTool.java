@@ -1,4 +1,4 @@
-package com.example.ojsystem.tool;
+package com.example.ojsystem.entity;
 
 public class ResultTool {
     private String exerciseResult;

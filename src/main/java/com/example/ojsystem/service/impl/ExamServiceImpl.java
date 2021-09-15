@@ -4,7 +4,6 @@ import com.example.ojsystem.dao.ExamMapper;
 import com.example.ojsystem.entity.Exam;
 import com.example.ojsystem.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
