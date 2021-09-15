@@ -8,6 +8,9 @@
         <id column="examProgrammingAnswerId" jdbcType="BIGINT" property="examProgrammingAnswerId" />
         <result column="examProgrammingAnswerInput" jdbcType="VARCHAR" property="examProgrammingAnswerInput" />
         <result column="examProgrammingAnswerOutput" jdbcType="VARCHAR" property="examProgrammingAnswerOutput" />
+        <association property="examProgramming" javaType="com.example.ojsystem.entity.ExamProgramming">
+            <id column="examProgrammingId" jdbcType="BIGINT" property="examProgrammingId" />
+        </association>
     </resultMap>
     <insert id="addExamProgrammingAnswer" parameterType="com.example.ojsystem.entity.ExamProgrammingAnswer" useGeneratedKeys="true" keyProperty="examProgrammingAnswer.examProgrammingAnswerId" keyColumn="examProgrammingAnswerId">
           insert into examprogramminganswer(examProgrammingId,examProgrammingAnswerInput,examProgrammingAnswerOutput)
@@ -17,6 +20,12 @@
           update examprogramminganswer set examProgrammingAnswerInput=#{examProgrammingAnswer.examProgrammingAnswerInput},
           examProgrammingAnswerOutput=#{examProgrammingAnswer.examProgrammingAnswerOutput}  where examProgrammingAnswerId=#{examProgrammingAnswer.examProgrammingAnswerId}
     </update>
+
+
+    <select id="queryProgrammingAnswerInfoById" resultType="com.example.ojsystem.entity.ExamProgrammingAnswer" parameterType="java.lang.Integer" resultMap="BaseExamProgrammingAnswerResultMap">
+        select * from examprogramminganswer where examProgrammingId=#{programmingId}
+    </select>
+
     <delete id="deleteExamProgrammingAnswer" parameterType="java.lang.Integer">
           delete from examprogramminganswer where examProgrammingAnswerId=#{examProgrammingAnswerId}
     </delete>

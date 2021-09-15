@@ -40,7 +40,7 @@
        select * from exam,student where exam.classesId=student.classesId and student.studentId=#{studentId}
     </select>
     <select id="teacherQueryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
-         select * from exam,classes where teacherId=#{teacherId} and exam.classesId=classes.classesId
+         select * from exam,classes where teacherId=#{teacherId} and exam.classesId=classes.classesId ORDER BY (case exam.examType when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
     <select id="queryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
          select * from exam,teacher,classes where exam.teacherId=teacher.teacherId and exam.classesId=classes.classesId ORDER BY (case exam.examType when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
