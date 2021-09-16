@@ -14,7 +14,7 @@
           insert into teacher (teacherAccount,teacherPassword,teacherName) values(#{teacher.teacherAccount},#{teacher.teacherPassword},#{teacher.teacherName})
     </insert>
     <update id="modifyTeacherInfo" parameterType="com.example.ojsystem.entity.Teacher">
-          update teacher set teacherName=#{teacher.teacherName} where teacherId=#{teacher.teacherId}
+          update teacher set teacherName=#{teacher.teacherName},teacherPassword=#{teacher.teacherPassword} where teacherId=#{teacher.teacherId}
     </update>
     <update id="modifyTeacherPassword" >
          update teacher set teacherPassword=#{teacherPassword} where teacherId=#{teacherId}

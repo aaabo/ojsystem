@@ -34,6 +34,7 @@ public class ExamProgrammingHistoryImpl implements ExamProgrammingHistoryService
      * @param examId
      */
     public List<StudentScoreTool> queryStudentExamProgrammingScore(int examId) {
+
         return examProgrammingHistoryMapper.queryStudentExamProgrammingScore(examId);
     }
 }

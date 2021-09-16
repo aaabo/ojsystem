@@ -2,17 +2,30 @@ package com.example.ojsystem.entity;
 
 import com.example.ojsystem.entity.Student;
 
-public class StudentScoreTool {
-    private Student student;
-    private int choiceScore;
-    private int programmingScore;
+import java.util.Comparator;
 
-    public Student getStudent() {
-        return student;
+public class StudentScoreTool {
+    private int studentId;
+    private String studentName;
+    private int choiceScore;
+    private int programmingScore2;
+    private int totalScore;
+
+
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
     public int getChoiceScore() {
@@ -24,10 +37,34 @@ public class StudentScoreTool {
     }
 
     public int getProgrammingScore() {
-        return programmingScore;
+        return programmingScore2;
     }
 
-    public void setProgrammingScore(int programmingScore) {
-        programmingScore = programmingScore;
+    public void setProgrammingScore(int programmingScore2) {
+        this.programmingScore2 = programmingScore2;
     }
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentScoreTool{" +
+                "studentId=" + studentId +
+                ", studentName='" + studentName + '\'' +
+                ", choiceScore=" + choiceScore +
+                ", programmingScore=" + programmingScore2 +
+                '}';
+    }
+
+
+
 }
+
+
+

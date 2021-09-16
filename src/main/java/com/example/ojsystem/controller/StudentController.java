@@ -61,21 +61,24 @@ public class StudentController {
     }
 
 
-    /**
-     * 根据学生信息注册向数据库添加学生信息
-     * 输入student
-     * 成功输出true 失败输出false
-     */
     @RequestMapping(value="/addStudentInfo",method = RequestMethod.POST)
     public Boolean addStudentInfo(HttpServletRequest request){
         int i=0;
         Student student=new Student();
         Classes classes=new Classes();
-        classes.setClassesId(1);
+        String studentAccount = request.getParameter("studentAccount");
+        String studentPassword = request.getParameter("studentPassword");
+        String studentEmail = request.getParameter("studentEmail");
+        String studentName = request.getParameter("studentName");
+        int classesId = Integer.valueOf(request.getParameter("classesId"));
+        System.out.println(classesId);
+        System.out.println(studentEmail);
+        classes.setClassesId(classesId);
         student.setClasses(classes);
-        student.setStudentAccount("666666");
-        student.setStudentPassword("777777");
-        student.setStudentName("zhangsan");
+        student.setStudentAccount(studentAccount);
+        student.setStudentPassword(studentPassword);
+        student.setStudentName(studentName);
+        student.setStudentEmail(studentEmail);
         i=studentService.addStudentInfo(student);
         System.out.println(i);
         if(i!=0){

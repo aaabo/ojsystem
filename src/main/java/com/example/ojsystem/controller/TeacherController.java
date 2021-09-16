@@ -76,11 +76,13 @@ public class TeacherController {
     @RequestMapping(value="/modifyTeacherInfo",method = RequestMethod.POST)
     public Boolean modifyTeacherInfo(HttpServletRequest request){
         int i=0;
-        int teacherId=Integer.valueOf((Integer) request.getSession().getAttribute("teacherId"));
+        int teacherId=Integer.valueOf(request.getParameter("teacherId"));
         String teacherName=request.getParameter("teacherName");
+        String teacherPassword=request.getParameter("teacherPassword");
         Teacher teacher=new Teacher();
         teacher.setTeacherId(teacherId);
         teacher.setTeacherName(teacherName);
+        teacher.setTeacherPassword(teacherPassword);
         i=teacherService.modifyTeacherInfo(teacher);
         if(i!=0){
             return true;

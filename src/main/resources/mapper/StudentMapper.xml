@@ -49,7 +49,7 @@
           select * from student,classes where student.studentId=#{studentId} and student.classesId=classes.classesId
     </select>
 
-    <select id="queryExamStudnetInfo" resultType="com.example.ojsystem.entity.StudentScoreTool">
+    <select id="queryExamStudnetInfo" resultType="com.example.ojsystem.entity.StudentScoreTool" >
         select student.studentId,student.studentName from exam,student,classes where exam.classesId=classes.classesId and student.classesId=classes.classesId and exam.examId=#{examId}
     </select>
 </mapper>
