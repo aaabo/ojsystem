@@ -6,18 +6,18 @@ mybatis:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/ojsys?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: *****
+    password: ******
+    url: *********
   jackson:
     time-zone: GMT+8
   mail:
     # 配置 SMTP 服务器地址
     host: smtp.qq.com
     # 发送者邮箱
-    username: 767324214@qq.com
+    username: *******
     # 配置密码，注意不是真正的密码，而是刚刚申请到的授权码
-    password: phxalbhwlsvlbehd
+    password: *******
     # 端口号465或587
     port: 587
     # 默认的邮件编码为UTF-8
@@ -31,7 +31,7 @@ spring:
         debug: true
 
 server:
-  port: 8888
+  port: ******
 
 
 
