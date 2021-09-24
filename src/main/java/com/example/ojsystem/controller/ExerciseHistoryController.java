@@ -2,7 +2,7 @@ package com.example.ojsystem.controller;
 
 import com.example.ojsystem.entity.Exercise;
 import com.example.ojsystem.entity.ExerciseHistory;
-import com.example.ojsystem.entity.Student;
+import com.example.ojsystem.entity.User;
 import com.example.ojsystem.service.ExerciseHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,7 +26,7 @@ public class ExerciseHistoryController {
     @RequestMapping(value="/addCodeInfo",method = RequestMethod.POST)
     public Boolean addCodeInfo(HttpServletRequest request){
         int i=0;
-        int studentId=(Integer)request.getSession().getAttribute("studentId");
+        int userId=(Integer)request.getSession().getAttribute("userId");
         int exerciseId=Integer.valueOf(request.getParameter("exerciseId"));
         String exerciseSubmitTime=request.getParameter("exerciseSubmitTime");
         String exerciseSubmitLanguage=request.getParameter("exerciseSubmitLanguage");
@@ -35,11 +35,11 @@ public class ExerciseHistoryController {
         exerciseHistory.setExerciseCode(exerciseCode);
         exerciseHistory.setExerciseSubmitTime(exerciseSubmitTime);
         exerciseHistory.setExerciseSubmitLanguage(exerciseSubmitLanguage);
-        Student student=new Student();
-        student.setStudentId(studentId);
+        User user=new User();
+        user.setUserId(userId);
         Exercise exercise=new Exercise();
         exercise.setExerciseId(exerciseId);
-        exerciseHistory.setStudent(student);
+        exerciseHistory.setUser(user);
         exerciseHistory.setExercise(exercise);
         i=exerciseHistoryService.addCodeInfo(exerciseHistory);
         if(i!=0){
@@ -52,15 +52,15 @@ public class ExerciseHistoryController {
 
 
     /**
-     * 根据习题id或者学生id来查询习题记录 新增通过语言和结果查询
-     * 输入exerciseId和studentId
+     * 根据习题id或者用户id来查询习题记录 新增通过语言和结果查询
+     * 输入exerciseId和userId
      * 输出List<ExerciseHistory>
      */
     @RequestMapping(value="/queryExerciseRealTimeStatusInfo",method = RequestMethod.POST)
     public Object queryExerciseRealTimeStatusInfo(HttpServletRequest request){
 
         int exerciseId=Integer.valueOf(request.getParameter("exerciseId"));
-        String studentName=request.getParameter("studentName");
+        String userName=request.getParameter("userName");
         String exerciseResult=request.getParameter("exerciseResult");
         String exerciseSubmitLanguage=request.getParameter("exerciseSubmitLanguage");
         ExerciseHistory exerciseHistory=new ExerciseHistory();
@@ -68,10 +68,10 @@ public class ExerciseHistoryController {
         exerciseHistory.setExerciseResult(exerciseResult);
         Exercise exercise=new Exercise();
         exercise.setExerciseId(exerciseId);
-        Student student=new Student();
-        student.setStudentName("%"+studentName+"%");
+        User user=new User();
+        user.setUserName("%"+user+"%");
         exerciseHistory.setExercise(exercise);
-        exerciseHistory.setStudent(student);
+        exerciseHistory.setUser(user);
         return exerciseHistoryService.queryExerciseRealTimeStatusInfo(exerciseHistory);
 
     }
@@ -86,14 +86,16 @@ public class ExerciseHistoryController {
         return exerciseHistoryService.queryExerciseStatisticsInfo(Integer.valueOf(request.getParameter("exerciseId")));
     }
 
+
+    ////////////1111111111111111111111111111111111111111111111111111111
     /**
-     * 根据习题id和学生id判断习题是否已经提交成功过
+     * 根据习题id和用户id判断习题是否已经提交成功过
      * 输入studentId和exerciseId
      * 输出查询到的数量
      */
-    @RequestMapping(value="/queryStudentExerciseIsSuccess",method = RequestMethod.POST)
-    public int queryStudentExerciseIsSuccess(HttpServletRequest request){
-        return exerciseHistoryService.queryStudentExerciseIsSuccess(Integer.valueOf(request.getParameter("studentId")),Integer.valueOf(request.getParameter("exerciseId")));
+    @RequestMapping(value="/queryUserExerciseIsSuccess",method = RequestMethod.POST)
+    public int queryUserExerciseIsSuccess(HttpServletRequest request){
+        return exerciseHistoryService.queryUserExerciseIsSuccess(Integer.valueOf(request.getParameter("userId")),Integer.valueOf(request.getParameter("exerciseId")));
     }
 
 
@@ -113,9 +115,9 @@ public class ExerciseHistoryController {
      * 输入studentId
      * 输出查到的习题id
      */
-    @RequestMapping(value="/queryExerciseIdByStudentId",method = RequestMethod.POST)
-    public Object queryExerciseIdByStudentId(HttpServletRequest request){
-        return exerciseHistoryService.queryExerciseIdByStudentId(Integer.valueOf(request.getParameter("studentId")));
+    @RequestMapping(value="/queryExerciseIdByUserId",method = RequestMethod.POST)
+    public Object queryExerciseIdByUserId(HttpServletRequest request){
+        return exerciseHistoryService.queryExerciseIdByUserId(Integer.valueOf(request.getParameter("userId")));
     }
 
 

@@ -9,14 +9,9 @@
         <result column="examChoiceQuestionUserSelection" jdbcType="VARCHAR" property="examChoiceQuestionUserSelection" />
     </resultMap>
     <insert id="addExamChoiceQuestionHistory" parameterType="com.example.ojsystem.entity.ExamChoiceQuestionHistory">
-          insert into examchoicequestionhistory(studentId,examChoiceQuestionId,examChoiceQuestionUserSelection)
-          values(#{examChoiceQuestionHistory.student.studentId},#{examChoiceQuestionHistory.examChoiceQuestion.examChoiceQuestionId},#{examChoiceQuestionHistory.examChoiceQuestionUserSelection})
+          insert into examchoicequestionhistory(userId,examQuestionId,examChoiceQuestionUserSelection)
+          values(#{examChoiceQuestionHistory.user.userId},#{examChoiceQuestionHistory.examQuestion.examQuestionId},#{examChoiceQuestionHistory.examChoiceQuestionUserSelection})
     </insert>
-    <select id="queryStudentExamChoiceScore" resultType="com.example.ojsystem.entity.StudentScoreTool">
-        select examchoicequestionhistory.studentId,sum(examchoicequestion.examChoiceQuestionScore) as choiceScore from examchoicequestion,examchoicequestionhistory
-        where examchoicequestion.examChoiceQuestionId=examchoicequestionhistory.examChoiceQuestionId and examchoicequestion.examId=#{examId}  and
-        examchoicequestion.examChoiceQuestionCorrectOption=examchoicequestionhistory.examChoiceQuestionUserSelection  and   examchoicequestionhistory.studentId  group BY examchoicequestionhistory.studentId
-    </select>
 
 
 </mapper>

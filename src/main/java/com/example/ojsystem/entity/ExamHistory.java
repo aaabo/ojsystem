@@ -2,17 +2,11 @@ package com.example.ojsystem.entity;
 
 public class ExamHistory {
     private int examHistoryId;
-    private int examChoiceTotals;//考试选择得分
-    private int examProgrammingTotals;//考试编程总分
+    private int examUserChoiceTotals;//考试学生选择得分
+    private int examUserProgrammingTotals;//考试学生编程总分
 
     private Student student;
     private Exam exam;
-
-    public ExamHistory(int examHistoryId, int examChoiceTotals, int examProgrammingTotals) {
-        this.examHistoryId = examHistoryId;
-        this.examChoiceTotals = examChoiceTotals;
-        this.examProgrammingTotals = examProgrammingTotals;
-    }
 
     public ExamHistory() {
 
@@ -26,21 +20,20 @@ public class ExamHistory {
         this.examHistoryId = examHistoryId;
     }
 
-
-    public int getExamChoiceTotals() {
-        return examChoiceTotals;
+    public int getExamUserChoiceTotals() {
+        return examUserChoiceTotals;
     }
 
-    public void setExamChoiceTotals(int examChoiceTotals) {
-        this.examChoiceTotals = examChoiceTotals;
+    public void setExamUserChoiceTotals(int examUserChoiceTotals) {
+        this.examUserChoiceTotals = examUserChoiceTotals;
     }
 
-    public int getExamProgrammingTotals() {
-        return examProgrammingTotals;
+    public int getExamUserProgrammingTotals() {
+        return examUserProgrammingTotals;
     }
 
-    public void setExamProgrammingTotals(int examProgrammingTotals) {
-        this.examProgrammingTotals = examProgrammingTotals;
+    public void setExamUserProgrammingTotals(int examUserProgrammingTotals) {
+        this.examUserProgrammingTotals = examUserProgrammingTotals;
     }
 
     public Student getStudent() {

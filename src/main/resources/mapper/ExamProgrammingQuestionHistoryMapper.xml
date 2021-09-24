@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.ExamProgrammingQuestionHistoryMapper">
+
+    <resultMap id="BaseExamProgrammingQuestionHistoryResultMap" type="com.example.ojsystem.entity.ExamProgrammingQuestionHistory">
+        <id column="examProgrammingQuestionHistoryId" jdbcType="BIGINT" property="examProgrammingQuestionHistoryId" />
+        <result column="examProgrammingQuestionResult" jdbcType="VARCHAR" property="examProgrammingQuestionResult" />
+        <result column="examProgrammingQuestionCode" jdbcType="VARCHAR" property="examProgrammingQuestionCode" />
+        <association property="examQuestion" javaType="com.example.ojsystem.entity.ExamQuestion">
+            <id column="examQuestionId" jdbcType="BIGINT" property="examQuestionId" />
+            <result column="questionId" jdbcType="VARCHAR" property="questionId" />
+        </association>
+    </resultMap>
+
+
+
+    <insert id="addExamProgrammingQuestionHistory" parameterType="com.example.ojsystem.entity.ExamProgrammingQuestionHistory">
+         insert into examprogrammingquestionhistory(examQuestionId,userId,examProgrammingCode)
+          values(#{examProgrammingQuestionHistory.examQuestion.examQuestionId},
+          #{examProgrammingQuestionHistory.user.userId},#{examProgrammingQuestionHistory.examProgrammingCode})
+    </insert>
+
+
+
+</mapper>

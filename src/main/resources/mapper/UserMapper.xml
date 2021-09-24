@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.UserMapper">
+
+    <resultMap id="BaseUserResultMap" type="com.example.ojsystem.entity.User">
+        <id column="userId" jdbcType="BIGINT" property="userId" />
+        <result column="userAccount" jdbcType="VARCHAR" property="userAccount" />
+        <result column="userPassword" jdbcType="VARCHAR" property="userPassword" />
+        <result column="userEmail" jdbcType="VARCHAR" property="userEmail" />
+        <result column="userName" jdbcType="VARCHAR" property="userName" />
+        <result column="userProfile" jdbcType="VARCHAR" property="userProfile" />
+        <result column="userSolved" jdbcType="VARCHAR" property="userSolved" />
+        <result column="userSubmit" jdbcType="VARCHAR" property="userSubmit" />
+        <result column="userIdentity" jdbcType="VARCHAR" property="userIdentity" />
+
+    </resultMap>
+    <insert id="addUserInfo" parameterType="com.example.ojsystem.entity.User">
+          insert into user (userAccount,userPassword,userName,userSolved,userSubmit,userEmail,userIdentity)
+           values(#{user.userAccount},#{user.userPassword},#{user.userName},0,0,#{user.userEmail},'student')
+    </insert>
+    <update id="modifyUserInfo" parameterType="com.example.ojsystem.entity.User">
+         update user set userName=#{user.userName},userProfile=#{user.userProfile} where userId=#{user.userId}
+    </update>
+    <update id="modifyPassword" parameterType="com.example.ojsystem.entity.User">
+           update user set userPassword=#{user.userPassword} where userId=#{user.userId}
+    </update>
+    <update id="updateUserSubmitInfo" parameterType="java.lang.Integer">
+        update user set userSolved=userSolved+#{solved},userSubmit=userSubmit+1 where userId=#{userId}
+    </update>
+
+
+    <select id="isUserExist" resultType="com.example.ojsystem.entity.User" parameterType="com.example.ojsystem.entity.User" resultMap="BaseUserResultMap">
+        select * from user where userAccount=#{user.userAccount} and userPassword=#{user.userPassword}
+    </select>
+    <select id="isUserInfoExist" resultType="com.example.ojsystem.entity.User" resultMap="BaseUserResultMap">
+        select * from user where userAccount=#{user.userAccount}
+    </select>
+    <select id="queryUserInfoById" resultType="com.example.ojsystem.entity.User" resultMap="BaseUserResultMap">
+        select * from user,classes where user.userId=#{userId} and user.classesId=classes.classesId
+    </select>
+    <select id="queryUserPasswordInfo" resultType="java.lang.Integer">
+        select userPassword from user where userId=#{userId}
+    </select>
+    <select id="queryUserRankListInfo" resultType="com.example.ojsystem.entity.User">
+        select userId,classesId,userName,userProfile,userSolved,userSubmit,userSolved/userSubmit as acRate from user order by userSolved desc,acRate desc
+    </select>
+
+
+
+</mapper>

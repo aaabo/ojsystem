@@ -26,12 +26,12 @@ public class ExamServiceImpl implements ExamService{
     }
 
     /**
-     *查询学生能参加的考试信息
-     * 输入无
+     *查询用户能参加的考试信息
+     * 输入userId
      * 输出List<Exam>
      */
-    public List<Exam> queryExamInfoByStudentId(int studentId) {
-        return examMapper.queryExamInfoByStudentId(studentId);
+    public List<Exam> queryExamInfoByUserId(int userId) {
+        return examMapper.queryExamInfoByUserId(userId);
     }
 
     /**
@@ -44,14 +44,14 @@ public class ExamServiceImpl implements ExamService{
     }
 
     /**
-     * 教师查询自己的考试信息
-     * 输入teacher
+     * 用户查询自己创建的的考试信息
+     * 输入userId
      * 输出List<Exam>
      *
-     * @param teacherId
+     * @param userId
      */
-    public List<Exam> teacherQueryExamInfo(int teacherId) {
-        return examMapper.teacherQueryExamInfo(teacherId);
+    public List<Exam> userQueryExamInfo(int userId) {
+        return examMapper.userQueryExamInfo(userId);
     }
 
     /**

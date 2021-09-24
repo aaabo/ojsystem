@@ -4,17 +4,9 @@ public class ExamChoiceQuestionHistory {
     private int examChoiceQuestionHistoryId;
     private String examChoiceQuestionUserSelection;
 
-    private Student student;
-    private ExamChoiceQuestion examChoiceQuestion;
+    private User user;
+    private ExamQuestion examQuestion;
 
-    public ExamChoiceQuestionHistory(int examChoiceQuestionHistoryId, String examChoiceQuestionUserSelection) {
-        this.examChoiceQuestionHistoryId = examChoiceQuestionHistoryId;
-        this.examChoiceQuestionUserSelection = examChoiceQuestionUserSelection;
-    }
-
-    public ExamChoiceQuestionHistory(){
-
-    }
 
     public int getExamChoiceQuestionHistoryId() {
         return examChoiceQuestionHistoryId;
@@ -32,19 +24,19 @@ public class ExamChoiceQuestionHistory {
         this.examChoiceQuestionUserSelection = examChoiceQuestionUserSelection;
     }
 
-    public Student getStudent() {
-        return student;
+    public User getUser() {
+        return user;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public ExamChoiceQuestion getExamChoiceQuestion() {
-        return examChoiceQuestion;
+    public ExamQuestion getExamQuestion() {
+        return examQuestion;
     }
 
-    public void setExamChoiceQuestion(ExamChoiceQuestion examChoiceQuestion) {
-        this.examChoiceQuestion = examChoiceQuestion;
+    public void setExamQuestion(ExamQuestion examQuestion) {
+        this.examQuestion = examQuestion;
     }
 }

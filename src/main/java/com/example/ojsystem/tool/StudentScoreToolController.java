@@ -1,12 +1,8 @@
 package com.example.ojsystem.tool;
 
-import com.example.ojsystem.entity.ExamChoiceQuestionHistory;
-import com.example.ojsystem.entity.ExamProgrammingHistory;
-import com.example.ojsystem.entity.StudentScoreTool;
 import com.example.ojsystem.service.ExamChoiceQuestionHistoryService;
-import com.example.ojsystem.service.ExamProgrammingHistoryService;
-import com.example.ojsystem.service.StudentService;
-import com.sun.deploy.net.HttpRequest;
+import com.example.ojsystem.service.ExamProgrammingQuestionHistoryService;
+import com.example.ojsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,11 +20,11 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentScoreToolController {
     @Autowired
-    StudentService studentService;
+    UserService studentService;
     @Autowired
     ExamChoiceQuestionHistoryService examChoiceQuestionHistoryService;
     @Autowired
-    ExamProgrammingHistoryService examProgrammingHistoryService;
+    ExamProgrammingQuestionHistoryService examProgrammingHistoryService;
     @RequestMapping(value = "/examScore", method = RequestMethod.POST)
     public Object getStudentExamRank(HttpServletRequest request){
         List<StudentScoreTool> studentScoreTools=new ArrayList<StudentScoreTool>();

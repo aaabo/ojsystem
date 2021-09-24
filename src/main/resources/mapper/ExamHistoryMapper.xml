@@ -6,16 +6,13 @@
 
     <resultMap id="BaseExamHistoryResultMap" type="com.example.ojsystem.entity.ExamHistory">
         <id column="examHistoryId" jdbcType="BIGINT" property="examHistoryId" />
-        <result column="examChoiceTotals" jdbcType="BIGINT" property="examChoiceTotals" />
-        <result column="examProgrammingTotals" jdbcType="BIGINT" property="examProgrammingTotals" />
-        <!--<association property="classes" javaType="com.example.ojsystem.entity.Classes">-->
-            <!--<id column="classesId" jdbcType="BIGINT" property="classesId" />-->
-            <!--<result column="classesName" jdbcType="VARCHAR" property="classesName" />-->
-        <!--</association>-->
+        <result column="examUserChoiceTotals" jdbcType="BIGINT" property="examUserChoiceTotals" />
+        <result column="examUserProgrammingTotals" jdbcType="BIGINT" property="examUserProgrammingTotals" />
+
     </resultMap>
 
     <select id="queryExamRankById" resultType="com.example.ojsystem.entity.ExamHistory">
-       SELECT student.studentName,examhistory.examChoiceTotals,examhistory.examProgrammingTotals,examhistory.examChoiceTotals+examhistory.examProgrammingTotals as total FROM examhistory,student
+       SELECT student.studentName,examhistory.examChoiceTotals,examhistory.examProgrammingTotals,examhistory.examUserChoiceTotals+examhistory.examUserProgrammingTotals as total FROM examhistory,student
        where examhistory.examId =#{examId}  and student.studentId=examhistory.studentId order by total desc
     </select>
 

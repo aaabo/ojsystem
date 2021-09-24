@@ -8,7 +8,7 @@ public class ExerciseHistory {
     private String exerciseCode;
 
     private Exercise exercise;
-    private Student student;
+    private User user;
 
 
     public ExerciseHistory(int exerciseHistoryId, String exerciseSubmitTime, String exerciseResult, String exerciseSubmitLanguage, String exerciseCode) {
@@ -71,11 +71,11 @@ public class ExerciseHistory {
         this.exercise = exercise;
     }
 
-    public Student getStudent() {
-        return student;
+    public User getUser() {
+        return user;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

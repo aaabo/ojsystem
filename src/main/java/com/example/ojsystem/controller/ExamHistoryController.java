@@ -22,7 +22,7 @@ public class ExamHistoryController {
      * 输入examId
      * 输出List<ExamHistory>
      */
-    @RequestMapping(value="/queryExamRankById",method = RequestMethod.GET)
+    @RequestMapping(value="/queryExamRankById",method = RequestMethod.POST)
     public Object queryExamRankById(HttpServletRequest request){
         return  examHistoryService.queryExamRankById(Integer.valueOf(request.getParameter("examId")));
     }

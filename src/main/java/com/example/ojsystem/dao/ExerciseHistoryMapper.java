@@ -17,7 +17,7 @@ public interface ExerciseHistoryMapper {
     public int addCodeInfo(@Param("exerciseHistory") ExerciseHistory exerciseHistory);
 
     /**
-     * 根据习题id或者学生id来查询习题记录 新增通过语言和结果查询
+     * 根据习题id或者用户id来查询习题记录 新增通过语言和结果查询
      * 输入exerciseHistory
      * 输出List<ExerciseHistory>
      */
@@ -31,11 +31,11 @@ public interface ExerciseHistoryMapper {
     public List<ExerciseHistory> queryExerciseStatisticsInfo(@Param("exerciseId") int exerciseId);
 
     /**
-     * 根据习题id和学生id判断习题是否已经提交成功
-     * 输入studentId和exerciseId
+     * 根据习题id和用户id判断习题是否已经提交成功
+     * 输入userId和exerciseId
      * 输出查询到的数量
      */
-    public int queryStudentExerciseIsSuccess(@Param("studentId") int studentId,@Param("exerciseId") int exerciseId);
+    public int queryUserExerciseIsSuccess(@Param("userId") int userId,@Param("exerciseId") int exerciseId);
 
     /**
      * 根据习题记录id查询提交代码
@@ -49,7 +49,7 @@ public interface ExerciseHistoryMapper {
      * 输入studentId
      * 输出查到的习题id
      */
-    public List<Integer>   queryExerciseIdByStudentId(@Param("studentId") int studentId);
+    public List<Integer>   queryExerciseIdByUserId(@Param("userId") int userId);
 
     /**
      * 根据习题id查询习题结果信息

@@ -1,10 +1,10 @@
 package com.example.ojsystem.controller;
 
 
-import com.example.ojsystem.entity.ExamProgramming;
-import com.example.ojsystem.entity.ExamProgrammingHistory;
-import com.example.ojsystem.entity.Student;
-import com.example.ojsystem.service.ExamProgrammingHistoryService;
+import com.example.ojsystem.entity.ExamProgrammingQuestionHistory;
+import com.example.ojsystem.entity.ExamQuestion;
+import com.example.ojsystem.entity.User;
+import com.example.ojsystem.service.ExamProgrammingQuestionHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,27 +19,27 @@ import javax.servlet.http.HttpServletRequest;
 public class ExamProgrammingHistoryController {
 
     @Autowired
-    ExamProgrammingHistoryService examProgrammingHistoryService;
+    ExamProgrammingQuestionHistoryService examProgrammingQuestionHistoryService;
     /**
      * 根据学生id和考试编程信息添加考试编程题记录
      * 输入examProgrammingHistory
      * 输出成功返回true 失败返回false
      */
-    @RequestMapping(value="/addExamProgrammingHistory",method = RequestMethod.GET)
-    public Boolean addExamProgrammingHistory(HttpServletRequest request){
+    @RequestMapping(value="/addExamProgrammingQuestionHistory",method = RequestMethod.POST)
+    public Boolean addExamProgrammingQuestionHistory(HttpServletRequest request){
         int i=0;
-        int studentId=Integer.valueOf(request.getParameter("studentId"));
-        int examProgrammingId=Integer.valueOf(request.getParameter("examProgrammingId"));
+        int userId=Integer.valueOf(request.getParameter("userId"));
+        int examQuestionId=Integer.valueOf(request.getParameter("examQuestionId"));
         String examProgrammingCode=request.getParameter("examProgrammingCode");
-        ExamProgrammingHistory examProgrammingHistory=new ExamProgrammingHistory();
-        Student student=new Student();
-        student.setStudentId(studentId);
-        ExamProgramming examProgramming=new ExamProgramming();
-        examProgramming.setExamProgrammingId(examProgrammingId);
-        examProgrammingHistory.setStudent(student);
-        examProgrammingHistory.setExamProgramming(examProgramming);
-        examProgrammingHistory.setExamProgrammingCode(examProgrammingCode);
-        i=examProgrammingHistoryService.addExamProgrammingHistory(examProgrammingHistory);
+        ExamProgrammingQuestionHistory examProgrammingQuestionHistory=new ExamProgrammingQuestionHistory();
+        User user=new User();
+        user.setUserId(userId);
+        ExamQuestion examQuestion=new ExamQuestion();
+        examQuestion.setQuestionId(examQuestionId);
+        examProgrammingQuestionHistory.setUser(user);
+        examProgrammingQuestionHistory.setExamQuestion(examQuestion);
+        examProgrammingQuestionHistory.setExamProgrammingQuestionCode(examProgrammingCode);
+        i=examProgrammingQuestionHistoryService.addExamProgrammingQuestionHistory(examProgrammingQuestionHistory);
         if(i!=0){
             return true;
         }

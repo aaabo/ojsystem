@@ -25,7 +25,7 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
     }
 
     /**
-     * 根据习题id或者学生id来查询习题记录 新增通过语言和结果查询
+     * 根据习题id或者用户id来查询习题记录 新增通过语言和结果查询
      * 输入exerciseHistory
      * 输出List<ExerciseHistory>
      *
@@ -48,15 +48,15 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
     }
 
     /**
-     * 根据习题id和学生id判断习题是否已经提交成功
-     * 输入studentId和exerciseId
+     * 根据习题id和用户id判断习题是否已经提交成功
+     * 输入userId和exerciseId
      * 输出查询到的数量
      *
-     * @param studentId
+     * @param userId
      * @param exerciseId
      */
-    public int queryStudentExerciseIsSuccess(int studentId, int exerciseId) {
-        return exerciseHistoryMapper.queryStudentExerciseIsSuccess(studentId,exerciseId);
+    public int queryUserExerciseIsSuccess(int userId, int exerciseId) {
+        return exerciseHistoryMapper.queryUserExerciseIsSuccess(userId,exerciseId);
     }
 
     /**
@@ -71,14 +71,14 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
     }
 
     /**
-     * 根据学生id查询提交过但未通过的习题
-     * 输入studentId
+     * 根据用户id查询提交过但未通过的习题
+     * 输入userId
      * 输出查到的习题id
      *
-     * @param studentId
+     * @param userId
      */
-    public List<Integer>  queryExerciseIdByStudentId(int studentId) {
-        return exerciseHistoryMapper.queryExerciseIdByStudentId(studentId);
+    public List<Integer>  queryExerciseIdByUserId(int userId) {
+        return exerciseHistoryMapper.queryExerciseIdByUserId(userId);
     }
 
     /**

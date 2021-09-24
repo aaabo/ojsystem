@@ -1,8 +1,6 @@
 package com.example.ojsystem.controller;
 
-import com.example.ojsystem.entity.Classes;
 import com.example.ojsystem.entity.Exercise;
-import com.example.ojsystem.entity.Student;
 import com.example.ojsystem.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

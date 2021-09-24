@@ -1,8 +1,8 @@
 package com.example.ojsystem.controller;
 
-import com.example.ojsystem.entity.Classes;
 import com.example.ojsystem.entity.Exam;
-import com.example.ojsystem.entity.Teacher;
+import com.example.ojsystem.entity.Group;
+import com.example.ojsystem.entity.User;
 import com.example.ojsystem.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,19 +31,19 @@ public class ExamController {
         String examStartTime=request.getParameter("examStartTime");
         String examEndTime=request.getParameter("examEndTime");
         String examName=request.getParameter("examName");
-        int teacherId=Integer.valueOf((Integer) request.getSession().getAttribute("teacherId"));
-        int classesId=Integer.valueOf(request.getParameter("classesId"));
+        int userId=Integer.valueOf((Integer) request.getSession().getAttribute("userId"));
+        int groupId=Integer.valueOf(request.getParameter("groupId"));
         String examType=request.getParameter("examType");
         String examLanguage=request.getParameter("examLanguage");
         Exam exam=new Exam();
         exam.setExamStartTime(examStartTime);
         exam.setExamEndTime(examEndTime);
-        Teacher teacher=new Teacher();
-        teacher.setTeacherId(teacherId);
-        exam.setTeacher(teacher);
-        Classes classes=new Classes();
-        classes.setClassesId(classesId);
-        exam.setClasses(classes);
+        User user=new User();
+        user.setUserId(userId);
+        exam.setUser(user);
+        Group group=new Group();
+        group.setGroupId(groupId);
+        exam.setGroup(group);
         exam.setExamType(examType);
         exam.setExamName(examName);
         exam.setExamLanguage(examLanguage);
@@ -57,13 +57,13 @@ public class ExamController {
     }
 
     /**
-     * 教师查询自己的考试信息
-     * 输入teacher
+     * 用户查询自己创建的的考试信息
+     * 输入userId
      * 输出List<Exam>
      */
-    @RequestMapping(value="/teacherQueryExamInfo",method = RequestMethod.POST)
-    public Object teacherQueryExamInfo(HttpServletRequest request){
-        return  examService.teacherQueryExamInfo((Integer) request.getSession().getAttribute("teacherId"));
+    @RequestMapping(value="/userQueryExamInfo",method = RequestMethod.POST)
+    public Object userQueryExamInfo(HttpServletRequest request){
+        return  examService.userQueryExamInfo((Integer) request.getSession().getAttribute("userId"));
     }
 
 
@@ -78,13 +78,13 @@ public class ExamController {
     }
 
     /**
-     * 查询学生能参加的考试信息
+     * 查询用户能参加的考试信息
      * 输入无
      * 输出List<Exam>
      */
-    @RequestMapping(value="/queryExamInfoByStudentId",method = RequestMethod.POST)
-    public Object queryExamInfoByStudentId(HttpServletRequest request){
-        return  examService.queryExamInfoByStudentId((Integer)request.getSession().getAttribute("studentId"));
+    @RequestMapping(value="/queryExamInfoByUserId",method = RequestMethod.POST)
+    public Object queryExamInfoByUserId(HttpServletRequest request){
+        return  examService.queryExamInfoByUserId((Integer)request.getSession().getAttribute("userId"));
     }
 
 
@@ -100,14 +100,14 @@ public class ExamController {
         String examStartTime=request.getParameter("examStartTime");
         String examEndTime=request.getParameter("examEndTime");
         String examName=request.getParameter("examName");
-        int classesId=Integer.valueOf(request.getParameter("classesId"));
+        int groupId=Integer.valueOf(request.getParameter("groupId"));
         String examLanguage=request.getParameter("examLanguage");
         Exam exam=new Exam();
         exam.setExamStartTime(examStartTime);
         exam.setExamEndTime(examEndTime);
-        Classes classes=new Classes();
-        classes.setClassesId(classesId);
-        exam.setClasses(classes);
+        Group group=new Group();
+        group.setGroupId(groupId);
+        exam.setGroup(group);
         exam.setExamId(examId);
         exam.setExamLanguage(examLanguage);
         exam.setExamName(examName);
@@ -192,13 +192,13 @@ public class ExamController {
     public Object searchExamInfo(HttpServletRequest request){
         String examName=request.getParameter("examName");
         String examType=request.getParameter("examType");
-        String teacherName=request.getParameter("teacherName");
+        String userName=request.getParameter("userName");
         Exam exam=new Exam();
         exam.setExamName("%"+examName+"%");
         exam.setExamType(examType);
-        Teacher teacher=new Teacher();
-        teacher.setTeacherName("%"+teacherName+"%");
-        exam.setTeacher(teacher);
+        User user=new User();
+        user.setUserName("%"+userName+"%");
+        exam.setUser(user);
         return examService.searchExamInfo(exam);
     }
 

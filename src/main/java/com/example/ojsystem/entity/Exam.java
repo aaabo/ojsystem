@@ -8,8 +8,8 @@ public class Exam {
     private String examType;//考试状态
     private String examLanguage;
 
-    private Classes classes;
-    private Teacher teacher;
+    private Group group;
+    private User user;
 
 
     public Exam() {
@@ -67,19 +67,19 @@ public class Exam {
         this.examLanguage = examLanguage;
     }
 
-    public Classes getClasses() {
-        return classes;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setClasses(Classes classes) {
-        this.classes = classes;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
-    public Teacher getTeacher() {
-        return teacher;
+    public User getUser() {
+        return user;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
