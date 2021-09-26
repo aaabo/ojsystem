@@ -27,36 +27,8 @@ public class StudentScoreToolController {
     ExamProgrammingQuestionHistoryService examProgrammingHistoryService;
     @RequestMapping(value = "/examScore", method = RequestMethod.POST)
     public Object getStudentExamRank(HttpServletRequest request){
-        List<StudentScoreTool> studentScoreTools=new ArrayList<StudentScoreTool>();
-        List<StudentScoreTool> studentScoreTool1=new ArrayList<StudentScoreTool>();
-        List<StudentScoreTool> studentScoreTool2=new ArrayList<StudentScoreTool>();
-        studentScoreTools=studentService.queryExamStudnetInfo(Integer.valueOf(request.getParameter("examId")));
-        studentScoreTool1=examChoiceQuestionHistoryService.queryStudentExamChoiceScore(Integer.valueOf(request.getParameter("examId")));
-        studentScoreTool2=examProgrammingHistoryService.queryStudentExamProgrammingScore(Integer.valueOf(request.getParameter("examId")));
-        for(int i=0;i<studentScoreTools.size();i++){
-            for(int o=0;o<studentScoreTool1.size();o++){
-                if(studentScoreTools.get(i).getStudentId()==studentScoreTool1.get(o).getStudentId()){
-                    studentScoreTools.get(i).setChoiceScore(studentScoreTool1.get(o).getChoiceScore());
-                }
-            }
-            for(int o=0;o<studentScoreTool2.size();o++){
-
-                if(studentScoreTools.get(i).getStudentId()==studentScoreTool2.get(o).getStudentId()){
-                    studentScoreTools.get(i).setProgrammingScore(studentScoreTool2.get(o).getProgrammingScore());
-                }
-            }
-
-            studentScoreTools.get(i).setTotalScore(studentScoreTools.get(i).getChoiceScore()+studentScoreTools.get(i).getProgrammingScore());
 
 
-        }
-
-        Collections.sort(studentScoreTools,new Comparator<Object>(){
-            public int compare(Object o1, Object o2) {
-                return ((StudentScoreTool) o2).getTotalScore() - ((StudentScoreTool) o1).getTotalScore();
-            }
-        });
-
-        return studentScoreTools;
+        return 0;
     }
 }

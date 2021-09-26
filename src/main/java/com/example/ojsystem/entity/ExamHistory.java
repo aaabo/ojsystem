@@ -5,7 +5,7 @@ public class ExamHistory {
     private int examUserChoiceTotals;//考试学生选择得分
     private int examUserProgrammingTotals;//考试学生编程总分
 
-    private Student student;
+    private User user;
     private Exam exam;
 
     public ExamHistory() {
@@ -36,12 +36,12 @@ public class ExamHistory {
         this.examUserProgrammingTotals = examUserProgrammingTotals;
     }
 
-    public Student getStudent() {
-        return student;
+    public User getUser() {
+        return user;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Exam getExam() {

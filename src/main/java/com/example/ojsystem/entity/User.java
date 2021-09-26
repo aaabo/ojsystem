@@ -88,5 +88,18 @@ public class User {
         this.userIdentity = userIdentity;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userAccount='" + userAccount + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userProfile='" + userProfile + '\'' +
+                ", userSolved=" + userSolved +
+                ", userSubmit=" + userSubmit +
+                ", userIdentity='" + userIdentity + '\'' +
+                '}';
+    }
 }

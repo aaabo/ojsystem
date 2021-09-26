@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.GroupMapper">
+
+    <resultMap id="BaseExamResultMap" type="com.example.ojsystem.entity.Group">
+        <id column="groupId" jdbcType="BIGINT" property="groupId" />
+        <result column="groupName" jdbcType="VARCHAR" property="groupName" />
+
+    </resultMap>
+    <insert id="addGroupInfo"  useGeneratedKeys="true" keyProperty="group.groupId" keyColumn="groupId">
+          insert into `group` (groupName)  values(#{group.groupName})
+    </insert>
+    <update id="updateGroupInfo" parameterType="com.example.ojsystem.entity.Group">
+           update `group` set groupName=#{group.groupName} groupId=#{groupId}
+    </update>
+    <delete id="deleteGroupInfo" parameterType="java.lang.Integer">
+          delete from `group` where groupId=#{groupId}
+    </delete>
+
+
+</mapper>

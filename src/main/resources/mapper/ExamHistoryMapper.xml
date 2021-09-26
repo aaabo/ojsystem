@@ -8,12 +8,15 @@
         <id column="examHistoryId" jdbcType="BIGINT" property="examHistoryId" />
         <result column="examUserChoiceTotals" jdbcType="BIGINT" property="examUserChoiceTotals" />
         <result column="examUserProgrammingTotals" jdbcType="BIGINT" property="examUserProgrammingTotals" />
-
+        <association property="user" javaType="com.example.ojsystem.entity.User">
+            <id column="userId" jdbcType="BIGINT" property="userId" />
+            <result column="userName" jdbcType="VARCHAR" property="userName" />
+        </association>
     </resultMap>
 
     <select id="queryExamRankById" resultType="com.example.ojsystem.entity.ExamHistory">
-       SELECT student.studentName,examhistory.examChoiceTotals,examhistory.examProgrammingTotals,examhistory.examUserChoiceTotals+examhistory.examUserProgrammingTotals as total FROM examhistory,student
-       where examhistory.examId =#{examId}  and student.studentId=examhistory.studentId order by total desc
+       SELECT user.userName,examhistory.examChoiceTotals,examhistory.examProgrammingTotals,examhistory.examUserChoiceTotals+examhistory.examUserProgrammingTotals as total FROM examhistory,user
+       where examhistory.examId =#{examId}  and user.userId=examhistory.userId order by total desc
     </select>
 
 

@@ -85,9 +85,9 @@ public class UserController {
 
 
     /**
-     * 根据学生id查询学生信息
-     * 输入studentId
-     * 输出Student
+     * 根据用户id查询学生信息
+     * 输入输入userId
+     * 输出User
      */
 
     @RequestMapping(value="/queryUserInfoById",method = RequestMethod.POST)
@@ -97,17 +97,17 @@ public class UserController {
 
     /**
      * 查询自己的学生信息
-     * 输入studentId
-     * 输出Student
+     * 输入userId
+     * 输出User
      */
-    @RequestMapping(value="/queryStudentInfo",method = RequestMethod.POST)
+    @RequestMapping(value="/queryUserInfo",method = RequestMethod.POST)
     public Object queryStudentInfo(HttpServletRequest request){
-        Object studentId=request.getSession().getAttribute("userId");
-        if(studentId==null){
+        Object userId=request.getSession().getAttribute("userId");
+        if(userId==null){
             return 0;
         }
         else{
-            return userService.queryUserInfoById((Integer)studentId);
+            return userService.queryUserInfoById((Integer)userId);
         }
 
     }

@@ -38,13 +38,13 @@
         select * from user where userAccount=#{user.userAccount}
     </select>
     <select id="queryUserInfoById" resultType="com.example.ojsystem.entity.User" resultMap="BaseUserResultMap">
-        select * from user,classes where user.userId=#{userId} and user.classesId=classes.classesId
+        select * from user where user.userId=#{userId}
     </select>
     <select id="queryUserPasswordInfo" resultType="java.lang.Integer">
         select userPassword from user where userId=#{userId}
     </select>
     <select id="queryUserRankListInfo" resultType="com.example.ojsystem.entity.User">
-        select userId,classesId,userName,userProfile,userSolved,userSubmit,userSolved/userSubmit as acRate from user order by userSolved desc,acRate desc
+        select userId,userName,userProfile,userSolved,userSubmit,userSolved/userSubmit as acRate from user order by userSolved desc,acRate desc
     </select>
 
 
