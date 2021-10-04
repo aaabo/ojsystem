@@ -1,20 +1,11 @@
 package com.example.ojsystem.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.example.ojsystem.entity.Group;
-import com.example.ojsystem.entity.User;
-import com.example.ojsystem.entity.UserTool;
 import com.example.ojsystem.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin

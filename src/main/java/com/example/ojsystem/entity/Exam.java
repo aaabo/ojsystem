@@ -8,6 +8,7 @@ public class Exam {
     private String examType;//考试状态
     private String examLanguage;
 
+
     private Group group;
     private User user;
 
@@ -81,5 +82,21 @@ public class Exam {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Exam{" +
+                "examId=" + examId +
+                ", examName='" + examName + '\'' +
+                ", examStartTime='" + examStartTime + '\'' +
+                ", examEndTime='" + examEndTime + '\'' +
+                ", examType='" + examType + '\'' +
+                ", examLanguage='" + examLanguage + '\'' +
+                ", group=" + group +
+                ", user=" + user +
+                '}';
     }
 }

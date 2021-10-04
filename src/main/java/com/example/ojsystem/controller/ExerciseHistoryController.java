@@ -68,7 +68,6 @@ public class ExerciseHistoryController {
         Exercise exercise=new Exercise();
         exercise.setExerciseId(exerciseId);
         User user=new User();
-        System.out.println(userName);
         if(userName!=null){
             user.setUserName("%"+userName+"%");
         }else{
@@ -78,11 +77,6 @@ public class ExerciseHistoryController {
         exerciseHistory.setUser(user);
         exerciseHistory.setExerciseResult(exerciseResult);
         exerciseHistory.setExerciseSubmitLanguage(exerciseSubmitLanguage);
-        System.out.println(exerciseHistory.getUser().getUserName());
-        System.out.println(exerciseHistory.getExerciseResult());
-        System.out.println(exerciseHistory.getExerciseSubmitLanguage());
-        System.out.println(exerciseHistory.getExercise().getExerciseId());
-        System.out.println(exerciseHistoryService.queryExerciseRealTimeStatusInfo(exerciseHistory));
         return exerciseHistoryService.queryExerciseRealTimeStatusInfo(exerciseHistory);
 
     }

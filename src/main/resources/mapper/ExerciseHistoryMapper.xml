@@ -19,8 +19,8 @@
         </association>
     </resultMap>
     <insert id="addCodeInfo" parameterType="com.example.ojsystem.entity.ExerciseHistory" >
-           insert into exercisehistory(studentId,exerciseId,exerciseSubmitTime,exerciseSubmitLanguage,exerciseCode)
-            values(#{exerciseHistory.student.studentId},#{exerciseHistory.exercise.exerciseId},#{exerciseHistory.exerciseSubmitTime},#{exerciseHistory.exerciseSubmitLanguage},#{exerciseHistory.exerciseCode})
+           insert into exercisehistory(userId,exerciseId,exerciseSubmitTime,exerciseSubmitLanguage,exerciseCode)
+            values(#{exerciseHistory.user.userId},#{exerciseHistory.exercise.exerciseId},#{exerciseHistory.exerciseSubmitTime},#{exerciseHistory.exerciseSubmitLanguage},#{exerciseHistory.exerciseCode})
     </insert>
     <select id="queryExerciseRealTimeStatusInfo" resultType="com.example.ojsystem.entity.ExerciseHistory" resultMap="BaseExerciseHistoryResultMap">
             select * from exercisehistory,user where exercisehistory.userId=user.userId
@@ -39,7 +39,7 @@
                 order by exercisehistory.exerciseSubmitTime DESC
     </select>
     <select id="queryExerciseStatisticsInfo" resultType="com.example.ojsystem.entity.ExerciseHistory" resultMap="BaseExerciseHistoryResultMap">
-         select  * from exercisehistory,student where exercisehistory.studentId=student.studentId and exercisehistory.exerciseId =#{exerciseId} and exerciseResult="accept" GROUP BY exercisehistory.studentId order by exerciseSubmitTime
+         select  * from exercisehistory,user where exercisehistory.userId=user.userId and exercisehistory.exerciseId =#{exerciseId} and exerciseResult="accept" GROUP BY exercisehistory.userId order by exerciseSubmitTime
     </select>
     <select id="queryUserExerciseIsSuccess" resultType="java.lang.Integer">
         select count(*)  from exercisehistory where exerciseId=#{exerciseId} and userId=#{userId} and exerciseResult='success'
@@ -48,7 +48,7 @@
         select exerciseCode from exercisehistory where exerciseHistoryId=#{exerciseHistoryId}
     </select>
     <select id="queryExerciseIdByUserId" resultType="java.lang.Integer">
-        select exerciseId from exercisehistory where exerciseId not in (select distinct exerciseId from exercisehistory where userId=#{userId} and exerciseResult="accept") and studentId=#{studentId}
+        select exerciseId from exercisehistory where exerciseId not in (select distinct exerciseId from exercisehistory where userId=#{userId} and exerciseResult="accept") and userId=#{userId}
     </select>
     <select id="queryExerciseResultInfo" resultType="com.example.ojsystem.entity.ResultTool">
         SELECT exerciseResult,count(*) as number FROM `exercisehistory` where exerciseId=#{exerciseId} group BY exerciseResult

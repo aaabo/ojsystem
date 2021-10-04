@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.ojsystem.dao.GroupMapper">
 
-    <resultMap id="BaseExamResultMap" type="com.example.ojsystem.entity.Group">
+    <resultMap id="BaseGroupResultMap" type="com.example.ojsystem.entity.Group">
         <id column="groupId" jdbcType="BIGINT" property="groupId" />
         <result column="groupName" jdbcType="VARCHAR" property="groupName" />
 

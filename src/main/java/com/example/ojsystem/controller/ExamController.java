@@ -84,7 +84,7 @@ public class ExamController {
      */
     @RequestMapping(value="/queryExamInfoByUserId",method = RequestMethod.POST)
     public Object queryExamInfoByUserId(HttpServletRequest request){
-        return  examService.queryExamInfoByUserId((Integer)request.getSession().getAttribute("userId"));
+        return  examService.queryExamInfoByUserId(Integer.valueOf(request.getParameter("userId")));
     }
 
 
@@ -194,10 +194,18 @@ public class ExamController {
         String examType=request.getParameter("examType");
         String userName=request.getParameter("userName");
         Exam exam=new Exam();
-        exam.setExamName("%"+examName+"%");
+        if(examName.equals("")){
+            exam.setExamName(examName);
+        }else{
+            exam.setExamName("%"+examName+"%");
+        }
         exam.setExamType(examType);
         User user=new User();
-        user.setUserName("%"+userName+"%");
+        if(userName.equals("")){
+            user.setUserName(userName);
+        }else{
+            user.setUserName("%"+userName+"%");
+        }
         exam.setUser(user);
         return examService.searchExamInfo(exam);
     }

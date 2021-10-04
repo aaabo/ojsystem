@@ -37,7 +37,7 @@
         delete from exam where examId=#{examId}
     </delete>
     <select id="queryExamInfoByUserId" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
-       select * from exam,user where exam.userId=user.userId and exam.userId=#{userId}
+      select * from exam,`group`,usergroup where exam.groupId=`group`.groupId and `group`.groupId=usergroup.groupId and usergroup.userId=#{userId}
     </select>
     <select id="userQueryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
          select * from exam,group where exam.userId=#{userId} and exam.groupId=group.groupId ORDER BY (case exam.examType when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
@@ -52,16 +52,16 @@
          select * from exam where examType='Pending' or examType='Running'
     </select>
     <select id="searchExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
-        select * from exam,teacher,classes
-        where exam.teacherId=teacher.teacherId and exam.classesId=classes.classesId
+        select * from exam,user
+        where exam.userId=user.userId
         <if test="exam.examName != null and exam.examName!=''">
             and exam.examName like #{exam.examName}
         </if>
         <if test="exam.examType != null and exam.examType!=''">
             and exam.examType =#{exam.examType}
         </if>
-        <if test="exam.teacher.teacherName != null and exam.teacher.teacherName!=''">
-            and teacher.teacherName like #{exam.teacher.teacherName}
+        <if test="exam.user.userName != null and exam.user.userName!=''">
+            and user.userName like #{exam.user.userName}
         </if>
         ORDER BY (case exam.examType when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>

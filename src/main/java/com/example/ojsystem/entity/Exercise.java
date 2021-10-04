@@ -11,6 +11,8 @@ public class Exercise {
     private  String exerciseSampleInput;
     private  String exerciseSampleOutput;
 
+    private ExerciseLabel exerciseLabel;
+
     public Exercise(){
 
     }
@@ -97,5 +99,21 @@ public class Exercise {
 
     public void setexerciseSampleOutput(String exerciseSampleOutput) {
         this.exerciseSampleOutput = exerciseSampleOutput;
+    }
+
+    public String getExerciseSampleOutput() {
+        return exerciseSampleOutput;
+    }
+
+    public void setExerciseSampleOutput(String exerciseSampleOutput) {
+        this.exerciseSampleOutput = exerciseSampleOutput;
+    }
+
+    public ExerciseLabel getExerciseLabel() {
+        return exerciseLabel;
+    }
+
+    public void setExerciseLabel(ExerciseLabel exerciseLabel) {
+        this.exerciseLabel = exerciseLabel;
     }
 }

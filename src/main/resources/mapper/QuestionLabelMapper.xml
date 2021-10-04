@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.QuestionLabelMapper">
+
+    <resultMap id="BaseQuestionLabelResultMap" type="com.example.ojsystem.entity.QuestionLabel">
+        <id column="questionLabelId" jdbcType="BIGINT" property="questionLabelId" />
+        <result column="chapter" jdbcType="VARCHAR" property="chapter" />
+        <result column="firstKnowledgePoint" jdbcType="VARCHAR" property="firstKnowledgePoint" />
+        <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint" />
+    </resultMap>
+    <insert id="addQuestionLabelInfo" parameterType="com.example.ojsystem.entity.QuestionLabel">
+        insert into questionlabel (chapter,firstKnowledgePoint,secondKnowledgePoint)  values(#{questionLabel.chapter},#{questionLabel.firstKnowledgePoint},#{questionLabel.secondKnowledgePoint})
+    </insert>
+    <update id="updateQuestionLabelInfo">
+        update questionlabel set chapter=#{questionLabel.chapter},firstKnowledgePoint=#{questionLabel.firstKnowledgePoint},secondKnowledgePoint=#{questionLabel.secondKnowledgePoint}
+    </update>
+    <delete id="deleteQuestionLabelInfo" parameterType="java.lang.Integer">
+        delete from questionlabel where questionLabelId=#{questionLabelId}
+    </delete>
+    <select id="queryQuestionLabelInfo" resultType="com.example.ojsystem.entity.QuestionLabel">
+        select * from questionlabel
+    </select>
+
+
+</mapper>
