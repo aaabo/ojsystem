@@ -5,7 +5,7 @@ public class Exam {
     private String examName;
     private String examStartTime;
     private String examEndTime;
-    private String examType;//考试状态
+    private String examStatus;//考试状态
     private String examLanguage;
 
 
@@ -50,16 +50,6 @@ public class Exam {
         this.examName = examName;
     }
 
-    public String getExamType() {
-        return examType;
-    }
-
-    public void setExamType(String examType) {
-        this.examType = examType;
-    }
-
-
-
     public String getExamLanguage() {
         return examLanguage;
     }
@@ -85,6 +75,13 @@ public class Exam {
     }
 
 
+    public String getExamStatus() {
+        return examStatus;
+    }
+
+    public void setExamStatus(String examStatus) {
+        this.examStatus = examStatus;
+    }
 
     @Override
     public String toString() {
@@ -93,7 +90,7 @@ public class Exam {
                 ", examName='" + examName + '\'' +
                 ", examStartTime='" + examStartTime + '\'' +
                 ", examEndTime='" + examEndTime + '\'' +
-                ", examType='" + examType + '\'' +
+                ", examStatus='" + examStatus + '\'' +
                 ", examLanguage='" + examLanguage + '\'' +
                 ", group=" + group +
                 ", user=" + user +

@@ -72,7 +72,7 @@ public class QuestionLabelController {
      * 输入questionLabel
      * 成功输出true 失败输出false
      */
-    @RequestMapping(value="/updateQuestionLabelInfo",method = RequestMethod.POST)
+    @RequestMapping(value="/modifyQuestionLabelInfo",method = RequestMethod.POST)
     public Object updateQuestionLabelInfo(HttpServletRequest request){
         int i=0;
         QuestionLabel questionLabel=new QuestionLabel();
@@ -80,12 +80,45 @@ public class QuestionLabelController {
         questionLabel.setChapter(request.getParameter("chapter"));
         questionLabel.setFirstKnowledgePoint(request.getParameter("firstKnowledgePoint"));
         questionLabel.setSecondKnowledgePoint(request.getParameter("secondKnowledgePoint"));
-        i=questionLabelService.updateQuestionLabelInfo(questionLabel);
+        i=questionLabelService.modifyQuestionLabelInfo(questionLabel);
         if(i>0){
             return true;
         }
         else{
             return false;
         }
+    }
+
+    /**
+     * 获取全部的问题标签的章节信息(去重)
+     * 输入无
+     * 成功输出List<String>
+     */
+    @RequestMapping(value="/queryChapterInfo",method = RequestMethod.POST)
+    public Object queryChapterInfo(HttpServletRequest request){
+
+        return questionLabelService.queryChapterInfo();
+    }
+
+    /**
+     * 获取全部的问题标签的章节信息查询第一知识点
+     * 输入chapter
+     * 成功输出List<String>
+     */
+    @RequestMapping(value="/queryFirstKnowledgePointInfoByChapter",method = RequestMethod.POST)
+    public Object queryFirstKnowledgePointInfoByChapter(HttpServletRequest request){
+
+        return questionLabelService.queryFirstKnowledgePointInfoByChapter(request.getParameter("chapter"));
+    }
+
+    /**
+     * 根据章节和第一知识点查询问题标签信息
+     * 输入chapter firstKnowledgePoint
+     * 成功输出List<QuestionLabel>
+     */
+    @RequestMapping(value="/querySecondKnowledgePointInfoByChapter",method = RequestMethod.POST)
+    public Object querySecondKnowledgePointInfoByChapter(HttpServletRequest request){
+
+        return questionLabelService.querySecondKnowledgePointInfoByChapter(request.getParameter("chapter"),request.getParameter("firstKnowledgePoint"));
     }
 }

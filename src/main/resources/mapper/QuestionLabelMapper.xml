@@ -13,7 +13,7 @@
     <insert id="addQuestionLabelInfo" parameterType="com.example.ojsystem.entity.QuestionLabel">
         insert into questionlabel (chapter,firstKnowledgePoint,secondKnowledgePoint)  values(#{questionLabel.chapter},#{questionLabel.firstKnowledgePoint},#{questionLabel.secondKnowledgePoint})
     </insert>
-    <update id="updateQuestionLabelInfo">
+    <update id="modifyQuestionLabelInfo">
         update questionlabel set chapter=#{questionLabel.chapter},firstKnowledgePoint=#{questionLabel.firstKnowledgePoint},secondKnowledgePoint=#{questionLabel.secondKnowledgePoint}
     </update>
     <delete id="deleteQuestionLabelInfo" parameterType="java.lang.Integer">
@@ -21,6 +21,15 @@
     </delete>
     <select id="queryQuestionLabelInfo" resultType="com.example.ojsystem.entity.QuestionLabel">
         select * from questionlabel
+    </select>
+    <select id="queryChapterInfo" resultType="java.lang.String">
+        SELECT distinct chapter FROM questionlabel
+    </select>
+    <select id="queryFirstKnowledgePointInfoByChapter" resultType="java.lang.String">
+        SELECT distinct firstKnowledgePoint FROM questionlabel where chapter=#{chapter}
+    </select>
+    <select id="querySecondKnowledgePointInfoByChapter" resultType="com.example.ojsystem.entity.QuestionLabel">
+        select * from questionlabel where chapter=#{chapter} and firstKnowledgePoint=#{firstKnowledgePoint}
     </select>
 
 

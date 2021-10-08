@@ -12,7 +12,7 @@
 <insert id="addExerciseLabelInfo" parameterType="com.example.ojsystem.entity.ExerciseLabel">
     insert into exerciselabel (firstPoint,secondPoint)  values(#{exerciseLabel.firstPoint},#{exerciseLabel.secondPoint})
 </insert>
-<update id="updateExerciseLabelInfo" parameterType="com.example.ojsystem.entity.ExerciseLabel">
+<update id="modifyExerciseLabelInfo" parameterType="com.example.ojsystem.entity.ExerciseLabel">
     update exerciselabel set firstPoint=#{exerciseLabel.firstPoint},secondPoint=#{exerciseLabel.secondPoint} where exerciseLabelId=#{exerciseLabel.exerciseLabelId}
 </update>
 <delete id="deleteExerciseLabelInfo" parameterType="java.lang.Integer">

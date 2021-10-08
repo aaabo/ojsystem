@@ -56,7 +56,7 @@ public class ExerciseLabelController {
      * 输入exerciseLabel
      * 成功输出true 失败输出false
      */
-    @RequestMapping(value="/updateExerciseLabelInfo",method = RequestMethod.POST)
+    @RequestMapping(value="/modifyExerciseLabelInfo",method = RequestMethod.POST)
     public Object updateExerciseLabelInfo(HttpServletRequest request){
 
         int i=0;
@@ -64,7 +64,7 @@ public class ExerciseLabelController {
         exerciseLabel.setExerciseLabelId(Integer.valueOf(request.getParameter("exerciseLabelId")));
         exerciseLabel.setFirstPoint(request.getParameter("firstPoint"));
         exerciseLabel.setSecondPoint(request.getParameter("secondPoint"));
-        i=exerciseLabelService.updateExerciseLabelInfo(exerciseLabel);
+        i=exerciseLabelService.modifyExerciseLabelInfo(exerciseLabel);
         if(i>0){
             return true;
         }

@@ -37,4 +37,14 @@ public class QuestionLabel {
     public void setSecondKnowledgePoint(String secondKnowledgePoint) {
         this.secondKnowledgePoint = secondKnowledgePoint;
     }
+
+    @Override
+    public String toString() {
+        return "QuestionLabel{" +
+                "questionLabelId=" + questionLabelId +
+                ", chapter='" + chapter + '\'' +
+                ", firstKnowledgePoint='" + firstKnowledgePoint + '\'' +
+                ", secondKnowledgePoint='" + secondKnowledgePoint + '\'' +
+                '}';
+    }
 }

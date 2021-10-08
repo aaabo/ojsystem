@@ -12,7 +12,7 @@
     <insert id="addGroupInfo"  useGeneratedKeys="true" keyProperty="group.groupId" keyColumn="groupId">
           insert into `group` (groupName)  values(#{group.groupName})
     </insert>
-    <update id="updateGroupInfo" parameterType="com.example.ojsystem.entity.Group">
+    <update id="modifyGroupInfo" parameterType="com.example.ojsystem.entity.Group">
            update `group` set groupName=#{group.groupName} groupId=#{groupId}
     </update>
     <delete id="deleteGroupInfo" parameterType="java.lang.Integer">

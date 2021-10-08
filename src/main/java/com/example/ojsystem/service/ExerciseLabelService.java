@@ -24,7 +24,7 @@ public interface ExerciseLabelService {
      * 输入exerciseLabel
      * 成功输出true 失败输出false
      */
-    public int updateExerciseLabelInfo(ExerciseLabel exerciseLabel);
+    public int modifyExerciseLabelInfo(ExerciseLabel exerciseLabel);
 
     /**
      * 删除对应的习题标签信息

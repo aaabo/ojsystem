@@ -56,7 +56,7 @@ public interface ExamMapper {
      * 输入exam
      * 输出int
      */
-    public int updateExamType(@Param("exam") Exam exam);
+    public int updateExamStatus(@Param("exam") Exam exam);
 
     /**
      * 根据考试id查询考试信息

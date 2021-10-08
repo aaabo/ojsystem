@@ -40,8 +40,8 @@ public class ExerciseLabelServiceImpl implements ExerciseLabelService{
      *
      * @param exerciseLabel
      */
-    public int updateExerciseLabelInfo(ExerciseLabel exerciseLabel) {
-        return exerciseLabelMapper.updateExerciseLabelInfo(exerciseLabel);
+    public int modifyExerciseLabelInfo(ExerciseLabel exerciseLabel) {
+        return exerciseLabelMapper.modifyExerciseLabelInfo(exerciseLabel);
     }
 
     /**

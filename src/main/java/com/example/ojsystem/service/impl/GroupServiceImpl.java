@@ -46,7 +46,7 @@ public class GroupServiceImpl implements GroupService{
      *
      * @param group
      */
-    public int updateGroupInfo(Group group) {
-        return groupMapper.updateGroupInfo(group);
+    public int modifyGroupInfo(Group group) {
+        return groupMapper.modifyGroupInfo(group);
     }
 }

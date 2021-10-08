@@ -51,7 +51,39 @@ public class QuestionLabelServiceImpl implements QuestionLabelService{
      *
      * @param questionLabel
      */
-    public int updateQuestionLabelInfo(QuestionLabel questionLabel) {
-        return questionLabelMapper.updateQuestionLabelInfo(questionLabel);
+    public int modifyQuestionLabelInfo(QuestionLabel questionLabel) {
+        return questionLabelMapper.modifyQuestionLabelInfo(questionLabel);
+    }
+
+    /**
+     * 获取全部的问题标签的章节信息(去重)
+     * 输入无
+     * 成功输出List<String>
+     */
+    public List<String> queryChapterInfo() {
+        return questionLabelMapper.queryChapterInfo();
+    }
+
+    /**
+     * 获取全部的问题标签的章节信息查询第一知识点
+     * 输入chapter
+     * 成功输出List<String>
+     *
+     * @param chapter
+     */
+    public List<String> queryFirstKnowledgePointInfoByChapter(String chapter) {
+        return questionLabelMapper.queryFirstKnowledgePointInfoByChapter(chapter);
+    }
+
+    /**
+     * 根据章节和第一知识点查询问题标签信息
+     * 输入chapter firstKnowledgePoint
+     * 成功输出List<QuestionLabel>
+     *
+     * @param chapter
+     * @param firstKnowledgePoint
+     */
+    public List<QuestionLabel> querySecondKnowledgePointInfoByChapter(String chapter, String firstKnowledgePoint) {
+        return questionLabelMapper.querySecondKnowledgePointInfoByChapter(chapter,firstKnowledgePoint);
     }
 }

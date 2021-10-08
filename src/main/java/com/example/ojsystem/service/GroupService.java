@@ -25,5 +25,5 @@ public interface GroupService {
      * 输入group
      * 修改成功返回true 失败返回false
      */
-    public int updateGroupInfo(Group group);
+    public int modifyGroupInfo(Group group);
 }

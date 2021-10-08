@@ -53,7 +53,7 @@ public interface ExamService {
      * 输入exam
      * 输出int
      */
-    public int updateExamType(Exam exam);
+    public int updateExamStatus(Exam exam);
 
     /**
      * 根据考试id查询考试信息

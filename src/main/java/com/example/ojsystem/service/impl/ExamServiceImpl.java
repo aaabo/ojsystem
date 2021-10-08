@@ -83,8 +83,8 @@ public class ExamServiceImpl implements ExamService{
      *
      * @param exam
      */
-    public int updateExamType(Exam exam) {
-        return examMapper.updateExamType(exam);
+    public int updateExamStatus(Exam exam) {
+        return examMapper.updateExamStatus(exam);
     }
 
     /**

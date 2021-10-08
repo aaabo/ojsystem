@@ -33,7 +33,7 @@ public class ExamController {
         String examName=request.getParameter("examName");
         int userId=Integer.valueOf((Integer) request.getSession().getAttribute("userId"));
         int groupId=Integer.valueOf(request.getParameter("groupId"));
-        String examType=request.getParameter("examType");
+        String examStatus=request.getParameter("examStatus");
         String examLanguage=request.getParameter("examLanguage");
         Exam exam=new Exam();
         exam.setExamStartTime(examStartTime);
@@ -44,7 +44,7 @@ public class ExamController {
         Group group=new Group();
         group.setGroupId(groupId);
         exam.setGroup(group);
-        exam.setExamType(examType);
+        exam.setExamStatus(examStatus);
         exam.setExamName(examName);
         exam.setExamLanguage(examLanguage);
         i=examService.addExamInfo(exam);
@@ -143,15 +143,15 @@ public class ExamController {
      * 输入exam
      * 输出成功返回true 失败返回false
      */
-    @RequestMapping(value="/updateExamType",method = RequestMethod.POST)
+    @RequestMapping(value="/updateExamStatus",method = RequestMethod.POST)
     public Boolean updateExamType(HttpServletRequest request){
         int i=0;
         int examId=Integer.valueOf(request.getParameter("examId"));
-        String examType=request.getParameter("examType");
+        String examStatus=request.getParameter("examStatus");
         Exam exam=new Exam();
         exam.setExamId(examId);
-        exam.setExamType(examType);
-        i=examService.updateExamType(exam);
+        exam.setExamStatus(examStatus);
+        i=examService.updateExamStatus(exam);
         if(i!=0){
             return true;
         }
@@ -191,7 +191,7 @@ public class ExamController {
     @RequestMapping(value="/searchExamInfo",method = RequestMethod.POST)
     public Object searchExamInfo(HttpServletRequest request){
         String examName=request.getParameter("examName");
-        String examType=request.getParameter("examType");
+        String examStatus=request.getParameter("examStatus");
         String userName=request.getParameter("userName");
         Exam exam=new Exam();
         if(examName.equals("")){
@@ -199,7 +199,7 @@ public class ExamController {
         }else{
             exam.setExamName("%"+examName+"%");
         }
-        exam.setExamType(examType);
+        exam.setExamStatus(examStatus);
         User user=new User();
         if(userName.equals("")){
             user.setUserName(userName);

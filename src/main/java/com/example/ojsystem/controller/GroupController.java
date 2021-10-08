@@ -54,14 +54,14 @@ public class GroupController {
      * 输入group
      * 修改成功返回true 失败返回false
      */
-    @RequestMapping(value="/updateGroupInfo",method = RequestMethod.POST)
+    @RequestMapping(value="/modifyGroupInfo",method = RequestMethod.POST)
     public Object updateGroupInfo(HttpServletRequest request){
 
         int i=0;
         Group group=new Group();
         group.setGroupName(request.getParameter("groupName"));
         group.setGroupId(Integer.valueOf(request.getParameter("groupId")));
-        i=groupService.addGroupInfo(group);
+        i=groupService.modifyGroupInfo(group);
         if(i>0){
             return true;
         }

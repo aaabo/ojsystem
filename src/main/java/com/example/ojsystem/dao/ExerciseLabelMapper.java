@@ -27,7 +27,7 @@ public interface ExerciseLabelMapper {
      * 输入exerciseLabel
      * 成功输出true 失败输出false
      */
-    public int updateExerciseLabelInfo(@Param("exerciseLabel") ExerciseLabel exerciseLabel);
+    public int modifyExerciseLabelInfo(@Param("exerciseLabel") ExerciseLabel exerciseLabel);
 
     /**
      * 删除对应的习题标签信息
