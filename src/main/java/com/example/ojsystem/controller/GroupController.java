@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -68,5 +69,15 @@ public class GroupController {
         else{
             return false;
         }
+    }
+
+    /**
+     * 获取组别信息
+     * 输入无
+     * 成功输出ist<Group>
+     */
+    @RequestMapping(value="/queryGroupInfo",method = RequestMethod.GET)
+    public Object queryGroupInfo(HttpServletRequest request){
+        return groupService.queryGroupInfo();
     }
 }

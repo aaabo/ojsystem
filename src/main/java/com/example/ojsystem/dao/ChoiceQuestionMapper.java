@@ -24,8 +24,15 @@ public interface ChoiceQuestionMapper {
 
     /**
      * 查询自己私有创建的选择题目和共有的选择题目
-     * 输入choiceQuestionId
+     * 输入userId
      * 输出int
      */
     public List<ChoiceQuestion> queryChoiceQuestionInfo(@Param("userId") int userId);
+
+    /**
+     * 根据选择题id删除对应的选择题
+     * 输入choiceQuestionId
+     * 输出int
+     */
+    public int deleteChoiceQuestionInfoByChoiceQuestionId(@Param("choiceQuestionId") int choiceQuestionId);
 }

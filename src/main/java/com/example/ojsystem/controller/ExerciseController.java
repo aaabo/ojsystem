@@ -42,7 +42,7 @@ public class ExerciseController {
         exercise.setExerciseInput(exerciseInput);
         exercise.setExerciseOutPut(exerciseOutPut);
         exercise.setExerciseSampleInput(exerciseSampleInput);
-        exercise.setexerciseSampleOutput(exerciseSampleOutput);
+        exercise.setExerciseSampleOutput(exerciseSampleOutput);
         i=exerciseService.addExercise(exercise);
         if(i!=0){
             return exercise.getExerciseId();
@@ -89,7 +89,7 @@ public class ExerciseController {
         exercise.setExerciseInput(exerciseInput);
         exercise.setExerciseOutPut(exerciseOutPut);
         exercise.setExerciseSampleInput(exerciseSampleInput);
-        exercise.setexerciseSampleOutput(exerciseSampleOutput);
+        exercise.setExerciseSampleOutput(exerciseSampleOutput);
         i=exerciseService.modifyExerciseInfo(exercise);
         if(i!=0){
             return true;

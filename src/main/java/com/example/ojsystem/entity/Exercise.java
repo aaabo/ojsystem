@@ -93,13 +93,7 @@ public class Exercise {
         this.exerciseSampleInput = exerciseSampleInput;
     }
 
-    public String getexerciseSampleOutput() {
-        return exerciseSampleOutput;
-    }
-
-    public void setexerciseSampleOutput(String exerciseSampleOutput) {
-        this.exerciseSampleOutput = exerciseSampleOutput;
-    }
+   
 
     public String getExerciseSampleOutput() {
         return exerciseSampleOutput;

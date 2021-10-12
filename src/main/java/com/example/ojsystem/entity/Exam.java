@@ -1,5 +1,7 @@
 package com.example.ojsystem.entity;
 
+import java.util.List;
+
 public class Exam {
     private int examId;
     private String examName;
@@ -11,7 +13,7 @@ public class Exam {
 
     private Group group;
     private User user;
-
+    private List<ExamQuestion> examQuestions;
 
     public Exam() {
     }
@@ -83,6 +85,14 @@ public class Exam {
         this.examStatus = examStatus;
     }
 
+    public List<ExamQuestion> getExamQuestions() {
+        return examQuestions;
+    }
+
+    public void setExamQuestions(List<ExamQuestion> examQuestions) {
+        this.examQuestions = examQuestions;
+    }
+
     @Override
     public String toString() {
         return "Exam{" +
@@ -94,6 +104,7 @@ public class Exam {
                 ", examLanguage='" + examLanguage + '\'' +
                 ", group=" + group +
                 ", user=" + user +
+                ", examQuestions=" + examQuestions +
                 '}';
     }
 }

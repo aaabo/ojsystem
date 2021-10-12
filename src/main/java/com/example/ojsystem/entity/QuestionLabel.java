@@ -1,5 +1,6 @@
 package com.example.ojsystem.entity;
 
+
 public class QuestionLabel {
     private int questionLabelId;
     private String chapter;
@@ -37,6 +38,29 @@ public class QuestionLabel {
     public void setSecondKnowledgePoint(String secondKnowledgePoint) {
         this.secondKnowledgePoint = secondKnowledgePoint;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj==null){
+            return false;
+        }
+        if(this==obj){
+            return true;
+        }
+        if(obj instanceof QuestionLabel){
+            QuestionLabel questionLabel=(QuestionLabel)obj;
+            if(questionLabel.questionLabelId==this.questionLabelId&&questionLabel.chapter.equals(this.chapter)&&
+                    firstKnowledgePoint.equals(this.firstKnowledgePoint)&&secondKnowledgePoint.equals(this.secondKnowledgePoint)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        return false;
+
+    }
+
+
 
     @Override
     public String toString() {

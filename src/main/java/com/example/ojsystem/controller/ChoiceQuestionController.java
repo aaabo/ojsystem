@@ -43,13 +43,20 @@ public class ChoiceQuestionController {
     @RequestMapping(value="/modifyChoiceQuestionInfo",method = RequestMethod.POST)
     public Object modifyChoiceQuestionInfo(HttpServletRequest request,@RequestBody ChoiceQuestion choiceQuestion){
         System.out.println(choiceQuestion);
-        return 0;
+
+        int i=choiceQuestionService.modifyChoiceQuestionInfo(choiceQuestion);
+        if(i!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 
     /**
      * 查询自己私有创建的选择题目和共有的选择题目
-     * 输入choiceQuestionId
+     * 输入userId
      * 输出int
      */
     @RequestMapping(value="/queryChoiceQuestionInfo",method = RequestMethod.POST)
@@ -57,5 +64,15 @@ public class ChoiceQuestionController {
         HttpSession session=request.getSession();
         int userId=(Integer)session.getAttribute("userId");
         return choiceQuestionService.queryChoiceQuestionInfo(userId);
+    }
+
+    /**
+     * 根据选择题id删除对应的选择题
+     * 输入choiceQuestionId
+     * 输出int
+     */
+    @RequestMapping(value="/deleteChoiceQuestionInfoByChoiceQuestionId",method = RequestMethod.POST)
+    public Object deleteChoiceQuestionInfoByChoiceQuestionId(HttpServletRequest request){
+        return choiceQuestionService.deleteChoiceQuestionInfoByChoiceQuestionId(Integer.valueOf(request.getParameter("choiceQuestionId")));
     }
 }

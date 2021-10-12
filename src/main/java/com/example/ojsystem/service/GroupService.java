@@ -9,7 +9,7 @@ public interface GroupService {
     /**
      * 获取组别信息并添加
      * 输入group
-     * 成功输入true 失败输出false
+     * 成功输出true 失败输出false
      */
     public int addGroupInfo(Group group);
 
@@ -26,4 +26,11 @@ public interface GroupService {
      * 修改成功返回true 失败返回false
      */
     public int modifyGroupInfo(Group group);
+
+    /**
+     * 获取组别信息
+     * 输入无
+     * 成功输出ist<Group>
+     */
+    public List<Group> queryGroupInfo();
 }

@@ -18,6 +18,9 @@
     <delete id="deleteGroupInfo" parameterType="java.lang.Integer">
           delete from `group` where groupId=#{groupId}
     </delete>
+    <select id="queryGroupInfo" resultType="com.example.ojsystem.entity.Group">
+        select * from `group`
+    </select>
 
 
 </mapper>
