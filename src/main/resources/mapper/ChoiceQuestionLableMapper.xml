@@ -8,8 +8,8 @@
     <insert id="addChoiceQuestionLabelInfo">
         insert into choicequestionlabel(choiceQuestionId,questionLabelId) VALUES(#{choiceQuestionId},#{questionLabelId})
     </insert>
-    <delete id="deleteChoiceQuestionLabelInfoByChoiceQuestionLabelId">
-        delete from choicequestionlabel where choiceQuestionLabelId=#{choiceQuestionLabelId}
+    <delete id="deleteChoiceQuestionLabelInfoByChoiceQuestionId">
+        delete from choicequestionlabel where choiceQuestionId=#{choiceQuestionId}
     </delete>
     <select id="queryChoiceQuestionLabelInfoByChoiceQuestionId" resultType="com.example.ojsystem.entity.QuestionLabel">
         select * from choicequestionlabel,questionlabel where choicequestionlabel.questionLabelId=questionlabel.questionLabelId and choicequestionlabel.choiceQuestionId=#{choiceQuestionId}

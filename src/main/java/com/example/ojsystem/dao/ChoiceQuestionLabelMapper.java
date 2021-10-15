@@ -24,8 +24,8 @@ public interface ChoiceQuestionLabelMapper {
 
     /**
      * 根据获取的选择题标签id删除对应的选择题标签
-     * 输入choiceQuestionLabelId
+     * 输入choiceQuestionId
      * 成功输出true 失败输出false
      */
-    public int deleteChoiceQuestionLabelInfoByChoiceQuestionLabelId(@Param("choiceQuestionLabelId") int choiceQuestionLabelId);
+    public int deleteChoiceQuestionLabelInfoByChoiceQuestionId(@Param("choiceQuestionId") int choiceQuestionId);
 }

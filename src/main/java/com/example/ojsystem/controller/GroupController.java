@@ -1,11 +1,13 @@
 package com.example.ojsystem.controller;
 
 import com.example.ojsystem.entity.Group;
+import com.example.ojsystem.entity.User;
 import com.example.ojsystem.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -21,9 +23,13 @@ public class GroupController {
      */
     @RequestMapping(value="/addGroupInfo",method = RequestMethod.POST)
     public Object addGroupInfo(HttpServletRequest request){
+        HttpSession session=request.getSession();
         int i=0;
         Group group=new Group();
         group.setGroupName(request.getParameter("groupName"));
+        User user=new User();
+        user.setUserId((Integer)session.getAttribute("userId"));
+        group.setUser(user);
         i=groupService.addGroupInfo(group);
         if(i>0){
             return true;
@@ -76,7 +82,7 @@ public class GroupController {
      * 输入无
      * 成功输出ist<Group>
      */
-    @RequestMapping(value="/queryGroupInfo",method = RequestMethod.GET)
+    @RequestMapping(value="/queryGroupInfo",method = RequestMethod.POST)
     public Object queryGroupInfo(HttpServletRequest request){
         return groupService.queryGroupInfo();
     }

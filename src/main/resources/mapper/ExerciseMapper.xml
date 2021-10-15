@@ -14,6 +14,11 @@
         <result column="exerciseOutPut" jdbcType="VARCHAR" property="exerciseOutPut" />
         <result column="exerciseSampleInput" jdbcType="VARCHAR" property="exerciseSampleInput" />
         <result column="exerciseSampleOutput" jdbcType="VARCHAR" property="exerciseSampleOutput" />
+        <collection  property="labels" ofType="com.example.ojsystem.entity.Label">
+            <id column="labelId" jdbcType="BIGINT" property="labelId" />
+            <result column="firstPoint" jdbcType="VARCHAR" property="firstPoint" />
+            <result column="secondPoint" jdbcType="VARCHAR" property="secondPoint" />
+        </collection >
     </resultMap>
     <insert id="addExercise" parameterType="com.example.ojsystem.entity.Exercise" useGeneratedKeys="true" keyProperty="exercise.exerciseId" keyColumn="exerciseId">
         insert into exercise (exerciseTitle,exerciseCorrectTimes,exerciseSubmitTimes,exerciseDescription,exerciseInput,exerciseOutPut,exerciseSampleInput,exerciseSampleOutput)
@@ -27,8 +32,8 @@
         delete from exercise where exerciseId=#{exerciseId}
     </delete>
 
-    <select id="queryExerciseInfo" resultType="com.example.ojsystem.entity.Exercise"  parameterType="com.example.ojsystem.entity.Exercise">
-        select * from exercise
+    <select id="queryExerciseInfo" resultType="com.example.ojsystem.entity.Exercise"  parameterType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
+        select * from exercise,exerciselabel,label where exercise.exerciseId=exerciselabel.exerciseId and exerciselabel.labelId=label.labelId order by exercise.exerciseId
     </select>
     <select id="queryExerciseDetailsInfoByExerciseId" resultType="com.example.ojsystem.entity.Exercise">
         select * from exercise where exerciseId=#{exerciseId}

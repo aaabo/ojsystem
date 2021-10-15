@@ -42,8 +42,6 @@ public class ChoiceQuestionController {
      */
     @RequestMapping(value="/modifyChoiceQuestionInfo",method = RequestMethod.POST)
     public Object modifyChoiceQuestionInfo(HttpServletRequest request,@RequestBody ChoiceQuestion choiceQuestion){
-        System.out.println(choiceQuestion);
-
         int i=choiceQuestionService.modifyChoiceQuestionInfo(choiceQuestion);
         if(i!=0){
             return true;

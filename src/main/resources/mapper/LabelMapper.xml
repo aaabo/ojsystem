@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC
+                "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.LabelMapper">
+
+<resultMap id="BaseLabelResultMap" type="com.example.ojsystem.entity.Label">
+    <id column="labelId" jdbcType="BIGINT" property="labelId" />
+    <result column="firstPoint" jdbcType="VARCHAR" property="firstPoint" />
+    <result column="secondPoint" jdbcType="VARCHAR" property="secondPoint" />
+</resultMap>
+    <insert id="addLabelInfo" parameterType="com.example.ojsystem.entity.Label">
+        insert into label (firstPoint,secondPoint)  values(#{label.firstPoint},#{label.secondPoint})
+    </insert>
+    <update id="modifyLabelInfo" parameterType="com.example.ojsystem.entity.Label">
+        update label set firstPoint=#{label.firstPoint},secondPoint=#{label.secondPoint} where labelId=#{label.labelId}
+    </update>
+    <delete id="deleteLabelInfo" parameterType="java.lang.Integer">
+        delete from label where labelId=#{labelId}
+    </delete>
+    <select id="queryLabelInfo" resultType="com.example.ojsystem.entity.Label">
+        select * from label
+    </select>
+    <select id="queryLabelFirstPointInfo" resultType="java.lang.String">
+        select distinct firstPoint from label
+    </select>
+    <select id="queryLabelSecondPointInfo" resultType="com.example.ojsystem.entity.Label">
+        select * from label where firstPoint=#{firstPoint}
+    </select>
+
+
+</mapper>

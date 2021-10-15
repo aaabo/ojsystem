@@ -1,6 +1,10 @@
 package com.example.ojsystem.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.ojsystem.entity.Exercise;
+import com.example.ojsystem.entity.Label;
 import com.example.ojsystem.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +39,9 @@ public class ExerciseController {
         String exerciseOutPut=request.getParameter("exerciseOutPut");
         String exerciseSampleInput=request.getParameter("exerciseSampleInput");
         String exerciseSampleOutput=request.getParameter("exerciseSampleOutput");
+        String labels=request.getParameter("labels");
+        List<Label> labels2 = new ArrayList<Label>();
+        labels2=JSONArray.parseArray(labels, Label.class);
         exercise.setExerciseTitle(exerciseTitle);
         exercise.setExerciseCorrectTimes(exerciseCorrectTimes);
         exercise.setExerciseSubmitTimes(exerciseSubmitTimes);
@@ -43,6 +50,7 @@ public class ExerciseController {
         exercise.setExerciseOutPut(exerciseOutPut);
         exercise.setExerciseSampleInput(exerciseSampleInput);
         exercise.setExerciseSampleOutput(exerciseSampleOutput);
+        exercise.setLabels(labels2);
         i=exerciseService.addExercise(exercise);
         if(i!=0){
             return exercise.getExerciseId();
@@ -83,6 +91,9 @@ public class ExerciseController {
         String exerciseOutPut=request.getParameter("exerciseOutPut");
         String exerciseSampleInput=request.getParameter("exerciseSampleInput");
         String exerciseSampleOutput=request.getParameter("exerciseSampleOutput");
+        String labels=request.getParameter("labels");
+        List<Label> labels2 = new ArrayList<Label>();
+        labels2=JSONArray.parseArray(labels, Label.class);
         exercise.setExerciseId(exerciseId);
         exercise.setExerciseTitle(exerciseTitle);
         exercise.setExerciseDescription(exerciseDescription);
@@ -90,6 +101,7 @@ public class ExerciseController {
         exercise.setExerciseOutPut(exerciseOutPut);
         exercise.setExerciseSampleInput(exerciseSampleInput);
         exercise.setExerciseSampleOutput(exerciseSampleOutput);
+        exercise.setLabels(labels2);
         i=exerciseService.modifyExerciseInfo(exercise);
         if(i!=0){
             return true;

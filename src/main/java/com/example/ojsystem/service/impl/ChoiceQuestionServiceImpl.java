@@ -3,10 +3,12 @@ package com.example.ojsystem.service.impl;
 import com.example.ojsystem.dao.ChoiceQuestionLabelMapper;
 import com.example.ojsystem.dao.ChoiceQuestionMapper;
 import com.example.ojsystem.entity.ChoiceQuestion;
+import com.example.ojsystem.entity.QuestionLabel;
 import com.example.ojsystem.service.ChoiceQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,6 +41,12 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
      * @param choiceQuestion
      */
     public int modifyChoiceQuestionInfo(ChoiceQuestion choiceQuestion) {
+        //先删除
+        choiceQuestionLabelMapper.deleteChoiceQuestionLabelInfoByChoiceQuestionId(choiceQuestion.getChoiceQuestionId());
+        //后添加
+        for(int i=0;i<choiceQuestion.getQuestionLabels().size();i++){
+            choiceQuestionLabelMapper.addChoiceQuestionLabelInfo(choiceQuestion.getChoiceQuestionId(),choiceQuestion.getQuestionLabels().get(i).getQuestionLabelId());
+        }
         return choiceQuestionMapper.modifyChoiceQuestionInfo(choiceQuestion);
     }
 

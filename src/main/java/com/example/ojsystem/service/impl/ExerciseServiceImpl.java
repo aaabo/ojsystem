@@ -1,5 +1,6 @@
 package com.example.ojsystem.service.impl;
 
+import com.example.ojsystem.dao.ExerciseLabelMapper;
 import com.example.ojsystem.dao.ExerciseMapper;
 import com.example.ojsystem.entity.Exercise;
 import com.example.ojsystem.service.ExerciseService;
@@ -13,6 +14,8 @@ public class ExerciseServiceImpl implements ExerciseService{
 
     @Autowired
     ExerciseMapper exerciseMapper;
+    @Autowired
+    ExerciseLabelMapper exerciseLabelMapper;
     /**
      * 根据添加习题信息到数据库
      * 输入习题信息
@@ -21,7 +24,12 @@ public class ExerciseServiceImpl implements ExerciseService{
      * @param exercise
      */
     public int addExercise(Exercise exercise) {
-        return exerciseMapper.addExercise(exercise);
+        int i=0;
+        i=exerciseMapper.addExercise(exercise);
+        for(int o=0;o<exercise.getLabels().size();o++){
+            exerciseLabelMapper.addExerciseLabelInfo(exercise.getExerciseId(),exercise.getLabels().get(o).getLabelId());
+        }
+        return i;
     }
 
     /**
@@ -41,6 +49,12 @@ public class ExerciseServiceImpl implements ExerciseService{
      * @param exercise
      */
     public int modifyExerciseInfo(Exercise exercise) {
+        //先删除原来的
+        exerciseLabelMapper.deleteExerciseLabelInfoByExerciseId(exercise.getExerciseId());
+        //再添加新的
+        for(int o=0;o<exercise.getLabels().size();o++){
+            exerciseLabelMapper.addExerciseLabelInfo(exercise.getExerciseId(),exercise.getLabels().get(o).getLabelId());
+        }
         return exerciseMapper.modifyExerciseInfo(exercise);
     }
 

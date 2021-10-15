@@ -7,10 +7,13 @@
     <resultMap id="BaseGroupResultMap" type="com.example.ojsystem.entity.Group">
         <id column="groupId" jdbcType="BIGINT" property="groupId" />
         <result column="groupName" jdbcType="VARCHAR" property="groupName" />
-
+        <association property="user" javaType="com.example.ojsystem.entity.User">
+            <id column="userId" jdbcType="BIGINT" property="userId" />
+            <result column="userName" jdbcType="VARCHAR" property="userName" />
+        </association>
     </resultMap>
     <insert id="addGroupInfo"  useGeneratedKeys="true" keyProperty="group.groupId" keyColumn="groupId">
-          insert into `group` (groupName)  values(#{group.groupName})
+          insert into `group` (groupName,userId)  values(#{group.groupName},#{group.user.userId})
     </insert>
     <update id="modifyGroupInfo" parameterType="com.example.ojsystem.entity.Group">
            update `group` set groupName=#{group.groupName} groupId=#{groupId}
