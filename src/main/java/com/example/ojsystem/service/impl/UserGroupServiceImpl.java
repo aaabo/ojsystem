@@ -15,14 +15,14 @@ public class UserGroupServiceImpl implements UserGroupService{
 
     /**
      * 获取组别的用户信息并添加
-     * 输入groupId users
+     * 输入groupId userAccount
      * 成功输入true 失败输出false
      *
      * @param groupId
-     * @param user
+     * @param userAccount
      */
-    public int addUserGroupInfo(int groupId, User user) {
-        return userGroupMapper.addUserGroupInfo(groupId,user);
+    public int addUserGroupInfo(int groupId, int userAccount) {
+        return userGroupMapper.addUserGroupInfo(groupId,userAccount);
     }
 
     /**

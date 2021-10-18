@@ -35,4 +35,18 @@ public interface ChoiceQuestionMapper {
      * 输出int
      */
     public int deleteChoiceQuestionInfoByChoiceQuestionId(@Param("choiceQuestionId") int choiceQuestionId);
+
+    /**
+     * 根据输入的查询信息
+     * 输入choiceQuestion
+     * 输出List<ChoiceQuestion>
+     */
+    public List<ChoiceQuestion> queryChoiceQuestionIdBySearchInfo(@Param("choiceQuestion") ChoiceQuestion choiceQuestion,@Param("currentUserId") int currentUserId);
+
+    /**
+     * 根据输入的选择题编号查询选择题信息
+     * 输入choiceQuestionId
+     * 输出ChoiceQuestion
+     */
+    public ChoiceQuestion queryChoiceQuestionInfoByChoiceQuestionId(int choiceQuestionId);
 }

@@ -71,4 +71,26 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
     public int deleteChoiceQuestionInfoByChoiceQuestionId(int choiceQuestionId) {
         return choiceQuestionMapper.deleteChoiceQuestionInfoByChoiceQuestionId(choiceQuestionId);
     }
+
+    /**
+     * 根据输入的查询信息
+     * 输入choiceQuestion
+     * 输出List<ChoiceQuestion>
+     *
+     * @param choiceQuestion,currentUserId
+     */
+    public List<ChoiceQuestion> queryChoiceQuestionIdBySearchInfo(ChoiceQuestion choiceQuestion,int currentUserId) {
+        return choiceQuestionMapper.queryChoiceQuestionIdBySearchInfo(choiceQuestion,currentUserId);
+    }
+
+    /**
+     * 根据输入的选择题编号查询选择题信息
+     * 输入choiceQuestionId
+     * 输出ChoiceQuestion
+     *
+     * @param choiceQuestionId
+     */
+    public ChoiceQuestion queryChoiceQuestionInfoByChoiceQuestionId(int choiceQuestionId) {
+        return choiceQuestionMapper.queryChoiceQuestionInfoByChoiceQuestionId(choiceQuestionId);
+    }
 }

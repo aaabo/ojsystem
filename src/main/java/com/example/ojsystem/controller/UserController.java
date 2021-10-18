@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -199,5 +200,15 @@ public class UserController {
         else{
             return false;
         }
+    }
+
+    /**
+     * 查询全部教师用户
+     * 输入无
+     * 输出List<User>
+     */
+    @RequestMapping(value="/queryTeacherUserInfo",method = RequestMethod.POST)
+    public Object queryTeacherUserInfo(HttpServletRequest request){
+        return userService.queryTeacherUserInfo();
     }
 }

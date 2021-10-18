@@ -32,13 +32,11 @@ public class UserGroupController {
         int i=0;
         String selections = request.getParameter("userGroupInfo");
         JSONArray jsonArray=JSONArray.parseArray(selections);//把前台接收的string数组转化为json数组
-        List<User> users = new ArrayList<User>();
-        users= JSON.parseArray(String.valueOf(jsonArray.get(0)), User.class);
-        JSONObject jSONObject=JSONObject.parseObject(String.valueOf(jsonArray.get(1)));
-        Group group=new Group();
-        group=JSON.toJavaObject(jSONObject,Group.class);
-        for(int o=0;o<users.size();o++){
-            i=userGroupService.addUserGroupInfo(group.getGroupId(),users.get(o));
+        List<String> userAccounts = new ArrayList<String>();
+        userAccounts= JSON.parseArray(String.valueOf(jsonArray.get(0)), String.class);
+        Integer id=Integer.parseInt(String.valueOf(jsonArray.get(1)));
+        for(int o=0;o<userAccounts.size();o++){
+            i=userGroupService.addUserGroupInfo(id,Integer.valueOf(userAccounts.get(o)));
         }
         if(i>0){
             return true;

@@ -60,7 +60,7 @@ public interface UserService {
     public int modifyPassword(User user);
 
     /**
-     * 查询学生排行榜
+     * 查询用户排行榜
      * 输入无
      * 输出List<User>
      */
@@ -72,6 +72,13 @@ public interface UserService {
      * 输出int
      */
     public int updateUserSubmitInfo(int solved,int userId);
+
+    /**
+     * 查询全部教师用户
+     * 输入无
+     * 输出List<User>
+     */
+    public List<User> queryTeacherUserInfo();
 
 
 

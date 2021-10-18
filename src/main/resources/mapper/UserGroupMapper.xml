@@ -6,7 +6,7 @@
 
 
     <insert id="addUserGroupInfo">
-        insert into usergroup (groupId,userId)  values(#{groupId},#{user.userId})
+        insert into usergroup (groupId,userAccount)  values(#{groupId},#{userAccount})
     </insert>
     <delete id="deleteUserGroupInfoByUserGroupId"  parameterType="java.lang.Integer">
            delete from usergroup where userGroupId=#{userGroupId}

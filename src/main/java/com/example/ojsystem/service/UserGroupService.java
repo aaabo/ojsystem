@@ -8,10 +8,10 @@ import java.util.List;
 public interface UserGroupService {
     /**
      * 获取组别的用户信息并添加
-     * 输入groupId users
+     * 输入groupId userAccount
      * 成功输入true 失败输出false
      */
-    public int addUserGroupInfo(int groupId,User user);
+    public int addUserGroupInfo(int groupId,int userAccount);
 
     /**
      * 查看组别内的用户信息

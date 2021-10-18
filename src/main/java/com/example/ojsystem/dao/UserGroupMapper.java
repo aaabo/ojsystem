@@ -11,10 +11,10 @@ import java.util.List;
 public interface UserGroupMapper {
     /**
      * 获取组别的用户信息并添加
-     * 输入groupId users
+     * 输入groupId userAccount
      * 成功输入true 失败输出false
      */
-    public int addUserGroupInfo(@Param("groupId") int groupId,@Param("user") User user);
+    public int addUserGroupInfo(@Param("groupId") int groupId,@Param("userAccount") int userAccount);
 
 
     /**

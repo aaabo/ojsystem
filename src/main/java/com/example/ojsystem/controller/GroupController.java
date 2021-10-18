@@ -17,7 +17,7 @@ public class GroupController {
     @Autowired
     GroupService groupService;
     /**
-     * 获取学生组别信息并添加
+     * 获取组别信息并添加
      * 输入group
      * 成功输入true 失败输出false
      */
