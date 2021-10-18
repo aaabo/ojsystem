@@ -86,7 +86,6 @@ public class ExamController {
     @RequestMapping(value="/queryExamInfoByUserId",method = RequestMethod.POST)
     public Object queryExamInfoByUserId(HttpServletRequest request){
         HttpSession session=request.getSession();
-        System.out.println(session.getAttribute("userId"));
         return  examService.queryExamInfoByUserId((Integer)(session.getAttribute("userId")));
     }
 
