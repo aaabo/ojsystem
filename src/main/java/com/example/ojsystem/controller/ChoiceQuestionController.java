@@ -74,7 +74,13 @@ public class ChoiceQuestionController {
      */
     @RequestMapping(value="/deleteChoiceQuestionInfoByChoiceQuestionId",method = RequestMethod.POST)
     public Object deleteChoiceQuestionInfoByChoiceQuestionId(HttpServletRequest request){
-        return choiceQuestionService.deleteChoiceQuestionInfoByChoiceQuestionId(Integer.valueOf(request.getParameter("choiceQuestionId")));
+        int i=choiceQuestionService.deleteChoiceQuestionInfoByChoiceQuestionId(Integer.valueOf(request.getParameter("choiceQuestionId")));
+        if(i!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**

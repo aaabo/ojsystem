@@ -105,7 +105,7 @@ public class UserController {
     public Object queryStudentInfo(HttpServletRequest request){
         Object userId=request.getSession().getAttribute("userId");
         if(userId==null){
-            return 0;
+            return false;
         }
         else{
             return userService.queryUserInfoById((Integer)userId);
@@ -210,5 +210,16 @@ public class UserController {
     @RequestMapping(value="/queryTeacherUserInfo",method = RequestMethod.POST)
     public Object queryTeacherUserInfo(HttpServletRequest request){
         return userService.queryTeacherUserInfo();
+    }
+
+    /**
+     * 退出登录
+     * 输入无
+     * 输出无
+     */
+    @RequestMapping(value="/exitLogin",method = RequestMethod.POST)
+    public void exitLogin(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        session.removeAttribute("userId");
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.CompletionQuestionAnswerMapper">
+
+    <resultMap id="BaseCompletionQuestionAnswerResultMap" type="com.example.ojsystem.entity.CompletionQuestionAnswer">
+        <id column="completionQuestionAnswerId" jdbcType="BIGINT" property="completionQuestionAnswerId" />
+        <result column="completionQuestionAnswer" jdbcType="VARCHAR" property="completionQuestionAnswer" />
+        <result column="completionQuestionAnswerNumber" jdbcType="VARCHAR" property="completionQuestionAnswerNumber" />
+    </resultMap>
+    <insert id="addCompletionQuestionAnswerInfo" parameterType="com.example.ojsystem.entity.CompletionQuestionAnswer">
+        insert into completionquestionanswer(completionQuestionId,completionQuestionAnswer,completionQuestionAnswerNumber) values(#{completionQuestionId},#{completionQuestionAnswer.completionQuestionAnswer},#{completionQuestionAnswer.completionQuestionAnswerNumber})
+    </insert>
+    <delete id="deleteCompletionQuestionAnswerInfoByCompletionQuestionId">
+        delete from completionquestionanswer where completionQuestionId=#{completionQuestionId}
+    </delete>
+
+
+</mapper>

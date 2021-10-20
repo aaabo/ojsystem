@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.CompletionQuestionMapper">
+
+    <resultMap id="BaseCompletionQuestionAnswerResultMap" type="com.example.ojsystem.entity.CompletionQuestion">
+        <id column="completionQuestionId" jdbcType="INTEGER" property="completionQuestionId"/>
+        <result column="completionQuestionDifficulty" jdbcType="VARCHAR" property="completionQuestionDifficulty"/>
+        <result column="completionQuestionDescription" jdbcType="VARCHAR" property="completionQuestionDescription"/>
+        <result column="isPrivate" jdbcType="BIT" property="isPrivate" />
+        <association property="user" javaType="com.example.ojsystem.entity.User">
+            <id column="userId" jdbcType="BIGINT" property="userId" />
+            <result column="userName" jdbcType="VARCHAR" property="userName" />
+        </association>
+        <collection  property="completionQuestionAnswers" ofType="com.example.ojsystem.entity.CompletionQuestionAnswer">
+            <id column="completionQuestionAnswerId" jdbcType="INTEGER" property="completionQuestionAnswerId"/>
+            <result column="completionQuestionAnswer" jdbcType="VARCHAR" property="completionQuestionAnswer"/>
+            <result column="completionQuestionAnswerNumber" jdbcType="INTEGER" property="completionQuestionAnswerNumber"/>
+        </collection>
+        <collection  property="questionLabels" ofType="com.example.ojsystem.entity.QuestionLabel">
+            <id column="questionLabelId" jdbcType="BIGINT" property="questionLabelId"/>
+            <result column="chapter" jdbcType="VARCHAR" property="chapter"/>
+            <result column="firstKnowledgePoint" jdbcType="VARCHAR" property="firstKnowledgePoint"/>
+            <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint"/>
+        </collection>
+    </resultMap>
+    <insert id="addCompletionQuestionInfo" parameterType="com.example.ojsystem.entity.CompletionQuestion" useGeneratedKeys="true" keyProperty="completionQuestion.completionQuestionId" keyColumn="completionQuestionId">
+      insert into completionquestion(userd,completionQuestionDifficulty,completionQuestionDescription,isPrivate)
+      values(#{completionQuestion.user.userId},#{completionQuestion.completionQuestionDifficulty},#{completionQuestion.completionQuestionDescription},#{completionQuestion.isPrivate})
+    </insert>
+    <update id="modifyCompletionQuestionInfo" parameterType="com.example.ojsystem.entity.CompletionQuestion">
+        update completionquestion set completionQuestionDifficulty=#{completionQuestion.completionQuestionDifficulty},
+        completionQuestionDescription=#{completionQuestion.completionQuestionDescription},isPrivate=#{completionQuestion.isPrivate} where completionQuestionId=#{completionQuestion.completionQuestionId}
+    </update>
+    <delete id="deleteCompletionQuestionInfoByCompletionQuestionId">
+        delete from completionquestion where completionQuestionId=#{completionQuestionId}
+    </delete>
+    <select id="queryCompletionQuestionInfoByUserId" resultType="com.example.ojsystem.entity.CompletionQuestion" parameterType="java.lang.Integer" resultMap="BaseCompletionQuestionAnswerResultMap">
+        select * from completionquestion,user,completionquestionlabel,questionlabel where  completionquestion.completionQuestionId=completionquestionlabel.completionQuestionId and completionquestion.userId=user.userId
+        and completionquestionlabel.questionLabelId=questionlabel.questionLabelId	 and (completionquestion.isPrivate=0 or (completionquestion.isPrivate=1 and completionquestion.userId=#{userId}))
+    </select>
+
+
+</mapper>
