@@ -22,7 +22,7 @@ public class ExamHistoryController {
      * 输入examId
      * 输出List<ExamHistory>
      */
-    @RequestMapping(value="/queryExamRankById",method = RequestMethod.GET)
+    @RequestMapping(value="/queryExamRankById",method = RequestMethod.POST)
     public Object queryExamRankById(HttpServletRequest request){
         return  examHistoryService.queryExamRankById(Integer.valueOf(request.getParameter("examId")));
     }
@@ -33,7 +33,7 @@ public class ExamHistoryController {
      * 输入userId
      * 输出List<ExamHistory>
      */
-    @RequestMapping(value="/queryExamHistoryInfoByUserId",method = RequestMethod.GET)
+    @RequestMapping(value="/queryExamHistoryInfoByUserId",method = RequestMethod.POST)
     public Object queryExamHistoryInfoByUserId(HttpServletRequest request){
         return  examHistoryService.queryExamHistoryInfoByUserId(Integer.valueOf(request.getParameter("userId")));
     }
