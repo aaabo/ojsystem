@@ -70,6 +70,8 @@ public class CompletionQuestion {
         this.user = user;
     }
 
+
+
     @Override
     public String toString() {
         return "CompletionQuestion{" +

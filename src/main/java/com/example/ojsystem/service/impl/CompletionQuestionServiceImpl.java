@@ -1,7 +1,11 @@
 package com.example.ojsystem.service.impl;
 
+import com.example.ojsystem.dao.CompletionQuestionAnswerMapper;
+import com.example.ojsystem.dao.CompletionQuestionLabelMapper;
 import com.example.ojsystem.dao.CompletionQuestionMapper;
+import com.example.ojsystem.dao.QuestionLabelMapper;
 import com.example.ojsystem.entity.CompletionQuestion;
+import com.example.ojsystem.entity.QuestionLabel;
 import com.example.ojsystem.service.CompletionQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +16,10 @@ import java.util.List;
 public class CompletionQuestionServiceImpl implements CompletionQuestionService{
     @Autowired
     CompletionQuestionMapper completionQuestionMapper;
+    @Autowired
+    CompletionQuestionAnswerMapper completionQuestionAnswerMapper;
+    @Autowired
+    CompletionQuestionLabelMapper completionQuestionLabelMapper;
     /**
      * 根据输入的填空题信息添加到填空题题库中
      * 输入completionQuestion
@@ -20,7 +28,14 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      * @param completionQuestion
      */
     public int addCompletionQuestionInfo(CompletionQuestion completionQuestion) {
-        return completionQuestionMapper.addCompletionQuestionInfo(completionQuestion);
+        int i=completionQuestionMapper.addCompletionQuestionInfo(completionQuestion);
+        for(int o=0;o<completionQuestion.getCompletionQuestionAnswers().size();o++){
+            i=completionQuestionAnswerMapper.addCompletionQuestionAnswerInfo(completionQuestion.getCompletionQuestionAnswers().get(o),completionQuestion.getCompletionQuestionId());
+        }
+        for(int o=0;o<completionQuestion.getQuestionLabels().size();o++){
+            i=completionQuestionLabelMapper.addCompletionQuestionLabelInfo(completionQuestion.getCompletionQuestionId(),completionQuestion.getQuestionLabels().get(o).getQuestionLabelId());
+        }
+        return i;
     }
 
     /**

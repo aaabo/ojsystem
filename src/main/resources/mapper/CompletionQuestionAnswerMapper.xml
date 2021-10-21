@@ -6,11 +6,11 @@
 
     <resultMap id="BaseCompletionQuestionAnswerResultMap" type="com.example.ojsystem.entity.CompletionQuestionAnswer">
         <id column="completionQuestionAnswerId" jdbcType="BIGINT" property="completionQuestionAnswerId" />
-        <result column="completionQuestionAnswer" jdbcType="VARCHAR" property="completionQuestionAnswer" />
+        <result column="completionQuestionAnswerContent" jdbcType="VARCHAR" property="completionQuestionAnswerContent" />
         <result column="completionQuestionAnswerNumber" jdbcType="VARCHAR" property="completionQuestionAnswerNumber" />
     </resultMap>
     <insert id="addCompletionQuestionAnswerInfo" parameterType="com.example.ojsystem.entity.CompletionQuestionAnswer">
-        insert into completionquestionanswer(completionQuestionId,completionQuestionAnswer,completionQuestionAnswerNumber) values(#{completionQuestionId},#{completionQuestionAnswer.completionQuestionAnswer},#{completionQuestionAnswer.completionQuestionAnswerNumber})
+        insert into completionquestionanswer(completionQuestionId,completionQuestionAnswerContent,completionQuestionAnswerNumber) values(#{completionQuestionId},#{completionQuestionAnswer.completionQuestionAnswerContent},#{completionQuestionAnswer.completionQuestionAnswerNumber})
     </insert>
     <delete id="deleteCompletionQuestionAnswerInfoByCompletionQuestionId">
         delete from completionquestionanswer where completionQuestionId=#{completionQuestionId}

@@ -31,7 +31,7 @@ public class CompletionQuestionAnswerController {
         String completionQuestionAnswer=request.getParameter("completionQuestionAnswer");
         int completionQuestionAnswerNumber=Integer.valueOf(request.getParameter("completionQuestionAnswerNumber"));
         CompletionQuestionAnswer completionQuestionAnswer1=new CompletionQuestionAnswer();
-        completionQuestionAnswer1.setCompletionQuestionAnswer(completionQuestionAnswer);
+        completionQuestionAnswer1.setCompletionQuestionAnswerContent(completionQuestionAnswer);
         completionQuestionAnswer1.setCompletionQuestionAnswerNumber(completionQuestionAnswerNumber);
         i=completionQuestionAnswerService.addCompletionQuestionAnswerInfo(completionQuestionAnswer1,completionQuestionId);
         if(i!=0){

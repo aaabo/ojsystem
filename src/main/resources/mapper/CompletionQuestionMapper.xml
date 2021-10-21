@@ -15,7 +15,7 @@
         </association>
         <collection  property="completionQuestionAnswers" ofType="com.example.ojsystem.entity.CompletionQuestionAnswer">
             <id column="completionQuestionAnswerId" jdbcType="INTEGER" property="completionQuestionAnswerId"/>
-            <result column="completionQuestionAnswer" jdbcType="VARCHAR" property="completionQuestionAnswer"/>
+            <result column="completionQuestionAnswerContent" jdbcType="VARCHAR" property="completionQuestionAnswerContent"/>
             <result column="completionQuestionAnswerNumber" jdbcType="INTEGER" property="completionQuestionAnswerNumber"/>
         </collection>
         <collection  property="questionLabels" ofType="com.example.ojsystem.entity.QuestionLabel">
@@ -26,7 +26,7 @@
         </collection>
     </resultMap>
     <insert id="addCompletionQuestionInfo" parameterType="com.example.ojsystem.entity.CompletionQuestion" useGeneratedKeys="true" keyProperty="completionQuestion.completionQuestionId" keyColumn="completionQuestionId">
-      insert into completionquestion(userd,completionQuestionDifficulty,completionQuestionDescription,isPrivate)
+      insert into completionquestion(userId,completionQuestionDifficulty,completionQuestionDescription,isPrivate)
       values(#{completionQuestion.user.userId},#{completionQuestion.completionQuestionDifficulty},#{completionQuestion.completionQuestionDescription},#{completionQuestion.isPrivate})
     </insert>
     <update id="modifyCompletionQuestionInfo" parameterType="com.example.ojsystem.entity.CompletionQuestion">

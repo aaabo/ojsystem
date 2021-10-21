@@ -2,7 +2,7 @@ package com.example.ojsystem.entity;
 
 public class CompletionQuestionAnswer {
     private int completionQuestionAnswerId;
-    private String completionQuestionAnswer;
+    private String completionQuestionAnswerContent;
     private int completionQuestionAnswerNumber;
 
     public int getCompletionQuestionAnswerId() {
@@ -13,12 +13,12 @@ public class CompletionQuestionAnswer {
         this.completionQuestionAnswerId = completionQuestionAnswerId;
     }
 
-    public String getCompletionQuestionAnswer() {
-        return completionQuestionAnswer;
+    public String getCompletionQuestionAnswerContent() {
+        return completionQuestionAnswerContent;
     }
 
-    public void setCompletionQuestionAnswer(String completionQuestionAnswer) {
-        this.completionQuestionAnswer = completionQuestionAnswer;
+    public void setCompletionQuestionAnswerContent(String completionQuestionAnswerContent) {
+        this.completionQuestionAnswerContent = completionQuestionAnswerContent;
     }
 
     public int getCompletionQuestionAnswerNumber() {
