@@ -59,15 +59,16 @@ public class UserGroupController {
     }
 
     /**
-     * 删除组别内的用户信息
-     * 输入userGroupId
+     * 根据groupId和userId删除组别内的用户信息
+     * 输入groupId和userId
      * 成功输入true 失败输出false
      */
-    @RequestMapping(value="/deleteUserGroupInfoByUserGroupId",method = RequestMethod.POST)
-    public Object  deleteUserGroupInfoByUserGroupId(HttpServletRequest request){
+    @RequestMapping(value="/deleteUserGroupInfoByGroupIdAndUserId",method = RequestMethod.POST)
+    public Object  deleteUserGroupInfoByGroupIdAndUserId(HttpServletRequest request){
         int i=0;
-        int userGroupId=Integer.valueOf(request.getParameter("userGroupId"));
-        i=userGroupService.deleteUserGroupInfoByUserGroupId(userGroupId);
+        int userId=Integer.valueOf(request.getParameter("userId"));
+        int groupId=Integer.valueOf(request.getParameter("groupId"));
+        i=userGroupService.deleteUserGroupInfoByGroupIdAndUserId(groupId,userId);
         if(i>0){
             return true;
         }else{

@@ -21,9 +21,9 @@ public interface UserGroupService {
     public List<User> queryUserGroupInfoByGroupId(int groupId);
 
     /**
-     * 删除组别内的用户信息
-     * 输入userGroupId
+     * 根据groupId和userId删除组别内的用户信息
+     * 输入groupId和userId
      * 成功输入true 失败输出false
      */
-    public int  deleteUserGroupInfoByUserGroupId(int userGroupId);
+    public int  deleteUserGroupInfoByGroupIdAndUserId(int groupId,int userId);
 }

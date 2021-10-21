@@ -9,7 +9,7 @@
         insert into usergroup (groupId,userAccount)  values(#{groupId},#{userAccount})
     </insert>
     <delete id="deleteUserGroupInfoByUserGroupId"  parameterType="java.lang.Integer">
-           delete from usergroup where userGroupId=#{userGroupId}
+           delete from usergroup where groupId=#{groupId} and userId=#{userId}
     </delete>
     <select id="queryUserGroupInfoByGroupId" resultType="com.example.ojsystem.entity.User" parameterType="java.lang.Integer">
         select * from user,usergroup where user.userId=usergroup.userId and usergroup.groupId=#{groupId}

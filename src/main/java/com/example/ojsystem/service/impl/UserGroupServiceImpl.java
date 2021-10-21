@@ -37,14 +37,15 @@ public class UserGroupServiceImpl implements UserGroupService{
     }
 
     /**
-     * 删除组别内的用户信息
-     * 输入userGroupId
+     * 根据groupId和userId删除组别内的用户信息
+     * 输入groupId和userId
      * 成功输入true 失败输出false
      *
-     * @param userGroupId
+     * @param groupId
+     * @param userId
      */
-    public int deleteUserGroupInfoByUserGroupId(int userGroupId) {
-        return userGroupMapper.deleteUserGroupInfoByUserGroupId(userGroupId);
+    public int deleteUserGroupInfoByGroupIdAndUserId(int groupId,int userId) {
+        return userGroupMapper.deleteUserGroupInfoByUserGroupId(groupId,userId);
     }
 
 
