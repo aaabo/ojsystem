@@ -36,7 +36,7 @@ public class UserGroupController {
         userAccounts= JSON.parseArray(String.valueOf(jsonArray.get(0)), String.class);
         Integer id=Integer.parseInt(String.valueOf(jsonArray.get(1)));
         for(int o=0;o<userAccounts.size();o++){
-            i=userGroupService.addUserGroupInfo(id,Integer.valueOf(userAccounts.get(o)));
+            i=userGroupService.addUserGroupInfo(id,userAccounts.get(o));
         }
         if(i>0){
             return true;

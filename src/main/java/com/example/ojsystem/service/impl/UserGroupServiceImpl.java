@@ -21,7 +21,7 @@ public class UserGroupServiceImpl implements UserGroupService{
      * @param groupId
      * @param userAccount
      */
-    public int addUserGroupInfo(int groupId, int userAccount) {
+    public int addUserGroupInfo(int groupId, String userAccount) {
         return userGroupMapper.addUserGroupInfo(groupId,userAccount);
     }
 

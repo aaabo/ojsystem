@@ -14,7 +14,7 @@ public interface UserGroupMapper {
      * 输入groupId userAccount
      * 成功输入true 失败输出false
      */
-    public int addUserGroupInfo(@Param("groupId") int groupId,@Param("userAccount") int userAccount);
+    public int addUserGroupInfo(@Param("groupId") int groupId,@Param("userAccount") String userAccount);
 
 
     /**

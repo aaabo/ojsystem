@@ -11,7 +11,7 @@ public interface UserGroupService {
      * 输入groupId userAccount
      * 成功输入true 失败输出false
      */
-    public int addUserGroupInfo(int groupId,int userAccount);
+    public int addUserGroupInfo(int groupId,String userAccount);
 
     /**
      * 查看组别内的用户信息
