@@ -5,18 +5,29 @@
 <mapper namespace="com.example.ojsystem.dao.ExamHistoryMapper">
 
     <resultMap id="BaseExamHistoryResultMap" type="com.example.ojsystem.entity.ExamHistory">
-        <id column="examHistoryId" jdbcType="BIGINT" property="examHistoryId" />
-        <result column="examUserChoiceTotals" jdbcType="BIGINT" property="examUserChoiceTotals" />
-        <result column="examUserProgrammingTotals" jdbcType="BIGINT" property="examUserProgrammingTotals" />
+        <id column="examHistoryId" jdbcType="INTEGER" property="examHistoryId" />
+        <result column="examChoiceQuestionTotals" jdbcType="INTEGER" property="examChoiceQuestionTotals" />
+        <result column="examProgrammingTotals" jdbcType="INTEGER" property="examProgrammingTotals" />
+        <result column="examCompletionQuestionTotals" jdbcType="INTEGER" property="examCompletionQuestionTotals" />
+        <result column="total" jdbcType="INTEGER" property="examTotals" />
         <association property="user" javaType="com.example.ojsystem.entity.User">
-            <id column="userId" jdbcType="BIGINT" property="userId" />
+            <id column="userId" jdbcType="INTEGER" property="userId" />
             <result column="userName" jdbcType="VARCHAR" property="userName" />
+        </association>
+        <association property="exam" javaType="com.example.ojsystem.entity.Exam">
+            <id column="examId" jdbcType="INTEGER" property="examId" />
+            <result column="examName" jdbcType="VARCHAR" property="examName" />
         </association>
     </resultMap>
 
-    <select id="queryExamRankById" resultType="com.example.ojsystem.entity.ExamHistory">
-       SELECT user.userName,examhistory.examChoiceTotals,examhistory.examProgrammingTotals,examhistory.examUserChoiceTotals+examhistory.examUserProgrammingTotals as total FROM examhistory,user
+    <select id="queryExamRankById" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
+       SELECT  user.userId,user.userName,examhistory.examChoiceQuestionTotals,examhistory.examProgrammingTotals,examhistory.examCompletionQuestionTotals,examhistory.examChoiceQuestionTotals+examhistory.examProgrammingTotals+examhistory.examCompletionQuestionTotals as total FROM examhistory,user
        where examhistory.examId =#{examId}  and user.userId=examhistory.userId order by total desc
+    </select>
+    <select id="queryExamHistoryInfoByUserId" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
+         SELECT  user.userId,user.userName,examhistory.examChoiceQuestionTotals,examhistory.examProgrammingTotals,exam.examId,exam.examName,
+         examhistory.examCompletionQuestionTotals,examhistory.examChoiceQuestionTotals+examhistory.examProgrammingTotals+examhistory.examCompletionQuestionTotals as total
+         FROM examhistory,user,exam where examhistory.examId =exam.examId  and user.userId=examhistory.userId and user.userId=#{userId} order by total desc
     </select>
 
 

@@ -23,4 +23,15 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
     public List<ExamHistory> queryExamRankById(int examId) {
         return examHistoryMapper.queryExamRankById(examId);
     }
+
+    /**
+     * 根据用户Id查询参加的考试信息
+     * 输入userId
+     * 输出List<ExamHistory>
+     *
+     * @param userId
+     */
+    public List<ExamHistory> queryExamHistoryInfoByUserId(int userId) {
+        return examHistoryMapper.queryExamHistoryInfoByUserId(userId);
+    }
 }

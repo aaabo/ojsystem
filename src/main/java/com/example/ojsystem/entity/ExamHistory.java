@@ -2,9 +2,10 @@ package com.example.ojsystem.entity;
 
 public class ExamHistory {
     private int examHistoryId;
-    private int examUserChoiceTotals;//考试学生选择得分
-    private int examUserProgrammingTotals;//考试学生编程总分
-
+    private int examChoiceQuestionTotals;//考试学生选择得分
+    private int examProgrammingTotals;//考试学生编程总分
+    private int examCompletionQuestionTotals;//考试学生填空总分
+    private int examTotals;//考试总分
     private User user;
     private Exam exam;
 
@@ -20,20 +21,28 @@ public class ExamHistory {
         this.examHistoryId = examHistoryId;
     }
 
-    public int getExamUserChoiceTotals() {
-        return examUserChoiceTotals;
+    public int getExamChoiceQuestionTotals() {
+        return examChoiceQuestionTotals;
     }
 
-    public void setExamUserChoiceTotals(int examUserChoiceTotals) {
-        this.examUserChoiceTotals = examUserChoiceTotals;
+    public void setExamChoiceQuestionTotals(int examChoiceQuestionTotals) {
+        this.examChoiceQuestionTotals = examChoiceQuestionTotals;
     }
 
-    public int getExamUserProgrammingTotals() {
-        return examUserProgrammingTotals;
+    public int getExamProgrammingTotals() {
+        return examProgrammingTotals;
     }
 
-    public void setExamUserProgrammingTotals(int examUserProgrammingTotals) {
-        this.examUserProgrammingTotals = examUserProgrammingTotals;
+    public void setExamProgrammingTotals(int examProgrammingTotals) {
+        this.examProgrammingTotals = examProgrammingTotals;
+    }
+
+    public int getExamCompletionQuestionTotals() {
+        return examCompletionQuestionTotals;
+    }
+
+    public void setExamCompletionQuestionTotals(int examCompletionQuestionTotals) {
+        this.examCompletionQuestionTotals = examCompletionQuestionTotals;
     }
 
     public User getUser() {
@@ -50,5 +59,13 @@ public class ExamHistory {
 
     public void setExam(Exam exam) {
         this.exam = exam;
+    }
+
+    public int getExamTotals() {
+        return examTotals;
+    }
+
+    public void setExamTotals(int examTotals) {
+        this.examTotals = examTotals;
     }
 }

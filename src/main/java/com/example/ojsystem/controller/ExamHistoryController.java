@@ -22,8 +22,20 @@ public class ExamHistoryController {
      * 输入examId
      * 输出List<ExamHistory>
      */
-    @RequestMapping(value="/queryExamRankById",method = RequestMethod.POST)
+    @RequestMapping(value="/queryExamRankById",method = RequestMethod.GET)
     public Object queryExamRankById(HttpServletRequest request){
         return  examHistoryService.queryExamRankById(Integer.valueOf(request.getParameter("examId")));
     }
+
+
+    /**
+     * 根据用户Id查询参加的考试信息
+     * 输入userId
+     * 输出List<ExamHistory>
+     */
+    @RequestMapping(value="/queryExamHistoryInfoByUserId",method = RequestMethod.GET)
+    public Object queryExamHistoryInfoByUserId(HttpServletRequest request){
+        return  examHistoryService.queryExamHistoryInfoByUserId(Integer.valueOf(request.getParameter("userId")));
+    }
+
 }
