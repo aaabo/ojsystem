@@ -84,4 +84,11 @@ public interface UserMapper {
      */
     public List<User> queryTeacherUserInfo();
 
+    /**
+     * 根据userAccount查询用户编号
+     * 输入userAccount
+     * 输出UserId
+     */
+    public int queryUserIdByUserAccount(@Param("userAccount") String userAccount);
+
 }

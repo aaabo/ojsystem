@@ -34,9 +34,10 @@ public class UserGroupController {
         JSONArray jsonArray=JSONArray.parseArray(selections);//把前台接收的string数组转化为json数组
         List<String> userAccounts = new ArrayList<String>();
         userAccounts= JSON.parseArray(String.valueOf(jsonArray.get(0)), String.class);
-        Integer id=Integer.parseInt(String.valueOf(jsonArray.get(1)));
+        Integer groupId=Integer.parseInt(String.valueOf(jsonArray.get(1)));
+
         for(int o=0;o<userAccounts.size();o++){
-            i=userGroupService.addUserGroupInfo(id,userAccounts.get(o));
+            i=userGroupService.addUserGroupInfo(groupId,userAccounts.get(o));
         }
         if(i>0){
             return true;

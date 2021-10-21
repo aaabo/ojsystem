@@ -1,6 +1,7 @@
 package com.example.ojsystem.service.impl;
 
 import com.example.ojsystem.dao.UserGroupMapper;
+import com.example.ojsystem.dao.UserMapper;
 import com.example.ojsystem.entity.User;
 import com.example.ojsystem.service.UserGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,8 @@ import java.util.List;
 public class UserGroupServiceImpl implements UserGroupService{
     @Autowired
     UserGroupMapper userGroupMapper;
-
+    @Autowired
+    UserMapper userMapper;
     /**
      * 获取组别的用户信息并添加
      * 输入groupId userAccount
@@ -22,7 +24,8 @@ public class UserGroupServiceImpl implements UserGroupService{
      * @param userAccount
      */
     public int addUserGroupInfo(int groupId, String userAccount) {
-        return userGroupMapper.addUserGroupInfo(groupId,userAccount);
+        int userId=userMapper.queryUserIdByUserAccount(userAccount);
+        return userGroupMapper.addUserGroupInfo(groupId,userId);
     }
 
     /**

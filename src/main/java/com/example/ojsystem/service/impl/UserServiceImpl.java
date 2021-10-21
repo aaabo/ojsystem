@@ -120,5 +120,14 @@ public class UserServiceImpl implements UserService {
         return userMapper.queryTeacherUserInfo();
     }
 
+    /**
+     * 根据userAccount查询用户编号
+     * 输入userAccount
+     * 输出UserId
+     */
+    public int queryUserIdByUserAccount(String userAccount) {
+        return userMapper.queryUserIdByUserAccount(userAccount);
+    }
+
 
 }
