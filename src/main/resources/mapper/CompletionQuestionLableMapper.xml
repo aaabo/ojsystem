@@ -8,4 +8,7 @@
     <insert id="addCompletionQuestionLabelInfo">
              insert into completionquestionlabel(completionQuestionId,questionLabelId) VALUES(#{completionQuestionId},#{questionLabelId})
     </insert>
+    <delete id="deleteCompletionQuestionLabelInfoByCompletionQuestionId">
+        delete from completionquestionlabel where completionQuestionId=#{completionQuestionId}
+    </delete>
 </mapper>

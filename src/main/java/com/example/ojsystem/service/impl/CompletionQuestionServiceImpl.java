@@ -29,12 +29,17 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      */
     public int addCompletionQuestionInfo(CompletionQuestion completionQuestion) {
         int i=completionQuestionMapper.addCompletionQuestionInfo(completionQuestion);
-        for(int o=0;o<completionQuestion.getCompletionQuestionAnswers().size();o++){
-            i=completionQuestionAnswerMapper.addCompletionQuestionAnswerInfo(completionQuestion.getCompletionQuestionAnswers().get(o),completionQuestion.getCompletionQuestionId());
+        if(i!=0){
+            for(int o=0;o<completionQuestion.getCompletionQuestionAnswers().size();o++){
+                i=completionQuestionAnswerMapper.addCompletionQuestionAnswerInfo(completionQuestion.getCompletionQuestionAnswers().get(o),completionQuestion.getCompletionQuestionId());
+            }
         }
-        for(int o=0;o<completionQuestion.getQuestionLabels().size();o++){
-            i=completionQuestionLabelMapper.addCompletionQuestionLabelInfo(completionQuestion.getCompletionQuestionId(),completionQuestion.getQuestionLabels().get(o).getQuestionLabelId());
+        if(i!=0){
+            for(int o=0;o<completionQuestion.getQuestionLabels().size();o++){
+                i=completionQuestionLabelMapper.addCompletionQuestionLabelInfo(completionQuestion.getCompletionQuestionId(),completionQuestion.getQuestionLabels().get(o).getQuestionLabelId());
+            }
         }
+
         return i;
     }
 
@@ -46,7 +51,28 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      * @param completionQuestion
      */
     public int modifyCompletionQuestionInfo(CompletionQuestion completionQuestion) {
-        return completionQuestionMapper.modifyCompletionQuestionInfo(completionQuestion);
+        int i=completionQuestionMapper.modifyCompletionQuestionInfo(completionQuestion);
+        //先删除答案
+        if(i!=0){
+            i=completionQuestionAnswerMapper.deleteCompletionQuestionAnswerInfoByCompletionQuestionId(completionQuestion.getCompletionQuestionId());
+        }
+        //后添加答案
+        if(i!=0){
+            for(int o=0;o<completionQuestion.getCompletionQuestionAnswers().size();o++){
+                i=completionQuestionAnswerMapper.addCompletionQuestionAnswerInfo(completionQuestion.getCompletionQuestionAnswers().get(o),completionQuestion.getCompletionQuestionId());
+            }
+        }
+        //先删除标签
+        if(i!=0){
+            completionQuestionLabelMapper.deleteCompletionQuestionLabelInfoByCompletionQuestionId(completionQuestion.getCompletionQuestionId());
+        }
+        //后添加标签
+        if(i!=0){
+            for(int o=0;o<completionQuestion.getQuestionLabels().size();o++){
+                completionQuestionLabelMapper.addCompletionQuestionLabelInfo(completionQuestion.getCompletionQuestionId(),completionQuestion.getQuestionLabels().get(o).getQuestionLabelId());
+            }
+        }
+        return i;
     }
 
     /**

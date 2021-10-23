@@ -38,7 +38,7 @@
     </delete>
     <select id="queryCompletionQuestionInfoByUserId" resultType="com.example.ojsystem.entity.CompletionQuestion" parameterType="java.lang.Integer" resultMap="BaseCompletionQuestionAnswerResultMap">
         select * from completionquestion,user,completionquestionlabel,questionlabel,completionquestionanswer where  completionquestion.completionQuestionId=completionquestionlabel.completionQuestionId and completionquestion.userId=user.userId
-        and completionquestionlabel.questionLabelId=questionlabel.questionLabelId	and completionquestion.completionQuestionId=completionquestionanswer.completionQuestionId   and (completionquestion.isPrivate=0 or (completionquestion.isPrivate=1 and completionquestion.userId=#{userId}))
+        and completionquestionlabel.questionLabelId=questionlabel.questionLabelId	and completionquestion.completionQuestionId=completionquestionanswer.completionQuestionId   and (completionquestion.isPrivate=0 or (completionquestion.isPrivate=1 and completionquestion.userId=#{userId})) order by completionquestion.completionQuestionId
     </select>
 
 

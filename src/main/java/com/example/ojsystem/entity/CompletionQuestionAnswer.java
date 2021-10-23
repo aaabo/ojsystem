@@ -28,4 +28,13 @@ public class CompletionQuestionAnswer {
     public void setCompletionQuestionAnswerNumber(int completionQuestionAnswerNumber) {
         this.completionQuestionAnswerNumber = completionQuestionAnswerNumber;
     }
+
+    @Override
+    public String toString() {
+        return "CompletionQuestionAnswer{" +
+                "completionQuestionAnswerId=" + completionQuestionAnswerId +
+                ", completionQuestionAnswerContent='" + completionQuestionAnswerContent + '\'' +
+                ", completionQuestionAnswerNumber=" + completionQuestionAnswerNumber +
+                '}';
+    }
 }

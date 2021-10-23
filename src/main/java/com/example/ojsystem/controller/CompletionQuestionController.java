@@ -46,14 +46,9 @@ public class CompletionQuestionController {
      */
     @RequestMapping(value="/modifyCompletionQuestionInfo",method = RequestMethod.POST)
     public Object modifyCompletionQuestionInfo(HttpServletRequest request){
-        CompletionQuestion completionQuestion=new CompletionQuestion();
-        int completionQuestionId=Integer.valueOf(request.getParameter("completionQuestionId"));
-        String completionQuestionDifficulty=request.getParameter("completionQuestionDifficulty");
-        String completionQuestionDescription=request.getParameter("completionQuestionDescription");
-        completionQuestion.setCompletionQuestionDescription(completionQuestionDescription);
-        completionQuestion.setCompletionQuestionDifficulty(completionQuestionDifficulty);
-        completionQuestion.setIsPrivate(false);
-        completionQuestion.setCompletionQuestionId(completionQuestionId);
+        String completionQuestionInfo=request.getParameter("completionQuestionInfo");
+        CompletionQuestion completionQuestion=JSON.parseObject(completionQuestionInfo,CompletionQuestion.class);
+        System.out.println(completionQuestion);
         int i=completionQuestionService.modifyCompletionQuestionInfo(completionQuestion);
         if(i!=0){
             return true;
