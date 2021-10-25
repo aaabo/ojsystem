@@ -31,8 +31,7 @@
            ,#{choiceQuestion.choiceQuestionStemC},#{choiceQuestion.choiceQuestionStemD},#{choiceQuestion.choiceQuestionCorrectOption},#{choiceQuestion.choiceQuestionDifficulty},#{choiceQuestion.isPrivate})
     </insert>
     <update id="modifyChoiceQuestionInfo">
-        update choicequestion
-        <trim prefix="set" suffixOverrides=",">
+        update choicequestion set
         <if test="choiceQuestion.choiceQuestionDescription != null and choiceQuestion.choiceQuestionDescription!=''">
              choicequestion.choiceQuestionDescription = #{choiceQuestion.choiceQuestionDescription},
         </if>
@@ -54,49 +53,13 @@
         <if test="choiceQuestion.choiceQuestionDifficulty != null and choiceQuestion.choiceQuestionDifficulty!=''">
              choicequestion.choiceQuestionDifficulty = #{choiceQuestion.choiceQuestionDifficulty},
         </if>
-        <if test="choiceQuestion.isPrivate == true">
-             choicequestion.isPrivate = 1,
+        <if test="choiceQuestion.isPrivate != null and choiceQuestion.isPrivate!=''">
+             choicequestion.isPrivate = #{choiceQuestion.isPrivate},
         </if>
-        <if test="choiceQuestion.isPrivate == false">
-            choicequestion.isPrivate = 0,
-        </if>
-        </trim>
-        where choiceQuestion.choiceQuestionId=#{choiceQuestion.choiceQuestionId}
     </update>
-    <delete id="deleteChoiceQuestionInfoByChoiceQuestionId" parameterType="java.lang.Integer">
-        delete from choicequestion where choiceQuestionId=#{choiceQuestionId}
-    </delete>
     <select id="queryChoiceQuestionInfo" resultType="com.example.ojsystem.entity.ChoiceQuestion" resultMap="BaseChoiceQuestionResultMap">
         select *from choicequestion,choicequestionlabel,questionlabel,user where choicequestion.choiceQuestionId=choicequestionlabel.choiceQuestionId and choicequestion.userId=user.userId
-        and choicequestionlabel.questionLabelId=questionlabel.questionLabelId	and (choicequestion.isPrivate=0 or (choicequestion.isPrivate=1 and choicequestion.userId=#{userId}))
-    </select>
-    <select id="queryChoiceQuestionIdBySearchInfo" resultType="java.lang.Integer" resultMap="BaseChoiceQuestionResultMap">
-        select choicequestion.choiceQuestionId from choicequestion,choicequestionlabel,questionlabel,user where choicequestion.choiceQuestionId=choicequestionlabel.choiceQuestionId and choicequestion.userId=user.userId
-        and choicequestionlabel.questionLabelId=questionlabel.questionLabelId
-        <if test="choiceQuestion.user.userId != null and choiceQuestion.user.userId!=0">
-            <if test="choiceQuestion.user.userId==currentUserId">
-                and user.userId =#{choiceQuestion.user.userId}
-            </if>
-            <if test="choiceQuestion.user.userId!=currentUserId">
-                and user.userId =#{choiceQuestion.user.userId}  and isPrivate =0
-            </if>
-        </if>
-        <if test="choiceQuestion.user.userId==0">
-            and (choicequestion.isPrivate=0 or (choicequestion.isPrivate=1 and choicequestion.userId=#{currentUserId}))
-        </if>
-        <if test="choiceQuestion.questionLabels[0].chapter!= null and choiceQuestion.questionLabels[0].chapter!=''">
-            and questionlabel.chapter = #{choiceQuestion.questionLabels[0].chapter}
-        </if>
-        <if test="choiceQuestion.questionLabels[0].firstKnowledgePoint!= null and choiceQuestion.questionLabels[0].firstKnowledgePoint!=''">
-            and questionlabel.firstKnowledgePoint = #{choiceQuestion.questionLabels[0].firstKnowledgePoint}
-        </if>
-        <if test="choiceQuestion.questionLabels[0].questionLabelId!= null and choiceQuestion.questionLabels[0].questionLabelId!=''">
-            and questionlabel.questionLabelId = #{choiceQuestion.questionLabels[0].questionLabelId}
-        </if>
-    </select>
-    <select id="queryChoiceQuestionInfoByChoiceQuestionId" resultType="com.example.ojsystem.entity.ChoiceQuestion" resultMap="BaseChoiceQuestionResultMap">
-        select * from choicequestion,choicequestionlabel,questionlabel,user where choicequestion.choiceQuestionId=choicequestionlabel.choiceQuestionId and choicequestion.userId=user.userId
-        and choicequestionlabel.questionLabelId=questionlabel.questionLabelId and choicequestion.choiceQuestionId=#{choiceQuestionId}
+        and choicequestionlabel.questionLableId=questionlabel.questionLabelId	and (choicequestion.isPrivate=0 or (choicequestion.isPrivate=1 and choicequestion.userId=#{userId}))
     </select>
 
 

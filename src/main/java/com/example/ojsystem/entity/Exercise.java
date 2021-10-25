@@ -97,13 +97,13 @@ public class Exercise {
 
    
 
-    public String getExerciseSampleOutput() {
-        return exerciseSampleOutput;
-    }
-
-    public void setExerciseSampleOutput(String exerciseSampleOutput) {
-        this.exerciseSampleOutput = exerciseSampleOutput;
-    }
+//    public String getExerciseSampleOutput() {
+//        return exerciseSampleOutput;
+//    }
+//
+//    public void setExerciseSampleOutput(String exerciseSampleOutput) {
+//        this.exerciseSampleOutput = exerciseSampleOutput;
+//    }
 
     public List<Label> getLabels() {
         return labels;

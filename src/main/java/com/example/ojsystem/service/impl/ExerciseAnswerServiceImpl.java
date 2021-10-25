@@ -30,6 +30,7 @@ public class ExerciseAnswerServiceImpl implements ExerciseAnswerService{
      * 输出List<ExerciseAnswer>
      */
     public List<ExerciseAnswer> queryExerciseAnswerInfoByExerciseId(int exerciseId) {
+        System.out.println(exerciseId);
         return exerciseAnswerMapper.queryExerciseAnswerInfoByExerciseId(exerciseId);
     }
 

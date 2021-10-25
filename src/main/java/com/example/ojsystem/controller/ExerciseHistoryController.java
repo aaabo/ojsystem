@@ -1,5 +1,6 @@
 package com.example.ojsystem.controller;
 
+import com.example.ojsystem.judger.exec;
 import com.example.ojsystem.entity.Exercise;
 import com.example.ojsystem.entity.ExerciseHistory;
 import com.example.ojsystem.entity.User;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @RestController
 @CrossOrigin
@@ -24,17 +26,24 @@ public class ExerciseHistoryController {
      * 输出int
      */
     @RequestMapping(value="/addCodeInfo",method = RequestMethod.POST)
-    public Boolean addCodeInfo(HttpServletRequest request){
+    public Boolean addCodeInfo(HttpServletRequest request) throws IOException, InterruptedException {
         int i=0;
+        String Code=request.getParameter("exerciseCode");
+                //System.out.println(Code);
+
+
         int userId=(Integer)request.getSession().getAttribute("userId");
         int exerciseId=Integer.valueOf(request.getParameter("exerciseId"));
+
         String exerciseSubmitTime=request.getParameter("exerciseSubmitTime");
+        String exerciseResult="dengdaizhong";
         String exerciseSubmitLanguage=request.getParameter("exerciseSubmitLanguage");
         String exerciseCode=request.getParameter("exerciseCode");
         ExerciseHistory exerciseHistory=new ExerciseHistory();
         exerciseHistory.setExerciseCode(exerciseCode);
         exerciseHistory.setExerciseSubmitTime(exerciseSubmitTime);
         exerciseHistory.setExerciseSubmitLanguage(exerciseSubmitLanguage);
+        exerciseHistory.setExerciseResult(exerciseResult);
         User user=new User();
         user.setUserId(userId);
         Exercise exercise=new Exercise();
@@ -43,6 +52,8 @@ public class ExerciseHistoryController {
         exerciseHistory.setExercise(exercise);
         i=exerciseHistoryService.addCodeInfo(exerciseHistory);
         if(i!=0){
+            //System.out.println(request.getParameter("exerciseCode"));
+            System.out.println(exerciseHistory.getExerciseResult());
             return true;
         }
         else{
