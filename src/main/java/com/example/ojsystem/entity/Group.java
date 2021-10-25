@@ -4,6 +4,9 @@ public class Group {
     private int groupId;
     private String groupName;
 
+    private User user;
+
+
     public int getGroupId() {
         return groupId;
     }
@@ -20,11 +23,20 @@ public class Group {
         this.groupName = groupName;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Group{" +
                 "groupId=" + groupId +
                 ", groupName='" + groupName + '\'' +
+                ", user=" + user +
                 '}';
     }
 }

@@ -29,4 +29,10 @@ public interface GroupMapper {
      * 修改成功返回true 失败返回false
      */
     public int modifyGroupInfo(Group group);
+    /**
+     * 获取组别信息
+     * 输入无
+     * 成功输出ist<Group>
+     */
+    public List<Group> queryGroupInfo();
 }

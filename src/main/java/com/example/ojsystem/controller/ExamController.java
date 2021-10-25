@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @CrossOrigin
@@ -84,7 +85,8 @@ public class ExamController {
      */
     @RequestMapping(value="/queryExamInfoByUserId",method = RequestMethod.POST)
     public Object queryExamInfoByUserId(HttpServletRequest request){
-        return  examService.queryExamInfoByUserId(Integer.valueOf(request.getParameter("userId")));
+        HttpSession session=request.getSession();
+        return  examService.queryExamInfoByUserId((Integer)(session.getAttribute("userId")));
     }
 
 
@@ -173,7 +175,7 @@ public class ExamController {
 
 
     /**
-     * 查询为结束的考试信息
+     * 查询未结束的考试信息
      * 输入null
      * 输出Exam
      */

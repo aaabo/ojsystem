@@ -1,16 +1,16 @@
 package com.example.ojsystem.entity;
 
-public class ExerciseLabel {
-    private int exerciseLabelId;
+public class Label {
+    private int labelId;
     private String firstPoint;
     private String secondPoint;
 
-    public int getExerciseLabelId() {
-        return exerciseLabelId;
+    public int getLabelId() {
+        return labelId;
     }
 
-    public void setExerciseLabelId(int exerciseLabelId) {
-        this.exerciseLabelId = exerciseLabelId;
+    public void setLabelId(int labelId) {
+        this.labelId = labelId;
     }
 
     public String getFirstPoint() {
@@ -31,8 +31,8 @@ public class ExerciseLabel {
 
     @Override
     public String toString() {
-        return "ExerciseLabel{" +
-                "exerciseLabelId=" + exerciseLabelId +
+        return "Label{" +
+                "labelId=" + labelId +
                 ", firstPoint='" + firstPoint + '\'' +
                 ", secondPoint='" + secondPoint + '\'' +
                 '}';

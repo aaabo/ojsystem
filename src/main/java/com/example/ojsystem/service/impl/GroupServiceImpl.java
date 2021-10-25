@@ -49,4 +49,13 @@ public class GroupServiceImpl implements GroupService{
     public int modifyGroupInfo(Group group) {
         return groupMapper.modifyGroupInfo(group);
     }
+
+    /**
+     * 获取组别信息
+     * 输入无
+     * 成功输出ist<Group>
+     */
+    public List<Group> queryGroupInfo() {
+        return groupMapper.queryGroupInfo();
+    }
 }

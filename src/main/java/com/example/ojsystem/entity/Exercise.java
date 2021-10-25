@@ -1,5 +1,7 @@
 package com.example.ojsystem.entity;
 
+import java.util.List;
+
 public class Exercise {
     private int exerciseId;
     private String exerciseTitle;
@@ -11,7 +13,7 @@ public class Exercise {
     private  String exerciseSampleInput;
     private  String exerciseSampleOutput;
 
-    private ExerciseLabel exerciseLabel;
+    private List<Label> labels;
 
     public Exercise(){
 
@@ -93,13 +95,7 @@ public class Exercise {
         this.exerciseSampleInput = exerciseSampleInput;
     }
 
-    public String getexerciseSampleOutput() {
-        return exerciseSampleOutput;
-    }
-
-    public void setexerciseSampleOutput(String exerciseSampleOutput) {
-        this.exerciseSampleOutput = exerciseSampleOutput;
-    }
+   
 
 //    public String getExerciseSampleOutput() {
 //        return exerciseSampleOutput;
@@ -109,11 +105,27 @@ public class Exercise {
 //        this.exerciseSampleOutput = exerciseSampleOutput;
 //    }
 
-    public ExerciseLabel getExerciseLabel() {
-        return exerciseLabel;
+    public List<Label> getLabels() {
+        return labels;
     }
 
-    public void setExerciseLabel(ExerciseLabel exerciseLabel) {
-        this.exerciseLabel = exerciseLabel;
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
+    }
+
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "exerciseId=" + exerciseId +
+                ", exerciseTitle='" + exerciseTitle + '\'' +
+                ", exerciseCorrectTimes=" + exerciseCorrectTimes +
+                ", exerciseSubmitTimes=" + exerciseSubmitTimes +
+                ", exerciseDescription='" + exerciseDescription + '\'' +
+                ", exerciseInput='" + exerciseInput + '\'' +
+                ", exerciseOutPut='" + exerciseOutPut + '\'' +
+                ", exerciseSampleInput='" + exerciseSampleInput + '\'' +
+                ", exerciseSampleOutput='" + exerciseSampleOutput + '\'' +
+                ", labels=" + labels +
+                '}';
     }
 }

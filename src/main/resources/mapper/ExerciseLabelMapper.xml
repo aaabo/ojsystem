@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE mapper PUBLIC
-                "-//mybatis.org//DTD Mapper 3.0//EN"
-                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.ojsystem.dao.ExerciseLabelMapper">
 
-<resultMap id="BaseExerciseLabelResultMap" type="com.example.ojsystem.entity.ExerciseLabel">
-    <id column="exerciseLabelId" jdbcType="BIGINT" property="exerciseLabelId" />
-    <result column="firstPoint" jdbcType="VARCHAR" property="firstPoint" />
-    <result column="secondPoint" jdbcType="VARCHAR" property="secondPoint" />
-</resultMap>
-<insert id="addExerciseLabelInfo" parameterType="com.example.ojsystem.entity.ExerciseLabel">
-    insert into exerciselabel (firstPoint,secondPoint)  values(#{exerciseLabel.firstPoint},#{exerciseLabel.secondPoint})
-</insert>
-<update id="modifyExerciseLabelInfo" parameterType="com.example.ojsystem.entity.ExerciseLabel">
-    update exerciselabel set firstPoint=#{exerciseLabel.firstPoint},secondPoint=#{exerciseLabel.secondPoint} where exerciseLabelId=#{exerciseLabel.exerciseLabelId}
-</update>
-<delete id="deleteExerciseLabelInfo" parameterType="java.lang.Integer">
-    delete from exerciselabel where exerciseLabelId=#{exerciseLabelId}
-</delete>
-<select id="queryExerciseLabelInfo" resultType="com.example.ojsystem.entity.ExerciseLabel">
-    select * from exerciselabel
-</select>
 
-
+    <insert id="addExerciseLabelInfo" parameterType="java.lang.Integer">
+        insert into exerciselabel(exerciseId,labelId) values(#{exerciseId},#{labelId})
+    </insert>
+    <delete id="deleteExerciseLabelInfoByExerciseId" parameterType="java.lang.Integer">
+        delete from exerciselabel where exerciseId=#{exerciseId}
+    </delete>
 </mapper>

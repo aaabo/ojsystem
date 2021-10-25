@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 根据学生id修改学生密码
+     * 根据用户id修改用户密码
      * 输入user
      * 输出int
      *
@@ -111,6 +111,23 @@ public class UserServiceImpl implements UserService {
         return userMapper.updateUserSubmitInfo(solved,userId);
     }
 
+    /**
+     * 查询全部教师用户
+     * 输入无
+     * 输出List<User>
+     */
+    public List<User> queryTeacherUserInfo() {
+        return userMapper.queryTeacherUserInfo();
+    }
+
+    /**
+     * 根据userAccount查询用户编号
+     * 输入userAccount
+     * 输出UserId
+     */
+    public int queryUserIdByUserAccount(String userAccount) {
+        return userMapper.queryUserIdByUserAccount(userAccount);
+    }
 
 
 }

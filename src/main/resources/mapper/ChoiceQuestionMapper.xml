@@ -59,7 +59,8 @@
     </update>
     <select id="queryChoiceQuestionInfo" resultType="com.example.ojsystem.entity.ChoiceQuestion" resultMap="BaseChoiceQuestionResultMap">
         select *from choicequestion,choicequestionlabel,questionlabel,user where choicequestion.choiceQuestionId=choicequestionlabel.choiceQuestionId and choicequestion.userId=user.userId
-        and choicequestionlabel.questionLabelId=questionlabel.questionLabelId and (choicequestion.isPrivate=0 or (choicequestion.isPrivate=1 and choicequestion.userId=#{userId}))
+        and choicequestionlabel.questionLableId=questionlabel.questionLabelId	and (choicequestion.isPrivate=0 or (choicequestion.isPrivate=1 and choicequestion.userId=#{userId}))
     </select>
+
 
 </mapper>

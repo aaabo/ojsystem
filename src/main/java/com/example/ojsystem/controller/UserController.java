@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -104,7 +105,7 @@ public class UserController {
     public Object queryStudentInfo(HttpServletRequest request){
         Object userId=request.getSession().getAttribute("userId");
         if(userId==null){
-            return 0;
+            return false;
         }
         else{
             return userService.queryUserInfoById((Integer)userId);
@@ -199,5 +200,26 @@ public class UserController {
         else{
             return false;
         }
+    }
+
+    /**
+     * 查询全部教师用户
+     * 输入无
+     * 输出List<User>
+     */
+    @RequestMapping(value="/queryTeacherUserInfo",method = RequestMethod.POST)
+    public Object queryTeacherUserInfo(HttpServletRequest request){
+        return userService.queryTeacherUserInfo();
+    }
+
+    /**
+     * 退出登录
+     * 输入无
+     * 输出无
+     */
+    @RequestMapping(value="/exitLogin",method = RequestMethod.POST)
+    public void exitLogin(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        session.removeAttribute("userId");
     }
 }

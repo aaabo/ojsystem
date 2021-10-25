@@ -32,13 +32,12 @@ public class UserGroupController {
         int i=0;
         String selections = request.getParameter("userGroupInfo");
         JSONArray jsonArray=JSONArray.parseArray(selections);//把前台接收的string数组转化为json数组
-        List<User> users = new ArrayList<User>();
-        users= JSON.parseArray(String.valueOf(jsonArray.get(0)), User.class);
-        JSONObject jSONObject=JSONObject.parseObject(String.valueOf(jsonArray.get(1)));
-        Group group=new Group();
-        group=JSON.toJavaObject(jSONObject,Group.class);
-        for(int o=0;o<users.size();o++){
-            i=userGroupService.addUserGroupInfo(group.getGroupId(),users.get(o));
+        List<String> userAccounts = new ArrayList<String>();
+        userAccounts= JSON.parseArray(String.valueOf(jsonArray.get(0)), String.class);
+        Integer groupId=Integer.parseInt(String.valueOf(jsonArray.get(1)));
+
+        for(int o=0;o<userAccounts.size();o++){
+            i=userGroupService.addUserGroupInfo(groupId,userAccounts.get(o));
         }
         if(i>0){
             return true;
@@ -61,15 +60,16 @@ public class UserGroupController {
     }
 
     /**
-     * 删除组别内的用户信息
-     * 输入userGroupId
+     * 根据groupId和userId删除组别内的用户信息
+     * 输入groupId和userId
      * 成功输入true 失败输出false
      */
-    @RequestMapping(value="/deleteUserGroupInfoByUserGroupId",method = RequestMethod.POST)
-    public Object  deleteUserGroupInfoByUserGroupId(HttpServletRequest request){
+    @RequestMapping(value="/deleteUserGroupInfoByGroupIdAndUserId",method = RequestMethod.POST)
+    public Object  deleteUserGroupInfoByGroupIdAndUserId(HttpServletRequest request){
         int i=0;
-        int userGroupId=Integer.valueOf(request.getParameter("userGroupId"));
-        i=userGroupService.deleteUserGroupInfoByUserGroupId(userGroupId);
+        int userId=Integer.valueOf(request.getParameter("userId"));
+        int groupId=Integer.valueOf(request.getParameter("groupId"));
+        i=userGroupService.deleteUserGroupInfoByGroupIdAndUserId(groupId,userId);
         if(i>0){
             return true;
         }else{

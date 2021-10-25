@@ -46,7 +46,12 @@
     <select id="queryUserRankListInfo" resultType="com.example.ojsystem.entity.User">
         select userId,userName,userProfile,userSolved,userSubmit,userSolved/userSubmit as acRate from user order by userSolved desc,acRate desc
     </select>
-
+    <select id="queryTeacherUserInfo" resultType="com.example.ojsystem.entity.User">
+        select * from user where userIdentity="teacher"
+    </select>
+    <select id="queryUserIdByUserAccount" resultType="java.lang.Integer">
+        select userId from user where userAccount=#{userAccount}
+    </select>
 
 
 </mapper>

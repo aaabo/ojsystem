@@ -11,10 +11,10 @@ import java.util.List;
 public interface UserGroupMapper {
     /**
      * 获取组别的用户信息并添加
-     * 输入groupId users
+     * 输入groupId userAccount
      * 成功输入true 失败输出false
      */
-    public int addUserGroupInfo(@Param("groupId") int groupId,@Param("user") User user);
+    public int addUserGroupInfo(@Param("groupId") int groupId,@Param("userId") int userId);
 
 
     /**
@@ -25,9 +25,9 @@ public interface UserGroupMapper {
     public List<User> queryUserGroupInfoByGroupId(@Param("groupId")  int groupId);
 
     /**
-     * 删除组别内的用户信息
-     * 输入userGroupId
+     * 根据groupId和userId删除组别内的用户信息
+     * 输入groupId和userId
      * 成功输入true 失败输出false
      */
-    public int  deleteUserGroupInfoByUserGroupId(int userGroupId);
+    public int  deleteUserGroupInfoByUserGroupId(@Param("groupId") int groupId,@Param("userId")int userId);
 }

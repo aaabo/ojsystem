@@ -4,7 +4,7 @@ public class ExamQuestion {
     private int examQuestionId;
     private int questionId;
     private String examQuestionType;
-    private Exam exam;
+
 
 
     public int getExamQuestionId() {
@@ -31,11 +31,5 @@ public class ExamQuestion {
         this.examQuestionType = examQuestionType;
     }
 
-    public Exam getExam() {
-        return exam;
-    }
 
-    public void setExam(Exam exam) {
-        this.exam = exam;
-    }
 }

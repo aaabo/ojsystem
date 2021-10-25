@@ -63,7 +63,7 @@ public interface UserMapper {
     public int modifyPassword(@Param("user") User user);
 
     /**
-     * 查询学生排行榜
+     * 查询用户排行榜
      * 输入无
      * 输出List<User>
      */
@@ -77,6 +77,18 @@ public interface UserMapper {
     public int updateUserSubmitInfo(@Param("solved") int solved,@Param("userId") int userId);
 
 
+    /**
+     * 查询全部教师用户
+     * 输入无
+     * 输出List<User>
+     */
+    public List<User> queryTeacherUserInfo();
 
+    /**
+     * 根据userAccount查询用户编号
+     * 输入userAccount
+     * 输出UserId
+     */
+    public int queryUserIdByUserAccount(@Param("userAccount") String userAccount);
 
 }

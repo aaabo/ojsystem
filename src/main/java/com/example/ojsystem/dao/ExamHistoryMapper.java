@@ -13,4 +13,11 @@ public interface ExamHistoryMapper {
      * 输出List<ExamHistory>
      */
     public List<ExamHistory> queryExamRankById(@Param("examId") int examId);
+
+    /**
+     * 根据用户Id查询参加的考试信息
+     * 输入userId
+     * 输出List<ExamHistory>
+     */
+    public List<ExamHistory> queryExamHistoryInfoByUserId(@Param("userId") int userId);
 }

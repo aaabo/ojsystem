@@ -26,4 +26,16 @@ public class ExamHistoryController {
     public Object queryExamRankById(HttpServletRequest request){
         return  examHistoryService.queryExamRankById(Integer.valueOf(request.getParameter("examId")));
     }
+
+
+    /**
+     * 根据用户Id查询参加的考试信息
+     * 输入userId
+     * 输出List<ExamHistory>
+     */
+    @RequestMapping(value="/queryExamHistoryInfoByUserId",method = RequestMethod.POST)
+    public Object queryExamHistoryInfoByUserId(HttpServletRequest request){
+        return  examHistoryService.queryExamHistoryInfoByUserId(Integer.valueOf(request.getParameter("userId")));
+    }
+
 }
