@@ -1,7 +1,9 @@
 package com.example.ojsystem.service.impl;
 
+import com.example.ojsystem.dao.ExerciseAnswerMapper;
 import com.example.ojsystem.dao.ExerciseHistoryMapper;
 import com.example.ojsystem.entity.ExerciseHistory;
+import com.example.ojsystem.judger.exec;
 import com.example.ojsystem.service.ExerciseHistoryService;
 import com.example.ojsystem.entity.ResultTool;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ import java.util.List;
 public class ExerciseHistoryImpl implements ExerciseHistoryService{
     @Autowired
     ExerciseHistoryMapper exerciseHistoryMapper;
+    @Autowired
+    ExerciseAnswerMapper exerciseAnswerMapper;
     /**
      * 根据提交的代码 添加习题记录
      * 输入exerciseHistory
@@ -21,6 +25,9 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
      * @param exerciseHistory
      */
     public int addCodeInfo(ExerciseHistory exerciseHistory) {
+
+        String result= exec.start(exerciseHistory.getExerciseCode(),exerciseAnswerMapper.queryExerciseAnswerInfoByExerciseId(exerciseHistory.getExercise().getExerciseId()));
+        exerciseHistory.setExerciseResult(result);
         return exerciseHistoryMapper.addCodeInfo(exerciseHistory);
     }
 

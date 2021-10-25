@@ -101,13 +101,13 @@ public class Exercise {
         this.exerciseSampleOutput = exerciseSampleOutput;
     }
 
-    public String getExerciseSampleOutput() {
-        return exerciseSampleOutput;
-    }
-
-    public void setExerciseSampleOutput(String exerciseSampleOutput) {
-        this.exerciseSampleOutput = exerciseSampleOutput;
-    }
+//    public String getExerciseSampleOutput() {
+//        return exerciseSampleOutput;
+//    }
+//
+//    public void setExerciseSampleOutput(String exerciseSampleOutput) {
+//        this.exerciseSampleOutput = exerciseSampleOutput;
+//    }
 
     public ExerciseLabel getExerciseLabel() {
         return exerciseLabel;
