@@ -48,7 +48,6 @@ public class CompletionQuestionController {
     public Object modifyCompletionQuestionInfo(HttpServletRequest request){
         String completionQuestionInfo=request.getParameter("completionQuestionInfo");
         CompletionQuestion completionQuestion=JSON.parseObject(completionQuestionInfo,CompletionQuestion.class);
-        System.out.println(completionQuestion);
         int i=completionQuestionService.modifyCompletionQuestionInfo(completionQuestion);
         if(i!=0){
             return true;
@@ -84,4 +83,50 @@ public class CompletionQuestionController {
         HttpSession session=request.getSession();
         return completionQuestionService.queryCompletionQuestionInfoByUserId((Integer)session.getAttribute("userId"));
     }
+
+    /**
+     * 根据查询信息来查询填空题信息
+     * 输入completionQuestion
+     * 输出List<CompletionQuestion>
+     */
+    @RequestMapping(value="/queryCompletionQuestionInfoBySearchInfo",method = RequestMethod.POST)
+    public Object queryCompletionQuestionInfoBySearchInfo(HttpServletRequest request){
+        List<CompletionQuestion> completionQuestions1=new ArrayList<CompletionQuestion>();
+        List<CompletionQuestion> completionQuestions2=new ArrayList<CompletionQuestion>();
+        HttpSession session=request.getSession();
+        int currentUserId=(Integer)session.getAttribute("userId");
+        int userId=Integer.valueOf(request.getParameter("userId"));
+        String chapter=request.getParameter("chapter");
+        String firstKnowledge=request.getParameter("firstKnowledge");
+        int questionLabelId=Integer.valueOf(request.getParameter("questionLabelId"));
+        List<QuestionLabel> questionLabels=new ArrayList<QuestionLabel>();
+        User user=new User();
+        CompletionQuestion completionQuestion=new CompletionQuestion();
+        QuestionLabel questionLabel=new QuestionLabel();
+        if(userId!=0){
+            user.setUserId(userId);
+        }else{
+            user.setUserId(0);
+        }
+        if(!chapter.equals("")){
+            questionLabel.setChapter(chapter);
+        }
+        if(!firstKnowledge.equals("")){
+            questionLabel.setFirstKnowledgePoint(firstKnowledge);
+        }
+        if(questionLabelId!=0){
+            questionLabel.setQuestionLabelId(questionLabelId);
+        }
+        completionQuestion.setUser(user);
+        questionLabels.add(questionLabel);
+        completionQuestion.setQuestionLabels(questionLabels);
+        completionQuestions1=completionQuestionService.queryCompletionQuestionIdBySearchInfo(completionQuestion,currentUserId);
+        for(int i=0;i<completionQuestions1.size();i++){
+            CompletionQuestion completionQuestion1=new CompletionQuestion();
+            completionQuestion1=completionQuestionService.queryCompletionQuestionIdByCompletionQuestionId(completionQuestions1.get(i).getCompletionQuestionId());
+            completionQuestions2.add(completionQuestion1);
+        }
+        return completionQuestions2;
+    }
+
 }

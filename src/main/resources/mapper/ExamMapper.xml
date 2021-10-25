@@ -40,7 +40,7 @@
       select * from exam,`group`,usergroup where exam.groupId=`group`.groupId and `group`.groupId=usergroup.groupId and usergroup.userId=#{userId}
     </select>
     <select id="userQueryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
-         select * from exam,group where exam.userId=#{userId} and exam.groupId=group.groupId ORDER BY (case exam.examStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
+         select * from exam,`group` where exam.userId=#{userId} and exam.groupId=group.groupId ORDER BY (case exam.examStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
     <select id="queryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
          select * from exam,user,`group` where exam.userId=user.userId and exam.groupId=`group`.groupId ORDER BY (case exam.examStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC

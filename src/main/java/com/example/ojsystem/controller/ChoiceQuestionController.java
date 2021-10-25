@@ -103,7 +103,6 @@ public class ChoiceQuestionController {
         String firstKnowledge=request.getParameter("firstKnowledge");
         int questionLabelId=Integer.valueOf(request.getParameter("questionLabelId"));
         User user=new User();
-
         if(userId!=0){
             user.setUserId(userId);
         }else{

@@ -32,4 +32,18 @@ public interface CompletionQuestionService {
      * 输出int
      */
     public List<CompletionQuestion> queryCompletionQuestionInfoByUserId(int userId);
+
+    /**
+     * 根据输入的查询信息
+     * 输入completionQuestion
+     * 输出List<ChoiceQuestion>
+     */
+    public List<CompletionQuestion> queryCompletionQuestionIdBySearchInfo(CompletionQuestion completionQuestion,int currentUserId);
+
+    /**
+     * 根据填空题编号查询对应的填空题信息
+     * 输入completionQuestion
+     * 输出List<ChoiceQuestion>
+     */
+    public CompletionQuestion queryCompletionQuestionIdByCompletionQuestionId(int completionQuestionId);
 }

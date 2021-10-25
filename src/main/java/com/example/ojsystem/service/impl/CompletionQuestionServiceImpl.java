@@ -96,4 +96,28 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
     public List<CompletionQuestion> queryCompletionQuestionInfoByUserId(int userId) {
         return completionQuestionMapper.queryCompletionQuestionInfoByUserId(userId);
     }
+
+    /**
+     * 根据输入的查询信息
+     * 输入completionQuestion
+     * 输出List<ChoiceQuestion>
+     *
+     * @param completionQuestion
+     * @param currentUserId
+     */
+    public List<CompletionQuestion> queryCompletionQuestionIdBySearchInfo(CompletionQuestion completionQuestion, int currentUserId) {
+        return completionQuestionMapper.queryCompletionQuestionIdBySearchInfo(completionQuestion,currentUserId);
+    }
+
+    /**
+     * 根据填空题编号查询对应的填空题信息
+     * 输入completionQuestion
+     * 输出List<ChoiceQuestion>
+     *
+     * @param completionQuestionId
+     */
+    public CompletionQuestion queryCompletionQuestionIdByCompletionQuestionId(int completionQuestionId) {
+        return completionQuestionMapper.queryCompletionQuestionIdByCompletionQuestionId(completionQuestionId);
+    }
+
 }
