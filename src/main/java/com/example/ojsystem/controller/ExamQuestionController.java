@@ -22,7 +22,7 @@ public class ExamQuestionController {
      * 输入examId
      * 输出ExamQuestion
      */
-    @RequestMapping(value="/queryExamQuestionByExamId",method = RequestMethod.GET)
+    @RequestMapping(value="/queryExamQuestionByExamId",method = RequestMethod.POST)
     public Object queryExamQuestionChoiceByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         ExamQuestion examQuestion=new ExamQuestion();
@@ -37,7 +37,7 @@ public class ExamQuestionController {
      * 输入examId,questionId
      * 输出int
      */
-    @RequestMapping(value="/addExamQuestion",method = RequestMethod.GET)
+    @RequestMapping(value="/addExamQuestion",method = RequestMethod.POST)
     public Object addExamQuestion(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         int questionId=Integer.valueOf(request.getParameter("questionId"));
@@ -57,7 +57,7 @@ public class ExamQuestionController {
      * 输入examId,questionId,examQuestionType
      * 输出int
      */
-    @RequestMapping(value="/deleteExamQuestion",method = RequestMethod.GET)
+    @RequestMapping(value="/deleteExamQuestion",method = RequestMethod.POST)
     public Object deleteExamQuestion(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         int questionId=Integer.valueOf(request.getParameter("questionId"));
