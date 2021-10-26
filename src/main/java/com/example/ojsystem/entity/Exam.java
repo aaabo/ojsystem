@@ -9,7 +9,9 @@ public class Exam {
     private String examEndTime;
     private String examStatus;//考试状态
     private String examLanguage;
-
+    private int examChoiceQuestionScore;
+    private int examCompletionQuestionScore;
+    private int examProgrammingScore;
 
     private Group group;
     private User user;
@@ -93,6 +95,30 @@ public class Exam {
         this.examQuestion = examQuestion;
     }
 
+    public int getExamChoiceQuestionScore() {
+        return examChoiceQuestionScore;
+    }
+
+    public void setExamChoiceQuestionScore(int examChoiceQuestionScore) {
+        this.examChoiceQuestionScore = examChoiceQuestionScore;
+    }
+
+    public int getExamCompletionQuestionScore() {
+        return examCompletionQuestionScore;
+    }
+
+    public void setExamCompletionQuestionScore(int examCompletionQuestionScore) {
+        this.examCompletionQuestionScore = examCompletionQuestionScore;
+    }
+
+    public int getExamProgrammingScore() {
+        return examProgrammingScore;
+    }
+
+    public void setExamProgrammingScore(int examProgrammingScore) {
+        this.examProgrammingScore = examProgrammingScore;
+    }
+
     @Override
     public String toString() {
         return "Exam{" +
@@ -102,6 +128,9 @@ public class Exam {
                 ", examEndTime='" + examEndTime + '\'' +
                 ", examStatus='" + examStatus + '\'' +
                 ", examLanguage='" + examLanguage + '\'' +
+                ", examChoiceQuestionScore=" + examChoiceQuestionScore +
+                ", examCompletionQuestionScore=" + examCompletionQuestionScore +
+                ", examProgrammingScore=" + examProgrammingScore +
                 ", group=" + group +
                 ", user=" + user +
                 ", examQuestion=" + examQuestion +

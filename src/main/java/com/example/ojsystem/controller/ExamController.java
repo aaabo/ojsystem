@@ -36,6 +36,9 @@ public class ExamController {
         int groupId=Integer.valueOf(request.getParameter("groupId"));
         String examStatus=request.getParameter("examStatus");
         String examLanguage=request.getParameter("examLanguage");
+        int examChoiceQuestionScore=Integer.valueOf(request.getParameter("examChoiceQuestionScore"));
+        int examCompletionQuestionScore=Integer.valueOf(request.getParameter("examCompletionQuestionScore"));
+        int examProgrammingScore=Integer.valueOf(request.getParameter("examProgrammingScore"));
         Exam exam=new Exam();
         exam.setExamStartTime(examStartTime);
         exam.setExamEndTime(examEndTime);
@@ -48,6 +51,9 @@ public class ExamController {
         exam.setExamStatus(examStatus);
         exam.setExamName(examName);
         exam.setExamLanguage(examLanguage);
+        exam.setExamChoiceQuestionScore(examChoiceQuestionScore);
+        exam.setExamCompletionQuestionScore(examCompletionQuestionScore);
+        exam.setExamProgrammingScore(examProgrammingScore);
         i=examService.addExamInfo(exam);
         if(i!=0){
             return exam.getExamId();

@@ -8,10 +8,7 @@
         <id column="examProgrammingQuestionHistoryId" jdbcType="BIGINT" property="examProgrammingQuestionHistoryId" />
         <result column="examProgrammingQuestionResult" jdbcType="VARCHAR" property="examProgrammingQuestionResult" />
         <result column="examProgrammingQuestionCode" jdbcType="VARCHAR" property="examProgrammingQuestionCode" />
-        <association property="examQuestion" javaType="com.example.ojsystem.entity.ExamQuestion">
-            <id column="examQuestionId" jdbcType="BIGINT" property="examQuestionId" />
-            <result column="questionId" jdbcType="VARCHAR" property="questionId" />
-        </association>
+
     </resultMap>
 
 

@@ -47,7 +47,7 @@
         </collection >
     </resultMap>
     <resultMap id="BaseExerciseResultMap" type="com.example.ojsystem.entity.Exercise">
-        <id column="exerciseId" jdbcType="BIGINT" property="exerciseId" />
+        <id column="exerciseId" jdbcType="INTEGER" property="exerciseId" />
         <result column="exerciseTitle" jdbcType="VARCHAR" property="exerciseTitle" />
         <result column="exerciseCorrectTimes" jdbcType="BIGINT" property="exerciseCorrectTimes" />
         <result column="exerciseSubmitTimes" jdbcType="BIGINT" property="exerciseSubmitTimes" />

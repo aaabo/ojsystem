@@ -5,12 +5,15 @@
 <mapper namespace="com.example.ojsystem.dao.ExamMapper">
 
     <resultMap id="BaseExamResultMap" type="com.example.ojsystem.entity.Exam">
-        <id column="examId" jdbcType="BIGINT" property="examId" />
+        <id column="examId" jdbcType="INTEGER" property="examId" />
         <result column="examStartTime" jdbcType="VARCHAR" property="examStartTime" />
         <result column="examEndTime" jdbcType="VARCHAR" property="examEndTime" />
         <result column="examName" jdbcType="VARCHAR" property="examName" />
         <result column="examStatus" jdbcType="VARCHAR" property="examStatus" />
         <result column="examLanguage" jdbcType="VARCHAR" property="examLanguage" />
+        <result column="examChoiceQuestionScore" jdbcType="INTEGER" property="examChoiceQuestionScore" />
+        <result column="examCompletionQuestionScore" jdbcType="INTEGER" property="examCompletionQuestionScore" />
+        <result column="examProgrammingScore" jdbcType="INTEGER" property="examProgrammingScore" />
         <association property="group" javaType="com.example.ojsystem.entity.Group">
             <id column="groupId" jdbcType="BIGINT" property="groupId" />
             <result column="groupName" jdbcType="VARCHAR" property="groupName" />
@@ -23,12 +26,12 @@
 
 
     <insert id="addExamInfo"  parameterType="com.example.ojsystem.entity.Exam" useGeneratedKeys="true" keyProperty="exam.examId" keyColumn="examId">
-        insert into exam(examStartTime,examEndTime,userId,groupId,examStatus,examLanguage,examName)
-        values(#{exam.examStartTime},#{exam.examEndTime},#{exam.user.userId},#{exam.group.groupId},#{exam.examStatus},#{exam.examLanguage},#{exam.examName})
+        insert into exam(examStartTime,examEndTime,userId,groupId,examStatus,examLanguage,examName,examChoiceQuestionScore,examCompletionQuestionScore,examProgrammingScore)
+        values(#{exam.examStartTime},#{exam.examEndTime},#{exam.user.userId},#{exam.group.groupId},#{exam.examStatus},#{exam.examLanguage},#{exam.examName},#{exam.examChoiceQuestionScore},#{exam.examCompletionQuestionScore},#{exam.examProgrammingScore})
     </insert>
     <update id="modifyExamInfo" parameterType="com.example.ojsystem.entity.Exam">
              update exam set examStartTime=#{exam.examStartTime},examEndTime=#{exam.examEndTime},
-              examLanguage=#{exam.examLanguage},classesId=#{exam.classes.classesId},examName=#{exam.examName} where examId=#{exam.examId}
+              examLanguage=#{exam.examLanguage},groupId=#{exam.group.groupId},examName=#{exam.examName},examChoiceQuestionScore=#{exam.examChoiceQuestionScore},examCompletionQuestionScore=#{exam.examCompletionQuestionScore},examProgrammingScore=#{exam.examProgrammingScore} where examId=#{exam.examId}
     </update>
     <update id="updateExamStatus" parameterType="com.example.ojsystem.entity.Exam">
         update exam set examStatus=#{exam.examStatus} where examId=#{exam.examId}
