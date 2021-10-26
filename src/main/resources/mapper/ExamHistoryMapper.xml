@@ -13,6 +13,7 @@
         <association property="user" javaType="com.example.ojsystem.entity.User">
             <id column="userId" jdbcType="INTEGER" property="userId" />
             <result column="userName" jdbcType="VARCHAR" property="userName" />
+            <result column="userAccount" jdbcType="VARCHAR" property="userAccount" />
         </association>
         <association property="exam" javaType="com.example.ojsystem.entity.Exam">
             <id column="examId" jdbcType="INTEGER" property="examId" />
@@ -21,7 +22,7 @@
     </resultMap>
 
     <select id="queryExamRankById" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
-      select *  from usergroup left join user on usergroup.userId=user.userId left join examhistory on examhistory.userId=usergroup.userId left join exam on exam.groupId=usergroup.groupId where exam.examId=#{examId}
+     select * from user,usergroup left join exam on exam.groupId=usergroup.groupId left join examhistory on usergroup.userId=examhistory.userId and examhistory.examId=exam.examId   where exam.examId=#{examId} and user.userId=usergroup.userId
     </select>
     <select id="queryExamHistoryInfoByUserId" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
          SELECT  user.userId,user.userName,examhistory.examChoiceQuestionTotals,examhistory.examProgrammingTotals,exam.examId,exam.examName,
