@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.ExamQuestionMapper">
+
+    <resultMap id="BaseCompletionQuestionResultMap" type="com.example.ojsystem.entity.CompletionQuestion">
+        <id column="completionQuestionId" jdbcType="INTEGER" property="completionQuestionId"/>
+        <result column="completionQuestionDifficulty" jdbcType="VARCHAR" property="completionQuestionDifficulty"/>
+        <result column="completionQuestionDescription" jdbcType="VARCHAR" property="completionQuestionDescription"/>
+        <result column="isPrivate" jdbcType="BIT" property="isPrivate" />
+        <association property="user" javaType="com.example.ojsystem.entity.User">
+            <id column="userId" jdbcType="BIGINT" property="userId" />
+            <result column="userName" jdbcType="VARCHAR" property="userName" />
+        </association>
+        <collection  property="completionQuestionAnswers" ofType="com.example.ojsystem.entity.CompletionQuestionAnswer">
+            <id column="completionQuestionAnswerId" jdbcType="INTEGER" property="completionQuestionAnswerId"/>
+            <result column="completionQuestionAnswerContent" jdbcType="VARCHAR" property="completionQuestionAnswerContent"/>
+            <result column="completionQuestionAnswerNumber" jdbcType="INTEGER" property="completionQuestionAnswerNumber"/>
+        </collection>
+        <collection  property="questionLabels" ofType="com.example.ojsystem.entity.QuestionLabel">
+            <id column="questionLabelId" jdbcType="BIGINT" property="questionLabelId"/>
+            <result column="chapter" jdbcType="VARCHAR" property="chapter"/>
+            <result column="firstKnowledgePoint" jdbcType="VARCHAR" property="firstKnowledgePoint"/>
+            <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint"/>
+        </collection>
+    </resultMap>
+    <resultMap id="BaseChoiceQuestionResultMap" type="com.example.ojsystem.entity.ChoiceQuestion">
+        <id column="choiceQuestionId" jdbcType="BIGINT" property="choiceQuestionId" />
+        <result column="choiceQuestionDescription" jdbcType="VARCHAR" property="choiceQuestionDescription" />
+        <result column="choiceQuestionStemA" jdbcType="VARCHAR" property="choiceQuestionStemA" />
+        <result column="choiceQuestionStemB" jdbcType="VARCHAR" property="choiceQuestionStemB" />
+        <result column="choiceQuestionStemC" jdbcType="VARCHAR" property="choiceQuestionStemC" />
+        <result column="choiceQuestionStemD" jdbcType="VARCHAR" property="choiceQuestionStemD" />
+        <result column="choiceQuestionCorrectOption" jdbcType="VARCHAR" property="choiceQuestionCorrectOption" />
+        <result column="choiceQuestionDifficulty" jdbcType="VARCHAR" property="choiceQuestionDifficulty" />
+        <result column="isPrivate" jdbcType="BIT" property="isPrivate" />
+        <association property="user" javaType="com.example.ojsystem.entity.User">
+            <id column="userId" jdbcType="BIGINT" property="userId" />
+            <result column="userName" jdbcType="VARCHAR" property="userName" />
+        </association>
+        <collection  property="questionLabels" ofType="com.example.ojsystem.entity.QuestionLabel">
+            <id column="questionLabelId" jdbcType="BIGINT" property="questionLabelId" />
+            <result column="chapter" jdbcType="VARCHAR" property="chapter" />
+            <result column="firstKnowledgePoint" jdbcType="VARCHAR" property="firstKnowledgePoint" />
+            <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint" />
+        </collection >
+    </resultMap>
+    <resultMap id="BaseExerciseResultMap" type="com.example.ojsystem.entity.Exercise">
+        <id column="exerciseId" jdbcType="BIGINT" property="exerciseId" />
+        <result column="exerciseTitle" jdbcType="VARCHAR" property="exerciseTitle" />
+        <result column="exerciseCorrectTimes" jdbcType="BIGINT" property="exerciseCorrectTimes" />
+        <result column="exerciseSubmitTimes" jdbcType="BIGINT" property="exerciseSubmitTimes" />
+        <result column="exerciseDescription" jdbcType="VARCHAR" property="exerciseDescription" />
+        <result column="exerciseInput" jdbcType="VARCHAR" property="exerciseInput" />
+        <result column="exerciseOutPut" jdbcType="VARCHAR" property="exerciseOutPut" />
+        <result column="exerciseSampleInput" jdbcType="VARCHAR" property="exerciseSampleInput" />
+        <result column="exerciseSampleOutput" jdbcType="VARCHAR" property="exerciseSampleOutput" />
+        <collection  property="labels" ofType="com.example.ojsystem.entity.Label">
+            <id column="labelId" jdbcType="BIGINT" property="labelId" />
+            <result column="firstPoint" jdbcType="VARCHAR" property="firstPoint" />
+            <result column="secondPoint" jdbcType="VARCHAR" property="secondPoint" />
+        </collection >
+    </resultMap>
+    <insert id="addExamQuestion">
+        insert into examquestion(examId,questionId,examQuestionType) values(#{examId},#{questionId},#{examQuestionType})
+    </insert>
+    <delete id="deleteExamQuestion">
+        delete from examquestion where examId=#{examId} and questionId=#{questionId} and examQuestionType=#{examQuestionType}
+    </delete>
+    <select id="queryExamQuestionChoiceByExamId" resultType="com.example.ojsystem.entity.ExamQuestion" resultMap="BaseChoiceQuestionResultMap">
+       SELECT * FROM examquestion,choicequestion,questionlabel,choicequestionlabel where examquestion.questionId=choicequestion.choiceQuestionId
+        and choicequestionlabel.choiceQuestionId=choicequestion.choiceQuestionId and choicequestionlabel.questionLabelId=questionlabel.questionLabelId  and examquestion.examId=#{examId} and examquestion.examQuestionType='choiceQuestion'
+    </select>
+    <select id="queryExamQuestionCompletionByExamId" resultType="com.example.ojsystem.entity.CompletionQuestion"  resultMap="BaseCompletionQuestionResultMap">
+          SELECT * FROM examquestion,completionquestion,questionlabel,completionquestionlabel where examquestion.questionId=completionquestion.completionQuestionId
+          and examquestion.examId=#{examId} and completionquestionlabel.completionQuestionId=completionquestion.completionQuestionId and completionquestionlabel.questionLabelId=questionlabel.questionLabelId and examquestion.examQuestionType='completionQuestion'
+    </select>
+    <select id="queryExamQuestionProgrammingByExamId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
+         SELECT * FROM examquestion,exercise where examquestion.questionId=exercise.exerciseId and examquestion.examId=#{examId} and examquestion.examQuestionType='programmingQuestion'
+    </select>
+
+
+</mapper>

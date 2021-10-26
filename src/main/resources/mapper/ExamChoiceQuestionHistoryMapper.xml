@@ -7,7 +7,30 @@
     <resultMap id="BaseExamChoiceQuestionHistoryResultMap" type="com.example.ojsystem.entity.ExamChoiceQuestionHistory">
         <id column="examChoiceQuestionHistoryId" jdbcType="BIGINT" property="examChoiceQuestionHistoryId" />
         <result column="examChoiceQuestionUserSelection" jdbcType="VARCHAR" property="examChoiceQuestionUserSelection" />
+        <association property="choiceQuestion"  resultMap="BaseChoiceQuestionResultMap" />
     </resultMap>
+    <resultMap id="BaseChoiceQuestionResultMap" type="com.example.ojsystem.entity.ChoiceQuestion">
+        <id column="choiceQuestionId" jdbcType="BIGINT" property="choiceQuestionId" />
+        <result column="choiceQuestionDescription" jdbcType="VARCHAR" property="choiceQuestionDescription" />
+        <result column="choiceQuestionStemA" jdbcType="VARCHAR" property="choiceQuestionStemA" />
+        <result column="choiceQuestionStemB" jdbcType="VARCHAR" property="choiceQuestionStemB" />
+        <result column="choiceQuestionStemC" jdbcType="VARCHAR" property="choiceQuestionStemC" />
+        <result column="choiceQuestionStemD" jdbcType="VARCHAR" property="choiceQuestionStemD" />
+        <result column="choiceQuestionCorrectOption" jdbcType="VARCHAR" property="choiceQuestionCorrectOption" />
+        <result column="choiceQuestionDifficulty" jdbcType="VARCHAR" property="choiceQuestionDifficulty" />
+        <result column="isPrivate" jdbcType="BIT" property="isPrivate" />
+        <association property="user" javaType="com.example.ojsystem.entity.User">
+            <id column="userId" jdbcType="BIGINT" property="userId" />
+            <result column="userName" jdbcType="VARCHAR" property="userName" />
+        </association>
+        <collection  property="questionLabels" ofType="com.example.ojsystem.entity.QuestionLabel">
+            <id column="questionLabelId" jdbcType="BIGINT" property="questionLabelId" />
+            <result column="chapter" jdbcType="VARCHAR" property="chapter" />
+            <result column="firstKnowledgePoint" jdbcType="VARCHAR" property="firstKnowledgePoint" />
+            <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint" />
+        </collection >
+    </resultMap>
+
     <insert id="addExamChoiceQuestionHistory" parameterType="com.example.ojsystem.entity.ExamChoiceQuestionHistory">
           insert into examchoicequestionhistory(userId,examQuestionId,examChoiceQuestionUserSelection)
           values(#{examChoiceQuestionHistory.user.userId},#{examChoiceQuestionHistory.examQuestion.examQuestionId},#{examChoiceQuestionHistory.examChoiceQuestionUserSelection})

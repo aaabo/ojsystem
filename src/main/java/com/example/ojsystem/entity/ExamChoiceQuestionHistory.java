@@ -4,8 +4,9 @@ public class ExamChoiceQuestionHistory {
     private int examChoiceQuestionHistoryId;
     private String examChoiceQuestionUserSelection;
 
+    private ChoiceQuestion choiceQuestion;
     private User user;
-    private ExamQuestion examQuestion;
+
 
 
     public int getExamChoiceQuestionHistoryId() {
@@ -32,11 +33,11 @@ public class ExamChoiceQuestionHistory {
         this.user = user;
     }
 
-    public ExamQuestion getExamQuestion() {
-        return examQuestion;
+    public ChoiceQuestion getChoiceQuestion() {
+        return choiceQuestion;
     }
 
-    public void setExamQuestion(ExamQuestion examQuestion) {
-        this.examQuestion = examQuestion;
+    public void setChoiceQuestion(ChoiceQuestion choiceQuestion) {
+        this.choiceQuestion = choiceQuestion;
     }
 }

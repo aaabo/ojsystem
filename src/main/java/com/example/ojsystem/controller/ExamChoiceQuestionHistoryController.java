@@ -31,12 +31,12 @@ public class ExamChoiceQuestionHistoryController {
         String examChoiceQuestionUserSelection=request.getParameter("examChoiceQuestionUserSelection");
         User user=new User();
         user.setUserId(userId);
-        ExamQuestion examQuestion=new ExamQuestion();
-        examQuestion.setQuestionId(examChoiceQuestionId);
+//        ExamQuestion examQuestion=new ExamQuestion();
+//        examQuestion.setQuestionId(examChoiceQuestionId);
         ExamChoiceQuestionHistory examChoiceQuestionHistory=new ExamChoiceQuestionHistory();
         examChoiceQuestionHistory.setExamChoiceQuestionUserSelection(examChoiceQuestionUserSelection);
         examChoiceQuestionHistory.setUser(user);
-        examChoiceQuestionHistory.setExamQuestion(examQuestion);
+//        examChoiceQuestionHistory.setExamQuestion(examQuestion);
         i=examChoiceQuestionHistoryService.addExamChoiceQuestionHistory(examChoiceQuestionHistory);
         if(i!=0){
             return true;

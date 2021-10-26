@@ -5,7 +5,7 @@ public class ExamProgrammingQuestionHistory {
     private  String examProgrammingQuestionResult;
     private String examProgrammingQuestionCode;
 
-    private  ExamQuestion examQuestion;
+    private CompletionQuestion completionQuestion;
     private  User user;
 
 
@@ -48,12 +48,11 @@ public class ExamProgrammingQuestionHistory {
         this.user = user;
     }
 
-
-    public ExamQuestion getExamQuestion() {
-        return examQuestion;
+    public CompletionQuestion getCompletionQuestion() {
+        return completionQuestion;
     }
 
-    public void setExamQuestion(ExamQuestion examQuestion) {
-        this.examQuestion = examQuestion;
+    public void setCompletionQuestion(CompletionQuestion completionQuestion) {
+        this.completionQuestion = completionQuestion;
     }
 }

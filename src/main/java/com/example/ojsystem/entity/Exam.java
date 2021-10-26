@@ -13,7 +13,7 @@ public class Exam {
 
     private Group group;
     private User user;
-    private List<ExamQuestion> examQuestions;
+    private ExamQuestion examQuestion;
 
     public Exam() {
     }
@@ -85,12 +85,12 @@ public class Exam {
         this.examStatus = examStatus;
     }
 
-    public List<ExamQuestion> getExamQuestions() {
-        return examQuestions;
+    public ExamQuestion getExamQuestion() {
+        return examQuestion;
     }
 
-    public void setExamQuestions(List<ExamQuestion> examQuestions) {
-        this.examQuestions = examQuestions;
+    public void setExamQuestion(ExamQuestion examQuestion) {
+        this.examQuestion = examQuestion;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class Exam {
                 ", examLanguage='" + examLanguage + '\'' +
                 ", group=" + group +
                 ", user=" + user +
-                ", examQuestions=" + examQuestions +
+                ", examQuestion=" + examQuestion +
                 '}';
     }
 }

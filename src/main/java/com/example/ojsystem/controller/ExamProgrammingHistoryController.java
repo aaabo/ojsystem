@@ -35,9 +35,9 @@ public class ExamProgrammingHistoryController {
         User user=new User();
         user.setUserId(userId);
         ExamQuestion examQuestion=new ExamQuestion();
-        examQuestion.setQuestionId(examQuestionId);
+//        examQuestion.setQuestionId(examQuestionId);
         examProgrammingQuestionHistory.setUser(user);
-        examProgrammingQuestionHistory.setExamQuestion(examQuestion);
+//        examProgrammingQuestionHistory.setExamQuestion(examQuestion);
         examProgrammingQuestionHistory.setExamProgrammingQuestionCode(examProgrammingCode);
         i=examProgrammingQuestionHistoryService.addExamProgrammingQuestionHistory(examProgrammingQuestionHistory);
         if(i!=0){

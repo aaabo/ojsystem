@@ -21,8 +21,7 @@
     </resultMap>
 
     <select id="queryExamRankById" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
-       SELECT  user.userAccount,user.userId,user.userName,examhistory.examChoiceQuestionTotals,examhistory.examProgrammingTotals,examhistory.examCompletionQuestionTotals,examhistory.examChoiceQuestionTotals+examhistory.examProgrammingTotals+examhistory.examCompletionQuestionTotals as total FROM examhistory,user
-       where examhistory.examId =#{examId}  and user.userId=examhistory.userId order by total desc
+      select *  from usergroup left join user on usergroup.userId=user.userId left join examhistory on examhistory.userId=usergroup.userId left join exam on exam.groupId=usergroup.groupId where exam.examId=#{examId}
     </select>
     <select id="queryExamHistoryInfoByUserId" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
          SELECT  user.userId,user.userName,examhistory.examChoiceQuestionTotals,examhistory.examProgrammingTotals,exam.examId,exam.examName,
