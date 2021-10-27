@@ -18,18 +18,51 @@ public class ExamQuestionController {
     @Autowired
     ExamQuestionService examQuestionService;
     /**
-     * 根据考试id查询对应的题目信息
+     * 根据考试id查询对应全部的题目信息
      * 输入examId
      * 输出ExamQuestion
      */
     @RequestMapping(value="/queryExamQuestionByExamId",method = RequestMethod.POST)
-    public Object queryExamQuestionChoiceByExamId(HttpServletRequest request){
+    public Object queryExamQuestionByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         ExamQuestion examQuestion=new ExamQuestion();
         examQuestion.setChoiceQuestions(examQuestionService.queryExamQuestionChoiceByExamId(examId));
         examQuestion.setCompletionQuestions(examQuestionService.queryExamQuestionCompletionByExamId(examId));
         examQuestion.setExercises(examQuestionService.queryExamQuestionProgrammingByExamId(examId));
         return examQuestion;
+    }
+
+    /**
+     * 根据考试id查询对应考试选择题
+     * 输入examId
+     * 输出ExamQuestion
+     */
+    @RequestMapping(value="/queryExamQuestionChoiceByExamId",method = RequestMethod.POST)
+    public Object queryExamQuestionChoiceByExamId(HttpServletRequest request){
+        int examId=Integer.valueOf(request.getParameter("examId"));
+        return examQuestionService.queryExamQuestionChoiceByExamId(examId);
+    }
+
+    /**
+     * 根据考试id查询对应考试填空题
+     * 输入examId
+     * 输出ExamQuestion
+     */
+    @RequestMapping(value="/queryExamQuestionCompletionByExamId",method = RequestMethod.POST)
+    public Object queryExamQuestionCompletionByExamId(HttpServletRequest request){
+        int examId=Integer.valueOf(request.getParameter("examId"));
+        return examQuestionService.queryExamQuestionCompletionByExamId(examId);
+    }
+
+    /**
+     * 根据考试id查询对应考试编程题
+     * 输入examId
+     * 输出ExamQuestion
+     */
+    @RequestMapping(value="/queryExamQuestionProgrammingByExamId",method = RequestMethod.POST)
+    public Object queryExamQuestionProgrammingByExamId(HttpServletRequest request){
+        int examId=Integer.valueOf(request.getParameter("examId"));
+        return  examQuestionService.queryExamQuestionProgrammingByExamId(examId);
     }
 
     /**
