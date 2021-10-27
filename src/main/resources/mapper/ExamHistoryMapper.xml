@@ -22,7 +22,7 @@
     </resultMap>
 
     <select id="queryExamRankById" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
-     select * from user,usergroup left join exam on exam.groupId=usergroup.groupId left join examhistory on usergroup.userId=examhistory.userId and examhistory.examId=exam.examId   where exam.examId=#{examId} and user.userId=usergroup.userId
+     select * from user,usergroup left join exam on exam.groupId=usergroup.groupId left join examhistory on usergroup.userId=examhistory.userId and examhistory.examId=exam.examId   where exam.examId=#{examId} and user.userId=usergroup.userId order by examhistory.examCompletionQuestionTotals+examhistory.examChoiceQuestionTotals+examhistory.examProgrammingTotals DESC
     </select>
     <select id="queryExamHistoryInfoByUserId" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
          SELECT  user.userId,user.userName,examhistory.examChoiceQuestionTotals,examhistory.examProgrammingTotals,exam.examId,exam.examName,
