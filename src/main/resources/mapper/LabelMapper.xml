@@ -27,6 +27,9 @@
     <select id="queryLabelSecondPointInfo" resultType="com.example.ojsystem.entity.Label">
         select * from label where firstPoint=#{firstPoint}
     </select>
+    <select id="queryLabelIdBySecondPoint" resultType="java.lang.Integer">
+        select labelId from label where secondPoint=#{secondPoint}
+    </select>
 
 
 </mapper>

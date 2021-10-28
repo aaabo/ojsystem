@@ -2,7 +2,9 @@ package com.example.ojsystem.service.impl;
 
 import com.example.ojsystem.dao.ExerciseLabelMapper;
 import com.example.ojsystem.dao.ExerciseMapper;
+import com.example.ojsystem.dao.LabelMapper;
 import com.example.ojsystem.entity.Exercise;
+import com.example.ojsystem.entity.Label;
 import com.example.ojsystem.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class ExerciseServiceImpl implements ExerciseService{
     ExerciseMapper exerciseMapper;
     @Autowired
     ExerciseLabelMapper exerciseLabelMapper;
+    @Autowired
+    LabelMapper labelMapper;
     /**
      * 根据添加习题信息到数据库
      * 输入习题信息
@@ -78,5 +82,19 @@ public class ExerciseServiceImpl implements ExerciseService{
      */
     public Exercise queryExerciseDetailsInfoByExerciseId(int exerciseId) {
         return exerciseMapper.queryExerciseDetailsInfoByExerciseId(exerciseId);
+    }
+
+    /**
+     * 根据习题标签查询对应的习题信息
+     * 输入labelIds
+     * 输出List<Exercise>
+     *
+     * @param labels
+     */
+    public List<Exercise> queryExerciseInfoByFirstPoint(List<Label> labels) {
+        for(int i=0;i<labels.size();i++){
+            labels.get(i).setLabelId(labelMapper.queryLabelIdBySecondPoint(labels.get(i).getSecondPoint()));
+        }
+        return exerciseMapper.queryExerciseInfoByLabelIds(labels,labels.size());
     }
 }

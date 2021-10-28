@@ -38,6 +38,14 @@
     <select id="queryExerciseDetailsInfoByExerciseId" resultType="com.example.ojsystem.entity.Exercise">
         select * from exercise where exerciseId=#{exerciseId}
     </select>
+    <select id="queryExerciseInfoByLabelIds" resultType="com.example.ojsystem.entity.Exercise">
+        SELECT * FROM exerciselabel WHERE labelId in
+        <foreach collection="labels" index="index" item="item" open="(" separator="," close=")">
+            #{item.labelId}
+        </foreach>
+        GROUP BY exerciseId
+        HAVING COUNT( DISTINCT labelId ) = #{number} ;
+    </select>
 
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.example.ojsystem.service;
 
 import com.example.ojsystem.entity.Exercise;
+import com.example.ojsystem.entity.Label;
 
 import java.util.List;
 
@@ -41,6 +42,14 @@ public interface ExerciseService {
      *
      */
     public Exercise queryExerciseDetailsInfoByExerciseId(int exerciseId);
+
+    /**
+     * 根据习题标签查询对应的习题信息
+     * 输入labelIds
+     * 输出List<Exercise>
+     *
+     */
+    public List<Exercise> queryExerciseInfoByFirstPoint(List<Label> labels);
 
 
 }

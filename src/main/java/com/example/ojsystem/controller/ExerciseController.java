@@ -143,4 +143,23 @@ public class ExerciseController {
     public Object queryExerciseDetailsInfoByExerciseId(HttpServletRequest request){
         return exerciseService.queryExerciseDetailsInfoByExerciseId(Integer.valueOf(request.getParameter("exerciseId")));
     }
+
+
+    /**
+     * 根据习题标签查询对应的习题信息
+     * 输入labelIds
+     * 输出List<Exercise>
+     *
+     */
+    @RequestMapping(value="/queryExerciseInfoByFirstPoint",method = RequestMethod.GET)
+    public Object queryExerciseInfoByFirstPoint(HttpServletRequest request){
+        List labels =new ArrayList<List>();
+        Label label=new Label();
+        label.setSecondPoint("数组的操作改");
+        Label label2=new Label();
+        label2.setSecondPoint("一维数组");
+        labels.add(label);
+        labels.add(label2);
+        return exerciseService.queryExerciseInfoByFirstPoint(labels);
+    }
 }

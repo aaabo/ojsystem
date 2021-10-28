@@ -72,4 +72,15 @@ public class LabelServiceImpl implements LabelService {
     public int deleteLabelInfo(int labelId) {
         return labelMapper.deleteLabelInfo(labelId);
     }
+
+    /**
+     * 根据secondPoint查询对应的labelId
+     * 输入secondPoint
+     * 成功输出labelId
+     *
+     * @param secondPoint
+     */
+    public int queryLabelIdBySecondPoint(String secondPoint) {
+        return labelMapper.queryLabelIdBySecondPoint(secondPoint);
+    }
 }

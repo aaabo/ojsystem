@@ -49,4 +49,11 @@ public interface LabelMapper {
      * 成功输出true 失败输出false
      */
     public int deleteLabelInfo(@Param("labelId") int labelId);
+
+    /**
+     * 根据secondPoint查询对应的labelId
+     * 输入secondPoint
+     * 成功输出labelId
+     */
+    public int queryLabelIdBySecondPoint(String secondPoint);
 }
