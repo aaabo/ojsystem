@@ -1,9 +1,6 @@
 package com.example.ojsystem.dao;
 
-import com.example.ojsystem.entity.ChoiceQuestion;
-import com.example.ojsystem.entity.CompletionQuestion;
-import com.example.ojsystem.entity.ExamQuestion;
-import com.example.ojsystem.entity.Exercise;
+import com.example.ojsystem.entity.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -46,4 +43,18 @@ public interface ExamQuestionMapper {
      * 输出int
      */
     public int deleteExamQuestion(@Param("examId") int examId,@Param("questionId")int questionId,@Param("examQuestionType")String examQuestionType);
+
+    /**
+     * 根据考试编号查询编程题的各题平均分
+     * 输入examId
+     * 输出List<ExamProgrammingResultScoreTool>
+     */
+    public List<ExamProgrammingResultScoreTool> queryExamProgrammingResultScoreByExamId(@Param("examId") int examId);
+
+    /**
+     * 根据考试编号查询考试结果的各个分数段
+     * 输入examId
+     * 输出UserExamScoreEachSegmentNumber
+     */
+    public UserExamScoreEachSegmentNumber queryUserExamScoreEachSegmentNumberByExamId(@Param("examId") int examId);
 }

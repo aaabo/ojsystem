@@ -14,14 +14,16 @@ public class ExamChoiceQuestionHistoryImpl implements ExamChoiceQuestionHistoryS
     ExamChoiceQuestionHistoryMapper examChoiceQuestionHistoryMapper;
 
     /**
-     * 根据用户id 选择题id 用户选项添加用户选择题记录
-     * 输入ExamChoiceQuestionHistory
+     * 根据用户id 考试题目id 用户选项添加用户选择题记录
+     * 输入userId,examQuestionId,examChoiceQuestionUserSelection
      * 输出int
      *
-     * @param examChoiceQuestionHistory
+     * @param userId
+     * @param examQuestionId
+     * @param examChoiceQuestionUserSelection
      */
-    public int addExamChoiceQuestionHistory(ExamChoiceQuestionHistory examChoiceQuestionHistory) {
-        return examChoiceQuestionHistoryMapper.addExamChoiceQuestionHistory(examChoiceQuestionHistory);
+    public int addExamChoiceQuestionHistory(int userId,int examQuestionId,String examChoiceQuestionUserSelection) {
+        return examChoiceQuestionHistoryMapper.addExamChoiceQuestionHistory(userId,examQuestionId,examChoiceQuestionUserSelection);
     }
 
 

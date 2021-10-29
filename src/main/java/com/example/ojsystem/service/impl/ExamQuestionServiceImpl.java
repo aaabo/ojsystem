@@ -1,10 +1,7 @@
 package com.example.ojsystem.service.impl;
 
 import com.example.ojsystem.dao.ExamQuestionMapper;
-import com.example.ojsystem.entity.ChoiceQuestion;
-import com.example.ojsystem.entity.CompletionQuestion;
-import com.example.ojsystem.entity.ExamQuestion;
-import com.example.ojsystem.entity.Exercise;
+import com.example.ojsystem.entity.*;
 import com.example.ojsystem.service.ExamQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,5 +69,27 @@ public class ExamQuestionServiceImpl implements ExamQuestionService{
      */
     public int deleteExamQuestion(int examId, int questionId, String examQuestionType) {
         return examQuestionMapper.deleteExamQuestion(examId,questionId,examQuestionType);
+    }
+
+    /**
+     * 根据考试编号查询编程题的各题平均分
+     * 输入examId
+     * 输出List<ExamProgrammingResultScoreTool>
+     *
+     * @param examId
+     */
+    public List<ExamProgrammingResultScoreTool> queryExamProgrammingResultScoreByExamId(int examId) {
+        return examQuestionMapper.queryExamProgrammingResultScoreByExamId(examId);
+    }
+
+    /**
+     * 根据考试编号查询考试结果的各个分数段
+     * 输入examId
+     * 输出UserExamScoreEachSegmentNumber
+     *
+     * @param examId
+     */
+    public UserExamScoreEachSegmentNumber queryUserExamScoreEachSegmentNumberByExamId(int examId) {
+        return examQuestionMapper.queryUserExamScoreEachSegmentNumberByExamId(examId);
     }
 }

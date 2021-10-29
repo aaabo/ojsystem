@@ -4,8 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.ojsystem.entity.Exam;
+import com.example.ojsystem.entity.ExamProgrammingResultScoreTool;
 import com.example.ojsystem.entity.ExamQuestion;
+import com.example.ojsystem.entity.UserExamScoreEachSegmentNumber;
 import com.example.ojsystem.service.ExamQuestionService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -133,5 +136,27 @@ public class ExamQuestionController {
         else{
             return false;
         }
+    }
+
+    /**
+     * 根据考试编号查询编程题的各题平均分
+     * 输入examId
+     * 输出List<ExamProgrammingResultScoreTool>
+     */
+    @RequestMapping(value="/queryExamProgrammingResultScoreByExamId",method = RequestMethod.POST)
+    public Object queryExamProgrammingResultScoreByExamId(HttpServletRequest request){
+        int examId=Integer.valueOf(request.getParameter("examId"));
+        return  examQuestionService.queryExamProgrammingResultScoreByExamId(examId);
+    }
+
+    /**
+     * 根据考试编号查询考试结果的各个分数段
+     * 输入examId
+     * 输出UserExamScoreEachSegmentNumber
+     */
+    @RequestMapping(value="/queryUserExamScoreEachSegmentNumberByExamId",method = RequestMethod.POST)
+    public Object queryUserExamScoreEachSegmentNumberByExamId(HttpServletRequest request){
+        int examId=Integer.valueOf(request.getParameter("examId"));
+        return  examQuestionService.queryUserExamScoreEachSegmentNumberByExamId(examId);
     }
 }

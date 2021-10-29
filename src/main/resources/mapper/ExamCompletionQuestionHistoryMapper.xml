@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.ExamCompletionQuestionHistoryMapper">
+
+    <resultMap id="BaseExamCompletionQuestionHistoryResultMap" type="com.example.ojsystem.entity.ExamCompletionQuestionHistory">
+        <id column="examCompletionQuestionHistoryId" jdbcType="INTEGER" property="examCompletionQuestionHistoryId" />
+        <result column="examCompletionQuestionResultScore" jdbcType="VARCHAR" property="examCompletionQuestionResultScore" />
+        <association property="user" javaType="com.example.ojsystem.entity.User">
+            <id column="userId" jdbcType="BIGINT" property="userId" />
+            <result column="userName" jdbcType="VARCHAR" property="userName" />
+        </association>
+        <collection  property="examCompletionQuestionAnswerHistories" ofType="com.example.ojsystem.entity.ExamCompletionQuestionAnswerHistory">
+            <id column="examCompletionQuestionAnswerHistoryId" jdbcType="INTEGER" property="examCompletionQuestionAnswerHistoryId" />
+            <result column="examCompletionQuestionUserAnswer" jdbcType="VARCHAR" property="examCompletionQuestionUserAnswer" />
+            <result column="examCompletionQuestionUserAnswerNumber" jdbcType="INTEGER" property="examCompletionQuestionUserAnswerNumber" />
+        </collection >
+    </resultMap>
+    <insert id="addExamCompletionQuestionHistoryInfo">
+
+    </insert>
+
+
+</mapper>
