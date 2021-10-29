@@ -1,5 +1,6 @@
 package com.example.ojsystem.dao;
 
+import com.example.ojsystem.entity.ExamQuestionHistory;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,6 @@ public interface ExamCompletionQuestionHistoryMapper {
      * 输入userId,examQuestionId
      * 输出int
      */
-    public int addExamCompletionQuestionHistoryInfo(@Param("userId") int userId,@Param("examQuestionId") int examQuestionId);
+    public int addExamCompletionQuestionHistoryInfo(@Param("userId") int userId,@Param("examQuestionHistory")ExamQuestionHistory examQuestionHistory);
 
 }

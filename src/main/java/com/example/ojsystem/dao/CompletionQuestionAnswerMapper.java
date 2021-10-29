@@ -23,4 +23,11 @@ public interface CompletionQuestionAnswerMapper {
      * 输出int
      */
     public int deleteCompletionQuestionAnswerInfoByCompletionQuestionId(@Param("completionQuestionId") int completionQuestionId);
+
+    /**
+     * 根据填空题编号查询对应的答案信息
+     * 输入completionQuestionId
+     * 输出Answer
+     */
+    public String queryCompletionQuestionAnswerInfoByCompletionQuestionId(@Param("completionQuestionId") int completionQuestionId,@Param("completionQuestionAnswerNumber") int completionQuestionAnswerNumber);
 }

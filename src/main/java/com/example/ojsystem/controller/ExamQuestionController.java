@@ -103,11 +103,16 @@ public class ExamQuestionController {
     public Object addExamQuestions(HttpServletRequest request){
         String addExamQuestions = request.getParameter("addExamQuestions");
         JSONArray jsonArray=JSONArray.parseArray(addExamQuestions);//把前台接收的string数组转化为json数组
+//        System.out.println(jsonArray);
         int i=0;
         for(int o=0;o<jsonArray.size();o++){
             JSONObject jsonObject=(JSONObject)jsonArray.get(o);
-            if(i!=0){
-                i=examQuestionService.addExamQuestion((Integer)jsonObject.get("questionId"),(Integer) jsonObject.get("examId"),(String)jsonObject.get("examQuestion"));
+            if(o==0){
+                i=examQuestionService.addExamQuestion((Integer)jsonObject.get("examId"),(Integer) jsonObject.get("questionId"),(String)jsonObject.get("examQuestion"));
+            }else{
+                if(i!=0){
+                    i=examQuestionService.addExamQuestion((Integer)jsonObject.get("examId"),(Integer) jsonObject.get("questionId"),(String)jsonObject.get("examQuestion"));
+                }
             }
         }
         if(i!=0){

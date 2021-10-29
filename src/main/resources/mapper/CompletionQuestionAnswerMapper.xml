@@ -15,6 +15,9 @@
     <delete id="deleteCompletionQuestionAnswerInfoByCompletionQuestionId">
         delete from completionquestionanswer where completionQuestionId=#{completionQuestionId}
     </delete>
+    <select id="queryCompletionQuestionAnswerInfoByCompletionQuestionId" resultType="java.lang.String">
+        select completionQuestionAnswerContent from completionquestionanswer where completionQuestionId=#{completionQuestionId} and completionQuestionAnswerNumber=#{completionQuestionAnswerNumber}
+    </select>
 
 
 </mapper>

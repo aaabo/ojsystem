@@ -6,7 +6,7 @@
 
     <resultMap id="BaseExamCompletionQuestionHistoryResultMap" type="com.example.ojsystem.entity.ExamCompletionQuestionHistory">
         <id column="examCompletionQuestionHistoryId" jdbcType="INTEGER" property="examCompletionQuestionHistoryId" />
-        <result column="examCompletionQuestionResultScore" jdbcType="VARCHAR" property="examCompletionQuestionResultScore" />
+        <result column="examCompletionQuestionResultScore" jdbcType="REAL" property="examCompletionQuestionResultScore" />
         <association property="user" javaType="com.example.ojsystem.entity.User">
             <id column="userId" jdbcType="BIGINT" property="userId" />
             <result column="userName" jdbcType="VARCHAR" property="userName" />
@@ -17,8 +17,8 @@
             <result column="examCompletionQuestionUserAnswerNumber" jdbcType="INTEGER" property="examCompletionQuestionUserAnswerNumber" />
         </collection >
     </resultMap>
-    <insert id="addExamCompletionQuestionHistoryInfo">
-
+    <insert id="addExamCompletionQuestionHistoryInfo"  useGeneratedKeys="true" keyColumn="examCompletionQuestionHistoryId" keyProperty="examQuestionHistory.id">
+        insert into examcompletionquestionhistory(userId,examQuestionId,examCompletionQuestionResultScore) values(#{userId},#{examQuestionHistory.examQuestionId},#{examQuestionHistory.score})
     </insert>
 
 

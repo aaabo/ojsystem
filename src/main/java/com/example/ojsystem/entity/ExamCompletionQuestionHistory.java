@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ExamCompletionQuestionHistory {
     private  int examCompletionQuestionHistoryId;
-    private int examCompletionQuestionResultScore;
+    private Float examCompletionQuestionResultScore;
 
     private User user;
     private List<ExamCompletionQuestionAnswerHistory> examCompletionQuestionAnswerHistories;
@@ -17,11 +17,11 @@ public class ExamCompletionQuestionHistory {
         this.examCompletionQuestionHistoryId = examCompletionQuestionHistoryId;
     }
 
-    public int getExamCompletionQuestionResultScore() {
+    public Float getExamCompletionQuestionResultScore() {
         return examCompletionQuestionResultScore;
     }
 
-    public void setExamCompletionQuestionResultScore(int examCompletionQuestionResultScore) {
+    public void setExamCompletionQuestionResultScore(Float examCompletionQuestionResultScore) {
         this.examCompletionQuestionResultScore = examCompletionQuestionResultScore;
     }
 
