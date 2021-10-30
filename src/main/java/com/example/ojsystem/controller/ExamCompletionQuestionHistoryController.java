@@ -1,5 +1,7 @@
 package com.example.ojsystem.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.example.ojsystem.entity.ExamCompletionQuestionAnswerHistory;
 import com.example.ojsystem.entity.ExamCompletionQuestionHistory;
 import com.example.ojsystem.entity.ExamQuestionHistory;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +29,15 @@ public class ExamCompletionQuestionHistoryController {
      * 输入userId,examQuestionId
      * 输出int
      */
-    @RequestMapping(value="/addExamCompletionQuestionHistoryInfo",method = RequestMethod.GET)
+    @RequestMapping(value="/addExamCompletionQuestionHistoryInfo",method = RequestMethod.POST)
     public Object addExamCompletionQuestionHistoryInfo(HttpServletRequest request){
-        List<ExamQuestionHistory> examCompletionQuestionHistories=new ArrayList<ExamQuestionHistory>();
-
-        int userId=1;
+        List<ExamQuestionHistory> examQuestionHistories=new ArrayList<ExamQuestionHistory>();
+        String addExamQuestionHistories = request.getParameter("addExamQuestionHistories");
+        examQuestionHistories= JSON.parseArray(addExamQuestionHistories,ExamQuestionHistory.class);//把前台接收的string数组转化为json数组
+        HttpSession session=request.getSession();
+        int userId=(Integer)session.getAttribute("userId");
         int i=0;
-        i=examCompletionQuestionHistoryService.addExamCompletionQuestionHistoryInfo(examCompletionQuestionHistories,userId);
+        i=examCompletionQuestionHistoryService.addExamCompletionQuestionHistoryInfo(examQuestionHistories,userId);
         if(i!=0){
             return true;
         }

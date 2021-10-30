@@ -7,11 +7,25 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExamProgrammingQuestionHistoryMapper {
     /**
-     * 根据学生id和考试编程信息添加考试编程题记录
+     * 提交的编程题信息添加考试编程题记录
      * 输入examProgrammingHistory
      * 输出int
      */
     public int addExamProgrammingQuestionHistory(@Param("examProgrammingQuestionHistory") ExamProgrammingQuestionHistory examProgrammingQuestionHistory);
 
+    /**
+     * 查看用户是否提交过考试编程题记录
+     * 输入examQuestionId,userId
+     * 输出examProgrammingQuestionId
+     */
+    public int queryExamProgrammingQuestionHistoryByExamQuestionIdAndUserId(@Param("examQuestionId") int examQuestionId,@Param("userId") int userId);
+
+
+    /**
+     * 提交的编程题信息修改考试编程题记录
+     * 输入examProgrammingHistory
+     * 输出int
+     */
+    public int modifyExamProgrammingQuestionHistoryByExamProgrammingQuestionId(@Param("examProgrammingQuestionHistory") ExamProgrammingQuestionHistory examProgrammingQuestionHistory);
 
 }

@@ -95,6 +95,9 @@ where examquestion.examQuestionId=examprogrammingquestionhistory.examQuestionId 
             sum(case when examChoiceQuestionTotals+examCompletionQuestionTotals+examProgrammingTotals &gt;=90 and examChoiceQuestionTotals+examCompletionQuestionTotals+examProgrammingTotals &lt;=100 then 1 else 0 end ) as 'SegmentNumber5'
             from examhistory where examId=#{examId}
     </select>
+    <select id="queryExerciseAnswerInfoByExamQuestionId" resultType="com.example.ojsystem.entity.ExerciseAnswer">
+       select * from examquestion,exercise,exerciseanswer where examquestion.questionId=exercise.exerciseId and exercise.exerciseId=exerciseanswer.exerciseId and examquestion.examQuestionId=#{examQuestionId}
+    </select>
 
 
 </mapper>

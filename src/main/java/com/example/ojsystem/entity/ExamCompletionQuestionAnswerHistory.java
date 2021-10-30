@@ -28,4 +28,13 @@ public class ExamCompletionQuestionAnswerHistory {
     public void setExamCompletionQuestionUserAnswerNumber(int examCompletionQuestionUserAnswerNumber) {
         this.examCompletionQuestionUserAnswerNumber = examCompletionQuestionUserAnswerNumber;
     }
+
+    @Override
+    public String toString() {
+        return "ExamCompletionQuestionAnswerHistory{" +
+                "examCompletionQuestionAnswerHistoryId=" + examCompletionQuestionAnswerHistoryId +
+                ", examCompletionQuestionUserAnswer='" + examCompletionQuestionUserAnswer + '\'' +
+                ", examCompletionQuestionUserAnswerNumber=" + examCompletionQuestionUserAnswerNumber +
+                '}';
+    }
 }

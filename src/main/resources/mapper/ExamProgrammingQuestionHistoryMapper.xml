@@ -14,11 +14,17 @@
 
 
     <insert id="addExamProgrammingQuestionHistory" parameterType="com.example.ojsystem.entity.ExamProgrammingQuestionHistory">
-         insert into examprogrammingquestionhistory(examQuestionId,userId,examProgrammingCode)
-          values(#{examProgrammingQuestionHistory.examQuestion.examQuestionId},
-          #{examProgrammingQuestionHistory.user.userId},#{examProgrammingQuestionHistory.examProgrammingCode})
+         insert into examprogrammingquestionhistory(examQuestionId,userId,examProgrammingQuestionResult,examProgrammingCode)
+          values(#{examProgrammingQuestionHistory.examQuestion.examQuestionId},#{examProgrammingQuestionHistory.user.userId},
+          #{examProgrammingQuestionHistory.examProgrammingQuestionResult},#{examProgrammingQuestionHistory.examProgrammingCode})
     </insert>
-
+    <update id="modifyExamProgrammingQuestionHistoryByExamProgrammingQuestionId">
+          update examprogrammingquestionhistory set examProgrammingQuestionResult=#{examProgrammingQuestionHistory.examProgrammingQuestionResult},examProgrammingQuestionResult=#{examProgrammingQuestionHistory.examProgrammingQuestionResult}
+          where examProgrammingQuestionHistoryId=#{examProgrammingQuestionHistory.examProgrammingQuestionHistoryId}
+    </update>
+    <select id="queryExamProgrammingQuestionHistoryByExamQuestionIdAndUserId" resultType="java.lang.Integer">
+        select examProgrammingQuestionHistoryId from examprogrammingquestionhistory where examQuestionId=#{examQuestionId} and userId=#{userId}
+    </select>
 
 
 </mapper>

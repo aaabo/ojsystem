@@ -17,8 +17,8 @@
             <result column="examCompletionQuestionUserAnswerNumber" jdbcType="INTEGER" property="examCompletionQuestionUserAnswerNumber" />
         </collection >
     </resultMap>
-    <insert id="addExamCompletionQuestionHistoryInfo"  useGeneratedKeys="true" keyColumn="examCompletionQuestionHistoryId" keyProperty="examQuestionHistory.id">
-        insert into examcompletionquestionhistory(userId,examQuestionId,examCompletionQuestionResultScore) values(#{userId},#{examQuestionHistory.examQuestionId},#{examQuestionHistory.score})
+    <insert id="addExamCompletionQuestionHistoryInfo"  useGeneratedKeys="true" keyColumn="examCompletionQuestionHistoryId" keyProperty="examCompletionQuestionHistory.examCompletionQuestionHistoryId">
+        insert into examcompletionquestionhistory(userId,examQuestionId,examCompletionQuestionResultScore) values(#{userId},#{examQuestionId},#{examCompletionQuestionHistory.examCompletionQuestionResultScore})
     </insert>
 
 

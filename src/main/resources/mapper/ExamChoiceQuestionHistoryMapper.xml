@@ -33,7 +33,7 @@
 
     <insert id="addExamChoiceQuestionHistory" parameterType="com.example.ojsystem.entity.ExamChoiceQuestionHistory">
           insert into examchoicequestionhistory(userId,examQuestionId,examChoiceQuestionUserSelection,examChoiceQuestionResultScore)
-          values(#{userId},#{examQuestionId},#{examChoiceQuestionUserSelection},0)
+          values(#{userId},#{examQuestionId},#{examChoiceQuestionUserSelection},#{examChoiceQuestionResultScore})
     </insert>
 
 

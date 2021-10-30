@@ -57,4 +57,11 @@ public interface ExamQuestionMapper {
      * 输出UserExamScoreEachSegmentNumber
      */
     public UserExamScoreEachSegmentNumber queryUserExamScoreEachSegmentNumberByExamId(@Param("examId") int examId);
+
+    /**
+     * 根据考试题目编号查询编程题答案
+     * 输入examQuestionId
+     * 输出List<ExerciseAnswer>
+     */
+    public List<ExerciseAnswer> queryExerciseAnswerInfoByExamQuestionId(@Param("examQuestionId") int examQuestionId);
 }

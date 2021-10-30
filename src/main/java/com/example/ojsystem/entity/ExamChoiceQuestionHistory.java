@@ -3,6 +3,8 @@ package com.example.ojsystem.entity;
 public class ExamChoiceQuestionHistory {
     private int examChoiceQuestionHistoryId;
     private String examChoiceQuestionUserSelection;
+    private Float examChoiceQuestionResultScore;
+
 
     private ChoiceQuestion choiceQuestion;
     private User user;
@@ -39,5 +41,13 @@ public class ExamChoiceQuestionHistory {
 
     public void setChoiceQuestion(ChoiceQuestion choiceQuestion) {
         this.choiceQuestion = choiceQuestion;
+    }
+
+    public Float getExamChoiceQuestionResultScore() {
+        return examChoiceQuestionResultScore;
+    }
+
+    public void setExamChoiceQuestionResultScore(Float examChoiceQuestionResultScore) {
+        this.examChoiceQuestionResultScore = examChoiceQuestionResultScore;
     }
 }
