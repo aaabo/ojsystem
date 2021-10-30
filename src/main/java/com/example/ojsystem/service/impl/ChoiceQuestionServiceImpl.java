@@ -93,4 +93,15 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
     public ChoiceQuestion queryChoiceQuestionInfoByChoiceQuestionId(int choiceQuestionId) {
         return choiceQuestionMapper.queryChoiceQuestionInfoByChoiceQuestionId(choiceQuestionId);
     }
+
+    /**
+     * 根据输入的考试编号查询考试选择题信息
+     * 输入examId
+     * 输出List<ChoiceQuestion>
+     *
+     * @param examId
+     */
+    public List<ChoiceQuestion> queryChoiceQuestionInfoByExamId(int examId) {
+        return choiceQuestionMapper.queryChoiceQuestionInfoByExamId(examId);
+    }
 }

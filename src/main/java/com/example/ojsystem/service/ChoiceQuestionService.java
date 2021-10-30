@@ -47,4 +47,11 @@ public interface ChoiceQuestionService {
      * 输出ChoiceQuestion
      */
     public ChoiceQuestion queryChoiceQuestionInfoByChoiceQuestionId(int choiceQuestionId);
+
+    /**
+     * 根据输入的考试编号查询考试选择题信息
+     * 输入examId
+     * 输出List<ChoiceQuestion>
+     */
+    public List<ChoiceQuestion> queryChoiceQuestionInfoByExamId(int examId);
 }

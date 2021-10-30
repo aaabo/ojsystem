@@ -129,4 +129,14 @@ public class CompletionQuestionController {
         return completionQuestions2;
     }
 
+    /**
+     * 根据输入的考试编号查询考试填空题信息
+     * 输入examId
+     * 输出List<CompletionQuestion>
+     */
+    @RequestMapping(value="/queryCompletionQuestionInfoByExamId",method = RequestMethod.POST)
+    public Object queryCompletionQuestionInfoByExamId(HttpServletRequest request){
+        return completionQuestionService.queryCompletionQuestionInfoByExamId(Integer.valueOf(request.getParameter("examId")));
+    }
+
 }

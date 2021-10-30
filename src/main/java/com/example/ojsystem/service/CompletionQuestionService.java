@@ -1,5 +1,6 @@
 package com.example.ojsystem.service;
 
+import com.example.ojsystem.entity.ChoiceQuestion;
 import com.example.ojsystem.entity.CompletionQuestion;
 
 import java.util.List;
@@ -46,4 +47,11 @@ public interface CompletionQuestionService {
      * 输出List<ChoiceQuestion>
      */
     public CompletionQuestion queryCompletionQuestionIdByCompletionQuestionId(int completionQuestionId);
+
+    /**
+     * 根据输入的考试编号查询考试填空题信息
+     * 输入examId
+     * 输出List<CompletionQuestion>
+     */
+    public List<CompletionQuestion> queryCompletionQuestionInfoByExamId(int examId);
 }

@@ -120,4 +120,15 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
         return completionQuestionMapper.queryCompletionQuestionIdByCompletionQuestionId(completionQuestionId);
     }
 
+    /**
+     * 根据输入的考试编号查询考试填空题信息
+     * 输入examId
+     * 输出List<CompletionQuestion>
+     *
+     * @param examId
+     */
+    public List<CompletionQuestion> queryCompletionQuestionInfoByExamId(int examId) {
+        return completionQuestionMapper.queryCompletionQuestionInfoByExamId(examId);
+    }
+
 }

@@ -151,15 +151,10 @@ public class ExerciseController {
      * 输出List<Exercise>
      *
      */
-    @RequestMapping(value="/queryExerciseInfoByFirstPoint",method = RequestMethod.GET)
+    @RequestMapping(value="/queryExerciseInfoByFirstPoint",method = RequestMethod.POST)
     public Object queryExerciseInfoByFirstPoint(HttpServletRequest request){
-        List labels =new ArrayList<List>();
-        Label label=new Label();
-        label.setSecondPoint("数组的操作改");
-        Label label2=new Label();
-        label2.setSecondPoint("一维数组");
-        labels.add(label);
-        labels.add(label2);
+        List labels =new ArrayList<Label>();
+        labels=JSON.parseArray(request.getParameter("labels"),Label.class);
         return exerciseService.queryExerciseInfoByFirstPoint(labels);
     }
 }

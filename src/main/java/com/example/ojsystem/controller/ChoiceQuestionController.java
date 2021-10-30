@@ -128,4 +128,17 @@ public class ChoiceQuestionController {
         }
         return  choiceQuestions2;
     }
+
+
+
+
+    /**
+     * 根据输入的考试编号查询考试选择题信息
+     * 输入examId
+     * 输出List<ChoiceQuestion>
+     */
+    @RequestMapping(value="/queryChoiceQuestionInfoByExamId",method = RequestMethod.POST)
+    public Object queryChoiceQuestionInfoByExamId(HttpServletRequest request){
+        return choiceQuestionService.queryChoiceQuestionInfoByExamId(Integer.valueOf(request.getParameter("examId")));
+    }
 }

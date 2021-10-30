@@ -9,6 +9,7 @@ import com.example.ojsystem.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -92,9 +93,15 @@ public class ExerciseServiceImpl implements ExerciseService{
      * @param labels
      */
     public List<Exercise> queryExerciseInfoByFirstPoint(List<Label> labels) {
+        List<Exercise> exercises=new ArrayList<Exercise>();
+        List<Exercise> exercises2=new ArrayList<Exercise>();
         for(int i=0;i<labels.size();i++){
             labels.get(i).setLabelId(labelMapper.queryLabelIdBySecondPoint(labels.get(i).getSecondPoint()));
         }
-        return exerciseMapper.queryExerciseInfoByLabelIds(labels,labels.size());
+        exercises=exerciseMapper.queryExerciseInfoByLabelIds(labels,labels.size());
+        for(int i=0;i<exercises.size();i++){
+            exercises2.add(exerciseMapper.queryExerciseDetailsInfoByExerciseId(exercises.get(i).getExerciseId()));
+        }
+        return exercises2;
     }
 }

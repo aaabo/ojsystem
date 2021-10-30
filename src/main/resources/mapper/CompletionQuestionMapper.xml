@@ -68,6 +68,9 @@
         select * from completionquestion,user,completionquestionlabel,questionlabel,completionquestionanswer where  completionquestion.completionQuestionId=completionquestionlabel.completionQuestionId and completionquestion.userId=user.userId
         and completionquestionlabel.questionLabelId=questionlabel.questionLabelId	and completionquestion.completionQuestionId=completionquestionanswer.completionQuestionId and completionquestion.completionQuestionId=#{completionQuestionId} order by completionquestion.completionQuestionId
     </select>
+    <select id="queryCompletionQuestionInfoByExamId" resultType="com.example.ojsystem.entity.CompletionQuestion">
+        select choiceQuestionId from examquestion,completionquestion where examquestion.examId=#{examId} and examquestion.examQuestionId=completionquestion.completionQuestionId and examquestion.examQuestionType='completionQuestion'
+    </select>
 
 
 </mapper>

@@ -95,4 +95,7 @@
         select * from choicequestion,choicequestionlabel,questionlabel,user where choicequestion.choiceQuestionId=choicequestionlabel.choiceQuestionId and choicequestion.userId=user.userId
         and choicequestionlabel.questionLabelId=questionlabel.questionLabelId and choicequestion.choiceQuestionId=#{choiceQuestionId}
     </select>
+    <select id="queryChoiceQuestionInfoByExamId" resultType="com.example.ojsystem.entity.ChoiceQuestion">
+        select choiceQuestionId from examquestion,choicequestion where examquestion.examId=#{examId} and examquestion.examQuestionId=choicequestion.choiceQuestionId and examquestion.examQuestionType='choiceQuestion'
+    </select>
 </mapper>
