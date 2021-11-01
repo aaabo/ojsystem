@@ -3,42 +3,41 @@ package com.example.ojsystem.entity;
 import java.util.List;
 
 public class ExamQuestion {
-    private Exam exam;
-    private List<ChoiceQuestion> choiceQuestions;
-    private List<CompletionQuestion> completionQuestions;
-    private List<Exercise> exercises;
+    private int examQuestionId;
+    private ChoiceQuestion choiceQuestion;
+    private CompletionQuestion completionQuestion;
+    private Exercise exercise;
 
-    public List<ChoiceQuestion> getChoiceQuestions() {
-        return choiceQuestions;
+
+    public int getExamQuestionId() {
+        return examQuestionId;
     }
 
-    public void setChoiceQuestions(List<ChoiceQuestion> choiceQuestions) {
-        this.choiceQuestions = choiceQuestions;
+    public void setExamQuestionId(int examQuestionId) {
+        this.examQuestionId = examQuestionId;
     }
 
-    public List<CompletionQuestion> getCompletionQuestions() {
-        return completionQuestions;
+    public ChoiceQuestion getChoiceQuestion() {
+        return choiceQuestion;
     }
 
-    public void setCompletionQuestions(List<CompletionQuestion> completionQuestions) {
-        this.completionQuestions = completionQuestions;
+    public void setChoiceQuestion(ChoiceQuestion choiceQuestion) {
+        this.choiceQuestion = choiceQuestion;
     }
 
-    public List<Exercise> getExercises() {
-        return exercises;
+    public CompletionQuestion getCompletionQuestion() {
+        return completionQuestion;
     }
 
-    public void setExercises(List<Exercise> exercises) {
-        this.exercises = exercises;
+    public void setCompletionQuestion(CompletionQuestion completionQuestion) {
+        this.completionQuestion = completionQuestion;
     }
 
-    public Exam getExam() {
-        return exam;
+    public Exercise getExercise() {
+        return exercise;
     }
 
-    public void setExam(Exam exam) {
-        this.exam = exam;
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
     }
-
-
 }

@@ -30,14 +30,14 @@ public class ExamQuestionController {
      * 输入examId
      * 输出ExamQuestion
      */
-    @RequestMapping(value="/queryExamQuestionByExamId",method = RequestMethod.POST)
+    @RequestMapping(value="/queryExamQuestionByExamId",method = RequestMethod.GET)
     public Object queryExamQuestionByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
-        ExamQuestion examQuestion=new ExamQuestion();
-        examQuestion.setChoiceQuestions(examQuestionService.queryExamQuestionChoiceByExamId(examId));
-        examQuestion.setCompletionQuestions(examQuestionService.queryExamQuestionCompletionByExamId(examId));
-        examQuestion.setExercises(examQuestionService.queryExamQuestionProgrammingByExamId(examId));
-        return examQuestion;
+        List<ExamQuestion> examQuestions=new ArrayList<ExamQuestion>();
+        examQuestions=examQuestionService.queryExamQuestionChoiceByExamId(examId);
+        examQuestions.addAll(examQuestionService.queryExamQuestionCompletionByExamId(examId));
+        examQuestions.addAll(examQuestionService.queryExamQuestionProgrammingByExamId(examId));
+        return examQuestions;
     }
 
     /**
@@ -60,6 +60,7 @@ public class ExamQuestionController {
     public Object queryExamQuestionCompletionByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         return examQuestionService.queryExamQuestionCompletionByExamId(examId);
+        
     }
 
     /**

@@ -26,6 +26,7 @@
         </collection>
     </resultMap>
     <resultMap id="BaseChoiceQuestionResultMap" type="com.example.ojsystem.entity.ChoiceQuestion">
+
         <id column="choiceQuestionId" jdbcType="BIGINT" property="choiceQuestionId" />
         <result column="choiceQuestionDescription" jdbcType="VARCHAR" property="choiceQuestionDescription" />
         <result column="choiceQuestionStemA" jdbcType="VARCHAR" property="choiceQuestionStemA" />
@@ -62,6 +63,15 @@
             <result column="secondPoint" jdbcType="VARCHAR" property="secondPoint" />
         </collection >
     </resultMap>
+    <resultMap id="BaseExamQuestionResultMap" type="com.example.ojsystem.entity.ExamQuestion">
+        <id column="examQuestionId" jdbcType="BIGINT" property="examQuestionId" />
+        <association property="choiceQuestion" resultMap="BaseChoiceQuestionResultMap">
+        </association>
+        <association property="completionQuestion" resultMap="BaseCompletionQuestionResultMap">
+        </association>
+        <association property="exercise" resultMap="BaseExerciseResultMap">
+        </association>
+    </resultMap>
     <resultMap id="BaseExamProgrammingResultScoreToolResultMap" type="com.example.ojsystem.entity.ExamProgrammingResultScoreTool">
         <result column="avgExamProgrammingScore" jdbcType="REAL" property="avgExamProgrammingScore" />
         <result column="exerciseTitle" jdbcType="VARCHAR" property="exerciseTitle" />
@@ -72,15 +82,15 @@
     <delete id="deleteExamQuestion">
         delete from examquestion where examId=#{examId} and questionId=#{questionId} and examQuestionType=#{examQuestionType}
     </delete>
-    <select id="queryExamQuestionChoiceByExamId" resultType="com.example.ojsystem.entity.ExamQuestion" resultMap="BaseChoiceQuestionResultMap">
+    <select id="queryExamQuestionChoiceByExamId" resultType="com.example.ojsystem.entity.ExamQuestion" resultMap="BaseExamQuestionResultMap">
        SELECT * FROM examquestion,choicequestion,questionlabel,choicequestionlabel where examquestion.questionId=choicequestion.choiceQuestionId
         and choicequestionlabel.choiceQuestionId=choicequestion.choiceQuestionId and choicequestionlabel.questionLabelId=questionlabel.questionLabelId  and examquestion.examId=#{examId} and examquestion.examQuestionType='choiceQuestion'
     </select>
-    <select id="queryExamQuestionCompletionByExamId" resultType="com.example.ojsystem.entity.CompletionQuestion"  resultMap="BaseCompletionQuestionResultMap">
+    <select id="queryExamQuestionCompletionByExamId" resultType="com.example.ojsystem.entity.CompletionQuestion"  resultMap="BaseExamQuestionResultMap">
           SELECT * FROM examquestion,completionquestion,questionlabel,completionquestionlabel,completionquestionanswer where examquestion.questionId=completionquestion.completionQuestionId
           and examquestion.examId=#{examId} and completionquestionlabel.completionQuestionId=completionquestion.completionQuestionId and completionquestionlabel.questionLabelId=questionlabel.questionLabelId and examquestion.examQuestionType='completionQuestion' and completionquestionanswer.completionQuestionId=completionQuestion.completionQuestionId
     </select>
-    <select id="queryExamQuestionProgrammingByExamId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
+    <select id="queryExamQuestionProgrammingByExamId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExamQuestionResultMap">
          SELECT * FROM examquestion,exercise where examquestion.questionId=exercise.exerciseId and examquestion.examId=#{examId} and examquestion.examQuestionType='programmingQuestion'
     </select>
     <select id="queryExamProgrammingResultScoreByExamId" resultType="com.example.ojsystem.entity.ExamProgrammingResultScoreTool" resultMap="BaseExamProgrammingResultScoreToolResultMap">

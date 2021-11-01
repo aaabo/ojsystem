@@ -15,33 +15,33 @@ public class ExamQuestionServiceImpl implements ExamQuestionService{
     /**
      * 根据考试id查询对应的选择题信息
      * 输入examId
-     * 输出List<ChoiceQuestion>
+     * 输出List<ExamQuestion>
      *
      * @param examId
      */
-    public List<ChoiceQuestion> queryExamQuestionChoiceByExamId(int examId) {
+    public List<ExamQuestion> queryExamQuestionChoiceByExamId(int examId) {
         return examQuestionMapper.queryExamQuestionChoiceByExamId(examId);
     }
 
     /**
      * 根据考试id查询对应的选择题信息
      * 输入examId
-     * 输出List<CompletionQuestion>
+     * 输出List<ExamQuestion>
      *
      * @param examId
      */
-    public List<CompletionQuestion> queryExamQuestionCompletionByExamId(int examId) {
+    public List<ExamQuestion> queryExamQuestionCompletionByExamId(int examId) {
         return examQuestionMapper.queryExamQuestionCompletionByExamId(examId);
     }
 
     /**
      * 根据考试id查询对应的编程题信息
      * 输入examId
-     * 输出List<Exercise>
+     * 输出List<ExamQuestion>
      *
      * @param examId
      */
-    public List<Exercise> queryExamQuestionProgrammingByExamId(int examId) {
+    public List<ExamQuestion> queryExamQuestionProgrammingByExamId(int examId) {
         return examQuestionMapper.queryExamQuestionProgrammingByExamId(examId);
     }
 

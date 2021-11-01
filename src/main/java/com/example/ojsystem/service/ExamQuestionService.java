@@ -8,23 +8,23 @@ public interface ExamQuestionService {
     /**
      * 根据考试id查询对应的选择题信息
      * 输入examId
-     * 输出List<ChoiceQuestion>
+     * 输出List<ExamQuestion>
      */
-    public List<ChoiceQuestion> queryExamQuestionChoiceByExamId(int examId);
+    public List<ExamQuestion> queryExamQuestionChoiceByExamId(int examId);
 
     /**
      * 根据考试id查询对应的选择题信息
      * 输入examId
-     * 输出List<CompletionQuestion>
+     * 输出List<ExamQuestion>
      */
-    public List<CompletionQuestion> queryExamQuestionCompletionByExamId(int examId);
+    public List<ExamQuestion> queryExamQuestionCompletionByExamId(int examId);
 
     /**
      * 根据考试id查询对应的编程题信息
      * 输入examId
-     * 输出List<Exercise>
+     * 输出List<ExamQuestion>
      */
-    public List<Exercise> queryExamQuestionProgrammingByExamId(int examId);
+    public List<ExamQuestion> queryExamQuestionProgrammingByExamId(int examId);
 
 
     /**
@@ -54,4 +54,6 @@ public interface ExamQuestionService {
      * 输出UserExamScoreEachSegmentNumber
      */
     public UserExamScoreEachSegmentNumber queryUserExamScoreEachSegmentNumberByExamId(int examId);
+
+
 }

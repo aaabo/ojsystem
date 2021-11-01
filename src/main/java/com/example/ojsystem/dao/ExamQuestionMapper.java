@@ -11,24 +11,24 @@ public interface ExamQuestionMapper {
     /**
      * 根据考试id查询对应的选择题信息
      * 输入examId
-     * 输出List<ChoiceQuestion>
+     * 输出List<ExamQuestion>
      */
-    public List<ChoiceQuestion> queryExamQuestionChoiceByExamId(@Param("examId") int examId);
+    public List<ExamQuestion> queryExamQuestionChoiceByExamId(@Param("examId") int examId);
 
     /**
      * 根据考试id查询对应的选择题信息
      * 输入examId
-     * 输出List<CompletionQuestion>
+     * 输出List<ExamQuestion>
      */
-    public List<CompletionQuestion> queryExamQuestionCompletionByExamId(@Param("examId") int examId);
+    public List<ExamQuestion> queryExamQuestionCompletionByExamId(@Param("examId") int examId);
 
 
     /**
      * 根据考试id查询对应的编程题信息
      * 输入examId
-     * 输出List<Exercise>
+     * 输出List<ExamQuestion>
      */
-    public List<Exercise> queryExamQuestionProgrammingByExamId(@Param("examId")int examId);
+    public List<ExamQuestion> queryExamQuestionProgrammingByExamId(@Param("examId")int examId);
 
     /**
      * 根据题目类型和题目编号添加考试题目
