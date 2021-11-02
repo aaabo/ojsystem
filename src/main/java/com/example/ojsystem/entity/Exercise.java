@@ -13,23 +13,13 @@ public class Exercise {
     private  String exerciseSampleInput;
     private  String exerciseSampleOutput;
 
-    private List<Label> labels;
+    private QuestionLabel questionLabel;
 
     public Exercise(){
 
     }
 
-    public Exercise(int exerciseId, String exerciseTitle, int exerciseCorrectTimes, int exerciseSubmitTimes, String exerciseDescription, String exerciseInput, String exerciseOutPut, String exerciseSampleInput, String exerciseSampleOutput) {
-        this.exerciseId = exerciseId;
-        this.exerciseTitle = exerciseTitle;
-        this.exerciseCorrectTimes = exerciseCorrectTimes;
-        this.exerciseSubmitTimes = exerciseSubmitTimes;
-        this.exerciseDescription = exerciseDescription;
-        this.exerciseInput = exerciseInput;
-        this.exerciseOutPut = exerciseOutPut;
-        this.exerciseSampleInput = exerciseSampleInput;
-        this.exerciseSampleOutput = exerciseSampleOutput;
-    }
+
 
     public int getExerciseId() {
         return exerciseId;
@@ -105,12 +95,12 @@ public class Exercise {
         this.exerciseSampleOutput = exerciseSampleOutput;
     }
 
-    public List<Label> getLabels() {
-        return labels;
+    public QuestionLabel getQuestionLabel() {
+        return questionLabel;
     }
 
-    public void setLabels(List<Label> labels) {
-        this.labels = labels;
+    public void setQuestionLabel(QuestionLabel questionLabel) {
+        this.questionLabel = questionLabel;
     }
 
     @Override
@@ -125,7 +115,7 @@ public class Exercise {
                 ", exerciseOutPut='" + exerciseOutPut + '\'' +
                 ", exerciseSampleInput='" + exerciseSampleInput + '\'' +
                 ", exerciseSampleOutput='" + exerciseSampleOutput + '\'' +
-                ", labels=" + labels +
+                ", questionLabel=" + questionLabel +
                 '}';
     }
 }

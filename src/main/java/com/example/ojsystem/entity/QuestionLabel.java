@@ -6,6 +6,7 @@ public class QuestionLabel {
     private String chapter;
     private String firstKnowledgePoint;
     private String secondKnowledgePoint;
+    private Boolean important;
 
     public int getQuestionLabelId() {
         return questionLabelId;
@@ -39,6 +40,14 @@ public class QuestionLabel {
         this.secondKnowledgePoint = secondKnowledgePoint;
     }
 
+    public Boolean getImportant() {
+        return important;
+    }
+
+    public void setImportant(Boolean important) {
+        this.important = important;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(obj==null){
@@ -60,8 +69,6 @@ public class QuestionLabel {
 
     }
 
-
-
     @Override
     public String toString() {
         return "QuestionLabel{" +
@@ -69,6 +76,7 @@ public class QuestionLabel {
                 ", chapter='" + chapter + '\'' +
                 ", firstKnowledgePoint='" + firstKnowledgePoint + '\'' +
                 ", secondKnowledgePoint='" + secondKnowledgePoint + '\'' +
+                ", important=" + important +
                 '}';
     }
 }

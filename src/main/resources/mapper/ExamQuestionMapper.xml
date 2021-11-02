@@ -23,6 +23,7 @@
             <result column="chapter" jdbcType="VARCHAR" property="chapter"/>
             <result column="firstKnowledgePoint" jdbcType="VARCHAR" property="firstKnowledgePoint"/>
             <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint"/>
+            <result column="important" jdbcType="BIT" property="important" />
         </collection>
     </resultMap>
     <resultMap id="BaseChoiceQuestionResultMap" type="com.example.ojsystem.entity.ChoiceQuestion">
@@ -45,6 +46,7 @@
             <result column="chapter" jdbcType="VARCHAR" property="chapter" />
             <result column="firstKnowledgePoint" jdbcType="VARCHAR" property="firstKnowledgePoint" />
             <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint" />
+            <result column="important" jdbcType="BIT" property="important" />
         </collection >
     </resultMap>
     <resultMap id="BaseExerciseResultMap" type="com.example.ojsystem.entity.Exercise">
@@ -57,11 +59,13 @@
         <result column="exerciseOutPut" jdbcType="VARCHAR" property="exerciseOutPut" />
         <result column="exerciseSampleInput" jdbcType="VARCHAR" property="exerciseSampleInput" />
         <result column="exerciseSampleOutput" jdbcType="VARCHAR" property="exerciseSampleOutput" />
-        <collection  property="labels" ofType="com.example.ojsystem.entity.Label">
-            <id column="labelId" jdbcType="BIGINT" property="labelId" />
-            <result column="firstPoint" jdbcType="VARCHAR" property="firstPoint" />
-            <result column="secondPoint" jdbcType="VARCHAR" property="secondPoint" />
-        </collection >
+        <association  property="questionLabel" javaType="com.example.ojsystem.entity.QuestionLabel">
+            <id column="questionLabelId" jdbcType="BIGINT" property="questionLabelId" />
+            <result column="chapter" jdbcType="VARCHAR" property="chapter" />
+            <result column="firstKnowledgePoint" jdbcType="VARCHAR" property="firstKnowledgePoint" />
+            <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint" />
+            <result column="important" jdbcType="BIT" property="important" />
+        </association >
     </resultMap>
     <resultMap id="BaseExamQuestionResultMap" type="com.example.ojsystem.entity.ExamQuestion">
         <id column="examQuestionId" jdbcType="BIGINT" property="examQuestionId" />
@@ -94,8 +98,8 @@
          SELECT * FROM examquestion,exercise where examquestion.questionId=exercise.exerciseId and examquestion.examId=#{examId} and examquestion.examQuestionType='programmingQuestion'
     </select>
     <select id="queryExamProgrammingResultScoreByExamId" resultType="com.example.ojsystem.entity.ExamProgrammingResultScoreTool" resultMap="BaseExamProgrammingResultScoreToolResultMap">
-        SELECT exercise.exerciseTitle,SUM(examprogrammingquestionhistory.examProgrammingQuestionResultScore)/(select count(usergroup.userId) from usergroup,exam where usergroup.groupId=exam.groupId and exam.examId=#{examId}) as avgExamProgrammingScore FROM examprogrammingquestionhistory,examquestion,exercise
-        where examquestion.examQuestionId=examprogrammingquestionhistory.examQuestionId and examId=#{examId} and exercise.exerciseId=examquestion.questionId and examquestion.examQuestionType='programmingQuestion' group by examprogrammingquestionhistory.examQuestionId
+	        SELECT exercise.exerciseTitle,SUM(examprogrammingquestionhistory.examProgrammingQuestionResultScore)/(select count(usergroup.userId) from usergroup,exam where usergroup.groupId=exam.groupId and exam.examId=#{examId}) as avgExamProgrammingScore FROM examquestion left join exercise on exercise.exerciseId=examquestion.questionId left join examprogrammingquestionhistory on  examquestion.examQuestionId=examprogrammingquestionhistory.examQuestionId
+        where   examquestion.examId=#{examId} and  examquestion.examQuestionType='programmingQuestion' group by examprogrammingquestionhistory.examQuestionId
     </select>
     <select id="queryUserExamScoreEachSegmentNumberByExamId" resultType="com.example.ojsystem.entity.UserExamScoreEachSegmentNumber">
         select sum(case when examChoiceQuestionTotals+examCompletionQuestionTotals+examProgrammingTotals &lt;60 then 1 else 0 end ) as 'SegmentNumber1',

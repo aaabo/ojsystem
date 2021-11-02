@@ -10,7 +10,7 @@ public interface ExerciseLabelMapper {
      * 输入exerciseId和labelId
      * 成功输入true 失败输出false
      */
-    public int addExerciseLabelInfo(@Param("exerciseId") int exerciseId,@Param("labelId") int labelId);
+    public int addExerciseLabelInfo(@Param("exerciseId") int exerciseId,@Param("questionLabelId") int questionLabelId);
 
     /**
      * 删除对应的习题列表信息

@@ -20,6 +20,10 @@
           insert into user (userAccount,userPassword,userName,userSolved,userSubmit,userEmail,userIdentity)
            values(#{user.userAccount},#{user.userPassword},#{user.userName},0,0,#{user.userEmail},'student')
     </insert>
+    <insert id="addTeacherUserInfo" parameterType="com.example.ojsystem.entity.User">
+        insert into user (userAccount,userPassword,userName,userSolved,userSubmit,userIdentity)
+           values(#{user.userAccount},#{user.userPassword},#{user.userName},0,0,'teacher')
+    </insert>
     <update id="modifyUserInfo" parameterType="com.example.ojsystem.entity.User">
          update user set userName=#{user.userName},userProfile=#{user.userProfile} where userId=#{user.userId}
     </update>
@@ -29,6 +33,12 @@
     <update id="updateUserSubmitInfo" parameterType="java.lang.Integer">
         update user set userSolved=userSolved+#{solved},userSubmit=userSubmit+1 where userId=#{userId}
     </update>
+    <update id="modifyTeacherUserInfo" parameterType="com.example.ojsystem.entity.User">
+          update user set userName=#{user.userName},userPassword=#{user.userPassword} where userId=#{user.userId}
+    </update>
+    <delete id="deleteUserInfoByUserId">
+        delete from user where userId=#{user.userId}
+    </delete>
 
 
     <select id="isUserExist" resultType="com.example.ojsystem.entity.User" parameterType="com.example.ojsystem.entity.User" resultMap="BaseUserResultMap">

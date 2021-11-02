@@ -60,7 +60,6 @@ public class ExamQuestionController {
     public Object queryExamQuestionCompletionByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         return examQuestionService.queryExamQuestionCompletionByExamId(examId);
-        
     }
 
     /**

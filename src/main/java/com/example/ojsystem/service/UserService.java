@@ -2,6 +2,7 @@ package com.example.ojsystem.service;
 
 
 import com.example.ojsystem.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,6 +27,28 @@ public interface UserService {
      * 输出int
      */
     public int addUserInfo(User user);
+
+    /**
+     * 根据教师信息注册向数据库添加教师信息
+     * 输入teacherUser
+     * 输出int
+     */
+    public int addTeacherUserInfo(User user);
+
+
+    /**
+     * 根据输入的教师信息修改数据库的教师信息
+     * 输入teacherUser
+     * 输出int
+     */
+    public int modifyTeacherUserInfo(User user);
+
+    /**
+     * 根据用户id删除用户
+     * 输入userId
+     * 输出int
+     */
+    public int deleteUserInfoByUserId(int userId);
 
     /**
      * 根据用户id查询学生信息

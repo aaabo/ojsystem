@@ -30,6 +30,7 @@ public class QuestionLabelController {
         questionLabel.setChapter(request.getParameter("chapter"));
         questionLabel.setFirstKnowledgePoint(request.getParameter("firstKnowledgePoint"));
         questionLabel.setSecondKnowledgePoint(request.getParameter("secondKnowledgePoint"));
+        questionLabel.setImportant(Boolean.valueOf(request.getParameter("important")));
         i=questionLabelService.addQuestionLabelInfo(questionLabel);
         if(i>0){
             return true;
@@ -72,7 +73,7 @@ public class QuestionLabelController {
      * 输入questionLabel
      * 成功输出true 失败输出false
      */
-    @RequestMapping(value="/modifyQuestionLabelInfo",method = RequestMethod.POST)
+    @RequestMapping(value="/modifyQuestionLabelInfo",method = RequestMethod.GET)
     public Object updateQuestionLabelInfo(HttpServletRequest request){
         int i=0;
         QuestionLabel questionLabel=new QuestionLabel();
@@ -80,6 +81,7 @@ public class QuestionLabelController {
         questionLabel.setChapter(request.getParameter("chapter"));
         questionLabel.setFirstKnowledgePoint(request.getParameter("firstKnowledgePoint"));
         questionLabel.setSecondKnowledgePoint(request.getParameter("secondKnowledgePoint"));
+        questionLabel.setImportant(Boolean.valueOf(request.getParameter("important")));
         i=questionLabelService.modifyQuestionLabelInfo(questionLabel);
         if(i>0){
             return true;

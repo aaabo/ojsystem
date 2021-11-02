@@ -1,7 +1,6 @@
 package com.example.ojsystem.service;
 
 import com.example.ojsystem.entity.Exercise;
-import com.example.ojsystem.entity.Label;
 
 import java.util.List;
 
@@ -49,7 +48,7 @@ public interface ExerciseService {
      * 输出List<Exercise>
      *
      */
-    public List<Exercise> queryExerciseInfoByFirstPoint(List<Label> labels);
+//    public List<Exercise> queryExerciseInfoByFirstPoint(List<Label> labels);
 
 
 }

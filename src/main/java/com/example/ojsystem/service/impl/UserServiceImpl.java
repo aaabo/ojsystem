@@ -46,6 +46,39 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * 根据教师信息注册向数据库添加教师信息
+     * 输入teacherUser
+     * 输出int
+     *
+     * @param user
+     */
+    public int addTeacherUserInfo(User user) {
+        return userMapper.addTeacherUserInfo(user);
+    }
+
+    /**
+     * 根据输入的教师信息修改数据库的教师信息
+     * 输入teacherUser
+     * 输出int
+     *
+     * @param user
+     */
+    public int modifyTeacherUserInfo(User user) {
+        return userMapper.modifyTeacherUserInfo(user);
+    }
+
+    /**
+     * 根据用户id删除用户
+     * 输入userId
+     * 输出int
+     *
+     * @param userId
+     */
+    public int deleteUserInfoByUserId(int userId) {
+        return userMapper.deleteUserInfoByUserId(userId);
+    }
+
+    /**
      * 根据用户id查询学生信息
      * 输入userId
      * 输出User

@@ -2,9 +2,7 @@ package com.example.ojsystem.service.impl;
 
 import com.example.ojsystem.dao.ExerciseLabelMapper;
 import com.example.ojsystem.dao.ExerciseMapper;
-import com.example.ojsystem.dao.LabelMapper;
 import com.example.ojsystem.entity.Exercise;
-import com.example.ojsystem.entity.Label;
 import com.example.ojsystem.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +17,6 @@ public class ExerciseServiceImpl implements ExerciseService{
     ExerciseMapper exerciseMapper;
     @Autowired
     ExerciseLabelMapper exerciseLabelMapper;
-    @Autowired
-    LabelMapper labelMapper;
     /**
      * 根据添加习题信息到数据库
      * 输入习题信息
@@ -31,9 +27,7 @@ public class ExerciseServiceImpl implements ExerciseService{
     public int addExercise(Exercise exercise) {
         int i=0;
         i=exerciseMapper.addExercise(exercise);
-        for(int o=0;o<exercise.getLabels().size();o++){
-            exerciseLabelMapper.addExerciseLabelInfo(exercise.getExerciseId(),exercise.getLabels().get(o).getLabelId());
-        }
+        exerciseLabelMapper.addExerciseLabelInfo(exercise.getExerciseId(),exercise.getQuestionLabel().getQuestionLabelId());
         return i;
     }
 
@@ -57,9 +51,9 @@ public class ExerciseServiceImpl implements ExerciseService{
         //先删除原来的
         exerciseLabelMapper.deleteExerciseLabelInfoByExerciseId(exercise.getExerciseId());
         //再添加新的
-        for(int o=0;o<exercise.getLabels().size();o++){
-            exerciseLabelMapper.addExerciseLabelInfo(exercise.getExerciseId(),exercise.getLabels().get(o).getLabelId());
-        }
+//        for(int o=0;o<exercise.getQuestionLabel().size();o++){
+//            exerciseLabelMapper.addExerciseLabelInfo(exercise.getExerciseId(),exercise.getQuestionLabels().get(o).getQuestionLabelId());
+//        }
         return exerciseMapper.modifyExerciseInfo(exercise);
     }
 
@@ -92,16 +86,16 @@ public class ExerciseServiceImpl implements ExerciseService{
      *
      * @param labels
      */
-    public List<Exercise> queryExerciseInfoByFirstPoint(List<Label> labels) {
-        List<Exercise> exercises=new ArrayList<Exercise>();
-        List<Exercise> exercises2=new ArrayList<Exercise>();
-        for(int i=0;i<labels.size();i++){
-            labels.get(i).setLabelId(labelMapper.queryLabelIdBySecondPoint(labels.get(i).getSecondPoint()));
-        }
-        exercises=exerciseMapper.queryExerciseInfoByLabelIds(labels,labels.size());
-        for(int i=0;i<exercises.size();i++){
-            exercises2.add(exerciseMapper.queryExerciseDetailsInfoByExerciseId(exercises.get(i).getExerciseId()));
-        }
-        return exercises2;
-    }
+//    public List<Exercise> queryExerciseInfoByFirstPoint(List<Label> labels) {
+//        List<Exercise> exercises=new ArrayList<Exercise>();
+//        List<Exercise> exercises2=new ArrayList<Exercise>();
+//        for(int i=0;i<labels.size();i++){
+//            labels.get(i).setLabelId(labelMapper.queryLabelIdBySecondPoint(labels.get(i).getSecondPoint()));
+//        }
+//        exercises=exerciseMapper.queryExerciseInfoByLabelIds(labels,labels.size());
+//        for(int i=0;i<exercises.size();i++){
+//            exercises2.add(exerciseMapper.queryExerciseDetailsInfoByExerciseId(exercises.get(i).getExerciseId()));
+//        }
+//        return exercises2;
+//    }
 }

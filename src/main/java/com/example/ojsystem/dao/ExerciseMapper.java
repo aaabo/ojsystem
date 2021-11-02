@@ -1,7 +1,6 @@
 package com.example.ojsystem.dao;
 
 import com.example.ojsystem.entity.Exercise;
-import com.example.ojsystem.entity.Label;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -52,5 +51,5 @@ public interface ExerciseMapper {
      * 输出List<Exercise>
      *
      */
-    public List<Exercise> queryExerciseInfoByLabelIds(@Param("labels") List<Label> labels,@Param("number") int number);
+//    public List<Exercise> queryExerciseInfoByLabelIds(@Param("labels") List<Label> labels,@Param("number") int number);
 }

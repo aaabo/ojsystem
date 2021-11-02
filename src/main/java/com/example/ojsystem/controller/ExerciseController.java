@@ -2,9 +2,8 @@ package com.example.ojsystem.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.example.ojsystem.entity.Exercise;
-import com.example.ojsystem.entity.Label;
+import com.example.ojsystem.entity.QuestionLabel;
 import com.example.ojsystem.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -39,9 +38,9 @@ public class ExerciseController {
         String exerciseOutPut=request.getParameter("exerciseOutPut");
         String exerciseSampleInput=request.getParameter("exerciseSampleInput");
         String exerciseSampleOutput=request.getParameter("exerciseSampleOutput");
-        String labels=request.getParameter("labels");
-        List<Label> labels2 = new ArrayList<Label>();
-        labels2=JSONArray.parseArray(labels, Label.class);
+        int questionLabelId=Integer.valueOf(request.getParameter("questionLabelId"));
+        QuestionLabel questionLabel=new QuestionLabel();
+        questionLabel.setQuestionLabelId(questionLabelId);
         exercise.setExerciseTitle(exerciseTitle);
         exercise.setExerciseCorrectTimes(exerciseCorrectTimes);
         exercise.setExerciseSubmitTimes(exerciseSubmitTimes);
@@ -50,7 +49,7 @@ public class ExerciseController {
         exercise.setExerciseOutPut(exerciseOutPut);
         exercise.setExerciseSampleInput(exerciseSampleInput);
         exercise.setExerciseSampleOutput(exerciseSampleOutput);
-        exercise.setLabels(labels2);
+        exercise.setQuestionLabel(questionLabel);
         i=exerciseService.addExercise(exercise);
         if(i!=0){
             return exercise.getExerciseId();
@@ -91,9 +90,8 @@ public class ExerciseController {
         String exerciseOutPut=request.getParameter("exerciseOutPut");
         String exerciseSampleInput=request.getParameter("exerciseSampleInput");
         String exerciseSampleOutput=request.getParameter("exerciseSampleOutput");
-        String labels=request.getParameter("labels");
-        List<Label> labels2 = new ArrayList<Label>();
-        labels2=JSONArray.parseArray(labels, Label.class);
+        String questionLabel=request.getParameter("questionLabel");
+        QuestionLabel questionLabel2=JSONArray.parseObject(questionLabel, QuestionLabel.class);
         exercise.setExerciseId(exerciseId);
         exercise.setExerciseTitle(exerciseTitle);
         exercise.setExerciseDescription(exerciseDescription);
@@ -101,7 +99,7 @@ public class ExerciseController {
         exercise.setExerciseOutPut(exerciseOutPut);
         exercise.setExerciseSampleInput(exerciseSampleInput);
         exercise.setExerciseSampleOutput(exerciseSampleOutput);
-        exercise.setLabels(labels2);
+        exercise.setQuestionLabel(questionLabel2);
         i=exerciseService.modifyExerciseInfo(exercise);
         if(i!=0){
             return true;
@@ -151,10 +149,10 @@ public class ExerciseController {
      * 输出List<Exercise>
      *
      */
-    @RequestMapping(value="/queryExerciseInfoByFirstPoint",method = RequestMethod.POST)
-    public Object queryExerciseInfoByFirstPoint(HttpServletRequest request){
-        List labels =new ArrayList<Label>();
-        labels=JSON.parseArray(request.getParameter("labels"),Label.class);
-        return exerciseService.queryExerciseInfoByFirstPoint(labels);
-    }
+//    @RequestMapping(value="/queryExerciseInfoByFirstPoint",method = RequestMethod.POST)
+//    public Object queryExerciseInfoByFirstPoint(HttpServletRequest request){
+//        List labels =new ArrayList<Label>();
+//        labels=JSON.parseArray(request.getParameter("labels"),Label.class);
+//        return exerciseService.queryExerciseInfoByFirstPoint(labels);
+//    }
 }

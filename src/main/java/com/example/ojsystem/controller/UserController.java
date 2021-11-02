@@ -86,6 +86,71 @@ public class UserController {
 
 
     /**
+     * 根据教师信息注册向数据库添加教师信息
+     * 输入teacherUser
+     * 输出int
+     */
+    @RequestMapping(value="/addTeacherUserInfo",method = RequestMethod.POST)
+    public Boolean addTeacherUserInfo(HttpServletRequest request){
+        int i=0;
+        User user=new User();
+        String userAccount = request.getParameter("userAccount");
+        String userPassword = request.getParameter("userPassword");
+        String userName = request.getParameter("userName");
+        user.setUserAccount(userAccount);
+        user.setUserPassword(userPassword);
+        user.setUserName(userName);
+        i=userService.addTeacherUserInfo(user);
+        if(i!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
+     * 根据输入的教师信息修改数据库的教师信息
+     * 输入teacherUser
+     * 输出int
+     */
+    @RequestMapping(value="/modifyTeacherUserInfo",method = RequestMethod.POST)
+    public Boolean modifyTeacherUserInfo(HttpServletRequest request){
+        int i=0;
+        User user=new User();
+        String userPassword = request.getParameter("userPassword");
+        String userName = request.getParameter("userName");
+        int userId = Integer.valueOf(request.getParameter("userId"));
+        user.setUserId(userId);
+        user.setUserPassword(userPassword);
+        user.setUserName(userName);
+        i=userService.modifyTeacherUserInfo(user);
+        if(i!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
+     * 根据用户id删除用户
+     * 输入userId
+     * 输出int
+     */
+    @RequestMapping(value="/deleteUserInfoByUserId",method = RequestMethod.POST)
+    public Boolean deleteUserInfoByUserId(HttpServletRequest request){
+        int i=0;
+        i=userService.deleteUserInfoByUserId(Integer.valueOf(request.getParameter("userId")));
+        if(i!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
      * 根据用户id查询学生信息
      * 输入输入userId
      * 输出User

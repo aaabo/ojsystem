@@ -14,11 +14,13 @@
         <result column="exerciseOutPut" jdbcType="VARCHAR" property="exerciseOutPut" />
         <result column="exerciseSampleInput" jdbcType="VARCHAR" property="exerciseSampleInput" />
         <result column="exerciseSampleOutput" jdbcType="VARCHAR" property="exerciseSampleOutput" />
-        <collection  property="labels" ofType="com.example.ojsystem.entity.Label">
-            <id column="labelId" jdbcType="BIGINT" property="labelId" />
-            <result column="firstPoint" jdbcType="VARCHAR" property="firstPoint" />
-            <result column="secondPoint" jdbcType="VARCHAR" property="secondPoint" />
-        </collection >
+        <association  property="questionLabel" javaType="com.example.ojsystem.entity.QuestionLabel">
+            <id column="questionLabelId" jdbcType="BIGINT" property="questionLabelId" />
+            <result column="chapter" jdbcType="VARCHAR" property="chapter" />
+            <result column="firstKnowledgePoint" jdbcType="VARCHAR" property="firstKnowledgePoint" />
+            <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint" />
+            <result column="important" jdbcType="BIT" property="important" />
+        </association >
     </resultMap>
     <insert id="addExercise" parameterType="com.example.ojsystem.entity.Exercise" useGeneratedKeys="true" keyProperty="exercise.exerciseId" keyColumn="exerciseId">
         insert into exercise (exerciseTitle,exerciseCorrectTimes,exerciseSubmitTimes,exerciseDescription,exerciseInput,exerciseOutPut,exerciseSampleInput,exerciseSampleOutput)
@@ -33,7 +35,7 @@
     </delete>
 
     <select id="queryExerciseInfo" resultType="com.example.ojsystem.entity.Exercise"  parameterType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
-        select * from exercise,exerciselabel,label where exercise.exerciseId=exerciselabel.exerciseId and exerciselabel.labelId=label.labelId order by exercise.exerciseId
+       select * from exercisequestionlabel,questionlabel,exercise where exercise.exerciseId=exercisequestionlabel.exerciseId and exercisequestionlabel.questionLabelId=questionlabel.questionLabelId order by exercise.exerciseId
     </select>
     <select id="queryExerciseDetailsInfoByExerciseId" resultType="com.example.ojsystem.entity.Exercise">
         select * from exercise where exerciseId=#{exerciseId}

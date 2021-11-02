@@ -31,6 +31,28 @@ public interface UserMapper {
      */
     public int addUserInfo(@Param("user")User user);
 
+
+    /**
+     * 根据教师信息注册向数据库添加教师信息
+     * 输入teacherUser
+     * 输出int
+     */
+    public int addTeacherUserInfo(@Param("user")User user);
+
+    /**
+     * 根据输入的教师信息修改数据库的教师信息
+     * 输入teacherUser
+     * 输出int
+     */
+    public int modifyTeacherUserInfo(@Param("user")User user);
+
+    /**
+     * 根据用户id删除用户
+     * 输入userId
+     * 输出int
+     */
+    public int deleteUserInfoByUserId(int userId);
+
     /**
      * 根据学生id查询学生信息
      * 输入userId
