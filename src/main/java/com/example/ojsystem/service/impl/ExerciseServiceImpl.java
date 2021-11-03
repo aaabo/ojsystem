@@ -51,9 +51,7 @@ public class ExerciseServiceImpl implements ExerciseService{
         //先删除原来的
         exerciseLabelMapper.deleteExerciseLabelInfoByExerciseId(exercise.getExerciseId());
         //再添加新的
-//        for(int o=0;o<exercise.getQuestionLabel().size();o++){
-//            exerciseLabelMapper.addExerciseLabelInfo(exercise.getExerciseId(),exercise.getQuestionLabels().get(o).getQuestionLabelId());
-//        }
+        exerciseLabelMapper.addExerciseLabelInfo(exercise.getExerciseId(),exercise.getQuestionLabel().getQuestionLabelId());
         return exerciseMapper.modifyExerciseInfo(exercise);
     }
 

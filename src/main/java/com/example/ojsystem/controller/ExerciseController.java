@@ -90,8 +90,9 @@ public class ExerciseController {
         String exerciseOutPut=request.getParameter("exerciseOutPut");
         String exerciseSampleInput=request.getParameter("exerciseSampleInput");
         String exerciseSampleOutput=request.getParameter("exerciseSampleOutput");
-        String questionLabel=request.getParameter("questionLabel");
-        QuestionLabel questionLabel2=JSONArray.parseObject(questionLabel, QuestionLabel.class);
+        String questionLabelId=request.getParameter("questionLabelId");
+        QuestionLabel questionLabel=new QuestionLabel();
+        questionLabel.setQuestionLabelId(Integer.valueOf(questionLabelId));
         exercise.setExerciseId(exerciseId);
         exercise.setExerciseTitle(exerciseTitle);
         exercise.setExerciseDescription(exerciseDescription);
@@ -99,7 +100,7 @@ public class ExerciseController {
         exercise.setExerciseOutPut(exerciseOutPut);
         exercise.setExerciseSampleInput(exerciseSampleInput);
         exercise.setExerciseSampleOutput(exerciseSampleOutput);
-        exercise.setQuestionLabel(questionLabel2);
+        exercise.setQuestionLabel(questionLabel);
         i=exerciseService.modifyExerciseInfo(exercise);
         if(i!=0){
             return true;

@@ -31,6 +31,9 @@ public class QuestionLabelController {
         questionLabel.setFirstKnowledgePoint(request.getParameter("firstKnowledgePoint"));
         questionLabel.setSecondKnowledgePoint(request.getParameter("secondKnowledgePoint"));
         questionLabel.setImportant(Boolean.valueOf(request.getParameter("important")));
+        if(Boolean.valueOf(request.getParameter("important"))==true){
+            questionLabel.setSecondKnowledgePoint(questionLabel.getSecondKnowledgePoint()+"*");
+        }
         i=questionLabelService.addQuestionLabelInfo(questionLabel);
         if(i>0){
             return true;

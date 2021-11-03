@@ -9,6 +9,6 @@
         insert into exercisequestionlabel(exerciseId,questionLabelId) values(#{exerciseId},#{questionLabelId})
     </insert>
     <delete id="deleteExerciseLabelInfoByExerciseId" parameterType="java.lang.Integer">
-        delete from exerciselabel where exerciseId=#{exerciseId}
+        delete from exercisequestionlabel where exerciseId=#{exerciseId}
     </delete>
 </mapper>

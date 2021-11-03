@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.TestMapper">
+
+    <resultMap id="BaseTestResultMap" type="com.example.ojsystem.entity.Test">
+        <id column="testId" jdbcType="INTEGER" property="testId" />
+        <result column="testName" jdbcType="VARCHAR" property="testName" />
+        <result column="testStartTime" jdbcType="VARCHAR" property="testStartTime" />
+        <result column="testEndTime" jdbcType="VARCHAR" property="testEndTime" />
+        <result column="testLanguage" jdbcType="VARCHAR" property="testLanguage" />
+        <association property="group" javaType="com.example.ojsystem.entity.Group">
+            <id column="groupId" jdbcType="BIGINT" property="groupId" />
+            <result column="groupName" jdbcType="VARCHAR" property="groupName" />
+        </association>
+    </resultMap>
+    <insert id="addTestInfo" parameterType="com.example.ojsystem.entity.Test">
+      insert into test (groupId,testName,testStartTime,testEndTime,testLanguage)
+      values(#{test.group.groupId},#{test.testName},#{test.testStartTime},#{test.testEndTime},#{test.testLanguage})
+    </insert>
+
+
+</mapper>
