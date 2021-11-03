@@ -108,8 +108,12 @@ public class ExamController {
         String examStartTime=request.getParameter("examStartTime");
         String examEndTime=request.getParameter("examEndTime");
         String examName=request.getParameter("examName");
+        String examStatus=request.getParameter("examStatus");
         int groupId=Integer.valueOf(request.getParameter("groupId"));
         String examLanguage=request.getParameter("examLanguage");
+        int examChoiceQuestionScore=Integer.valueOf(request.getParameter("examChoiceQuestionScore"));
+        int examCompletionQuestionScore=Integer.valueOf(request.getParameter("examCompletionQuestionScore"));
+        int examProgrammingScore=Integer.valueOf(request.getParameter("examProgrammingScore"));
         Exam exam=new Exam();
         exam.setExamStartTime(examStartTime);
         exam.setExamEndTime(examEndTime);
@@ -119,6 +123,10 @@ public class ExamController {
         exam.setExamId(examId);
         exam.setExamLanguage(examLanguage);
         exam.setExamName(examName);
+        exam.setExamStatus(examStatus);
+        exam.setExamChoiceQuestionScore(examChoiceQuestionScore);
+        exam.setExamCompletionQuestionScore(examCompletionQuestionScore);
+        exam.setExamProgrammingScore(examProgrammingScore);
         i=examService.modifyExamInfo(exam);
         if(i!=0){
             return true;

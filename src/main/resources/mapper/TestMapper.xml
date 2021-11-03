@@ -10,15 +10,47 @@
         <result column="testStartTime" jdbcType="VARCHAR" property="testStartTime" />
         <result column="testEndTime" jdbcType="VARCHAR" property="testEndTime" />
         <result column="testLanguage" jdbcType="VARCHAR" property="testLanguage" />
+        <result column="testStatus" jdbcType="VARCHAR" property="testStatus" />
         <association property="group" javaType="com.example.ojsystem.entity.Group">
             <id column="groupId" jdbcType="BIGINT" property="groupId" />
             <result column="groupName" jdbcType="VARCHAR" property="groupName" />
         </association>
+        <association property="user" javaType="com.example.ojsystem.entity.User">
+            <id column="userId" jdbcType="BIGINT" property="userId" />
+            <result column="userName" jdbcType="VARCHAR" property="userName" />
+        </association>
     </resultMap>
     <insert id="addTestInfo" parameterType="com.example.ojsystem.entity.Test">
-      insert into test (groupId,testName,testStartTime,testEndTime,testLanguage)
-      values(#{test.group.groupId},#{test.testName},#{test.testStartTime},#{test.testEndTime},#{test.testLanguage})
+      insert into test (groupId,userId,testName,testStartTime,testEndTime,testLanguage,testStatus)
+      values(#{test.group.groupId},#{test.user.userId},#{test.testName},#{test.testStartTime},#{test.testEndTime},#{test.testLanguage},#{test.testStatus})
     </insert>
+    <update id="modifyTestInfo" parameterType="com.example.ojsystem.entity.Test">
+          update test set groupId=#{test.group.groupId},testName=#{test.testName},testStartTime=#{test.testStartTime},
+           testEndTime=#{test.testEndTime},testLanguage=#{test.testLanguage},testStatus=#{test.testStatus} where testId=#{test.testId}
+    </update>
+    <update id="modifyTestStatusByTestId" parameterType="com.example.ojsystem.entity.Test">
+        update test set testStatus=#{test.testStatus} where testId=#{test.testId}
+    </update>
+    <delete id="deleteTestInfoByTestId" parameterType="java.lang.Integer">
+        delete from test where testId=#{test.testId}
+    </delete>
+    <select id="queryTestInfoByTestStatus" resultMap="BaseTestResultMap">
+        SELECT * FROM test ORDER BY (case testStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
+    </select>
+    <select id="searchTestInfo" resultType="com.example.ojsystem.entity.Test">
+        select * from test,user
+        where test.userId=user.userId
+        <if test="test.testName != null and test.testName!=''">
+            and test.testName like #{test.testName}
+        </if>
+        <if test="test.testStatus != null and test.testStatus!=''">
+            and test.testStatus =#{test.testStatus}
+        </if>
+        <if test="test.user.userName != null and test.user.userName!=''">
+            and user.userName like #{test.user.userName}
+        </if>
+        ORDER BY (case testStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
+    </select>
 
 
 </mapper>

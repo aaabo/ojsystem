@@ -30,7 +30,7 @@
         values(#{exam.examStartTime},#{exam.examEndTime},#{exam.user.userId},#{exam.group.groupId},#{exam.examStatus},#{exam.examLanguage},#{exam.examName},#{exam.examChoiceQuestionScore},#{exam.examCompletionQuestionScore},#{exam.examProgrammingScore})
     </insert>
     <update id="modifyExamInfo" parameterType="com.example.ojsystem.entity.Exam">
-             update exam set examStartTime=#{exam.examStartTime},examEndTime=#{exam.examEndTime},
+             update exam set examStartTime=#{exam.examStartTime},examEndTime=#{exam.examEndTime},examStatus=#{exam.examStatus},
               examLanguage=#{exam.examLanguage},groupId=#{exam.group.groupId},examName=#{exam.examName},examChoiceQuestionScore=#{exam.examChoiceQuestionScore},examCompletionQuestionScore=#{exam.examCompletionQuestionScore},examProgrammingScore=#{exam.examProgrammingScore} where examId=#{exam.examId}
     </update>
     <update id="updateExamStatus" parameterType="com.example.ojsystem.entity.Exam">

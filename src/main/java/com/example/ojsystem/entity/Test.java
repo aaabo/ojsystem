@@ -6,7 +6,9 @@ public class Test {
     private String testStartTime;
     private String testEndTime;
     private String testLanguage;
+    private String testStatus; //Pending;Running;Ended
 
+    private User user;
     private Group group;
 
     public int getTestId() {
@@ -49,12 +51,28 @@ public class Test {
         this.testLanguage = testLanguage;
     }
 
+    public String getTestStatus() {
+        return testStatus;
+    }
+
+    public void setTestStatus(String testStatus) {
+        this.testStatus = testStatus;
+    }
+
     public Group getGroup() {
         return group;
     }
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -65,6 +83,8 @@ public class Test {
                 ", testStartTime='" + testStartTime + '\'' +
                 ", testEndTime='" + testEndTime + '\'' +
                 ", testLanguage='" + testLanguage + '\'' +
+                ", testStatus='" + testStatus + '\'' +
+                ", user=" + user +
                 ", group=" + group +
                 '}';
     }
