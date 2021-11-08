@@ -30,4 +30,11 @@ public interface UserGroupMapper {
      * 成功输入true 失败输出false
      */
     public int  deleteUserGroupInfoByUserGroupId(@Param("groupId") int groupId,@Param("userId")int userId);
+
+    /**
+     * 根据groupId和userId查看对应的用户是否在组别中
+     * 输入groupId和userId
+     * 成功输入true 失败输出false
+     */
+    public Integer  queryUserIfInGroup(@Param("groupId") int groupId,@Param("userId")int userId);
 }

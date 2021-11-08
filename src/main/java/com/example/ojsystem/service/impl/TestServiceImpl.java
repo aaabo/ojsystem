@@ -77,4 +77,13 @@ public class TestServiceImpl implements TestService{
     public List<Test> searchTestInfo(Test test) {
         return testMapper.searchTestInfo(test);
     }
+
+    /**
+     * 查询为结束的测试
+     * 输入null
+     * 输出List<Test>
+     */
+    public List<Test> queryNotFinishTestInfo() {
+        return testMapper.queryNotFinishTestInfo();
+    }
 }

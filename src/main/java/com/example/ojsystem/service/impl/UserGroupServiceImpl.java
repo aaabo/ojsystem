@@ -51,5 +51,17 @@ public class UserGroupServiceImpl implements UserGroupService{
         return userGroupMapper.deleteUserGroupInfoByUserGroupId(groupId,userId);
     }
 
+    /**
+     * 根据groupId和userId查看对应的用户是否在组别中
+     * 输入groupId和userId
+     * 成功输入true 失败输出false
+     *
+     * @param groupId
+     * @param userId
+     */
+    public Integer queryUserIfInGroup(int groupId, int userId) {
+        return userGroupMapper.queryUserIfInGroup(groupId,userId);
+    }
+
 
 }

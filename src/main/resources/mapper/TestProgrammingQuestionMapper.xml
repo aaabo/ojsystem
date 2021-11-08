@@ -17,8 +17,8 @@
         <association property="exercise" javaType="com.example.ojsystem.entity.Exercise">
             <id column="exerciseId" jdbcType="INTEGER" property="exerciseId" />
             <result column="exerciseTitle" jdbcType="VARCHAR" property="exerciseTitle" />
-            <result column="exerciseCorrectTimes" jdbcType="BIGINT" property="exerciseCorrectTimes" />
-            <result column="exerciseSubmitTimes" jdbcType="BIGINT" property="exerciseSubmitTimes" />
+            <result column="success" jdbcType="BIGINT" property="exerciseCorrectTimes" />
+            <result column="submit" jdbcType="BIGINT" property="exerciseSubmitTimes" />
             <result column="exerciseDescription" jdbcType="VARCHAR" property="exerciseDescription" />
             <result column="exerciseInput" jdbcType="VARCHAR" property="exerciseInput" />
             <result column="exerciseOutPut" jdbcType="VARCHAR" property="exerciseOutPut" />
@@ -30,8 +30,8 @@
     <resultMap id="BaseExerciseResultMap" type="com.example.ojsystem.entity.Exercise">
         <id column="exerciseId" jdbcType="BIGINT" property="exerciseId" />
         <result column="exerciseTitle" jdbcType="VARCHAR" property="exerciseTitle" />
-        <result column="exerciseCorrectTimes" jdbcType="BIGINT" property="exerciseCorrectTimes" />
-        <result column="exerciseSubmitTimes" jdbcType="BIGINT" property="exerciseSubmitTimes" />
+        <result column="success" jdbcType="BIGINT" property="exerciseCorrectTimes" />
+        <result column="submit" jdbcType="BIGINT" property="exerciseSubmitTimes" />
         <result column="exerciseDescription" jdbcType="VARCHAR" property="exerciseDescription" />
         <result column="exerciseInput" jdbcType="VARCHAR" property="exerciseInput" />
         <result column="exerciseOutPut" jdbcType="VARCHAR" property="exerciseOutPut" />
@@ -45,6 +45,7 @@
             <result column="important" jdbcType="BIT" property="important" />
         </association >
     </resultMap>
+
     <insert id="addTestProgrammingQuestionInfo" parameterType="com.example.ojsystem.entity.TestProgrammingQuestion">
         insert into testprogrammingquestion (testId,exerciseId) values(#{testProgrammingQuestion.test.testId},#{testProgrammingQuestion.exercise.exerciseId})
     </insert>
@@ -52,7 +53,9 @@
         delete from testprogrammingquestion where testProgrammingQuestionId=#{testProgrammingQuestionId}
     </delete>
     <select id="queryTestProgrammingQuestionByTestId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
-        SELECT * FROM exercise,testprogrammingquestion where exercise.exerciseId=testprogrammingquestion.exerciseId and testprogrammingquestion.testId=#{testId}
+         SELECT exercise.exerciseId,exercise.exerciseTitle,count(if(testprogrammingquestionhistory.testProgrammingResult='success',1,null)) as 'success',count(testprogrammingquestionhistory.testProgrammingResult) as 'submit'
+         FROM exercise,testprogrammingquestion,testprogrammingquestionhistory
+         where exercise.exerciseId=testprogrammingquestion.exerciseId and testprogrammingquestion.testId=#{testId} and testprogrammingquestionhistory.testProgrammingQuestionId=testprogrammingquestion.testProgrammingQuestionId GROUP BY exercise.exerciseId
     </select>
 
 

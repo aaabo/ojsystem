@@ -49,4 +49,11 @@ public interface TestMapper {
      * 输出List<Test>
      */
     public List<Test> searchTestInfo(@Param("test") Test test);
+
+    /**
+     * 查询为结束的测试
+     * 输入null
+     * 输出List<Test>
+     */
+    public List<Test> queryNotFinishTestInfo();
 }

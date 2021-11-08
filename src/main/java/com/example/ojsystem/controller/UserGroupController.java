@@ -25,7 +25,7 @@ public class UserGroupController {
     /**
      * 获取组别的用户信息并添加
      * 输入groupId users
-     * 成功输入true 失败输出false
+     * 成功输出true 失败输出false
      */
     @RequestMapping(value="/addUserGroupInfo",method = RequestMethod.POST)
     public Object addUserGroupInfo(HttpServletRequest request){
@@ -50,7 +50,7 @@ public class UserGroupController {
     /**
      * 查看组别内的用户信息
      * 输入groupId
-     * 成功输入true 失败输出false
+     * 成功输出true 失败输出false
      */
     @RequestMapping(value="/queryUserGroupInfoByGroupId",method = RequestMethod.POST)
     public List<User> queryUserGroupInfoByGroupId(HttpServletRequest request){
@@ -62,7 +62,7 @@ public class UserGroupController {
     /**
      * 根据groupId和userId删除组别内的用户信息
      * 输入groupId和userId
-     * 成功输入true 失败输出false
+     * 成功输出true 失败输出false
      */
     @RequestMapping(value="/deleteUserGroupInfoByGroupIdAndUserId",method = RequestMethod.POST)
     public Object  deleteUserGroupInfoByGroupIdAndUserId(HttpServletRequest request){
@@ -70,6 +70,29 @@ public class UserGroupController {
         int userId=Integer.valueOf(request.getParameter("userId"));
         int groupId=Integer.valueOf(request.getParameter("groupId"));
         i=userGroupService.deleteUserGroupInfoByGroupIdAndUserId(groupId,userId);
+        if(i>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    /**
+     * 根据groupId和userId查看对应的用户是否在组别中
+     * 输入groupId和userId
+     * 成功查询输出true 失败输出false
+     */
+    @RequestMapping(value="/queryUserIfInGroup",method = RequestMethod.POST)
+    public Object  queryUserIfInGroup(HttpServletRequest request){
+        int i=0;
+        int userId=(Integer)request.getSession().getAttribute("userId");
+        int groupId=Integer.valueOf(request.getParameter("groupId"));
+        if(userGroupService.queryUserIfInGroup(groupId,userId)!=null){
+            i=userGroupService.queryUserIfInGroup(groupId,userId);
+        }else{
+            i=0;
+        }
         if(i>0){
             return true;
         }else{

@@ -26,4 +26,11 @@ public interface UserGroupService {
      * 成功输入true 失败输出false
      */
     public int  deleteUserGroupInfoByGroupIdAndUserId(int groupId,int userId);
+
+    /**
+     * 根据groupId和userId查看对应的用户是否在组别中
+     * 输入groupId和userId
+     * 成功输入true 失败输出false
+     */
+    public Integer  queryUserIfInGroup(int groupId,int userId);
 }

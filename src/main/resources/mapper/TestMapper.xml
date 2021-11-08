@@ -37,9 +37,9 @@
     <select id="queryTestInfoByTestStatus" resultMap="BaseTestResultMap">
         SELECT * FROM test ORDER BY (case testStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
-    <select id="searchTestInfo" resultType="com.example.ojsystem.entity.Test">
-        select * from test,user
-        where test.userId=user.userId
+    <select id="searchTestInfo" resultType="com.example.ojsystem.entity.Test" resultMap="BaseTestResultMap">
+        select * from test,user,`group`
+        where test.userId=user.userId and test.groupId=`group`.groupId
         <if test="test.testName != null and test.testName!=''">
             and test.testName like #{test.testName}
         </if>
@@ -50,6 +50,9 @@
             and user.userName like #{test.user.userName}
         </if>
         ORDER BY (case testStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
+    </select>
+    <select id="queryNotFinishTestInfo" resultType="com.example.ojsystem.entity.Test">
+          select * from test where testStatus='Pending' or testStatus='Running'
     </select>
 
 

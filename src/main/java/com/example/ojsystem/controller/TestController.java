@@ -149,4 +149,15 @@ public class TestController {
         test.setUser(user);
         return testService.searchTestInfo(test);
     }
+
+
+    /**
+     * 查询为结束的测试
+     * 输入null
+     * 输出List<Test>
+     */
+    @RequestMapping(value="/queryNotFinishTestInfo",method = RequestMethod.POST)
+    public Object queryNotFinishTestInfo(HttpServletRequest request){
+        return testService.queryNotFinishTestInfo();
+    }
 }
