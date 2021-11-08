@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.TestProgrammingQuestionMapper">
+
+    <resultMap id="BaseTeacherResultMap" type="com.example.ojsystem.entity.TestProgrammingQuestion">
+        <id column="testProgrammingQuestionId" jdbcType="INTEGER" property="testProgrammingQuestionId" />
+        <association property="test" javaType="com.example.ojsystem.entity.Test">
+            <id column="testId" jdbcType="INTEGER" property="testId" />
+            <result column="testName" jdbcType="VARCHAR" property="testName" />
+            <result column="testStartTime" jdbcType="VARCHAR" property="testStartTime" />
+            <result column="testEndTime" jdbcType="VARCHAR" property="testEndTime" />
+            <result column="testLanguage" jdbcType="VARCHAR" property="testLanguage" />
+            <result column="testStatus" jdbcType="VARCHAR" property="testStatus" />
+        </association>
+        <association property="exercise" javaType="com.example.ojsystem.entity.Exercise">
+            <id column="exerciseId" jdbcType="INTEGER" property="exerciseId" />
+            <result column="exerciseTitle" jdbcType="VARCHAR" property="exerciseTitle" />
+            <result column="exerciseCorrectTimes" jdbcType="BIGINT" property="exerciseCorrectTimes" />
+            <result column="exerciseSubmitTimes" jdbcType="BIGINT" property="exerciseSubmitTimes" />
+            <result column="exerciseDescription" jdbcType="VARCHAR" property="exerciseDescription" />
+            <result column="exerciseInput" jdbcType="VARCHAR" property="exerciseInput" />
+            <result column="exerciseOutPut" jdbcType="VARCHAR" property="exerciseOutPut" />
+            <result column="exerciseSampleInput" jdbcType="VARCHAR" property="exerciseSampleInput" />
+            <result column="exerciseSampleOutput" jdbcType="VARCHAR" property="exerciseSampleOutput" />
+        </association>
+    </resultMap>
+
+    <resultMap id="BaseExerciseResultMap" type="com.example.ojsystem.entity.Exercise">
+        <id column="exerciseId" jdbcType="BIGINT" property="exerciseId" />
+        <result column="exerciseTitle" jdbcType="VARCHAR" property="exerciseTitle" />
+        <result column="exerciseCorrectTimes" jdbcType="BIGINT" property="exerciseCorrectTimes" />
+        <result column="exerciseSubmitTimes" jdbcType="BIGINT" property="exerciseSubmitTimes" />
+        <result column="exerciseDescription" jdbcType="VARCHAR" property="exerciseDescription" />
+        <result column="exerciseInput" jdbcType="VARCHAR" property="exerciseInput" />
+        <result column="exerciseOutPut" jdbcType="VARCHAR" property="exerciseOutPut" />
+        <result column="exerciseSampleInput" jdbcType="VARCHAR" property="exerciseSampleInput" />
+        <result column="exerciseSampleOutput" jdbcType="VARCHAR" property="exerciseSampleOutput" />
+        <association  property="questionLabel" javaType="com.example.ojsystem.entity.QuestionLabel">
+            <id column="questionLabelId" jdbcType="BIGINT" property="questionLabelId" />
+            <result column="chapter" jdbcType="VARCHAR" property="chapter" />
+            <result column="firstKnowledgePoint" jdbcType="VARCHAR" property="firstKnowledgePoint" />
+            <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint" />
+            <result column="important" jdbcType="BIT" property="important" />
+        </association >
+    </resultMap>
+    <insert id="addTestProgrammingQuestionInfo" parameterType="com.example.ojsystem.entity.TestProgrammingQuestion">
+        insert into testprogrammingquestion (testId,exerciseId) values(#{testProgrammingQuestion.test.testId},#{testProgrammingQuestion.exercise.exerciseId})
+    </insert>
+    <delete id="deleteTestProgrammingQuestionByTestProgrammingQuestionId">
+        delete from testprogrammingquestion where testProgrammingQuestionId=#{testProgrammingQuestionId}
+    </delete>
+    <select id="queryTestProgrammingQuestionByTestId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
+        SELECT * FROM exercise,testprogrammingquestion where exercise.exerciseId=testprogrammingquestion.exerciseId and testprogrammingquestion.testId=#{testId}
+    </select>
+
+
+</mapper>

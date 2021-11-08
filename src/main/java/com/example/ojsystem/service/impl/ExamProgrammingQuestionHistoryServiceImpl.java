@@ -24,7 +24,7 @@ public class ExamProgrammingQuestionHistoryServiceImpl implements ExamProgrammin
      * @param examProgrammingQuestionHistory
      */
     public int addExamProgrammingQuestionHistoryInfo(ExamProgrammingQuestionHistory examProgrammingQuestionHistory,int userId,int examQuestionId) {
-        int i=0;
+        Integer i=0;
         int examProgrammingQuestionId=0;
         //查询是否存在
         examProgrammingQuestionId=examProgrammingQuestionHistoryMapper.queryExamProgrammingQuestionHistoryByExamQuestionIdAndUserId(examQuestionId,userId);
@@ -40,7 +40,7 @@ public class ExamProgrammingQuestionHistoryServiceImpl implements ExamProgrammin
         }else{
             //存在就更新
             examProgrammingQuestionHistory.setExamProgrammingQuestionHistoryId(examProgrammingQuestionId);
-            examProgrammingQuestionHistoryMapper.modifyExamProgrammingQuestionHistoryByExamProgrammingQuestionId(examProgrammingQuestionHistory);
+            i=examProgrammingQuestionHistoryMapper.modifyExamProgrammingQuestionHistoryByExamProgrammingQuestionId(examProgrammingQuestionHistory);
         }
         return i;
     }

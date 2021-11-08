@@ -30,7 +30,7 @@ public interface TestMapper {
     public int deleteTestInfoByTestId(@Param("testId") int testId);
 
     /**
-     * 根据输入的测试id来删除对应的测试
+     * 查询（应该用不到了）
      * 输入null
      * 输出List<Test>
      */

@@ -6,6 +6,7 @@ public class TestProgrammingQuestionHistory {
     private String testProgrammingResult;
     private String testProgrammingCode;
 
+    private User user;
     private TestProgrammingQuestion  testProgrammingQuestion;
 
     public int getTestProgrammingQuestionHistoryId() {
@@ -48,6 +49,14 @@ public class TestProgrammingQuestionHistory {
         this.testProgrammingQuestion = testProgrammingQuestion;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "TestProgrammingQuestionHistory{" +
@@ -55,6 +64,7 @@ public class TestProgrammingQuestionHistory {
                 ", testProgrammingSubmitTime='" + testProgrammingSubmitTime + '\'' +
                 ", testProgrammingResult='" + testProgrammingResult + '\'' +
                 ", testProgrammingCode='" + testProgrammingCode + '\'' +
+                ", user=" + user +
                 ", testProgrammingQuestion=" + testProgrammingQuestion +
                 '}';
     }

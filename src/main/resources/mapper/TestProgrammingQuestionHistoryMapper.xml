@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.TestProgrammingQuestionHistoryMapper">
+
+    <resultMap id="BaseTestProgrammingQuestionHistoryResultMap" type="com.example.ojsystem.entity.TestProgrammingQuestionHistory">
+        <id column="testProgrammingQuestionHistoryId" jdbcType="INTEGER" property="testProgrammingQuestionHistoryId" />
+        <result column="testProgrammingSubmitTime" jdbcType="VARCHAR" property="testProgrammingSubmitTime" />
+        <result column="testProgrammingResult" jdbcType="VARCHAR" property="testProgrammingResult" />
+        <result column="testProgrammingCode" jdbcType="VARCHAR" property="testProgrammingCode" />
+        <association property="testProgrammingQuestion" javaType="com.example.ojsystem.entity.TestProgrammingQuestion">
+            <id column="testProgrammingQuestionId" jdbcType="INTEGER" property="testProgrammingQuestionId" />
+        </association>
+    </resultMap>
+
+    <resultMap id="BaseTestProgrammingQuestionResultToolResultMap" type="com.example.ojsystem.entity.TestProgrammingQuestionResultTool">
+        <id column="userId" jdbcType="BIGINT" property="userId" />
+        <collection property="testProgrammingQuestionResultStateTools" ofType="com.example.ojsystem.entity.TestProgrammingQuestionResultStateTool">
+            <id column="testProgrammingQuestionId" jdbcType="BIGINT" property="testProgrammingQuestionId" />
+            <result column="testProgrammingQuestionResult" jdbcType="VARCHAR" property="testProgrammingQuestionResult"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="BaseTestProgrammingQuestionUserSubmitStateToolResultMap" type="com.example.ojsystem.entity.TestProgrammingQuestionUserSubmitStateTool">
+        <id column="success" jdbcType="BIGINT" property="success" />
+        <id column="noSuccess" jdbcType="BIGINT" property="noSuccess" />
+    </resultMap>
+
+    <insert id="addTestProgrammingQuestionHistoryInfo" parameterType="com.example.ojsystem.entity.TestProgrammingQuestionHistory">
+        insert into testprogrammingquestionhistory (testProgrammingQuestionId,userId,testProgrammingSubmitTime,testProgrammingResult,testProgrammingCode)
+         values(#{testProgrammingQuestionHistory.testProgrammingQuestion.testProgrammingQuestionId},#{testProgrammingQuestionHistory.user.userId},#{testProgrammingQuestionHistory.testProgrammingSubmitTime},
+         #{testProgrammingQuestionHistory.testProgrammingResult},#{testProgrammingQuestionHistory.testProgrammingCode})
+    </insert>
+
+
+
+    <select id="queryTestUserAndTestProgrammingQuestionId" resultMap="BaseTestProgrammingQuestionResultToolResultMap">
+       select * from user,usergroup,test,testprogrammingquestion where test.testId=#{testId} and user.userId=usergroup.userId and test.groupId=usergroup.groupId and test.testId=testprogrammingquestion.testId
+    </select>
+
+
+    <select id="queryTestProgrammingQuestionUserSubmitStateByTestProgrammingQuestionIdAndUserId" resultMap="BaseTestProgrammingQuestionUserSubmitStateToolResultMap">
+      select count(if(testProgrammingResult='success',1,null)) as success ,count(if(testProgrammingResult!='success',1,null)) as noSuccess  from testprogrammingquestionhistory  where userId=#{userId}  and testProgrammingQuestionId=#{testProgrammingQuestionId}
+
+    </select>
+</mapper>

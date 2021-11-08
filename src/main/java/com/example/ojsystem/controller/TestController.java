@@ -22,7 +22,7 @@ public class TestController {
     /**
      * 根据输入的测试信息来添加测试
      * 输入test
-     * 输出int
+     * 输出成功输出true 失败输出false
      */
     @RequestMapping(value="/addTestInfo",method = RequestMethod.POST)
     public Object addTestInfo(HttpServletRequest request){
@@ -40,13 +40,18 @@ public class TestController {
         user.setUserId((Integer) request.getSession().getAttribute("userId"));
         test.setUser(user);
         i= testService.addTestInfo(test);
-        return i;
+        if(i!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
      * 根据输入的测试信息来修改测试
      * 输入test
-     * 输出int
+     * 输出成功输出true 失败输出false
      */
     @RequestMapping(value="/modifyTestInfo",method = RequestMethod.POST)
     public Object modifyTestInfo(HttpServletRequest request){
@@ -62,23 +67,33 @@ public class TestController {
         group.setGroupId(Integer.valueOf(request.getParameter("groupId")));
         test.setGroup(group);
         i= testService.modifyTestInfo(test);
-        return i;
+        if(i!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
      * 根据输入的测试id来删除对应的测试
      * 输入testId
-     * 输出int
+     * 输出成功输出true 失败输出false
      */
     @RequestMapping(value="/deleteTestInfoByTestId",method = RequestMethod.POST)
     public Object deleteTestInfoByTestId(HttpServletRequest request){
         int i=0;
         i= testService.deleteTestInfoByTestId(Integer.valueOf(request.getParameter("testId")));
-        return i;
+        if(i!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
-     * 根据输入的测试id来删除对应的测试
+     * 查询（应该用不到了）
      * 输入null
      * 输出List<Test>
      */
@@ -90,14 +105,21 @@ public class TestController {
     /**
      * 根据testId和输入的testStatus修改测试状态
      * 输入testId,testStatus
-     * 输出int
+     * 输出成功输出true 失败输出false
      */
     @RequestMapping(value="/modifyTestStatusByTestId",method = RequestMethod.POST)
     public Object modifyTestStatusByTestId(HttpServletRequest request){
+        int i=0;
         Test test=new Test();
         test.setTestId(Integer.valueOf(request.getParameter("testId")));
         test.setTestStatus(request.getParameter("testStatus"));
-        return testService.modifyTestStatusByTestId(test);
+        i=testService.modifyTestStatusByTestId(test);
+        if(i!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     /**
@@ -125,6 +147,6 @@ public class TestController {
             user.setUserName("%"+userName+"%");
         }
         test.setUser(user);
-        return testService.modifyTestStatusByTestId(test);
+        return testService.searchTestInfo(test);
     }
 }
