@@ -66,6 +66,6 @@ public class TestProgrammingQuestionController {
      */
     @RequestMapping(value="/queryTestProgrammingQuestionByTestId",method = RequestMethod.POST)
     public Object queryTestProgrammingQuestionByTestId(HttpServletRequest request){
-        return testProgrammingQuestionService.queryTestProgrammingQuestionByTestId(Integer.valueOf(request.getParameter("testId")));
+        return testProgrammingQuestionService.queryTestProgrammingQuestionByTestId(Integer.valueOf(request.getParameter("testId")),(Integer)request.getSession().getAttribute("userId"));
     }
 }

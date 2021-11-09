@@ -16,6 +16,7 @@
 
     <resultMap id="BaseTestProgrammingQuestionResultToolResultMap" type="com.example.ojsystem.entity.TestProgrammingQuestionResultTool">
         <id column="userId" jdbcType="BIGINT" property="userId" />
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
         <collection property="testProgrammingQuestionResultStateTools" ofType="com.example.ojsystem.entity.TestProgrammingQuestionResultStateTool">
             <id column="testProgrammingQuestionId" jdbcType="BIGINT" property="testProgrammingQuestionId" />
             <result column="testProgrammingQuestionResult" jdbcType="VARCHAR" property="testProgrammingQuestionResult"/>

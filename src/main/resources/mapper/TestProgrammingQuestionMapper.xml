@@ -28,7 +28,7 @@
     </resultMap>
 
     <resultMap id="BaseExerciseResultMap" type="com.example.ojsystem.entity.Exercise">
-        <id column="exerciseId" jdbcType="BIGINT" property="exerciseId" />
+        <id column="testProgrammingQuestionId" jdbcType="BIGINT" property="exerciseId" />
         <result column="exerciseTitle" jdbcType="VARCHAR" property="exerciseTitle" />
         <result column="success" jdbcType="BIGINT" property="exerciseCorrectTimes" />
         <result column="submit" jdbcType="BIGINT" property="exerciseSubmitTimes" />
@@ -53,9 +53,13 @@
         delete from testprogrammingquestion where testProgrammingQuestionId=#{testProgrammingQuestionId}
     </delete>
     <select id="queryTestProgrammingQuestionByTestId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
-         SELECT exercise.exerciseId,exercise.exerciseTitle,count(if(testprogrammingquestionhistory.testProgrammingResult='success',1,null)) as 'success',count(testprogrammingquestionhistory.testProgrammingResult) as 'submit'
-         FROM exercise,testprogrammingquestion,testprogrammingquestionhistory
-         where exercise.exerciseId=testprogrammingquestion.exerciseId and testprogrammingquestion.testId=#{testId} and testprogrammingquestionhistory.testProgrammingQuestionId=testprogrammingquestion.testProgrammingQuestionId GROUP BY exercise.exerciseId
+       SELECT testprogrammingquestion.testProgrammingQuestionId,exercise.exerciseTitle,count(if(testprogrammingquestionhistory.testProgrammingResult='success',1,null)) as 'success',count(testprogrammingquestionhistory.testProgrammingResult) as 'submit'
+    FROM testprogrammingquestion left join testprogrammingquestionhistory on testprogrammingquestion.testProgrammingQuestionId=testprogrammingquestionhistory.testProgrammingQuestionId
+    left join exercise on exercise.exerciseId=testprogrammingquestion.exerciseId
+  where testprogrammingquestion.testId=#{testId}  GROUP BY exercise.exerciseId
+    </select>
+    <select id="queryTestProgrammingResultByUserIdAndTestProgrammingQuestionId" resultType="java.lang.String">
+        	select distinct testProgrammingResult from testprogrammingquestionhistory where testProgrammingQuestionId=#{testProgrammingQuestionId} and userId=#{userId} and testProgrammingResult='success'
     </select>
 
 

@@ -42,7 +42,12 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
      *
      * @param testId
      */
-    public List<Exercise> queryTestProgrammingQuestionByTestId(int testId) {
-        return testProgrammingQuestionMapper.queryTestProgrammingQuestionByTestId(testId);
+    public List<Exercise> queryTestProgrammingQuestionByTestId(Integer testId,Integer userId) {
+        List<Exercise> exercises=testProgrammingQuestionMapper.queryTestProgrammingQuestionByTestId(testId);
+        for(int i=0;i<exercises.size();i++){
+            exercises.get(i).setExerciseDescription(testProgrammingQuestionMapper.queryTestProgrammingResultByUserIdAndTestProgrammingQuestionId(userId,exercises.get(i).getExerciseId()));
+        }
+
+        return exercises;
     }
 }

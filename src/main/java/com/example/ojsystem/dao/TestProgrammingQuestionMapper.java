@@ -31,4 +31,11 @@ public interface TestProgrammingQuestionMapper {
     public List<Exercise> queryTestProgrammingQuestionByTestId(@Param("testId") int testId);
 
 
+    /**
+     * 查询用户是否完成对应的习题
+     * 输入userId,testProgrammingQuestionId
+     * 输出testProgrammingResult
+     */
+    public String queryTestProgrammingResultByUserIdAndTestProgrammingQuestionId(@Param("userId") Integer userId,@Param("testProgrammingQuestionId") Integer testProgrammingQuestionId);
+
 }

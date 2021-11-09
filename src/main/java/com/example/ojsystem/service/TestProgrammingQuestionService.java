@@ -25,5 +25,5 @@ public interface TestProgrammingQuestionService {
      * 输入testId
      * 输出List<Exercise>
      */
-    public List<Exercise> queryTestProgrammingQuestionByTestId(int testId);
+    public List<Exercise> queryTestProgrammingQuestionByTestId(Integer testId,Integer userId);
 }
