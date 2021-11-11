@@ -29,6 +29,9 @@
          examhistory.examCompletionQuestionTotals,examhistory.examChoiceQuestionTotals+examhistory.examProgrammingTotals+examhistory.examCompletionQuestionTotals as total
          FROM examhistory,user,exam where examhistory.examId =exam.examId  and user.userId=examhistory.userId and user.userId=#{userId} order by total desc
     </select>
+    <select id="queryUserIfJoinExam" resultType="java.lang.Integer">
+        select * from examhistory where userId=#{userId} and examId=#{examId}
+    </select>
 
 
 </mapper>

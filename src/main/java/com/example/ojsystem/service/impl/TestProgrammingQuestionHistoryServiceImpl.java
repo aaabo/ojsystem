@@ -43,7 +43,7 @@ public class TestProgrammingQuestionHistoryServiceImpl implements TestProgrammin
     public List<TestProgrammingQuestionResultTool> queryTestRealStatus(int testId) {
         List<TestProgrammingQuestionResultTool> testProgrammingQuestionResultTools=testProgrammingQuestionHistoryMapper.queryTestUserAndTestProgrammingQuestionId(testId);
         for(int i=0;i<testProgrammingQuestionResultTools.size();i++){
-            testProgrammingQuestionResultTools.get(i).setAcceptNumber(0);
+            testProgrammingQuestionResultTools.get(i).setAcceptNumber(new Float(0));
             for(int o = 0; o<testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().size(); o++){
 
                 TestProgrammingQuestionUserSubmitStateTool testProgrammingQuestionUserSubmitStateTool=testProgrammingQuestionHistoryMapper.queryTestProgrammingQuestionUserSubmitStateByTestProgrammingQuestionIdAndUserId(testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().get(o).getTestProgrammingQuestionId(),testProgrammingQuestionResultTools.get(i).getUserId());
@@ -53,7 +53,7 @@ public class TestProgrammingQuestionHistoryServiceImpl implements TestProgrammin
                     continue;
                 }else if(testProgrammingQuestionUserSubmitStateTool.getNoSuccess()>0){
                     testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().get(o).setTestProgrammingQuestionResult("error");
-                    testProgrammingQuestionResultTools.get(i).setAcceptNumber(testProgrammingQuestionResultTools.get(i).getAcceptNumber()-1);
+                    testProgrammingQuestionResultTools.get(i).setAcceptNumber(testProgrammingQuestionResultTools.get(i).getAcceptNumber()-new Float(0.01));
                     continue;
                 }else{
                     testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().get(o).setTestProgrammingQuestionResult("null");

@@ -38,4 +38,16 @@ public class ExamHistoryController {
         return  examHistoryService.queryExamHistoryInfoByUserId(Integer.valueOf(request.getParameter("userId")));
     }
 
+    /**
+     * 根据用户Id查询是否参加过对应的考试
+     * 输入userId,examId
+     * 输出List<ExamHistory>
+     */
+    @RequestMapping(value="/queryUserIfJoinExam",method = RequestMethod.POST)
+    public Object queryUserIfJoinExam(HttpServletRequest request){
+        String examId=request.getParameter("examId");
+        int userId=(Integer) request.getSession().getAttribute("userId");
+
+        return examHistoryService.queryUserIfJoinExam(userId,Integer.valueOf(examId));
+    }
 }

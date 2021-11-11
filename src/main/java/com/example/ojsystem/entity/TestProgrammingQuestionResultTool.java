@@ -6,7 +6,7 @@ public class TestProgrammingQuestionResultTool{
     private int userId;
     private String userName;
     private List<TestProgrammingQuestionResultStateTool> testProgrammingQuestionResultStateTools;
-    private Integer acceptNumber;
+    private Float acceptNumber;
 
     public int getUserId() {
         return userId;
@@ -32,11 +32,11 @@ public class TestProgrammingQuestionResultTool{
         this.userName = userName;
     }
 
-    public Integer getAcceptNumber() {
+    public Float getAcceptNumber() {
         return acceptNumber;
     }
 
-    public void setAcceptNumber(Integer acceptNumber) {
+    public void setAcceptNumber(Float acceptNumber) {
         this.acceptNumber = acceptNumber;
     }
 

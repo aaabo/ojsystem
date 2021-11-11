@@ -48,7 +48,7 @@
         select exerciseCode from exercisehistory where exerciseHistoryId=#{exerciseHistoryId}
     </select>
     <select id="queryExerciseIdByUserId" resultType="java.lang.Integer">
-        select exerciseId from exercisehistory where exerciseId not in (select distinct exerciseId from exercisehistory where userId=#{userId} and exerciseResult="accept") and userId=#{userId}
+        select distinct exerciseId from exercisehistory where exerciseId not in (select distinct exerciseId from exercisehistory where userId=#{userId} and exerciseResult="accept") and userId=#{userId}
     </select>
     <select id="queryExerciseResultInfo" resultType="com.example.ojsystem.entity.ResultTool">
         SELECT exerciseResult,count(*) as number FROM `exercisehistory` where exerciseId=#{exerciseId} group BY exerciseResult

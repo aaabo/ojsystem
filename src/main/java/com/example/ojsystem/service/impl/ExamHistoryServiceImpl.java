@@ -34,4 +34,16 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
     public List<ExamHistory> queryExamHistoryInfoByUserId(int userId) {
         return examHistoryMapper.queryExamHistoryInfoByUserId(userId);
     }
+
+    /**
+     * 根据用户Id查询是否参加过对应的考试
+     * 输入userId,examId
+     * 输出List<ExamHistory>
+     *
+     * @param userId
+     * @param examId
+     */
+    public int queryUserIfJoinExam(int userId, int examId) {
+        return examHistoryMapper.queryUserIfJoinExam(userId,examId);
+    }
 }

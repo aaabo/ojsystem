@@ -20,4 +20,11 @@ public interface ExamHistoryMapper {
      * 输出List<ExamHistory>
      */
     public List<ExamHistory> queryExamHistoryInfoByUserId(@Param("userId") int userId);
+
+    /**
+     * 根据用户Id查询是否参加过对应的考试
+     * 输入userId,examId
+     * 输出List<ExamHistory>
+     */
+    public int queryUserIfJoinExam(@Param("userId") int userId,@Param("examId") int examId);
 }
