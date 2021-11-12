@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/testProgrammingHistory")
+    @RequestMapping("/testProgrammingHistory")
 public class TestProgrammingQuestionHistoryController {
     @Autowired
     TestProgrammingQuestionHistoryService testProgrammingQuestionHistoryService;

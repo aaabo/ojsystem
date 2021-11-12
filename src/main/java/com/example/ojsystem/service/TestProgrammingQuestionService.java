@@ -26,4 +26,11 @@ public interface TestProgrammingQuestionService {
      * 输出List<Exercise>
      */
     public List<Exercise> queryTestProgrammingQuestionByTestId(Integer testId,Integer userId);
+
+    /**
+     * 根据测试编程题编号查询对应的习题信息
+     * 输入testProgrammingQuestionId
+     * 输出Exercise
+     */
+    public Exercise queryExerciseByTestProgrammingQuestionId(Integer testProgrammingQuestionId);
 }

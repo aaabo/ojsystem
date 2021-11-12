@@ -45,9 +45,21 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
     public List<Exercise> queryTestProgrammingQuestionByTestId(Integer testId,Integer userId) {
         List<Exercise> exercises=testProgrammingQuestionMapper.queryTestProgrammingQuestionByTestId(testId);
         for(int i=0;i<exercises.size();i++){
+            //赋值习题描述为改用户的提交题目的结果
             exercises.get(i).setExerciseDescription(testProgrammingQuestionMapper.queryTestProgrammingResultByUserIdAndTestProgrammingQuestionId(userId,exercises.get(i).getExerciseId()));
         }
 
         return exercises;
+    }
+
+    /**
+     * 根据测试编程题编号查询对应的习题信息
+     * 输入testProgrammingQuestionId
+     * 输出Exercise
+     *
+     * @param testProgrammingQuestionId
+     */
+    public Exercise queryExerciseByTestProgrammingQuestionId(Integer testProgrammingQuestionId) {
+        return testProgrammingQuestionMapper.queryExerciseByTestProgrammingQuestionId(testProgrammingQuestionId);
     }
 }

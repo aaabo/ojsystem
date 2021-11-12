@@ -45,7 +45,7 @@ public class TestProgrammingQuestionHistoryServiceImpl implements TestProgrammin
         for(int i=0;i<testProgrammingQuestionResultTools.size();i++){
             testProgrammingQuestionResultTools.get(i).setAcceptNumber(new Float(0));
             for(int o = 0; o<testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().size(); o++){
-
+                //获取对应测试习题的对错情况
                 TestProgrammingQuestionUserSubmitStateTool testProgrammingQuestionUserSubmitStateTool=testProgrammingQuestionHistoryMapper.queryTestProgrammingQuestionUserSubmitStateByTestProgrammingQuestionIdAndUserId(testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().get(o).getTestProgrammingQuestionId(),testProgrammingQuestionResultTools.get(i).getUserId());
                 if(testProgrammingQuestionUserSubmitStateTool.getSuccess()>0){
                     testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().get(o).setTestProgrammingQuestionResult("success");
