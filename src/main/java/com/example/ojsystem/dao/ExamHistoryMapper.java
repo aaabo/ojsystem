@@ -1,6 +1,7 @@
 package com.example.ojsystem.dao;
 
 import com.example.ojsystem.entity.ExamHistory;
+import com.example.ojsystem.entity.ExamUserJoinTool;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -27,4 +28,11 @@ public interface ExamHistoryMapper {
      * 输出List<ExamHistory>
      */
     public int queryUserIfJoinExam(@Param("userId") int userId,@Param("examId") int examId);
+
+    /**
+     * 查询考试用户参加情况
+     * 输入examId
+     * 输出ExamUserJoinTool
+     */
+    public ExamUserJoinTool queryExamUserJoinInfo(@Param("examId") int examId);
 }

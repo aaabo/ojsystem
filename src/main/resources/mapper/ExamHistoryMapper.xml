@@ -21,6 +21,12 @@
         </association>
     </resultMap>
 
+    <resultMap id="BasExamUserJoinToolResultMap" type="com.example.ojsystem.entity.ExamUserJoinTool">
+        <result column="examUser" jdbcType="INTEGER" property="examUser" />
+        <result column="examSubmitUser" jdbcType="INTEGER" property="examSubmitUser" />
+        <result column="examNotSubmitUser" jdbcType="INTEGER" property="examNotSubmitUser" />
+    </resultMap>
+
     <select id="queryExamRankById" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
      select * from user,usergroup left join exam on exam.groupId=usergroup.groupId left join examhistory on usergroup.userId=examhistory.userId and examhistory.examId=exam.examId   where exam.examId=#{examId} and user.userId=usergroup.userId order by examhistory.examCompletionQuestionTotals+examhistory.examChoiceQuestionTotals+examhistory.examProgrammingTotals DESC
     </select>
@@ -31,6 +37,11 @@
     </select>
     <select id="queryUserIfJoinExam" resultType="java.lang.Integer">
         select * from examhistory where userId=#{userId} and examId=#{examId}
+    </select>
+    <select id="queryExamUserJoinInfo" resultType="com.example.ojsystem.entity.ExamUserJoinTool" resultMap="BasExamUserJoinToolResultMap">
+        select count(*) as examUser,count(examhistory.examId) as examSubmitUser,count(*)-count(examhistory.examId) as examNotSubmitUser from usergroup
+        left join examhistory on usergroup.userId=examhistory.userId left join exam on exam.groupId=usergroup.groupId  where exam.examId=#{examId}
+
     </select>
 
 

@@ -2,6 +2,7 @@ package com.example.ojsystem.controller;
 
 import com.example.ojsystem.dao.ExamHistoryMapper;
 import com.example.ojsystem.entity.ExamHistory;
+import com.example.ojsystem.entity.ExamUserJoinTool;
 import com.example.ojsystem.service.ExamHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -49,5 +50,18 @@ public class ExamHistoryController {
         int userId=(Integer) request.getSession().getAttribute("userId");
 
         return examHistoryService.queryUserIfJoinExam(userId,Integer.valueOf(examId));
+    }
+
+
+    /**
+     * 查询考试用户参加情况
+     * 输入examId
+     * 输出ExamUserJoinTool
+     */
+    @RequestMapping(value="/queryExamUserJoinInfo",method = RequestMethod.GET)
+    public Object queryExamUserJoinInfo(HttpServletRequest request){
+
+
+        return examHistoryService.queryExamUserJoinInfo(Integer.valueOf(request.getParameter("examId")));
     }
 }

@@ -2,6 +2,7 @@ package com.example.ojsystem.service.impl;
 
 import com.example.ojsystem.dao.ExamHistoryMapper;
 import com.example.ojsystem.entity.ExamHistory;
+import com.example.ojsystem.entity.ExamUserJoinTool;
 import com.example.ojsystem.service.ExamHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +46,16 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
      */
     public int queryUserIfJoinExam(int userId, int examId) {
         return examHistoryMapper.queryUserIfJoinExam(userId,examId);
+    }
+
+    /**
+     * 查询考试用户参加情况
+     * 输入examId
+     * 输出ExamUserJoinTool
+     *
+     * @param examId
+     */
+    public ExamUserJoinTool queryExamUserJoinInfo(int examId) {
+        return examHistoryMapper.queryExamUserJoinInfo(examId);
     }
 }

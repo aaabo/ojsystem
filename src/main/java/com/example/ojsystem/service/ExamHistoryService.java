@@ -1,6 +1,7 @@
 package com.example.ojsystem.service;
 
 import com.example.ojsystem.entity.ExamHistory;
+import com.example.ojsystem.entity.ExamUserJoinTool;
 
 import java.util.List;
 
@@ -26,4 +27,11 @@ public interface ExamHistoryService {
      * 输出List<ExamHistory>
      */
     public int queryUserIfJoinExam(int userId,int examId);
+
+    /**
+     * 查询考试用户参加情况
+     * 输入examId
+     * 输出ExamUserJoinTool
+     */
+    public ExamUserJoinTool queryExamUserJoinInfo(int examId);
 }
