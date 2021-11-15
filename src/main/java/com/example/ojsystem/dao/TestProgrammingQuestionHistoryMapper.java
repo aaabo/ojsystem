@@ -32,4 +32,18 @@ public interface TestProgrammingQuestionHistoryMapper {
      * 输出TestProgrammingQuestionUserSubmitStateTool
      */
     public TestProgrammingQuestionUserSubmitStateTool queryTestProgrammingQuestionUserSubmitStateByTestProgrammingQuestionIdAndUserId(@Param("testProgrammingQuestionId") int  testProgrammingQuestionId,@Param("userId") int  userId);
+
+    /**
+     * 查询测试的提交实时提交情况
+     * 输入testId
+     * 输出测试的提交实时提交状态
+     */
+    public List<TestProgrammingQuestionHistory> queryTestProgrammingRealStatus(@Param("testId")int testId);
+
+    /**
+     * 根据测试编程题的编号查询为该测试的第几题目
+     * 输入testId
+     * 输出为第几
+     */
+    public int queryTestProgrammingQuestionOrder(@Param("testId")int testId,@Param("testProgrammingQuestionId") int testProgrammingQuestionId);
 }

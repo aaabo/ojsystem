@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -55,4 +56,16 @@ public class TestProgrammingQuestionHistoryController {
     public Object queryTestRealStatus(HttpServletRequest request){
         return testProgrammingQuestionHistoryService.queryTestRealStatus(Integer.valueOf(request.getParameter("testId")));
     }
+
+
+    /**
+     * 查询测试的提交实时提交情况
+     * 输入testId
+     * 输出测试的提交实时提交状态
+     */
+    @RequestMapping(value="/queryTestProgrammingRealStatus",method = RequestMethod.POST)
+    public Object queryTestProgrammingRealStatus(HttpServletRequest request){
+        return testProgrammingQuestionHistoryService.queryTestProgrammingRealStatus(Integer.valueOf(request.getParameter("testId")));
+    }
+
 }

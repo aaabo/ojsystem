@@ -12,6 +12,10 @@
         <association property="testProgrammingQuestion" javaType="com.example.ojsystem.entity.TestProgrammingQuestion">
             <id column="testProgrammingQuestionId" jdbcType="INTEGER" property="testProgrammingQuestionId" />
         </association>
+        <association property="user" javaType="com.example.ojsystem.entity.User">
+            <id column="userId" jdbcType="BIGINT" property="userId" />
+            <result column="userName" jdbcType="VARCHAR" property="userName" />
+        </association>
     </resultMap>
 
     <resultMap id="BaseTestProgrammingQuestionResultToolResultMap" type="com.example.ojsystem.entity.TestProgrammingQuestionResultTool">
@@ -43,6 +47,11 @@
 
     <select id="queryTestProgrammingQuestionUserSubmitStateByTestProgrammingQuestionIdAndUserId" resultMap="BaseTestProgrammingQuestionUserSubmitStateToolResultMap">
       select count(if(testProgrammingResult='success',1,null)) as success ,count(if(testProgrammingResult!='success',1,null)) as noSuccess  from testprogrammingquestionhistory  where userId=#{userId}  and testProgrammingQuestionId=#{testProgrammingQuestionId}
-
+    </select>
+    <select id="queryTestProgrammingRealStatus" resultType="com.example.ojsystem.entity.TestProgrammingQuestionHistory" resultMap="BaseTestProgrammingQuestionHistoryResultMap">
+        select * from testprogrammingquestionhistory,test,testprogrammingquestion,user where test.testId=testprogrammingquestion.testId and testprogrammingquestion.testProgrammingQuestionId=testprogrammingquestionhistory.testProgrammingQuestionId and user.userId=testprogrammingquestionhistory.userId and test.testId=#{testId} order by testprogrammingquestionhistory.testProgrammingSubmitTime
+    </select>
+    <select id="queryTestProgrammingQuestionOrder" resultType="java.lang.Integer">
+        select count(*) from testprogrammingquestion where testId=#{testId} and testProgrammingQuestionId&lt;#{testProgrammingQuestionId}
     </select>
 </mapper>

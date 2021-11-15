@@ -68,4 +68,16 @@ public class TestProgrammingQuestionHistoryServiceImpl implements TestProgrammin
         });
         return testProgrammingQuestionResultTools;
     }
+
+    /**
+     * 查询测试的提交实时提交情况
+     * 输入testId
+     * 输出测试的提交实时提交状态
+     *
+     * @param testId
+     */
+    public List<TestProgrammingQuestionHistory> queryTestProgrammingRealStatus(int testId) {
+        List<TestProgrammingQuestionHistory> testProgrammingQuestionHistories=testProgrammingQuestionHistoryMapper.queryTestProgrammingRealStatus(testId);
+        return testProgrammingQuestionHistories;
+    }
 }

@@ -19,4 +19,13 @@ public interface TestProgrammingQuestionHistoryService {
      * 输出测试的状态
      */
     public List<TestProgrammingQuestionResultTool> queryTestRealStatus(int testId);
+
+    /**
+     * 查询测试的提交实时提交情况
+     * 输入testId
+     * 输出测试的提交实时提交状态
+     */
+    public List<TestProgrammingQuestionHistory> queryTestProgrammingRealStatus(int testId);
+
+
 }

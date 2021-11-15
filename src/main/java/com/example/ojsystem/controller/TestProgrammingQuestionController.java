@@ -60,13 +60,23 @@ public class TestProgrammingQuestionController {
     }
 
     /**
+     * 查询用户的测试习题是否正确并输出全部测试习题
+     * 输入testId,userId
+     * 输出List<Exercise>
+     */
+    @RequestMapping(value="/queryTestProgrammingQuestionAndIsSuccess",method = RequestMethod.POST)
+    public Object queryTestProgrammingQuestionAndIsSuccess(HttpServletRequest request){
+        return testProgrammingQuestionService.queryTestProgrammingQuestionAndIsSuccess(Integer.valueOf(request.getParameter("testId")),(Integer)request.getSession().getAttribute("userId"));
+    }
+
+    /**
      * 查询对应测试的全部习题
      * 输入testId
      * 输出List<Exercise>
      */
     @RequestMapping(value="/queryTestProgrammingQuestionByTestId",method = RequestMethod.POST)
     public Object queryTestProgrammingQuestionByTestId(HttpServletRequest request){
-        return testProgrammingQuestionService.queryTestProgrammingQuestionByTestId(Integer.valueOf(request.getParameter("testId")),(Integer)request.getSession().getAttribute("userId"));
+        return testProgrammingQuestionService.queryTestProgrammingQuestionByTestId(Integer.valueOf(request.getParameter("testId")));
     }
 
     /**

@@ -21,11 +21,19 @@ public interface TestProgrammingQuestionService {
     public int deleteTestProgrammingQuestionByTestProgrammingQuestionId(int testProgrammingQuestionId);
 
     /**
+     * 查询用户的测试习题是否正确并输出全部测试习题
+     * 输入testId,userId
+     * 输出List<Exercise>
+     */
+    public List<Exercise> queryTestProgrammingQuestionAndIsSuccess(Integer testId,Integer userId);
+
+    /**
      * 查询对应测试的全部习题
      * 输入testId
      * 输出List<Exercise>
      */
-    public List<Exercise> queryTestProgrammingQuestionByTestId(Integer testId,Integer userId);
+    public List<Exercise> queryTestProgrammingQuestionByTestId(Integer testId);
+
 
     /**
      * 根据测试编程题编号查询对应的习题信息
