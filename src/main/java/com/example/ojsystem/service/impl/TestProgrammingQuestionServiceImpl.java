@@ -73,4 +73,15 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
     public Exercise queryExerciseByTestProgrammingQuestionId(Integer testProgrammingQuestionId) {
         return testProgrammingQuestionMapper.queryExerciseByTestProgrammingQuestionId(testProgrammingQuestionId);
     }
+
+    /**
+     * 根据测试编程题编号查询testId
+     * 输入testProgrammingQuestionId
+     * 输出Integer
+     *
+     * @param testProgrammingQuestionId
+     */
+    public Integer queryTestIdByTestProgrammingQuestionId(Integer testProgrammingQuestionId) {
+        return testProgrammingQuestionMapper.queryTestIdByTestProgrammingQuestionId(testProgrammingQuestionId);
+    }
 }

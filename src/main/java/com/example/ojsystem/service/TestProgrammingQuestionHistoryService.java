@@ -27,5 +27,12 @@ public interface TestProgrammingQuestionHistoryService {
      */
     public List<TestProgrammingQuestionHistory> queryTestProgrammingRealStatus(int testId);
 
+    /**
+     * 根据测试编程题记录编号来查询对应的测试编程题记录
+     * 输入testProgrammingQuestionHistoryId
+     * 输出TestProgrammingQuestionHistory
+     */
+    public TestProgrammingQuestionHistory queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(int testProgrammingQuestionHistoryId);
+
 
 }

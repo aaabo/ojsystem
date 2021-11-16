@@ -55,4 +55,11 @@ public interface TestService {
      * 输出List<Test>
      */
     public List<Test> queryNotFinishTestInfo();
+
+    /**
+     * 根据testId来查询对应的测试信息
+     * 输入testId
+     * 输出Test
+     */
+    public Test queryTestInfoByTestId(int testId);
 }

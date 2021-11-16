@@ -45,4 +45,11 @@ public interface TestProgrammingQuestionMapper {
      * 输出Exercise
      */
     public Exercise queryExerciseByTestProgrammingQuestionId(@Param("testProgrammingQuestionId") Integer testProgrammingQuestionId);
+
+    /**
+     * 根据测试编程题编号查询testId
+     * 输入testProgrammingQuestionId
+     * 输出Integer
+     */
+    public Integer queryTestIdByTestProgrammingQuestionId(@Param("testProgrammingQuestionId") Integer testProgrammingQuestionId);
 }

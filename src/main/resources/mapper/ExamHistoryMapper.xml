@@ -39,9 +39,8 @@
         select * from examhistory where userId=#{userId} and examId=#{examId}
     </select>
     <select id="queryExamUserJoinInfo" resultType="com.example.ojsystem.entity.ExamUserJoinTool" resultMap="BasExamUserJoinToolResultMap">
-        select count(*) as examUser,count(examhistory.examId) as examSubmitUser,count(*)-count(examhistory.examId) as examNotSubmitUser from usergroup
-        left join examhistory on usergroup.userId=examhistory.userId left join exam on exam.groupId=usergroup.groupId  where exam.examId=#{examId}
-
+             select count(*) as examUser,count(if(examhistory.examId is NULL,1,null)) as  examNotSubmitUser ,count(*)-count(if(examhistory.examId is NULL,1,null)) as examSubmitUser from usergroup
+         left join examhistory on usergroup.userId=examhistory.userId and examhistory.examId=#{examId} left join exam on exam.groupId=usergroup.groupId    where exam.examId=#{examId}
     </select>
 
 

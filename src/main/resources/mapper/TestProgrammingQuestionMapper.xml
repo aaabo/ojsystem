@@ -84,6 +84,9 @@
     <select id="queryExerciseByTestProgrammingQuestionId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
         select * from exercise,testprogrammingquestion where exercise.exerciseId=testprogrammingquestion.exerciseId and testprogrammingquestion.testProgrammingQuestionId=#{testProgrammingQuestionId}
     </select>
+    <select id="queryTestIdByTestProgrammingQuestionId" resultType="java.lang.Integer">
+        select testId from testprogrammingquestion where testProgrammingQuestionId=#{testProgrammingQuestionId}
+    </select>
 
 
 </mapper>

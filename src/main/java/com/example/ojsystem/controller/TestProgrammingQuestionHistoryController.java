@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
-    @RequestMapping("/testProgrammingHistory")
+@RequestMapping("/testProgrammingHistory")
 public class TestProgrammingQuestionHistoryController {
     @Autowired
     TestProgrammingQuestionHistoryService testProgrammingQuestionHistoryService;
@@ -66,6 +66,16 @@ public class TestProgrammingQuestionHistoryController {
     @RequestMapping(value="/queryTestProgrammingRealStatus",method = RequestMethod.POST)
     public Object queryTestProgrammingRealStatus(HttpServletRequest request){
         return testProgrammingQuestionHistoryService.queryTestProgrammingRealStatus(Integer.valueOf(request.getParameter("testId")));
+    }
+
+    /**
+     * 根据测试编程题记录编号来查询对应的测试编程题记录
+     * 输入testProgrammingQuestionId
+     * 输出TestProgrammingQuestionHistory
+     */
+    @RequestMapping(value="/queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId",method = RequestMethod.POST)
+    public Object queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(HttpServletRequest request){
+        return testProgrammingQuestionHistoryService.queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(Integer.valueOf(request.getParameter("testProgrammingQuestionHistoryId")));
     }
 
 }

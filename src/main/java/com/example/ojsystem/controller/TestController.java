@@ -160,4 +160,15 @@ public class TestController {
     public Object queryNotFinishTestInfo(HttpServletRequest request){
         return testService.queryNotFinishTestInfo();
     }
+
+    /**
+     * 根据testId来查询对应的测试信息
+     * 输入testId
+     * 输出Test
+     */
+    @RequestMapping(value="/queryTestInfoByTestId",method = RequestMethod.POST)
+    public Object queryTestInfoByTestId(HttpServletRequest request){
+        return testService.queryTestInfoByTestId(Integer.valueOf(request.getParameter("testId")));
+    }
+
 }

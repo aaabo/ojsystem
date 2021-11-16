@@ -86,4 +86,15 @@ public class TestServiceImpl implements TestService{
     public List<Test> queryNotFinishTestInfo() {
         return testMapper.queryNotFinishTestInfo();
     }
+
+    /**
+     * 根据testId来查询对应的测试信息
+     * 输入testId
+     * 输出Test
+     *
+     * @param testId
+     */
+    public Test queryTestInfoByTestId(int testId) {
+        return testMapper.queryTestInfoByTestId(testId);
+    }
 }

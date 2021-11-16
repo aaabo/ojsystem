@@ -88,4 +88,14 @@ public class TestProgrammingQuestionController {
     public Object queryExerciseByTestProgrammingQuestionId(HttpServletRequest request){
         return testProgrammingQuestionService.queryExerciseByTestProgrammingQuestionId(Integer.valueOf(request.getParameter("testProgrammingQuestionId")));
     }
+
+    /**
+     * 根据测试编程题编号查询testId
+     * 输入testProgrammingQuestionId
+     * 输出Integer
+     */
+    @RequestMapping(value="/queryTestIdByTestProgrammingQuestionId",method = RequestMethod.POST)
+    public Object queryTestIdByTestProgrammingQuestionId(HttpServletRequest request){
+        return testProgrammingQuestionService.queryTestIdByTestProgrammingQuestionId(Integer.valueOf(request.getParameter("testProgrammingQuestionId")));
+    }
 }

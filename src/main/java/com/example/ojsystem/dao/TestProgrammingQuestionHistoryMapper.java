@@ -46,4 +46,11 @@ public interface TestProgrammingQuestionHistoryMapper {
      * 输出为第几
      */
     public int queryTestProgrammingQuestionOrder(@Param("testId")int testId,@Param("testProgrammingQuestionId") int testProgrammingQuestionId);
+
+    /**
+     * 根据测试编程题记录编号来查询对应的测试编程题记录
+     * 输入testProgrammingQuestionId
+     * 输出TestProgrammingQuestionHistory
+     */
+    public TestProgrammingQuestionHistory queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(@Param("testProgrammingQuestionHistoryId") int testProgrammingQuestionHistoryId);
 }

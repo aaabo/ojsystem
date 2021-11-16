@@ -54,6 +54,9 @@
     <select id="queryNotFinishTestInfo" resultType="com.example.ojsystem.entity.Test">
           select * from test where testStatus='Pending' or testStatus='Running'
     </select>
+    <select id="queryTestInfoByTestId" resultType="com.example.ojsystem.entity.Test" resultMap="BaseTestResultMap">
+        select * from test where testId=#{testId}
+    </select>
 
 
 </mapper>
