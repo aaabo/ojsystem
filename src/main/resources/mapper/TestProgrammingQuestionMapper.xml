@@ -75,7 +75,7 @@
        SELECT testprogrammingquestion.testProgrammingQuestionId,exercise.exerciseTitle,count(if(testprogrammingquestionhistory.testProgrammingResult='success',1,null)) as 'success',count(testprogrammingquestionhistory.testProgrammingResult) as 'submit'
     FROM testprogrammingquestion left join testprogrammingquestionhistory on testprogrammingquestion.testProgrammingQuestionId=testprogrammingquestionhistory.testProgrammingQuestionId
     left join exercise on exercise.exerciseId=testprogrammingquestion.exerciseId
-  where testprogrammingquestion.testId=#{testId}  GROUP BY exercise.exerciseId
+  where testprogrammingquestion.testId=#{testId}  GROUP BY exercise.exerciseId order by testprogrammingquestion.testProgrammingQuestionId
     </select>
     <select id="queryTestProgrammingResultByUserIdAndTestProgrammingQuestionId" resultType="java.lang.String">
         	select distinct testProgrammingResult from testprogrammingquestionhistory where testProgrammingQuestionId=#{testProgrammingQuestionId} and userId=#{userId} and testProgrammingResult='success'
