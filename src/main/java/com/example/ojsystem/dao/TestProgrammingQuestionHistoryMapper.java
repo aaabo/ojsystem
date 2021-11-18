@@ -53,4 +53,11 @@ public interface TestProgrammingQuestionHistoryMapper {
      * 输出TestProgrammingQuestionHistory
      */
     public TestProgrammingQuestionHistory queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(@Param("testProgrammingQuestionHistoryId") int testProgrammingQuestionHistoryId);
+
+    /**
+     * 查询测试的提交实时提交情况通过提交的查询信息
+     * 输入testId
+     * 输出测试的提交实时提交状态
+     */
+    public List<TestProgrammingQuestionHistory> queryTestProgrammingRealStatusBySearchInfo(@Param("testProgrammingQuestionHistory") TestProgrammingQuestionHistory testProgrammingQuestionHistory);
 }

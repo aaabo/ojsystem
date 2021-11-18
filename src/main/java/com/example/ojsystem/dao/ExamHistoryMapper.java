@@ -35,4 +35,13 @@ public interface ExamHistoryMapper {
      * 输出ExamUserJoinTool
      */
     public ExamUserJoinTool queryExamUserJoinInfo(@Param("examId") int examId);
+
+    public int queryExamChoiceQuestionResultScore(@Param("examId") int examId,@Param("userId") int userId);
+
+    public int queryExamCompletionQuestionResultScore(@Param("examId") int examId,@Param("userId") int userId);
+
+    public int queryExamProgrammingQuestionResultScore(@Param("examId") int examId,@Param("userId") int userId);
+
+    public int addExamHistory(@Param("userId")int userId,@Param("examId")int examId,@Param("examChoiceQuestionTotals")int examChoiceQuestionTotals,
+                              @Param("examCompletionQuestionTotals")int examCompletionQuestionTotals,@Param("examProgrammingTotals")int examProgrammingTotals);
 }

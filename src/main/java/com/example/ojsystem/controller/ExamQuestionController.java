@@ -30,7 +30,7 @@ public class ExamQuestionController {
      * 输入examId
      * 输出ExamQuestion
      */
-    @RequestMapping(value="/queryExamQuestionByExamId",method = RequestMethod.GET)
+    @RequestMapping(value="/queryExamQuestionByExamId",method = RequestMethod.POST)
     public Object queryExamQuestionByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         List<ExamQuestion> examQuestions=new ArrayList<ExamQuestion>();

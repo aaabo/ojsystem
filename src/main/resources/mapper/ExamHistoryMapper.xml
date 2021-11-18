@@ -43,5 +43,21 @@
          left join examhistory on usergroup.userId=examhistory.userId and examhistory.examId=#{examId} left join exam on exam.groupId=usergroup.groupId    where exam.examId=#{examId}
     </select>
 
+    <insert id="addExamHistory" parameterType="com.example.ojsystem.entity.ExamHistory">
+        INSERT INTO examhistory(userId,examId,examChoiceQuestionTotals,examCompletionQuestionTotals,examProgrammingTotals)
+        VALUES(#{userId},#{examId},#{examChoiceQuestionTotals},#{examCompletionQuestionTotals},#{examProgrammingTotals});
+    </insert>
+    <select id="queryExamChoiceQuestionResultScore" resultType="java.lang.Integer">
+        SELECT ifnull(SUM(examChoiceQuestionResultScore),'1111') FROM examchoicequestionhistory,examquestion
+        where examId=#{examId} and examquestion.examQuestionId=examchoicequestionhistory.examQuestionId and userId=#{userId};
+    </select>
+    <select id="queryExamCompletionQuestionResultScore" resultType="java.lang.Integer">
+        SELECT ifnull(SUM(examCompletionQuestionResultScore),'1111') FROM examcompletionquestionhistory,examquestion
+        where examId=#{examId} and examquestion.examQuestionId=examcompletionquestionhistory.examQuestionId and userId=#{userId};
+    </select>
+    <select id="queryExamProgrammingQuestionResultScore" resultType="java.lang.Integer">
+        SELECT ifnull(SUM(examProgrammingQuestionResultScore),'1111') FROM examprogrammingquestionhistory,examquestion
+        where examId=#{examId} and examquestion.examQuestionId=examprogrammingquestionhistory.examQuestionId and userId=#{userId};
+    </select>
 
 </mapper>

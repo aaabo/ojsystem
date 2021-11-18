@@ -3,9 +3,8 @@ package com.example.ojsystem.service.impl;
 import com.example.ojsystem.dao.ExamProgrammingQuestionHistoryMapper;
 import com.example.ojsystem.dao.ExamQuestionMapper;
 import com.example.ojsystem.entity.ExamProgrammingQuestionHistory;
-import com.example.ojsystem.entity.ExamQuestion;
 import com.example.ojsystem.entity.User;
-import com.example.ojsystem.judger.exec;
+import com.example.ojsystem.judger.JudgerC;
 import com.example.ojsystem.service.ExamProgrammingQuestionHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,7 @@ public class ExamProgrammingQuestionHistoryServiceImpl implements ExamProgrammin
         //查询是否存在
         examProgrammingQuestionId=examProgrammingQuestionHistoryMapper.queryExamProgrammingQuestionHistoryByExamQuestionIdAndUserId(examQuestionId,userId);
         //判断
-        String result= exec.start(examProgrammingQuestionHistory.getExamProgrammingQuestionCode(),examQuestionMapper.queryExerciseAnswerInfoByExamQuestionId(examQuestionId));
+        String result= JudgerC.start(examProgrammingQuestionHistory.getExamProgrammingQuestionCode(),examQuestionMapper.queryExerciseAnswerInfoByExamQuestionId(examQuestionId));
         examProgrammingQuestionHistory.setExamProgrammingQuestionResult(result);
         //不存在
         if(examProgrammingQuestionId==0){

@@ -58,4 +58,20 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
     public ExamUserJoinTool queryExamUserJoinInfo(int examId) {
         return examHistoryMapper.queryExamUserJoinInfo(examId);
     }
+
+    public int queryExamChoiceQuestionResultScore(int examId,int userId){
+        return examHistoryMapper.queryExamChoiceQuestionResultScore(examId,userId);
+    }
+
+    public int queryExamCompletionQuestionResultScore(int examId,int userId){
+        return examHistoryMapper.queryExamCompletionQuestionResultScore(examId,userId);
+    }
+
+    public int queryExamProgrammingQuestionResultScore(int examId,int userId){
+        return examHistoryMapper.queryExamProgrammingQuestionResultScore(examId,userId);
+    }
+
+    public int addExamHistory(int userId,int examId,int examChoiceQuestionTotals,int examCompletionQuestionTotals,int examProgrammingTotals){
+        return examHistoryMapper.addExamHistory(userId,examId,examChoiceQuestionTotals,examCompletionQuestionTotals,examProgrammingTotals);
+    }
 }

@@ -36,7 +36,7 @@
             <if test="exerciseHistory.exerciseSubmitLanguage != null and exerciseHistory.exerciseSubmitLanguage!=''">
                 and exerciseHistory.exerciseSubmitLanguage =#{exerciseHistory.exerciseSubmitLanguage}
             </if>
-                order by exercisehistory.exerciseSubmitTime DESC
+                order by exercisehistory.exerciseHistoryId DESC
     </select>
     <select id="queryExerciseStatisticsInfo" resultType="com.example.ojsystem.entity.ExerciseHistory" resultMap="BaseExerciseHistoryResultMap">
          select  * from exercisehistory,user where exercisehistory.userId=user.userId and exercisehistory.exerciseId =#{exerciseId} and exerciseResult="accept" GROUP BY exercisehistory.userId order by exerciseSubmitTime

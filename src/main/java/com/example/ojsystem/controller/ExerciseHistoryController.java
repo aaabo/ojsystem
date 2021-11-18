@@ -1,6 +1,5 @@
 package com.example.ojsystem.controller;
 
-import com.example.ojsystem.judger.exec;
 import com.example.ojsystem.entity.Exercise;
 import com.example.ojsystem.entity.ExerciseHistory;
 import com.example.ojsystem.entity.User;

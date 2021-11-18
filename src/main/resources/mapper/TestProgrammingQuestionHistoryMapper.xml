@@ -49,12 +49,27 @@
       select count(if(testProgrammingResult='success',1,null)) as success ,count(if(testProgrammingResult!='success',1,null)) as noSuccess  from testprogrammingquestionhistory  where userId=#{userId}  and testProgrammingQuestionId=#{testProgrammingQuestionId}
     </select>
     <select id="queryTestProgrammingRealStatus" resultType="com.example.ojsystem.entity.TestProgrammingQuestionHistory" resultMap="BaseTestProgrammingQuestionHistoryResultMap">
-        select * from testprogrammingquestionhistory,test,testprogrammingquestion,user where test.testId=testprogrammingquestion.testId and testprogrammingquestion.testProgrammingQuestionId=testprogrammingquestionhistory.testProgrammingQuestionId and user.userId=testprogrammingquestionhistory.userId and test.testId=#{testId} order by testprogrammingquestionhistory.testProgrammingQuestionHistoryId  desc
+        select * from testprogrammingquestionhistory,test,testprogrammingquestion,user
+        where test.testId=testprogrammingquestion.testId and testprogrammingquestion.testProgrammingQuestionId=testprogrammingquestionhistory.testProgrammingQuestionId and user.userId=testprogrammingquestionhistory.userId and test.testId=#{testId} order by testprogrammingquestionhistory.testProgrammingQuestionHistoryId  desc
     </select>
     <select id="queryTestProgrammingQuestionOrder" resultType="java.lang.Integer">
         select count(*) from testprogrammingquestion where testId=#{testId} and testProgrammingQuestionId&lt;#{testProgrammingQuestionId}
     </select>
     <select id="queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId" resultType="com.example.ojsystem.entity.TestProgrammingQuestionHistory">
         select * from testprogrammingquestionhistory where testProgrammingQuestionHistoryId=#{testProgrammingQuestionHistoryId}
+    </select>
+    <select id="queryTestProgrammingRealStatusBySearchInfo" resultType="com.example.ojsystem.entity.TestProgrammingQuestionHistory" resultMap="BaseTestProgrammingQuestionHistoryResultMap">
+        select * from testprogrammingquestionhistory,test,testprogrammingquestion,user
+        where test.testId=testprogrammingquestion.testId and testprogrammingquestion.testProgrammingQuestionId=testprogrammingquestionhistory.testProgrammingQuestionId and user.userId=testprogrammingquestionhistory.userId and test.testId=#{testProgrammingQuestionHistory.testProgrammingQuestion.test.testId}
+        <if test="testProgrammingQuestionHistory.testProgrammingQuestion.testProgrammingQuestionId != null and testProgrammingQuestionHistory.testProgrammingQuestion.testProgrammingQuestionId!=0">
+            and testprogrammingquestionhistory.testProgrammingQuestionId =#{testProgrammingQuestionHistory.testProgrammingQuestion.testProgrammingQuestionId}
+        </if>
+        <if test="testProgrammingQuestionHistory.user.userName != null and testProgrammingQuestionHistory.user.userName!=''">
+            and user.userName like #{testProgrammingQuestionHistory.user.userName}
+        </if>
+        <if test="testProgrammingQuestionHistory.testProgrammingResult != null and testProgrammingQuestionHistory.testProgrammingResult!=''">
+            and testprogrammingquestionhistory.testProgrammingResult =#{testProgrammingQuestionHistory.testProgrammingResult}
+        </if>
+        order by testprogrammingquestionhistory.testProgrammingQuestionHistoryId  desc
     </select>
 </mapper>

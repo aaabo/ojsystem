@@ -1,9 +1,6 @@
 package com.example.ojsystem.controller;
 
-import com.example.ojsystem.entity.Exercise;
-import com.example.ojsystem.entity.TestProgrammingQuestion;
-import com.example.ojsystem.entity.TestProgrammingQuestionHistory;
-import com.example.ojsystem.entity.User;
+import com.example.ojsystem.entity.*;
 import com.example.ojsystem.service.TestProgrammingQuestionHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,7 +45,7 @@ public class TestProgrammingQuestionHistoryController {
 
 
     /**
-     * 查询测试的提交状态
+     * 查询测试的提交状态  testStanding使用
      * 输入testId
      * 输出测试的状态
      */
@@ -78,4 +75,33 @@ public class TestProgrammingQuestionHistoryController {
         return testProgrammingQuestionHistoryService.queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(Integer.valueOf(request.getParameter("testProgrammingQuestionHistoryId")));
     }
 
+
+    /**
+     * 根据习题id或者用户id来查询习题记录 新增通过语言和结果查询
+     * 输入exerciseId和userId
+     * 输出List<ExerciseHistory>
+     */
+    @RequestMapping(value="/queryTestProgrammingRealStatusBySearchInfo",method = RequestMethod.POST)
+    public Object queryExerciseRealTimeStatusInfo(HttpServletRequest request){
+        Integer testProgrammingQuestionId=Integer.valueOf(request.getParameter("testProgrammingQuestionId"));
+        String userName=request.getParameter("userName");
+        String testProgrammingResult=request.getParameter("testProgrammingResult");
+        TestProgrammingQuestionHistory testProgrammingQuestionHistory=new TestProgrammingQuestionHistory();
+        User user=new User();
+        TestProgrammingQuestion testProgrammingQuestion=new TestProgrammingQuestion();
+        testProgrammingQuestion.setTestProgrammingQuestionId(testProgrammingQuestionId);
+        Test test=new Test();
+        test.setTestId(Integer.valueOf(request.getParameter("testId")));
+        testProgrammingQuestion.setTest(test);
+        if(userName!=null){
+            user.setUserName("%"+userName+"%");
+        }else{
+            user.setUserName(userName);
+        }
+        testProgrammingQuestionHistory.setUser(user);
+        testProgrammingQuestionHistory.setTestProgrammingResult(testProgrammingResult);
+        testProgrammingQuestionHistory.setTestProgrammingQuestion(testProgrammingQuestion);
+        return testProgrammingQuestionHistoryService.queryTestProgrammingRealStatusBySearchInfo(testProgrammingQuestionHistory);
+
+    }
 }

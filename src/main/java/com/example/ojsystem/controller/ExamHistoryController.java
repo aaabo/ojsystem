@@ -58,10 +58,44 @@ public class ExamHistoryController {
      * 输入examId
      * 输出ExamUserJoinTool
      */
-    @RequestMapping(value="/queryExamUserJoinInfo",method = RequestMethod.GET)
+    @RequestMapping(value="/queryExamUserJoinInfo",method = RequestMethod.POST)
     public Object queryExamUserJoinInfo(HttpServletRequest request){
 
 
         return examHistoryService.queryExamUserJoinInfo(Integer.valueOf(request.getParameter("examId")));
+    }
+
+    /**
+     通过考试id，用户id计算个人考试结果
+     输入examid，userid
+     */
+    @RequestMapping(value = "/getExamResult", method = RequestMethod.POST)
+    public Boolean getExamResult(HttpServletRequest request){
+        int examId=Integer.valueOf(request.getParameter("examId"));
+        int userId=Integer.valueOf(request.getParameter("userId"));
+        int choice=0,completion=0,program=0;
+        choice=  examHistoryService.queryExamChoiceQuestionResultScore(examId,userId);
+        completion=  examHistoryService.queryExamCompletionQuestionResultScore(examId,userId);
+        program=  examHistoryService.queryExamProgrammingQuestionResultScore(examId,userId);
+        int i=2;
+        i=examHistoryService.addExamHistory(userId,examId,choice,completion,program);
+        if(i!=2)
+            return true;
+        else
+            return false;
+    }
+    @RequestMapping(value = "/getScoresOfExamQuestions",method = RequestMethod.POST)
+    public Object getScoresOfExamQuestions(HttpServletRequest request){
+        int examId=Integer.valueOf(request.getParameter("examId"));
+        int userId=Integer.valueOf(request.getParameter("userId"));
+        int choice=0,completion=0,program=0;
+        choice=  examHistoryService.queryExamChoiceQuestionResultScore(examId,userId);
+        completion=  examHistoryService.queryExamCompletionQuestionResultScore(examId,userId);
+        program=  examHistoryService.queryExamProgrammingQuestionResultScore(examId,userId);
+        ExamHistory examHistory=new ExamHistory();
+        examHistory.setExamChoiceQuestionTotals(choice);
+        examHistory.setExamCompletionQuestionTotals(completion);
+        examHistory.setExamProgrammingTotals(program);
+        return examHistory;
     }
 }

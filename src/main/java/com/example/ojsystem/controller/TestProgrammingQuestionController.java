@@ -1,5 +1,6 @@
 package com.example.ojsystem.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.example.ojsystem.entity.*;
 import com.example.ojsystem.service.TestProgrammingQuestionService;
 import org.apache.poi.ss.formula.functions.T;
@@ -34,6 +35,29 @@ public class TestProgrammingQuestionController {
         testProgrammingQuestion.setTest(test);
         testProgrammingQuestion.setExercise(exercise);
         i= testProgrammingQuestionService.addTestProgrammingQuestionInfo(testProgrammingQuestion);
+        if(i!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
+     * 批量添加习题信息添加到测试习题信息中
+     * 输入testProgrammingQuestions
+     * 输出成功输出true 失败输出false
+     */
+    @RequestMapping(value="/addTestProgrammingQuestionInfos",method = RequestMethod.POST)
+    public Object addTestProgrammingQuestionInfos(HttpServletRequest request){
+        int i=0;
+        TestProgrammingQuestion testProgrammingQuestion=new TestProgrammingQuestion();
+        String testProgrammingQuestions=request.getParameter("testProgrammingQuestions");
+        List<TestProgrammingQuestion> testProgrammingQuestions2= JSON.parseArray(testProgrammingQuestions,TestProgrammingQuestion.class);
+        for(int o=0;o<testProgrammingQuestions2.size();o++){
+            i= testProgrammingQuestionService.addTestProgrammingQuestionInfo(testProgrammingQuestions2.get(o));
+        }
+
         if(i!=0){
             return true;
         }

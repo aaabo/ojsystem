@@ -34,4 +34,12 @@ public interface ExamHistoryService {
      * 输出ExamUserJoinTool
      */
     public ExamUserJoinTool queryExamUserJoinInfo(int examId);
+
+    public int queryExamChoiceQuestionResultScore(int examId,int userId);
+
+    public int queryExamCompletionQuestionResultScore(int examId,int userId);
+
+    public int queryExamProgrammingQuestionResultScore(int examId,int userId);
+
+    public int addExamHistory(int userId,int examId,int examChoiceQuestionTotals,int examCompletionQuestionTotals,int examProgrammingTotals);
 }

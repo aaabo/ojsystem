@@ -12,14 +12,13 @@ import java.util.List;
  *
  */
 
-public class exec       //执行前 启动docker容器 82092ddcabb6 ！！！！！！！！！！
+public class JudgerC       //执行前 启动docker容器 82092ddcabb6 ！！！！！！！！！！
 {
 
     protected static String sudoCmd = "echo \"yang2109121\" | sudo -S ";    //root运行docker
-    protected static String CodeResult="";      //返回结果
+    protected static String CodeResult="SystemError!";      //返回结果, 若返回systemError则无对应测试用例输入
 
     static ExerciseAnswer[] exerciseAnswer;
-
 
 
     private static void runCmds(String[] cmds) throws IOException, InterruptedException
@@ -34,24 +33,24 @@ public class exec       //执行前 启动docker容器 82092ddcabb6 ！！！！
         }
         process.waitFor();
         System.out.println(process.exitValue());
-
+        readErrFile();
         String ifError=readErrFile();      //读取编译报错文件
         System.out.println(ifError+"\nerror文件长度:"+ifError.length());   //报错文件内容
         System.out.println("running可执行文件");
         File test=new File("/home/zk/docker/gcc_docker/myapp"); //可执行文件
         long compileStart=System.currentTimeMillis();
-        while (!test.exists()){    //等待可执行文件的存在
+        while (!test.exists()&&ifError.length()==0){    //等待可执行文件的存在
             long compileEnd=System.currentTimeMillis();
-            if(compileEnd-compileStart>3000)
+            if(compileEnd-compileStart>5000)
                 break;
         }
 
         if(test.exists()) {     //可执行文件存在，判断代码
             System.out.println("file exists");
-            Runtime.getRuntime().exec("chmod 777 /home/zk/docker/gcc_docker/myapp");    //可执行文件加权
+            //Runtime.getRuntime().exec("chmod 777 /home/zk/docker/gcc_docker/myapp");    //可执行文件加权
             String result = null; //代码运行结果
             int limitTime = 3;    //代码单次运行时间限制
-            float solved=exerciseAnswer.length;     //测试用例通过率
+            float solved=exerciseAnswer.length;     //测试用例通过率undefined
             for(int i=0;i<exerciseAnswer.length;i++)
             {
                 String in=exerciseAnswer[i].getExerciseAnswerInput();       //测试用例输入数据
@@ -63,7 +62,7 @@ public class exec       //执行前 启动docker容器 82092ddcabb6 ！！！！
                     String[] cmd = new String[]{"/bin/bash","-c","docker exec charming_shamir echo "+in+" | timeout 3 /home/zk/docker/gcc_docker/myapp"}; //运行可执行文件
                     Process ps = Runtime.getRuntime().exec(cmd); //执行程序
                     ps.waitFor();
-                    if(ps.exitValue()==126){    //重试 126下的程序
+                    while(ps.exitValue()==126){    //重试 126下的程序
                         ps=Runtime.getRuntime().exec(cmd);
                         ps.waitFor();
                     }
@@ -111,8 +110,14 @@ public class exec       //执行前 启动docker容器 82092ddcabb6 ！！！！
             System.out.println("编译错误！！！");
             CodeResult="compile error";
         }else {
-            System.out.println("系统错误");
-            CodeResult = "not compile";
+            if(readErrFile().length()!=0){      //??error文件未读出  unknow...
+                CodeResult="compile error";
+                System.out.println();
+            }
+            else {
+                System.out.println("系统错误");
+                CodeResult = "not compile";
+            }
         }
     }
 
@@ -143,15 +148,11 @@ public class exec       //执行前 启动docker容器 82092ddcabb6 ！！！！
         return CodeResult;
     }
 
-//    private  void getAnswer(int exerciseId){
-//        System.out.println(exerciseId);
-//    }
-
     private static void testcExecuteCommand() throws IOException, InterruptedException        //容器启动命令+答案+
     {
         String cmds[] = {"/bin/bash", "-c",sudoCmd+"docker restart 1b368c20ac15"};   //root下运行docker (gcc -o myapp main.c > error.txt 2>&1)
         System.out.println("Running docker...");
-        exec.runCmds(cmds);    //(运行容器，编译文件)
+        JudgerC.runCmds(cmds);    //(运行容器，编译文件)
     }
     private static void createCfile(String code){       //代码写入.c文件
         File f=new File("/home/zk/docker/gcc_docker/main.c");
@@ -177,7 +178,7 @@ public class exec       //执行前 启动docker容器 82092ddcabb6 ！！！！
         String s=null;
         try{
             fis=new FileInputStream("/home/zk/docker/gcc_docker/error.txt");
-            byte[] data=new byte[1024];
+            byte[] data=new byte[4096];
             int i=0,n= fis.read();
             while (n!=-1){
                 data[i]=(byte) n;

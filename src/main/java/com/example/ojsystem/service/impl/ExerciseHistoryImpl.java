@@ -3,7 +3,7 @@ package com.example.ojsystem.service.impl;
 import com.example.ojsystem.dao.ExerciseAnswerMapper;
 import com.example.ojsystem.dao.ExerciseHistoryMapper;
 import com.example.ojsystem.entity.ExerciseHistory;
-import com.example.ojsystem.judger.exec;
+import com.example.ojsystem.judger.JudgerC;
 import com.example.ojsystem.service.ExerciseHistoryService;
 import com.example.ojsystem.entity.ResultTool;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
      */
     public int addCodeInfo(ExerciseHistory exerciseHistory) {
 
-        String result= exec.start(exerciseHistory.getExerciseCode(),exerciseAnswerMapper.queryExerciseAnswerInfoByExerciseId(exerciseHistory.getExercise().getExerciseId()));
+        String result= JudgerC.start(exerciseHistory.getExerciseCode(),exerciseAnswerMapper.queryExerciseAnswerInfoByExerciseId(exerciseHistory.getExercise().getExerciseId()));
         exerciseHistory.setExerciseResult(result);
         return exerciseHistoryMapper.addCodeInfo(exerciseHistory);
     }

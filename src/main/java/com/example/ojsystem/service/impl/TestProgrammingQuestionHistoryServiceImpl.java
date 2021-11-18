@@ -91,4 +91,15 @@ public class TestProgrammingQuestionHistoryServiceImpl implements TestProgrammin
     public TestProgrammingQuestionHistory queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(int testProgrammingQuestionHistoryId) {
         return testProgrammingQuestionHistoryMapper.queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(testProgrammingQuestionHistoryId);
     }
+
+    /**
+     * 查询测试的提交实时提交情况通过提交的查询信息
+     * 输入testId
+     * 输出测试的提交实时提交状态
+     *
+     * @param testProgrammingQuestionHistory
+     */
+    public List<TestProgrammingQuestionHistory> queryTestProgrammingRealStatusBySearchInfo(TestProgrammingQuestionHistory testProgrammingQuestionHistory) {
+        return testProgrammingQuestionHistoryMapper.queryTestProgrammingRealStatusBySearchInfo(testProgrammingQuestionHistory);
+    }
 }
