@@ -1,6 +1,8 @@
 package com.example.ojsystem.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.ojsystem.entity.*;
 import com.example.ojsystem.service.TestProgrammingQuestionService;
 import org.apache.poi.ss.formula.functions.T;
@@ -53,9 +55,17 @@ public class TestProgrammingQuestionController {
         int i=0;
         TestProgrammingQuestion testProgrammingQuestion=new TestProgrammingQuestion();
         String testProgrammingQuestions=request.getParameter("testProgrammingQuestions");
-        List<TestProgrammingQuestion> testProgrammingQuestions2= JSON.parseArray(testProgrammingQuestions,TestProgrammingQuestion.class);
-        for(int o=0;o<testProgrammingQuestions2.size();o++){
-            i= testProgrammingQuestionService.addTestProgrammingQuestionInfo(testProgrammingQuestions2.get(o));
+        JSONArray jsonArray=JSONArray.parseArray(testProgrammingQuestions);//把前台接收的string数组转化为json数组        System.out.println("数据:"+testProgrammingQuestions2);
+        for(int o=0;o<jsonArray.size();o++){
+            JSONObject jsonObject=(JSONObject)jsonArray.get(o);
+            TestProgrammingQuestion testProgrammingQuestion1=new TestProgrammingQuestion();
+            Exercise exercise=new Exercise();
+            Test test=new Test();
+            exercise.setExerciseId((Integer)jsonObject.get("exerciseId"));
+            test.setTestId((Integer)jsonObject.get("testId"));
+            testProgrammingQuestion1.setExercise(exercise);
+            testProgrammingQuestion1.setTest(test);
+            i= testProgrammingQuestionService.addTestProgrammingQuestionInfo(testProgrammingQuestion1);
         }
 
         if(i!=0){
@@ -94,7 +104,7 @@ public class TestProgrammingQuestionController {
     }
 
     /**
-     * 查询对应测试的全部习题
+     * 查询对应测试的全部习题  测试详情使用（exerciseId 为testProgrammingId exerciseCorrectTimes，exerciseSubmitTimes为正确率）
      * 输入testId
      * 输出List<Exercise>
      */
@@ -103,6 +113,15 @@ public class TestProgrammingQuestionController {
         return testProgrammingQuestionService.queryTestProgrammingQuestionByTestId(Integer.valueOf(request.getParameter("testId")));
     }
 
+    /**
+     * 查询对应测试的全部测试编程题
+     * 输入testId
+     * 输出List<TestProgrammingQuestion>
+     */
+    @RequestMapping(value="/queryTestProgrammingQuestionInfoByTestId",method = RequestMethod.POST)
+    public Object queryTestProgrammingQuestionInfoByTestId(HttpServletRequest request){
+        return testProgrammingQuestionService.queryTestProgrammingQuestionInfoByTestId(Integer.valueOf(request.getParameter("testId")));
+    }
     /**
      * 根据测试编程题编号查询对应的习题信息
      * 输入testProgrammingQuestionId

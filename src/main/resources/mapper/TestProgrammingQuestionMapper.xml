@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.ojsystem.dao.TestProgrammingQuestionMapper">
 
-    <resultMap id="BaseTeacherResultMap" type="com.example.ojsystem.entity.TestProgrammingQuestion">
+    <resultMap id="BaseTestProgrammingQuestionResultMap" type="com.example.ojsystem.entity.TestProgrammingQuestion">
         <id column="testProgrammingQuestionId" jdbcType="INTEGER" property="testProgrammingQuestionId" />
         <association property="test" javaType="com.example.ojsystem.entity.Test">
             <id column="testId" jdbcType="INTEGER" property="testId" />
@@ -86,6 +86,9 @@
     </select>
     <select id="queryTestIdByTestProgrammingQuestionId" resultType="java.lang.Integer">
         select testId from testprogrammingquestion where testProgrammingQuestionId=#{testProgrammingQuestionId}
+    </select>
+    <select id="queryTestProgrammingQuestionInfoByTestId" resultType="com.example.ojsystem.entity.TestProgrammingQuestion" resultMap="BaseTestProgrammingQuestionResultMap">
+       select * from test,testprogrammingquestion where test.testId=testprogrammingquestion.testId and test.testId=#{testId}
     </select>
 
 

@@ -24,12 +24,19 @@ public interface TestProgrammingQuestionMapper {
     public int deleteTestProgrammingQuestionByTestProgrammingQuestionId(@Param("testProgrammingQuestionId") int testProgrammingQuestionId);
 
     /**
-     * 查询对应测试的全部习题
+     * 查询对应测试的全部习题  测试详情使用（exerciseId 为testProgrammingId exerciseCorrectTimes，exerciseSubmitTimes为正确率）
      * 输入testId
      * 输出List<Exercise>
      */
     public List<Exercise> queryTestProgrammingQuestionByTestId(@Param("testId") int testId);
 
+
+    /**
+     * 查询对应测试的全部测试编程题
+     * 输入testId
+     * 输出List<TestProgrammingQuestion>
+     */
+    public List<TestProgrammingQuestion> queryTestProgrammingQuestionInfoByTestId(@Param("testId") Integer testId);
 
     /**
      * 查询用户是否完成对应的习题

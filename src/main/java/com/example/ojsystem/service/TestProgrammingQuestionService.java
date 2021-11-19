@@ -28,12 +28,18 @@ public interface TestProgrammingQuestionService {
     public List<Exercise> queryTestProgrammingQuestionAndIsSuccess(Integer testId,Integer userId);
 
     /**
-     * 查询对应测试的全部习题
+     * 查询对应测试的全部习题  测试详情使用（exerciseId 为testProgrammingId exerciseCorrectTimes，exerciseSubmitTimes为正确率）
      * 输入testId
      * 输出List<Exercise>
      */
     public List<Exercise> queryTestProgrammingQuestionByTestId(Integer testId);
 
+    /**
+     * 查询对应测试的全部测试编程题
+     * 输入testId
+     * 输出List<TestProgrammingQuestion>
+     */
+    public List<TestProgrammingQuestion> queryTestProgrammingQuestionInfoByTestId(Integer testId);
 
     /**
      * 根据测试编程题编号查询对应的习题信息

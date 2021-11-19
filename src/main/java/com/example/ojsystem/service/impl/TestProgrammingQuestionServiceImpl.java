@@ -53,7 +53,7 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
     }
 
     /**
-     * 查询对应测试的全部习题
+     * 查询对应测试的全部习题  测试详情使用（exerciseId 为testProgrammingId exerciseCorrectTimes，exerciseSubmitTimes为正确率）
      * 输入testId
      * 输出List<Exercise>
      *
@@ -61,6 +61,17 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
      */
     public List<Exercise> queryTestProgrammingQuestionByTestId(Integer testId) {
         return testProgrammingQuestionMapper.queryTestProgrammingQuestionByTestId(testId);
+    }
+
+    /**
+     * 查询对应测试的全部测试编程题
+     * 输入testId
+     * 输出List<TestProgrammingQuestion>
+     *
+     * @param testId
+     */
+    public List<TestProgrammingQuestion> queryTestProgrammingQuestionInfoByTestId(Integer testId) {
+        return testProgrammingQuestionMapper.queryTestProgrammingQuestionInfoByTestId(testId);
     }
 
     /**
