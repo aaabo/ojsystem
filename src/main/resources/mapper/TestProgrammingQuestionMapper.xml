@@ -88,7 +88,7 @@
         select testId from testprogrammingquestion where testProgrammingQuestionId=#{testProgrammingQuestionId}
     </select>
     <select id="queryTestProgrammingQuestionInfoByTestId" resultType="com.example.ojsystem.entity.TestProgrammingQuestion" resultMap="BaseTestProgrammingQuestionResultMap">
-       select * from test,testprogrammingquestion where test.testId=testprogrammingquestion.testId and test.testId=#{testId}
+       select * from test,testprogrammingquestion,exercise where test.testId=testprogrammingquestion.testId and exercise.exerciseId=testprogrammingquestion.exerciseId and test.testId=#{testId}
     </select>
 
 

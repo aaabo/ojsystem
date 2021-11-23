@@ -51,8 +51,6 @@ public class ExamHistoryController {
 
         return examHistoryService.queryUserIfJoinExam(userId,Integer.valueOf(examId));
     }
-
-
     /**
      * 查询考试用户参加情况
      * 输入examId
@@ -60,8 +58,6 @@ public class ExamHistoryController {
      */
     @RequestMapping(value="/queryExamUserJoinInfo",method = RequestMethod.POST)
     public Object queryExamUserJoinInfo(HttpServletRequest request){
-
-
         return examHistoryService.queryExamUserJoinInfo(Integer.valueOf(request.getParameter("examId")));
     }
 
