@@ -77,7 +77,13 @@
 			<version>3.16</version>
 		</dependency>
 		<!--读取excel文件的包-->
-
+		<!--聚类用的包-->
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<!--聚类用的包-->
 	</dependencies>
 
 	<build>

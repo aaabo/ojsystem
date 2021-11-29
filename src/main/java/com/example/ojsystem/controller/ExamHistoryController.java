@@ -1,5 +1,7 @@
 package com.example.ojsystem.controller;
 
+import com.example.ojsystem.clustering.Kmeans;
+import com.example.ojsystem.clustering.Point;
 import com.example.ojsystem.dao.ExamHistoryMapper;
 import com.example.ojsystem.entity.ExamHistory;
 import com.example.ojsystem.entity.ExamUserJoinTool;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 @RestController
 @CrossOrigin
@@ -93,5 +96,25 @@ public class ExamHistoryController {
         examHistory.setExamCompletionQuestionTotals(completion);
         examHistory.setExamProgrammingTotals(program);
         return examHistory;
+    }
+
+    /**
+     * 查询考试结果信息
+     * 输入examId
+     * 输出List<ExamHistory>
+     */
+    @RequestMapping(value="/queryExamHistoryInfo",method = RequestMethod.GET)
+    public Object queryExamHistoryInfo(HttpServletRequest request){
+        List<Point> points=new ArrayList<Point>();
+        List<ExamHistory> examHistories=examHistoryService.queryExamHistoryInfo(Integer.valueOf(request.getParameter("examId")));
+        for(ExamHistory examHistory:examHistories){
+            Point point=new Point();
+            point.setBasicScore(new Float(examHistory.getExamChoiceQuestionTotals()+examHistory.getExamCompletionQuestionTotals()));
+            point.setProgrammingScore(new Float(examHistory.getExamProgrammingTotals()));
+            point.setUser(examHistory.getUser());
+            points.add(point);
+        }
+
+        return Kmeans.run(points,4);
     }
 }

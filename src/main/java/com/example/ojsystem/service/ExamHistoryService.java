@@ -34,6 +34,13 @@ public interface ExamHistoryService {
      */
     public ExamUserJoinTool queryExamUserJoinInfo(int examId);
 
+    /**
+     * 查询考试结果信息
+     * 输入examId
+     * 输出List<ExamHistory>
+     */
+    public List<ExamHistory> queryExamHistoryInfo(int examId);
+
     public int queryExamChoiceQuestionResultScore(int examId,int userId);
 
     public int queryExamCompletionQuestionResultScore(int examId,int userId);

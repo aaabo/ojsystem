@@ -36,6 +36,13 @@ public interface ExamHistoryMapper {
      */
     public ExamUserJoinTool queryExamUserJoinInfo(@Param("examId") int examId);
 
+    /**
+     * 查询考试结果信息
+     * 输入examId
+     * 输出List<ExamHistory>
+     */
+    public List<ExamHistory> queryExamHistoryInfo(@Param("examId")int examId);
+
     public int queryExamChoiceQuestionResultScore(@Param("examId") int examId,@Param("userId") int userId);
 
     public int queryExamCompletionQuestionResultScore(@Param("examId") int examId,@Param("userId") int userId);

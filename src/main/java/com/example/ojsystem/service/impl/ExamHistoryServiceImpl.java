@@ -59,6 +59,17 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
         return examHistoryMapper.queryExamUserJoinInfo(examId);
     }
 
+    /**
+     * 查询考试结果信息
+     * 输入examId
+     * 输出List<ExamHistory>
+     *
+     * @param examId
+     */
+    public List<ExamHistory> queryExamHistoryInfo(int examId) {
+        return examHistoryMapper.queryExamHistoryInfo(examId);
+    }
+
     public int queryExamChoiceQuestionResultScore(int examId,int userId){
         return examHistoryMapper.queryExamChoiceQuestionResultScore(examId,userId);
     }

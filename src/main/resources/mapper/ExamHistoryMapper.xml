@@ -59,5 +59,8 @@
         SELECT ifnull(SUM(examProgrammingQuestionResultScore),'1111') FROM examprogrammingquestionhistory,examquestion
         where examId=#{examId} and examquestion.examQuestionId=examprogrammingquestionhistory.examQuestionId and userId=#{userId};
     </select>
+    <select id="queryExamHistoryInfo" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
+        select * from examhistory,user where examhistory.examId=#{examId} and examhistory.userId=user.userId
+    </select>
 
 </mapper>
