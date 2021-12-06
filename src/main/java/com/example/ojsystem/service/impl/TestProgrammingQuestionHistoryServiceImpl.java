@@ -38,7 +38,7 @@ public class TestProgrammingQuestionHistoryServiceImpl implements TestProgrammin
      *
      * @param testId
      */
-    public List<TestStanding> checkTestStanding(int testId) {
+    public List<TestStanding> checkTestStandingInfo(int testId) {
         List<TestStanding> testStandings =testProgrammingQuestionHistoryMapper.selectTestUserAndTestProgrammingQuestionId(testId);
         for(int i = 0; i< testStandings.size(); i++){
             testStandings.get(i).setAcceptNumber(new Float(0));

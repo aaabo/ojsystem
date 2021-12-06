@@ -50,8 +50,8 @@ public class TestProgrammingQuestionHistoryController {
      * 输出测试的状态
      */
     @RequestMapping(value="/queryTestRealStatus",method = RequestMethod.POST)
-    public Object queryTestStanding(HttpServletRequest request){
-        return testProgrammingQuestionHistoryService.checkTestStanding(Integer.valueOf(request.getParameter("testId")));
+    public Object queryTestStandingInfo(HttpServletRequest request){
+        return testProgrammingQuestionHistoryService.checkTestStandingInfo(Integer.valueOf(request.getParameter("testId")));
     }
 
 
