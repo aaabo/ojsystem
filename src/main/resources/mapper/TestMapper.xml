@@ -20,24 +20,24 @@
             <result column="userName" jdbcType="VARCHAR" property="userName" />
         </association>
     </resultMap>
-    <insert id="addTestInfo" parameterType="com.example.ojsystem.entity.Test">
+    <insert id="insertTestInfo" parameterType="com.example.ojsystem.entity.Test">
       insert into test (groupId,userId,testName,testStartTime,testEndTime,testLanguage,testStatus)
       values(#{test.group.groupId},#{test.user.userId},#{test.testName},#{test.testStartTime},#{test.testEndTime},#{test.testLanguage},#{test.testStatus})
     </insert>
-    <update id="modifyTestInfo" parameterType="com.example.ojsystem.entity.Test">
+    <update id="updateTestInfo" parameterType="com.example.ojsystem.entity.Test">
           update test set groupId=#{test.group.groupId},testName=#{test.testName},testStartTime=#{test.testStartTime},
            testEndTime=#{test.testEndTime},testLanguage=#{test.testLanguage},testStatus=#{test.testStatus} where testId=#{test.testId}
     </update>
-    <update id="modifyTestStatusByTestId" parameterType="com.example.ojsystem.entity.Test">
+    <update id="updateTestStatusByTestId" parameterType="com.example.ojsystem.entity.Test">
         update test set testStatus=#{test.testStatus} where testId=#{test.testId}
     </update>
     <delete id="deleteTestInfoByTestId" parameterType="java.lang.Integer">
         delete from test where testId=#{test.testId}
     </delete>
-    <select id="queryTestInfoByTestStatus" resultMap="BaseTestResultMap">
+    <select id="selectTestInfoByTestStatus" resultMap="BaseTestResultMap">
         SELECT * FROM test ORDER BY (case testStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
-    <select id="searchTestInfo" resultType="com.example.ojsystem.entity.Test" resultMap="BaseTestResultMap">
+    <select id="selectSearchTestInfo" resultType="com.example.ojsystem.entity.Test" resultMap="BaseTestResultMap">
         select * from test,user,`group`
         where test.userId=user.userId and test.groupId=`group`.groupId
         <if test="test.testName != null and test.testName!=''">
@@ -51,10 +51,10 @@
         </if>
         ORDER BY (case testStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
-    <select id="queryNotFinishTestInfo" resultType="com.example.ojsystem.entity.Test">
+    <select id="selectNotFinishTestInfo" resultType="com.example.ojsystem.entity.Test">
           select * from test where testStatus='Pending' or testStatus='Running'
     </select>
-    <select id="queryTestInfoByTestId" resultType="com.example.ojsystem.entity.Test" resultMap="BaseTestResultMap">
+    <select id="selectTestInfoByTestId" resultType="com.example.ojsystem.entity.Test" resultMap="BaseTestResultMap">
         select * from test where testId=#{testId}
     </select>
 

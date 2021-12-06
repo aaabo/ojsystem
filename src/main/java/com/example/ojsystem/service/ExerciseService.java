@@ -10,14 +10,14 @@ public interface ExerciseService {
      * 输入习题信息
      * 输出int
      */
-    public int addExercise(Exercise exercise);
+    public int saveExerciseInfo(Exercise exercise);
 
     /**
      * 查询全部习题信息
      * 输入无
      * 输出List<Exercise>
      */
-    public List<Exercise> queryExerciseInfo();
+    public List<Exercise> checkExerciseInfo();
 
 
     /**
@@ -25,14 +25,14 @@ public interface ExerciseService {
      * 输入exercise
      * 输出int
      */
-    public int modifyExerciseInfo(Exercise exercise);
+    public int alterExerciseInfo(Exercise exercise);
 
     /**
      * 删除选中的习题信息
      * 输入exerciseId
      * 输出int
      */
-    public int deleteExercise(int exerciseId);
+    public int cancelExerciseInfo(int exerciseId);
 
     /**
      * 查询选择的习题详情
@@ -40,7 +40,7 @@ public interface ExerciseService {
      * 输出Exercise
      *
      */
-    public Exercise queryExerciseDetailsInfoByExerciseId(int exerciseId);
+    public Exercise checkExerciseDetailsInfoByExerciseId(int exerciseId);
 
     /**
      * 根据习题标签查询对应的习题信息

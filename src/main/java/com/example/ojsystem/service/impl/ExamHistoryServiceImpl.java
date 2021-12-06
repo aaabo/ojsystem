@@ -21,8 +21,8 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
      *
      * @param examId
      */
-    public List<ExamHistory> queryExamRankById(int examId) {
-        return examHistoryMapper.queryExamRankById(examId);
+    public List<ExamHistory> checkExamRankById(int examId) {
+        return examHistoryMapper.selectExamRankById(examId);
     }
 
     /**
@@ -32,8 +32,8 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
      *
      * @param userId
      */
-    public List<ExamHistory> queryExamHistoryInfoByUserId(int userId) {
-        return examHistoryMapper.queryExamHistoryInfoByUserId(userId);
+    public List<ExamHistory> checkExamHistoryInfoByUserId(int userId) {
+        return examHistoryMapper.selectExamHistoryInfoByUserId(userId);
     }
 
     /**
@@ -44,8 +44,8 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
      * @param userId
      * @param examId
      */
-    public int queryUserIfJoinExam(int userId, int examId) {
-        return examHistoryMapper.queryUserIfJoinExam(userId,examId);
+    public int checkUserIfJoinExam(int userId, int examId) {
+        return examHistoryMapper.selectUserIfJoinExam(userId,examId);
     }
 
     /**
@@ -55,8 +55,8 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
      *
      * @param examId
      */
-    public ExamUserJoinTool queryExamUserJoinInfo(int examId) {
-        return examHistoryMapper.queryExamUserJoinInfo(examId);
+    public ExamUserJoinTool checkExamUserJoinInfo(int examId) {
+        return examHistoryMapper.selectExamUserJoinInfo(examId);
     }
 
     /**
@@ -66,23 +66,23 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
      *
      * @param examId
      */
-    public List<ExamHistory> queryExamHistoryInfo(int examId) {
-        return examHistoryMapper.queryExamHistoryInfo(examId);
+    public List<ExamHistory> checkExamHistoryInfo(int examId) {
+        return examHistoryMapper.selectExamHistoryInfo(examId);
     }
 
-    public int queryExamChoiceQuestionResultScore(int examId,int userId){
-        return examHistoryMapper.queryExamChoiceQuestionResultScore(examId,userId);
+    public int checkExamChoiceQuestionResultScore(int examId,int userId){
+        return examHistoryMapper.selectExamChoiceQuestionResultScore(examId,userId);
     }
 
-    public int queryExamCompletionQuestionResultScore(int examId,int userId){
-        return examHistoryMapper.queryExamCompletionQuestionResultScore(examId,userId);
+    public int checkExamCompletionQuestionResultScore(int examId,int userId){
+        return examHistoryMapper.selectExamCompletionQuestionResultScore(examId,userId);
     }
 
-    public int queryExamProgrammingQuestionResultScore(int examId,int userId){
-        return examHistoryMapper.queryExamProgrammingQuestionResultScore(examId,userId);
+    public int checkExamProgrammingQuestionResultScore(int examId,int userId){
+        return examHistoryMapper.selectExamProgrammingQuestionResultScore(examId,userId);
     }
 
-    public int addExamHistory(int userId,int examId,int examChoiceQuestionTotals,int examCompletionQuestionTotals,int examProgrammingTotals){
-        return examHistoryMapper.addExamHistory(userId,examId,examChoiceQuestionTotals,examCompletionQuestionTotals,examProgrammingTotals);
+    public int saveExamHistory(int userId,int examId,int examChoiceQuestionTotals,int examCompletionQuestionTotals,int examProgrammingTotals){
+        return examHistoryMapper.insertExamHistory(userId,examId,examChoiceQuestionTotals,examCompletionQuestionTotals,examProgrammingTotals);
     }
 }

@@ -22,11 +22,11 @@ public class ExamChoiceQuestionHistoryServiceImpl implements ExamChoiceQuestionH
      * @param userId
      * @param examQuestionHistories
      */
-    public int addExamChoiceQuestionHistoryInfo(List<ExamQuestionHistory> examQuestionHistories, int userId) {
+    public int saveExamChoiceQuestionHistoryInfo(List<ExamQuestionHistory> examQuestionHistories, int userId) {
         int result=0;
         for(int i=0;i<examQuestionHistories.size();i++){
             ExamChoiceQuestionHistory examChoiceQuestionHistory=examQuestionHistories.get(i).getExamChoiceQuestionHistory();
-            result=examChoiceQuestionHistoryMapper.addExamChoiceQuestionHistory(userId,examQuestionHistories.get(i).getExamQuestionId(),examChoiceQuestionHistory.getExamChoiceQuestionUserSelection(),examChoiceQuestionHistory.getExamChoiceQuestionResultScore());
+            result=examChoiceQuestionHistoryMapper.insertExamChoiceQuestionHistory(userId,examQuestionHistories.get(i).getExamQuestionId(),examChoiceQuestionHistory.getExamChoiceQuestionUserSelection(),examChoiceQuestionHistory.getExamChoiceQuestionResultScore());
         }
         return result;
     }

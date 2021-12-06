@@ -34,9 +34,9 @@ public class ExamQuestionController {
     public Object queryExamQuestionByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         List<ExamQuestion> examQuestions=new ArrayList<ExamQuestion>();
-        examQuestions=examQuestionService.queryExamQuestionChoiceByExamId(examId);
-        examQuestions.addAll(examQuestionService.queryExamQuestionCompletionByExamId(examId));
-        examQuestions.addAll(examQuestionService.queryExamQuestionProgrammingByExamId(examId));
+        examQuestions=examQuestionService.checkExamQuestionChoiceByExamId(examId);
+        examQuestions.addAll(examQuestionService.checkExamQuestionCompletionByExamId(examId));
+        examQuestions.addAll(examQuestionService.checkExamQuestionProgrammingByExamId(examId));
         return examQuestions;
     }
 
@@ -48,7 +48,7 @@ public class ExamQuestionController {
     @RequestMapping(value="/queryExamQuestionChoiceByExamId",method = RequestMethod.POST)
     public Object queryExamQuestionChoiceByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
-        return examQuestionService.queryExamQuestionChoiceByExamId(examId);
+        return examQuestionService.checkExamQuestionChoiceByExamId(examId);
     }
 
     /**
@@ -59,7 +59,7 @@ public class ExamQuestionController {
     @RequestMapping(value="/queryExamQuestionCompletionByExamId",method = RequestMethod.POST)
     public Object queryExamQuestionCompletionByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
-        return examQuestionService.queryExamQuestionCompletionByExamId(examId);
+        return examQuestionService.checkExamQuestionCompletionByExamId(examId);
     }
 
     /**
@@ -70,7 +70,7 @@ public class ExamQuestionController {
     @RequestMapping(value="/queryExamQuestionProgrammingByExamId",method = RequestMethod.POST)
     public Object queryExamQuestionProgrammingByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
-        return  examQuestionService.queryExamQuestionProgrammingByExamId(examId);
+        return  examQuestionService.checkExamQuestionProgrammingByExamId(examId);
     }
 
     /**
@@ -84,7 +84,7 @@ public class ExamQuestionController {
         int questionId=Integer.valueOf(request.getParameter("questionId"));
         String examQuestionType=request.getParameter("examQuestionType");
         int i=0;
-        i=examQuestionService.addExamQuestion(examId,questionId,examQuestionType);
+        i=examQuestionService.saveExamQuestionInfo(examId,questionId,examQuestionType);
         if(i!=0){
             return true;
         }
@@ -100,7 +100,7 @@ public class ExamQuestionController {
      * 输出成功输入true失败false
      */
     @RequestMapping(value="/addExamQuestions",method = RequestMethod.POST)
-    public Object addExamQuestions(HttpServletRequest request){
+    public Object addExamQuestionInfo(HttpServletRequest request){
         String addExamQuestions = request.getParameter("addExamQuestions");
         JSONArray jsonArray=JSONArray.parseArray(addExamQuestions);//把前台接收的string数组转化为json数组
 //        System.out.println(jsonArray);
@@ -108,10 +108,10 @@ public class ExamQuestionController {
         for(int o=0;o<jsonArray.size();o++){
             JSONObject jsonObject=(JSONObject)jsonArray.get(o);
             if(o==0){
-                i=examQuestionService.addExamQuestion((Integer)jsonObject.get("examId"),(Integer) jsonObject.get("questionId"),(String)jsonObject.get("examQuestion"));
+                i=examQuestionService.saveExamQuestionInfo((Integer)jsonObject.get("examId"),(Integer) jsonObject.get("questionId"),(String)jsonObject.get("examQuestion"));
             }else{
                 if(i!=0){
-                    i=examQuestionService.addExamQuestion((Integer)jsonObject.get("examId"),(Integer) jsonObject.get("questionId"),(String)jsonObject.get("examQuestion"));
+                    i=examQuestionService.saveExamQuestionInfo((Integer)jsonObject.get("examId"),(Integer) jsonObject.get("questionId"),(String)jsonObject.get("examQuestion"));
                 }
             }
         }
@@ -129,12 +129,12 @@ public class ExamQuestionController {
      * 输出int
      */
     @RequestMapping(value="/deleteExamQuestion",method = RequestMethod.POST)
-    public Object deleteExamQuestion(HttpServletRequest request){
+    public Object removeExamQuestionInfo(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         int questionId=Integer.valueOf(request.getParameter("questionId"));
         String examQuestionType=request.getParameter("examQuestionType");
         int i=0;
-        i=examQuestionService.deleteExamQuestion(examId,questionId,examQuestionType);
+        i=examQuestionService.cancelExamQuestionInfo(examId,questionId,examQuestionType);
         if(i!=0){
             return true;
         }
@@ -151,7 +151,7 @@ public class ExamQuestionController {
     @RequestMapping(value="/queryExamProgrammingResultScoreByExamId",method = RequestMethod.POST)
     public Object queryExamProgrammingResultScoreByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
-        return  examQuestionService.queryExamProgrammingResultScoreByExamId(examId);
+        return  examQuestionService.checkExamProgrammingResultScoreByExamId(examId);
     }
 
     /**
@@ -162,6 +162,6 @@ public class ExamQuestionController {
     @RequestMapping(value="/queryUserExamScoreEachSegmentNumberByExamId",method = RequestMethod.POST)
     public Object queryUserExamScoreEachSegmentNumberByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
-        return  examQuestionService.queryUserExamScoreEachSegmentNumberByExamId(examId);
+        return  examQuestionService.checkUserExamScoreEachSegmentNumberByExamId(examId);
     }
 }

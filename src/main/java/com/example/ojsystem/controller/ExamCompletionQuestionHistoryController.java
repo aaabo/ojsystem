@@ -37,7 +37,7 @@ public class ExamCompletionQuestionHistoryController {
         HttpSession session=request.getSession();
         int userId=(Integer)session.getAttribute("userId");
         int i=0;
-        i=examCompletionQuestionHistoryService.addExamCompletionQuestionHistoryInfo(examQuestionHistories,userId);
+        i=examCompletionQuestionHistoryService.saveExamCompletionQuestionHistoryInfo(examQuestionHistories,userId);
         if(i!=0){
             return true;
         }

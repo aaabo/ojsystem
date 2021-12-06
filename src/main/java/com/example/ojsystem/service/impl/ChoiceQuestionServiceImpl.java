@@ -25,10 +25,10 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
      *
      * @param choiceQuestion
      */
-    public int addChoiceQuestionInfo(ChoiceQuestion choiceQuestion) {
-        int o=choiceQuestionMapper.addChoiceQuestionInfo(choiceQuestion);
+    public int saveChoiceQuestionInfo(ChoiceQuestion choiceQuestion) {
+        int o=choiceQuestionMapper.insertChoiceQuestionInfo(choiceQuestion);
         for(int i=0;i<choiceQuestion.getQuestionLabels().size();i++){
-            choiceQuestionLabelMapper.addChoiceQuestionLabelInfo(choiceQuestion.getChoiceQuestionId(),choiceQuestion.getQuestionLabels().get(i).getQuestionLabelId());
+            choiceQuestionLabelMapper.insertChoiceQuestionLabelInfo(choiceQuestion.getChoiceQuestionId(),choiceQuestion.getQuestionLabels().get(i).getQuestionLabelId());
         }
         return o;
     }
@@ -40,14 +40,14 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
      *
      * @param choiceQuestion
      */
-    public int modifyChoiceQuestionInfo(ChoiceQuestion choiceQuestion) {
+    public int alterChoiceQuestionInfo(ChoiceQuestion choiceQuestion) {
         //先删除
         choiceQuestionLabelMapper.deleteChoiceQuestionLabelInfoByChoiceQuestionId(choiceQuestion.getChoiceQuestionId());
         //后添加
         for(int i=0;i<choiceQuestion.getQuestionLabels().size();i++){
-            choiceQuestionLabelMapper.addChoiceQuestionLabelInfo(choiceQuestion.getChoiceQuestionId(),choiceQuestion.getQuestionLabels().get(i).getQuestionLabelId());
+            choiceQuestionLabelMapper.insertChoiceQuestionLabelInfo(choiceQuestion.getChoiceQuestionId(),choiceQuestion.getQuestionLabels().get(i).getQuestionLabelId());
         }
-        return choiceQuestionMapper.modifyChoiceQuestionInfo(choiceQuestion);
+        return choiceQuestionMapper.updateChoiceQuestionInfo(choiceQuestion);
     }
 
     /**
@@ -57,8 +57,8 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
      *
      * @param
      */
-    public List<ChoiceQuestion> queryChoiceQuestionInfo(int userId) {
-        return choiceQuestionMapper.queryChoiceQuestionInfo(userId);
+    public List<ChoiceQuestion> checkChoiceQuestionInfo(int userId) {
+        return choiceQuestionMapper.selectChoiceQuestionInfo(userId);
     }
 
     /**
@@ -68,7 +68,7 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
      *
      * @param choiceQuestionId
      */
-    public int deleteChoiceQuestionInfoByChoiceQuestionId(int choiceQuestionId) {
+    public int cancelChoiceQuestionInfoByChoiceQuestionId(int choiceQuestionId) {
         return choiceQuestionMapper.deleteChoiceQuestionInfoByChoiceQuestionId(choiceQuestionId);
     }
 
@@ -79,8 +79,8 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
      *
      * @param choiceQuestion,currentUserId
      */
-    public List<ChoiceQuestion> queryChoiceQuestionIdBySearchInfo(ChoiceQuestion choiceQuestion,int currentUserId) {
-        return choiceQuestionMapper.queryChoiceQuestionIdBySearchInfo(choiceQuestion,currentUserId);
+    public List<ChoiceQuestion> checkChoiceQuestionIdBySearchInfo(ChoiceQuestion choiceQuestion,int currentUserId) {
+        return choiceQuestionMapper.selectChoiceQuestionIdBySearchInfo(choiceQuestion,currentUserId);
     }
 
     /**
@@ -90,8 +90,8 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
      *
      * @param choiceQuestionId
      */
-    public ChoiceQuestion queryChoiceQuestionInfoByChoiceQuestionId(int choiceQuestionId) {
-        return choiceQuestionMapper.queryChoiceQuestionInfoByChoiceQuestionId(choiceQuestionId);
+    public ChoiceQuestion checkChoiceQuestionInfoByChoiceQuestionId(int choiceQuestionId) {
+        return choiceQuestionMapper.selectChoiceQuestionInfoByChoiceQuestionId(choiceQuestionId);
     }
 
     /**
@@ -101,7 +101,7 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
      *
      * @param examId
      */
-    public List<ChoiceQuestion> queryChoiceQuestionInfoByExamId(int examId) {
-        return choiceQuestionMapper.queryChoiceQuestionInfoByExamId(examId);
+    public List<ChoiceQuestion> checkChoiceQuestionInfoByExamId(int examId) {
+        return choiceQuestionMapper.selectChoiceQuestionInfoByExamId(examId);
     }
 }

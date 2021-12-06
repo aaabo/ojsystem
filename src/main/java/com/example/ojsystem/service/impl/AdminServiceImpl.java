@@ -16,7 +16,7 @@ public class AdminServiceImpl implements AdminService{
      *
      * @param adminAccount
      */
-    public String adminLogin(String adminAccount) {
-        return adminMapper.adminLogin(adminAccount);
+    public String checkAdminLoginInfo(String adminAccount) {
+        return adminMapper.selectAdminLoginInfo(adminAccount);
     }
 }

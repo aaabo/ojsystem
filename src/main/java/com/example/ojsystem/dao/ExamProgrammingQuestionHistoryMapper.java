@@ -11,14 +11,14 @@ public interface ExamProgrammingQuestionHistoryMapper {
      * 输入examProgrammingHistory
      * 输出int
      */
-    public int addExamProgrammingQuestionHistory(@Param("examProgrammingQuestionHistory") ExamProgrammingQuestionHistory examProgrammingQuestionHistory);
+    public int insertExamProgrammingQuestionHistory(@Param("examProgrammingQuestionHistory") ExamProgrammingQuestionHistory examProgrammingQuestionHistory);
 
     /**
      * 查看用户是否提交过考试编程题记录
      * 输入examQuestionId,userId
      * 输出examProgrammingQuestionId
      */
-    public int queryExamProgrammingQuestionHistoryByExamQuestionIdAndUserId(@Param("examQuestionId") int examQuestionId,@Param("userId") int userId);
+    public int selectExamProgrammingQuestionHistoryByExamQuestionIdAndUserId(@Param("examQuestionId") int examQuestionId,@Param("userId") int userId);
 
 
     /**
@@ -26,6 +26,6 @@ public interface ExamProgrammingQuestionHistoryMapper {
      * 输入examProgrammingHistory
      * 输出int
      */
-    public int modifyExamProgrammingQuestionHistoryByExamProgrammingQuestionId(@Param("examProgrammingQuestionHistory") ExamProgrammingQuestionHistory examProgrammingQuestionHistory);
+    public int updateExamProgrammingQuestionHistoryByExamProgrammingQuestionId(@Param("examProgrammingQuestionHistory") ExamProgrammingQuestionHistory examProgrammingQuestionHistory);
 
 }

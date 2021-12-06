@@ -25,11 +25,11 @@
     </resultMap>
 
 
-    <insert id="addExamInfo"  parameterType="com.example.ojsystem.entity.Exam" useGeneratedKeys="true" keyProperty="exam.examId" keyColumn="examId">
+    <insert id="insertExamInfo"  parameterType="com.example.ojsystem.entity.Exam" useGeneratedKeys="true" keyProperty="exam.examId" keyColumn="examId">
         insert into exam(examStartTime,examEndTime,userId,groupId,examStatus,examLanguage,examName,examChoiceQuestionScore,examCompletionQuestionScore,examProgrammingScore)
         values(#{exam.examStartTime},#{exam.examEndTime},#{exam.user.userId},#{exam.group.groupId},#{exam.examStatus},#{exam.examLanguage},#{exam.examName},#{exam.examChoiceQuestionScore},#{exam.examCompletionQuestionScore},#{exam.examProgrammingScore})
     </insert>
-    <update id="modifyExamInfo" parameterType="com.example.ojsystem.entity.Exam">
+    <update id="updateExamInfo" parameterType="com.example.ojsystem.entity.Exam">
              update exam set examStartTime=#{exam.examStartTime},examEndTime=#{exam.examEndTime},examStatus=#{exam.examStatus},
               examLanguage=#{exam.examLanguage},groupId=#{exam.group.groupId},examName=#{exam.examName},examChoiceQuestionScore=#{exam.examChoiceQuestionScore},examCompletionQuestionScore=#{exam.examCompletionQuestionScore},examProgrammingScore=#{exam.examProgrammingScore} where examId=#{exam.examId}
     </update>
@@ -39,22 +39,22 @@
     <delete id="deleteExamInfo" parameterType="java.lang.Integer">
         delete from exam where examId=#{examId}
     </delete>
-    <select id="queryExamInfoByUserId" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
+    <select id="selectExamInfoByUserId" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
       select * from exam,`group`,usergroup where exam.groupId=`group`.groupId and `group`.groupId=usergroup.groupId and usergroup.userId=#{userId}
     </select>
-    <select id="userQueryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
+    <select id="selectUserQueryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
          select * from exam,`group` where exam.userId=#{userId} and exam.groupId=group.groupId ORDER BY (case exam.examStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
-    <select id="queryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
+    <select id="selectExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
          select * from exam,user,`group` where exam.userId=user.userId and exam.groupId=`group`.groupId ORDER BY (case exam.examStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
-    <select id="queryExamInfoByExamId" resultType="com.example.ojsystem.entity.Exam" parameterType="java.lang.Integer">
+    <select id="selectExamInfoByExamId" resultType="com.example.ojsystem.entity.Exam" parameterType="java.lang.Integer">
         select * from exam where examId=#{examId}
     </select>
-    <select id="queryNotFinishedExamInfo" resultType="com.example.ojsystem.entity.Exam">
+    <select id="selectNotFinishedExamInfo" resultType="com.example.ojsystem.entity.Exam">
          select * from exam where examStatus='Pending' or examStatus='Running'
     </select>
-    <select id="searchExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
+    <select id="selectSearchExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
         select * from exam,user
         where exam.userId=user.userId
         <if test="exam.examName != null and exam.examName!=''">

@@ -9,13 +9,13 @@
         <result column="completionQuestionAnswerContent" jdbcType="VARCHAR" property="completionQuestionAnswerContent" />
         <result column="completionQuestionAnswerNumber" jdbcType="VARCHAR" property="completionQuestionAnswerNumber" />
     </resultMap>
-    <insert id="addCompletionQuestionAnswerInfo" parameterType="com.example.ojsystem.entity.CompletionQuestionAnswer">
+    <insert id="insertCompletionQuestionAnswerInfo" parameterType="com.example.ojsystem.entity.CompletionQuestionAnswer">
         insert into completionquestionanswer(completionQuestionId,completionQuestionAnswerContent,completionQuestionAnswerNumber) values(#{completionQuestionId},#{completionQuestionAnswer.completionQuestionAnswerContent},#{completionQuestionAnswer.completionQuestionAnswerNumber})
     </insert>
     <delete id="deleteCompletionQuestionAnswerInfoByCompletionQuestionId">
         delete from completionquestionanswer where completionQuestionId=#{completionQuestionId}
     </delete>
-    <select id="queryCompletionQuestionAnswerInfoByCompletionQuestionId" resultType="java.lang.String">
+    <select id="selectCompletionQuestionAnswerInfoByCompletionQuestionId" resultType="java.lang.String">
         select completionQuestionAnswerContent from completionquestionanswer where completionQuestionId=#{completionQuestionId} and completionQuestionAnswerNumber=#{completionQuestionAnswerNumber}
     </select>
 

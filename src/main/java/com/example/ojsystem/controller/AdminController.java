@@ -21,7 +21,7 @@ public class AdminController {
      * 输出查询到的管理员密码
      */
     @RequestMapping(value="/adminLogin",method = RequestMethod.POST)
-    public String adminLogin(HttpServletRequest request){
-        return adminService.adminLogin(request.getParameter("adminAccount"));
+    public String queryAdminLoginInfo(HttpServletRequest request){
+        return adminService.checkAdminLoginInfo(request.getParameter("adminAccount"));
     }
 }

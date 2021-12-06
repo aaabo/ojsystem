@@ -24,11 +24,11 @@ public class UserController {
      * 输出查询的student信息，若没有则返回false
      */
     @RequestMapping(value="/isUserExist",method = RequestMethod.POST)
-    public Object isUserExist(HttpServletRequest request){
+    public Object queryUserExist(HttpServletRequest request){
         User user=new User();
         user.setUserAccount(request.getParameter("userAccount"));
         user.setUserPassword(request.getParameter("userPassword"));
-        User userLogin=userService.isUserExist(user);
+        User userLogin=userService.checkUserExist(user);
         HttpSession session=request.getSession();
         if(userLogin==null){
             return false;
@@ -46,10 +46,10 @@ public class UserController {
      * 输出注册过为true 没注册过返回false
      */
     @RequestMapping(value="/isUserInfoExist",method = RequestMethod.POST)
-    public boolean isUserInfoExist(HttpServletRequest request){
+    public boolean queryUserInfoExist(HttpServletRequest request){
         User user=new User();
         user.setUserAccount(request.getParameter("userAccount"));
-        User userLogin=userService.isUserInfoExist(user);
+        User userLogin=userService.checkUserInfoExist(user);
         if(userLogin==null){
             return false;
         }
@@ -75,7 +75,7 @@ public class UserController {
         user.setUserPassword(userPassword);
         user.setUserName(userName);
         user.setUserEmail(userEmail);
-        i=userService.addUserInfo(user);
+        i=userService.saveUserInfo(user);
         if(i!=0){
             return true;
         }
@@ -100,7 +100,7 @@ public class UserController {
         user.setUserAccount(userAccount);
         user.setUserPassword(userPassword);
         user.setUserName(userName);
-        i=userService.addTeacherUserInfo(user);
+        i=userService.saveTeacherUserInfo(user);
         if(i!=0){
             return true;
         }
@@ -124,7 +124,7 @@ public class UserController {
         user.setUserId(userId);
         user.setUserPassword(userPassword);
         user.setUserName(userName);
-        i=userService.modifyTeacherUserInfo(user);
+        i=userService.alterTeacherUserInfo(user);
         if(i!=0){
             return true;
         }
@@ -139,9 +139,9 @@ public class UserController {
      * 输出int
      */
     @RequestMapping(value="/deleteUserInfoByUserId",method = RequestMethod.POST)
-    public Boolean deleteUserInfoByUserId(HttpServletRequest request){
+    public Boolean removeUserInfoByUserId(HttpServletRequest request){
         int i=0;
-        i=userService.deleteUserInfoByUserId(Integer.valueOf(request.getParameter("userId")));
+        i=userService.cancelUserInfoByUserId(Integer.valueOf(request.getParameter("userId")));
         if(i!=0){
             return true;
         }
@@ -158,7 +158,7 @@ public class UserController {
 
     @RequestMapping(value="/queryUserInfoById",method = RequestMethod.POST)
     public Object queryUserInfoById(HttpServletRequest request){
-        return userService.queryUserInfoById(Integer.valueOf(request.getParameter("userId")));
+        return userService.checkUserInfoById(Integer.valueOf(request.getParameter("userId")));
     }
 
     /**
@@ -173,7 +173,7 @@ public class UserController {
             return false;
         }
         else{
-            return userService.queryUserInfoById((Integer)userId);
+            return userService.checkUserInfoById((Integer)userId);
         }
 
     }
@@ -193,7 +193,7 @@ public class UserController {
         user.setUserName(userName);
         user.setUserId(userId);
         user.setUserProfile(userProfile);
-        i=userService.modifyUserInfo(user);
+        i=userService.alterUserInfo(user);
         if(i!=0){
             return true;
         }
@@ -211,7 +211,7 @@ public class UserController {
     @RequestMapping(value="/queryUserPasswordInfo",method = RequestMethod.POST)
     public Object queryUserPasswordInfo(HttpServletRequest request){
 
-        return userService.queryUserPasswordInfo((Integer)request.getSession().getAttribute("userId"));
+        return userService.checkUserPasswordInfo((Integer)request.getSession().getAttribute("userId"));
     }
 
 
@@ -228,7 +228,7 @@ public class UserController {
         User user=new User();
         user.setUserPassword(userPassword);
         user.setUserId((Integer)request.getSession().getAttribute("userId"));
-        i=userService.modifyPassword(user);
+        i=userService.alterPassword(user);
         if(i!=0){
             return true;
         }
@@ -245,7 +245,7 @@ public class UserController {
      */
     @RequestMapping(value="/queryUserRankListInfo",method = RequestMethod.POST)
     public Object queryUserRankListInfo(){
-        return userService.queryUserRankListInfo();
+        return userService.checkUserRankListInfo();
 
     }
 
@@ -255,10 +255,10 @@ public class UserController {
      * 输出int
      */
     @RequestMapping(value="/updateUserSubmitInfo",method = RequestMethod.POST)
-    public Boolean updateUserSubmitInfo(HttpServletRequest request){
+    public Boolean modifyUserSubmitInfo(HttpServletRequest request){
         int i=0;
         //studentSolve为1或0表示是否添加一次解决次数
-        i=userService.updateUserSubmitInfo(Integer.valueOf(request.getParameter("studentSolve")),Integer.valueOf(request.getParameter("studentId")));
+        i=userService.alterUserSubmitInfo(Integer.valueOf(request.getParameter("studentSolve")),Integer.valueOf(request.getParameter("studentId")));
         if(i!=0){
             return true;
         }
@@ -274,7 +274,7 @@ public class UserController {
      */
     @RequestMapping(value="/queryTeacherUserInfo",method = RequestMethod.POST)
     public Object queryTeacherUserInfo(HttpServletRequest request){
-        return userService.queryTeacherUserInfo();
+        return userService.checkTeacherUserInfo();
     }
 
     /**

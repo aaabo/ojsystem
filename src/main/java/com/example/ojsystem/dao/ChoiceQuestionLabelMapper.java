@@ -13,7 +13,7 @@ public interface ChoiceQuestionLabelMapper {
      * 输入choiceQuestionId questionLabelId
      * 成功输出true 失败输出false
      */
-    public int addChoiceQuestionLabelInfo(@Param("choiceQuestionId") int choiceQuestionId,@Param("questionLabelId") int questionLabelId);
+    public int insertChoiceQuestionLabelInfo(@Param("choiceQuestionId") int choiceQuestionId,@Param("questionLabelId") int questionLabelId);
 
     /**
      * 获取选择题问题标签并保存

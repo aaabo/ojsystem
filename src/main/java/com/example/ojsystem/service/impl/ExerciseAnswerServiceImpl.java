@@ -20,8 +20,8 @@ public class ExerciseAnswerServiceImpl implements ExerciseAnswerService{
      *
      * @param exerciseAnswer
      */
-    public int addExerciseAnswer(ExerciseAnswer exerciseAnswer) {
-        return exerciseAnswerMapper.addExerciseAnswer(exerciseAnswer);
+    public int saveExerciseAnswerInfo(ExerciseAnswer exerciseAnswer) {
+        return exerciseAnswerMapper.insertExerciseAnswerInfo(exerciseAnswer);
     }
 
     /**
@@ -29,9 +29,8 @@ public class ExerciseAnswerServiceImpl implements ExerciseAnswerService{
      * 输入无
      * 输出List<ExerciseAnswer>
      */
-    public List<ExerciseAnswer> queryExerciseAnswerInfoByExerciseId(int exerciseId) {
-        System.out.println(exerciseId);
-        return exerciseAnswerMapper.queryExerciseAnswerInfoByExerciseId(exerciseId);
+    public List<ExerciseAnswer> checkExerciseAnswerInfoByExerciseId(int exerciseId) {
+        return exerciseAnswerMapper.selectExerciseAnswerInfoByExerciseId(exerciseId);
     }
 
     /**
@@ -41,8 +40,8 @@ public class ExerciseAnswerServiceImpl implements ExerciseAnswerService{
      *
      * @param exerciseAnswer
      */
-    public int modifyExerciseAnswerInfo(ExerciseAnswer exerciseAnswer) {
-        return exerciseAnswerMapper.modifyExerciseAnswerInfo(exerciseAnswer);
+    public int alterExerciseAnswerInfo(ExerciseAnswer exerciseAnswer) {
+        return exerciseAnswerMapper.updateExerciseAnswerInfo(exerciseAnswer);
     }
 
     /**
@@ -52,7 +51,7 @@ public class ExerciseAnswerServiceImpl implements ExerciseAnswerService{
      *
      * @param exerciseAnswerId
      */
-    public int deleteExerciseAnswer(int exerciseAnswerId) {
+    public int cancelExerciseAnswer(int exerciseAnswerId) {
         return exerciseAnswerMapper.deleteExerciseAnswer(exerciseAnswerId);
     }
 }

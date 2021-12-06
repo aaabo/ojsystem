@@ -21,8 +21,8 @@ public class ExamServiceImpl implements ExamService{
      *
      * @param exam
      */
-    public int addExamInfo(Exam exam) {
-        return examMapper.addExamInfo(exam);
+    public int saveExamInfo(Exam exam) {
+        return examMapper.insertExamInfo(exam);
     }
 
     /**
@@ -30,8 +30,8 @@ public class ExamServiceImpl implements ExamService{
      * 输入userId
      * 输出List<Exam>
      */
-    public List<Exam> queryExamInfoByUserId(int userId) {
-        return examMapper.queryExamInfoByUserId(userId);
+    public List<Exam> checkExamInfoByUserId(int userId) {
+        return examMapper.selectExamInfoByUserId(userId);
     }
 
     /**
@@ -39,8 +39,8 @@ public class ExamServiceImpl implements ExamService{
      * 输入无
      * 输出List<Exam>
      */
-    public List<Exam> queryExamInfo() {
-        return examMapper.queryExamInfo();
+    public List<Exam> checkExamInfo() {
+        return examMapper.selectExamInfo();
     }
 
     /**
@@ -50,8 +50,8 @@ public class ExamServiceImpl implements ExamService{
      *
      * @param userId
      */
-    public List<Exam> userQueryExamInfo(int userId) {
-        return examMapper.userQueryExamInfo(userId);
+    public List<Exam> checkUserQueryExamInfo(int userId) {
+        return examMapper.selectUserQueryExamInfo(userId);
     }
 
     /**
@@ -61,8 +61,8 @@ public class ExamServiceImpl implements ExamService{
      *
      * @param exam
      */
-    public int modifyExamInfo(Exam exam) {
-        return examMapper.modifyExamInfo(exam);
+    public int alertExamInfo(Exam exam) {
+        return examMapper.updateExamInfo(exam);
     }
 
     /**
@@ -72,7 +72,7 @@ public class ExamServiceImpl implements ExamService{
      *
      * @param examId
      */
-    public int deleteExamInfo(int examId) {
+    public int cancelExamInfo(int examId) {
         return examMapper.deleteExamInfo(examId);
     }
 
@@ -83,7 +83,7 @@ public class ExamServiceImpl implements ExamService{
      *
      * @param exam
      */
-    public int updateExamStatus(Exam exam) {
+    public int alertExamStatus(Exam exam) {
         return examMapper.updateExamStatus(exam);
     }
 
@@ -94,8 +94,8 @@ public class ExamServiceImpl implements ExamService{
      *
      * @param examId
      */
-    public Exam queryExamInfoByExamId(int examId) {
-        return examMapper.queryExamInfoByExamId(examId);
+    public Exam checkExamInfoByExamId(int examId) {
+        return examMapper.selectExamInfoByExamId(examId);
     }
 
     /**
@@ -103,8 +103,8 @@ public class ExamServiceImpl implements ExamService{
      * 输入null
      * 输出Exam
      */
-    public List<Exam> queryNotFinishedExamInfo() {
-        return examMapper.queryNotFinishedExamInfo();
+    public List<Exam> checkNotFinishedExamInfo() {
+        return examMapper.selectNotFinishedExamInfo();
     }
 
     /**
@@ -114,8 +114,8 @@ public class ExamServiceImpl implements ExamService{
      *
      * @param exam
      */
-    public List<Exam> searchExamInfo(Exam exam) {
-        return examMapper.searchExamInfo(exam);
+    public List<Exam> checkSearchExamInfo(Exam exam) {
+        return examMapper.selectSearchExamInfo(exam);
     }
 
 }

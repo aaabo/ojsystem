@@ -14,7 +14,7 @@ public interface UserGroupMapper {
      * 输入groupId userAccount
      * 成功输入true 失败输出false
      */
-    public int addUserGroupInfo(@Param("groupId") int groupId,@Param("userId") int userId);
+    public int insertUserGroupInfo(@Param("groupId") int groupId,@Param("userId") int userId);
 
 
     /**
@@ -22,7 +22,7 @@ public interface UserGroupMapper {
      * 输入groupId
      * 成功输入true 失败输出false
      */
-    public List<User> queryUserGroupInfoByGroupId(@Param("groupId")  int groupId);
+    public List<User> selectUserGroupInfoByGroupId(@Param("groupId")  int groupId);
 
     /**
      * 根据groupId和userId删除组别内的用户信息
@@ -36,5 +36,5 @@ public interface UserGroupMapper {
      * 输入groupId和userId
      * 成功输入true 失败输出false
      */
-    public Integer  queryUserIfInGroup(@Param("groupId") int groupId,@Param("userId")int userId);
+    public Integer  selectUserIfInGroup(@Param("groupId") int groupId,@Param("userId")int userId);
 }

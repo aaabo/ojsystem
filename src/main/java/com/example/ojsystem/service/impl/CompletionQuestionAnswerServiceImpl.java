@@ -22,8 +22,8 @@ public class CompletionQuestionAnswerServiceImpl implements CompletionQuestionAn
      * @param completionQuestionAnswer
      * @param completionQuestionId
      */
-    public int addCompletionQuestionAnswerInfo(CompletionQuestionAnswer completionQuestionAnswer, int completionQuestionId) {
-        return completionQuestionAnswerMapper.addCompletionQuestionAnswerInfo(completionQuestionAnswer,completionQuestionId);
+    public int saveCompletionQuestionAnswerInfo(CompletionQuestionAnswer completionQuestionAnswer, int completionQuestionId) {
+        return completionQuestionAnswerMapper.insertCompletionQuestionAnswerInfo(completionQuestionAnswer,completionQuestionId);
     }
 
     /**
@@ -33,7 +33,7 @@ public class CompletionQuestionAnswerServiceImpl implements CompletionQuestionAn
      *
      * @param completionQuestionId
      */
-    public int deleteCompletionQuestionAnswerInfoByCompletionQuestionId(int completionQuestionId) {
+    public int cancelCompletionQuestionAnswerInfoByCompletionQuestionId(int completionQuestionId) {
         return completionQuestionAnswerMapper.deleteCompletionQuestionAnswerInfoByCompletionQuestionId(completionQuestionId);
     }
 }

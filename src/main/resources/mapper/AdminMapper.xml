@@ -11,7 +11,7 @@
         <result column="adminName" jdbcType="VARCHAR" property="adminName" />
     </resultMap>
 
-    <select id="adminLogin" resultType="java.lang.String" parameterType="com.example.ojsystem.entity.Admin">
+    <select id="selectAdminLoginInfo" resultType="java.lang.String" parameterType="com.example.ojsystem.entity.Admin">
         select adminPassword from admin where adminAccount=#{adminAccount}
     </select>
 

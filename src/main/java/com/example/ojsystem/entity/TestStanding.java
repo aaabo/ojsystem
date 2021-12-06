@@ -2,7 +2,7 @@ package com.example.ojsystem.entity;
 
 import java.util.List;
 
-public class TestProgrammingQuestionResultTool{
+public class TestStanding {
     private int userId;
     private String userName;
     private List<TestProgrammingQuestionResultStateTool> testProgrammingQuestionResultStateTools;
@@ -43,7 +43,7 @@ public class TestProgrammingQuestionResultTool{
 
     @Override
     public String toString() {
-        return "TestProgrammingQuestionResultTool{" +
+        return "TestStanding{" +
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", testProgrammingQuestionResultStateTools=" + testProgrammingQuestionResultStateTools +

@@ -30,7 +30,7 @@ public class GroupController {
         User user=new User();
         user.setUserId((Integer)session.getAttribute("userId"));
         group.setUser(user);
-        i=groupService.addGroupInfo(group);
+        i=groupService.saveGroupInfo(group);
         if(i>0){
             return true;
         }
@@ -45,10 +45,10 @@ public class GroupController {
      * 删除成功返回true 失败返回false
      */
     @RequestMapping(value="/deleteGroupInfo",method = RequestMethod.POST)
-    public Object deleteGroupInfo(HttpServletRequest request){
+    public Object removeGroupInfo(HttpServletRequest request){
         int groupId=Integer.valueOf(request.getParameter("groupId"));
         int i=0;
-        i=groupService.deleteGroupInfo(groupId);
+        i=groupService.cancelGroupInfo(groupId);
         if(i>0){
             return true;
         }
@@ -62,13 +62,13 @@ public class GroupController {
      * 修改成功返回true 失败返回false
      */
     @RequestMapping(value="/modifyGroupInfo",method = RequestMethod.POST)
-    public Object updateGroupInfo(HttpServletRequest request){
+    public Object modifyGroupInfo(HttpServletRequest request){
 
         int i=0;
         Group group=new Group();
         group.setGroupName(request.getParameter("groupName"));
         group.setGroupId(Integer.valueOf(request.getParameter("groupId")));
-        i=groupService.modifyGroupInfo(group);
+        i=groupService.alterGroupInfo(group);
         if(i>0){
             return true;
         }
@@ -84,6 +84,6 @@ public class GroupController {
      */
     @RequestMapping(value="/queryGroupInfo",method = RequestMethod.POST)
     public Object queryGroupInfo(HttpServletRequest request){
-        return groupService.queryGroupInfo();
+        return groupService.checkGroupInfo();
     }
 }

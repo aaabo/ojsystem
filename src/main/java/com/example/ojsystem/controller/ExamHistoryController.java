@@ -28,7 +28,7 @@ public class ExamHistoryController {
      */
     @RequestMapping(value="/queryExamRankById",method = RequestMethod.POST)
     public Object queryExamRankById(HttpServletRequest request){
-        return  examHistoryService.queryExamRankById(Integer.valueOf(request.getParameter("examId")));
+        return  examHistoryService.checkExamRankById(Integer.valueOf(request.getParameter("examId")));
     }
 
 
@@ -39,7 +39,7 @@ public class ExamHistoryController {
      */
     @RequestMapping(value="/queryExamHistoryInfoByUserId",method = RequestMethod.POST)
     public Object queryExamHistoryInfoByUserId(HttpServletRequest request){
-        return  examHistoryService.queryExamHistoryInfoByUserId(Integer.valueOf(request.getParameter("userId")));
+        return  examHistoryService.checkExamHistoryInfoByUserId(Integer.valueOf(request.getParameter("userId")));
     }
 
     /**
@@ -52,7 +52,7 @@ public class ExamHistoryController {
         String examId=request.getParameter("examId");
         int userId=(Integer) request.getSession().getAttribute("userId");
 
-        return examHistoryService.queryUserIfJoinExam(userId,Integer.valueOf(examId));
+        return examHistoryService.checkUserIfJoinExam(userId,Integer.valueOf(examId));
     }
     /**
      * 查询考试用户参加情况
@@ -61,7 +61,7 @@ public class ExamHistoryController {
      */
     @RequestMapping(value="/queryExamUserJoinInfo",method = RequestMethod.POST)
     public Object queryExamUserJoinInfo(HttpServletRequest request){
-        return examHistoryService.queryExamUserJoinInfo(Integer.valueOf(request.getParameter("examId")));
+        return examHistoryService.checkExamUserJoinInfo(Integer.valueOf(request.getParameter("examId")));
     }
 
     /**
@@ -69,28 +69,28 @@ public class ExamHistoryController {
      输入examid，userid
      */
     @RequestMapping(value = "/getExamResult", method = RequestMethod.POST)
-    public Boolean getExamResult(HttpServletRequest request){
+    public Boolean addExamResult(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         int userId=Integer.valueOf(request.getParameter("userId"));
         int choice=0,completion=0,program=0;
-        choice=  examHistoryService.queryExamChoiceQuestionResultScore(examId,userId);
-        completion=  examHistoryService.queryExamCompletionQuestionResultScore(examId,userId);
-        program=  examHistoryService.queryExamProgrammingQuestionResultScore(examId,userId);
+        choice=  examHistoryService.checkExamChoiceQuestionResultScore(examId,userId);
+        completion=  examHistoryService.checkExamCompletionQuestionResultScore(examId,userId);
+        program=  examHistoryService.checkExamProgrammingQuestionResultScore(examId,userId);
         int i=2;
-        i=examHistoryService.addExamHistory(userId,examId,choice,completion,program);
+        i=examHistoryService.saveExamHistory(userId,examId,choice,completion,program);
         if(i!=2)
             return true;
         else
             return false;
     }
     @RequestMapping(value = "/getScoresOfExamQuestions",method = RequestMethod.POST)
-    public Object getScoresOfExamQuestions(HttpServletRequest request){
+    public Object queryScoresOfExamQuestions(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         int userId=Integer.valueOf(request.getParameter("userId"));
         int choice=0,completion=0,program=0;
-        choice=  examHistoryService.queryExamChoiceQuestionResultScore(examId,userId);
-        completion=  examHistoryService.queryExamCompletionQuestionResultScore(examId,userId);
-        program=  examHistoryService.queryExamProgrammingQuestionResultScore(examId,userId);
+        choice=  examHistoryService.checkExamChoiceQuestionResultScore(examId,userId);
+        completion=  examHistoryService.checkExamCompletionQuestionResultScore(examId,userId);
+        program=  examHistoryService.checkExamProgrammingQuestionResultScore(examId,userId);
         ExamHistory examHistory=new ExamHistory();
         examHistory.setExamChoiceQuestionTotals(choice);
         examHistory.setExamCompletionQuestionTotals(completion);
@@ -106,7 +106,7 @@ public class ExamHistoryController {
     @RequestMapping(value="/queryExamHistoryInfo",method = RequestMethod.GET)
     public Object queryExamHistoryInfo(HttpServletRequest request){
         List<Point> points=new ArrayList<Point>();
-        List<ExamHistory> examHistories=examHistoryService.queryExamHistoryInfo(Integer.valueOf(request.getParameter("examId")));
+        List<ExamHistory> examHistories=examHistoryService.checkExamHistoryInfo(Integer.valueOf(request.getParameter("examId")));
         for(ExamHistory examHistory:examHistories){
             Point point=new Point();
             point.setBasicScore(new Float(examHistory.getExamChoiceQuestionTotals()+examHistory.getExamCompletionQuestionTotals()));

@@ -14,7 +14,7 @@ public interface TestProgrammingQuestionMapper {
      * 输入testProgrammingQuestion
      * 输出int
      */
-    public int addTestProgrammingQuestionInfo(@Param("testProgrammingQuestion") TestProgrammingQuestion testProgrammingQuestion);
+    public int insertTestProgrammingQuestionInfo(@Param("testProgrammingQuestion") TestProgrammingQuestion testProgrammingQuestion);
 
     /**
      * 从测试习题信息中删除对应的习题信息
@@ -28,7 +28,7 @@ public interface TestProgrammingQuestionMapper {
      * 输入testId
      * 输出List<Exercise>
      */
-    public List<Exercise> queryTestProgrammingQuestionByTestId(@Param("testId") int testId);
+    public List<Exercise> selectTestProgrammingQuestionByTestId(@Param("testId") int testId);
 
 
     /**
@@ -36,14 +36,14 @@ public interface TestProgrammingQuestionMapper {
      * 输入testId
      * 输出List<TestProgrammingQuestion>
      */
-    public List<TestProgrammingQuestion> queryTestProgrammingQuestionInfoByTestId(@Param("testId") Integer testId);
+    public List<TestProgrammingQuestion> selectTestProgrammingQuestionInfoByTestId(@Param("testId") Integer testId);
 
     /**
      * 查询用户是否完成对应的习题
      * 输入userId,testProgrammingQuestionId
      * 输出testProgrammingResult
      */
-    public String queryTestProgrammingResultByUserIdAndTestProgrammingQuestionId(@Param("userId") Integer userId,@Param("testProgrammingQuestionId") Integer testProgrammingQuestionId);
+    public String selectTestProgrammingResultByUserIdAndTestProgrammingQuestionId(@Param("userId") Integer userId,@Param("testProgrammingQuestionId") Integer testProgrammingQuestionId);
 
 
     /**
@@ -51,12 +51,12 @@ public interface TestProgrammingQuestionMapper {
      * 输入testProgrammingQuestionId
      * 输出Exercise
      */
-    public Exercise queryExerciseByTestProgrammingQuestionId(@Param("testProgrammingQuestionId") Integer testProgrammingQuestionId);
+    public Exercise selectExerciseByTestProgrammingQuestionId(@Param("testProgrammingQuestionId") Integer testProgrammingQuestionId);
 
     /**
      * 根据测试编程题编号查询testId
      * 输入testProgrammingQuestionId
      * 输出Integer
      */
-    public Integer queryTestIdByTestProgrammingQuestionId(@Param("testProgrammingQuestionId") Integer testProgrammingQuestionId);
+    public Integer selectTestIdByTestProgrammingQuestionId(@Param("testProgrammingQuestionId") Integer testProgrammingQuestionId);
 }

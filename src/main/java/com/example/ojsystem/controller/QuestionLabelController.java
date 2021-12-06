@@ -34,7 +34,7 @@ public class QuestionLabelController {
         if(Boolean.valueOf(request.getParameter("important"))==true){
             questionLabel.setSecondKnowledgePoint(questionLabel.getSecondKnowledgePoint()+"*");
         }
-        i=questionLabelService.addQuestionLabelInfo(questionLabel);
+        i=questionLabelService.saveQuestionLabelInfo(questionLabel);
         if(i>0){
             return true;
         }
@@ -50,7 +50,7 @@ public class QuestionLabelController {
      */
     @RequestMapping(value="/queryQuestionLabelInfo",method = RequestMethod.POST)
     public Object queryQuestionLabelInfo(HttpServletRequest request){
-        return questionLabelService.queryQuestionLabelInfo();
+        return questionLabelService.checkQuestionLabelInfo();
     }
 
     /**
@@ -59,10 +59,10 @@ public class QuestionLabelController {
      * 成功输出true 失败输出false
      */
     @RequestMapping(value="/deleteQuestionLabelInfo",method = RequestMethod.POST)
-    public Object deleteQuestionLabelInfo(HttpServletRequest request){
+    public Object removeQuestionLabelInfo(HttpServletRequest request){
         int i=0;
 
-        i=questionLabelService.deleteQuestionLabelInfo(Integer.valueOf(request.getParameter("questionLabelId")));
+        i=questionLabelService.cancelQuestionLabelInfo(Integer.valueOf(request.getParameter("questionLabelId")));
         if(i>0){
             return true;
         }
@@ -77,7 +77,7 @@ public class QuestionLabelController {
      * 成功输出true 失败输出false
      */
     @RequestMapping(value="/modifyQuestionLabelInfo",method = RequestMethod.GET)
-    public Object updateQuestionLabelInfo(HttpServletRequest request){
+    public Object modifyQuestionLabelInfo(HttpServletRequest request){
         int i=0;
         QuestionLabel questionLabel=new QuestionLabel();
         questionLabel.setQuestionLabelId(Integer.valueOf(request.getParameter("questionLabelId")));
@@ -85,7 +85,7 @@ public class QuestionLabelController {
         questionLabel.setFirstKnowledgePoint(request.getParameter("firstKnowledgePoint"));
         questionLabel.setSecondKnowledgePoint(request.getParameter("secondKnowledgePoint"));
         questionLabel.setImportant(Boolean.valueOf(request.getParameter("important")));
-        i=questionLabelService.modifyQuestionLabelInfo(questionLabel);
+        i=questionLabelService.alterQuestionLabelInfo(questionLabel);
         if(i>0){
             return true;
         }
@@ -102,7 +102,7 @@ public class QuestionLabelController {
     @RequestMapping(value="/queryChapterInfo",method = RequestMethod.POST)
     public Object queryChapterInfo(HttpServletRequest request){
 
-        return questionLabelService.queryChapterInfo();
+        return questionLabelService.checkChapterInfo();
     }
 
     /**
@@ -113,7 +113,7 @@ public class QuestionLabelController {
     @RequestMapping(value="/queryFirstKnowledgePointInfoByChapter",method = RequestMethod.POST)
     public Object queryFirstKnowledgePointInfoByChapter(HttpServletRequest request){
 
-        return questionLabelService.queryFirstKnowledgePointInfoByChapter(request.getParameter("chapter"));
+        return questionLabelService.checkFirstKnowledgePointInfoByChapter(request.getParameter("chapter"));
     }
 
     /**
@@ -124,6 +124,6 @@ public class QuestionLabelController {
     @RequestMapping(value="/querySecondKnowledgePointInfoByChapter",method = RequestMethod.POST)
     public Object querySecondKnowledgePointInfoByChapter(HttpServletRequest request){
 
-        return questionLabelService.querySecondKnowledgePointInfoByChapter(request.getParameter("chapter"),request.getParameter("firstKnowledgePoint"));
+        return questionLabelService.checkSecondKnowledgePointInfoByChapter(request.getParameter("chapter"),request.getParameter("firstKnowledgePoint"));
     }
 }

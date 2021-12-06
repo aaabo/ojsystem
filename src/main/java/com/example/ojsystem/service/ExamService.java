@@ -11,56 +11,56 @@ public interface ExamService {
      * 输入exam
      * 输出int
      */
-    public int addExamInfo(Exam exam);
+    public int saveExamInfo(Exam exam);
 
     /**
      * 查询用户能参加的考试信息
      * 输入无
      * 输出List<Exam>
      */
-    public List<Exam> queryExamInfoByUserId(int userId);
+    public List<Exam> checkExamInfoByUserId(int userId);
 
     /**
      * 查询全部的考试信息
      * 输入无
      * 输出List<Exam>
      */
-    public List<Exam> queryExamInfo();
+    public List<Exam> checkExamInfo();
 
     /**
      * 用户查询自己创建的的考试信息
      * 输入userId
      * 输出List<Exam>
      */
-    public List<Exam> userQueryExamInfo(int userId);
+    public List<Exam> checkUserQueryExamInfo(int userId);
 
     /**
      * 修改考试信息
      * 输入exam
      * 输出int
      */
-    public int modifyExamInfo(Exam exam);
+    public int alertExamInfo(Exam exam);
 
     /**
      * 删除考试信息
      * 输入examId
      * 输出int
      */
-    public int deleteExamInfo(int examId);
+    public int cancelExamInfo(int examId);
 
     /**
      * 修改考试状态
      * 输入exam
      * 输出int
      */
-    public int updateExamStatus(Exam exam);
+    public int alertExamStatus(Exam exam);
 
     /**
      * 根据考试id查询考试信息
      * 输入examId
      * 输出Exam
      */
-    public Exam queryExamInfoByExamId(int examId);
+    public Exam checkExamInfoByExamId(int examId);
 
 
     /**
@@ -68,7 +68,7 @@ public interface ExamService {
      * 输入null
      * 输出Exam
      */
-    public List<Exam> queryNotFinishedExamInfo();
+    public List<Exam> checkNotFinishedExamInfo();
 
 
 
@@ -77,7 +77,7 @@ public interface ExamService {
      * 输入exam
      * 输出 List<Exam>
      */
-    public List<Exam> searchExamInfo(Exam exam);
+    public List<Exam> checkSearchExamInfo(Exam exam);
 
 
 

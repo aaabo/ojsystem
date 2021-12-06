@@ -14,7 +14,7 @@ public interface CompletionQuestionAnswerMapper {
      * 输入completionQuestionAnswer,completionQuestionId
      * 输出int
      */
-    public int addCompletionQuestionAnswerInfo(@Param("completionQuestionAnswer") CompletionQuestionAnswer completionQuestionAnswer,@Param("completionQuestionId") int completionQuestionId);
+    public int insertCompletionQuestionAnswerInfo(@Param("completionQuestionAnswer") CompletionQuestionAnswer completionQuestionAnswer,@Param("completionQuestionId") int completionQuestionId);
 
 
     /**
@@ -29,5 +29,5 @@ public interface CompletionQuestionAnswerMapper {
      * 输入completionQuestionId
      * 输出Answer
      */
-    public String queryCompletionQuestionAnswerInfoByCompletionQuestionId(@Param("completionQuestionId") int completionQuestionId,@Param("completionQuestionAnswerNumber") int completionQuestionAnswerNumber);
+    public String selectCompletionQuestionAnswerInfoByCompletionQuestionId(@Param("completionQuestionId") int completionQuestionId,@Param("completionQuestionAnswerNumber") int completionQuestionAnswerNumber);
 }

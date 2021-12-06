@@ -23,9 +23,9 @@ public class UserGroupServiceImpl implements UserGroupService{
      * @param groupId
      * @param userAccount
      */
-    public int addUserGroupInfo(int groupId, String userAccount) {
-        int userId=userMapper.queryUserIdByUserAccount(userAccount);
-        return userGroupMapper.addUserGroupInfo(groupId,userId);
+    public int saveUserGroupInfo(int groupId, String userAccount) {
+        int userId=userMapper.selectUserIdByUserAccount(userAccount);
+        return userGroupMapper.insertUserGroupInfo(groupId,userId);
     }
 
     /**
@@ -35,8 +35,8 @@ public class UserGroupServiceImpl implements UserGroupService{
      *
      * @param groupId
      */
-    public List<User> queryUserGroupInfoByGroupId(int groupId) {
-        return userGroupMapper.queryUserGroupInfoByGroupId(groupId);
+    public List<User> checkUserGroupInfoByGroupId(int groupId) {
+        return userGroupMapper.selectUserGroupInfoByGroupId(groupId);
     }
 
     /**
@@ -47,7 +47,7 @@ public class UserGroupServiceImpl implements UserGroupService{
      * @param groupId
      * @param userId
      */
-    public int deleteUserGroupInfoByGroupIdAndUserId(int groupId,int userId) {
+    public int cancelUserGroupInfoByGroupIdAndUserId(int groupId,int userId) {
         return userGroupMapper.deleteUserGroupInfoByUserGroupId(groupId,userId);
     }
 
@@ -59,8 +59,8 @@ public class UserGroupServiceImpl implements UserGroupService{
      * @param groupId
      * @param userId
      */
-    public Integer queryUserIfInGroup(int groupId, int userId) {
-        return userGroupMapper.queryUserIfInGroup(groupId,userId);
+    public Integer checkUserIfInGroup(int groupId, int userId) {
+        return userGroupMapper.selectUserIfInGroup(groupId,userId);
     }
 
 

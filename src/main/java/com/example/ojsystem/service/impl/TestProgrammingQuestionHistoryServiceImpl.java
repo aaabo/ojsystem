@@ -2,15 +2,13 @@ package com.example.ojsystem.service.impl;
 
 import com.example.ojsystem.dao.TestProgrammingQuestionHistoryMapper;
 import com.example.ojsystem.entity.TestProgrammingQuestionHistory;
-import com.example.ojsystem.entity.TestProgrammingQuestionResultTool;
+import com.example.ojsystem.entity.TestStanding;
 import com.example.ojsystem.entity.TestProgrammingQuestionUserSubmitStateTool;
 import com.example.ojsystem.service.TestProgrammingQuestionHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -27,10 +25,10 @@ public class TestProgrammingQuestionHistoryServiceImpl implements TestProgrammin
      *
      * @param testProgrammingQuestionHistory
      */
-    public int addTestProgrammingQuestionHistoryInfo(TestProgrammingQuestionHistory testProgrammingQuestionHistory) {
+    public int saveTestProgrammingQuestionHistoryInfo(TestProgrammingQuestionHistory testProgrammingQuestionHistory) {
         //这里进行判题
         testProgrammingQuestionHistory.setTestProgrammingResult("结果未判断");
-        return testProgrammingQuestionHistoryMapper.addTestProgrammingQuestionHistoryInfo(testProgrammingQuestionHistory);
+        return testProgrammingQuestionHistoryMapper.insertTestProgrammingQuestionHistoryInfo(testProgrammingQuestionHistory);
     }
 
     /**
@@ -40,33 +38,33 @@ public class TestProgrammingQuestionHistoryServiceImpl implements TestProgrammin
      *
      * @param testId
      */
-    public List<TestProgrammingQuestionResultTool> queryTestRealStatus(int testId) {
-        List<TestProgrammingQuestionResultTool> testProgrammingQuestionResultTools=testProgrammingQuestionHistoryMapper.queryTestUserAndTestProgrammingQuestionId(testId);
-        for(int i=0;i<testProgrammingQuestionResultTools.size();i++){
-            testProgrammingQuestionResultTools.get(i).setAcceptNumber(new Float(0));
-            for(int o = 0; o<testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().size(); o++){
-                //获取对应测试习题的对错情况
-                TestProgrammingQuestionUserSubmitStateTool testProgrammingQuestionUserSubmitStateTool=testProgrammingQuestionHistoryMapper.queryTestProgrammingQuestionUserSubmitStateByTestProgrammingQuestionIdAndUserId(testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().get(o).getTestProgrammingQuestionId(),testProgrammingQuestionResultTools.get(i).getUserId());
+    public List<TestStanding> checkTestStanding(int testId) {
+        List<TestStanding> testStandings =testProgrammingQuestionHistoryMapper.selectTestUserAndTestProgrammingQuestionId(testId);
+        for(int i = 0; i< testStandings.size(); i++){
+            testStandings.get(i).setAcceptNumber(new Float(0));
+            for(int o = 0; o< testStandings.get(i).getTestProgrammingQuestionResultStateTools().size(); o++){
+                //获取对应测试习题的对错情况 对或者错的类
+                TestProgrammingQuestionUserSubmitStateTool testProgrammingQuestionUserSubmitStateTool=testProgrammingQuestionHistoryMapper.selectTestProgrammingQuestionUserSubmitStateByTestProgrammingQuestionIdAndUserId(testStandings.get(i).getTestProgrammingQuestionResultStateTools().get(o).getTestProgrammingQuestionId(), testStandings.get(i).getUserId());
                 if(testProgrammingQuestionUserSubmitStateTool.getSuccess()>0){
-                    testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().get(o).setTestProgrammingQuestionResult("success");
-                    testProgrammingQuestionResultTools.get(i).setAcceptNumber(testProgrammingQuestionResultTools.get(i).getAcceptNumber()+1);
+                    testStandings.get(i).getTestProgrammingQuestionResultStateTools().get(o).setTestProgrammingQuestionResult("success");
+                    testStandings.get(i).setAcceptNumber(testStandings.get(i).getAcceptNumber()+1);
                     continue;
                 }else if(testProgrammingQuestionUserSubmitStateTool.getNoSuccess()>0){
-                    testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().get(o).setTestProgrammingQuestionResult("error");
-                    testProgrammingQuestionResultTools.get(i).setAcceptNumber(testProgrammingQuestionResultTools.get(i).getAcceptNumber()-new Float(0.01));
+                    testStandings.get(i).getTestProgrammingQuestionResultStateTools().get(o).setTestProgrammingQuestionResult("error");
+                    testStandings.get(i).setAcceptNumber(testStandings.get(i).getAcceptNumber()-new Float(0.01));
                     continue;
                 }else{
-                    testProgrammingQuestionResultTools.get(i).getTestProgrammingQuestionResultStateTools().get(o).setTestProgrammingQuestionResult("null");
+                    testStandings.get(i).getTestProgrammingQuestionResultStateTools().get(o).setTestProgrammingQuestionResult("null");
                     continue;
                 }
             }
         }
-        Collections.sort(testProgrammingQuestionResultTools, new Comparator<TestProgrammingQuestionResultTool>() {
-            public int compare(TestProgrammingQuestionResultTool o1, TestProgrammingQuestionResultTool o2) {
+        Collections.sort(testStandings, new Comparator<TestStanding>() {
+            public int compare(TestStanding o1, TestStanding o2) {
                 return o2.getAcceptNumber().compareTo(o1.getAcceptNumber());
             }
         });
-        return testProgrammingQuestionResultTools;
+        return testStandings;
     }
 
     /**
@@ -76,9 +74,8 @@ public class TestProgrammingQuestionHistoryServiceImpl implements TestProgrammin
      *
      * @param testId
      */
-    public List<TestProgrammingQuestionHistory> queryTestProgrammingRealStatus(int testId) {
-        List<TestProgrammingQuestionHistory> testProgrammingQuestionHistories=testProgrammingQuestionHistoryMapper.queryTestProgrammingRealStatus(testId);
-        return testProgrammingQuestionHistories;
+    public List<TestProgrammingQuestionHistory> checkTestProgrammingRealStatus(int testId) {
+        return testProgrammingQuestionHistoryMapper.selectTestProgrammingRealStatus(testId);
     }
 
     /**
@@ -88,8 +85,8 @@ public class TestProgrammingQuestionHistoryServiceImpl implements TestProgrammin
      *
      * @param testProgrammingQuestionHistoryId
      */
-    public TestProgrammingQuestionHistory queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(int testProgrammingQuestionHistoryId) {
-        return testProgrammingQuestionHistoryMapper.queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(testProgrammingQuestionHistoryId);
+    public TestProgrammingQuestionHistory checkTestProgrammingHistoryByTestProgrammingQuestionHistoryId(int testProgrammingQuestionHistoryId) {
+        return testProgrammingQuestionHistoryMapper.selectTestProgrammingHistoryByTestProgrammingQuestionHistoryId(testProgrammingQuestionHistoryId);
     }
 
     /**
@@ -99,7 +96,7 @@ public class TestProgrammingQuestionHistoryServiceImpl implements TestProgrammin
      *
      * @param testProgrammingQuestionHistory
      */
-    public List<TestProgrammingQuestionHistory> queryTestProgrammingRealStatusBySearchInfo(TestProgrammingQuestionHistory testProgrammingQuestionHistory) {
-        return testProgrammingQuestionHistoryMapper.queryTestProgrammingRealStatusBySearchInfo(testProgrammingQuestionHistory);
+    public List<TestProgrammingQuestionHistory> checkTestProgrammingRealStatusBySearchInfo(TestProgrammingQuestionHistory testProgrammingQuestionHistory) {
+        return testProgrammingQuestionHistoryMapper.selectTestProgrammingRealStatusBySearchInfo(testProgrammingQuestionHistory);
     }
 }

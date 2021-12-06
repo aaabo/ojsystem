@@ -13,14 +13,14 @@ public interface TestMapper {
      * 输入test
      * 输出int
      */
-    public int addTestInfo(@Param("test") Test test);
+    public int insertTestInfo(@Param("test") Test test);
 
     /**
      * 根据输入的测试信息来修改测试
      * 输入test
      * 输出int
      */
-    public int modifyTestInfo(@Param("test")Test test);
+    public int updateTestInfo(@Param("test")Test test);
 
     /**
      * 根据输入的测试id来删除对应的测试
@@ -34,33 +34,33 @@ public interface TestMapper {
      * 输入null
      * 输出List<Test>
      */
-    public List<Test> queryTestInfoByTestStatus();
+    public List<Test> selectTestInfoByTestStatus();
 
     /**
      * 根据testId和输入的testStatus修改测试状态
      * 输入testId,testStatus
      * 输出int
      */
-    public int modifyTestStatusByTestId(@Param("test") Test test);
+    public int updateTestStatusByTestId(@Param("test") Test test);
 
     /**
      * 根据测试名称,测试状态，创建人来查询测试信息
      * 输入test
      * 输出List<Test>
      */
-    public List<Test> searchTestInfo(@Param("test") Test test);
+    public List<Test> selectSearchTestInfo(@Param("test") Test test);
 
     /**
      * 查询为结束的测试
      * 输入null
      * 输出List<Test>
      */
-    public List<Test> queryNotFinishTestInfo();
+    public List<Test> selectNotFinishTestInfo();
 
     /**
      * 根据testId来查询对应的测试信息
      * 输入testId
      * 输出Test
      */
-    public Test queryTestInfoByTestId(@Param("testId")int testId);
+    public Test selectTestInfoByTestId(@Param("testId")int testId);
 }

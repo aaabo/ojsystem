@@ -24,7 +24,7 @@ public class ExerciseAnswerController {
      * 成功返回新增的答案的id 失败返回0
      */
     @RequestMapping(value="/addExerciseAnswer",method = RequestMethod.POST)
-    public Object addExercise(HttpServletRequest request){
+    public Object addExerciseAnswerInfo(HttpServletRequest request){
         int i=0;
         ExerciseAnswer exerciseAnswer = new ExerciseAnswer();
         int  exerciseId=Integer.valueOf(request.getParameter("exerciseId"));
@@ -35,7 +35,7 @@ public class ExerciseAnswerController {
         exerciseAnswer.setExercise(exercise);
         exerciseAnswer.setExerciseAnswerInput(exerciseAnswerInput);
         exerciseAnswer.setExerciseAnswerOutput(exerciseAnswerOutput);
-        i = exerciseAnswerService.addExerciseAnswer(exerciseAnswer);
+        i = exerciseAnswerService.saveExerciseAnswerInfo(exerciseAnswer);
         if(i!=0){
             return exerciseAnswer.getExerciseAnswerId();
         }
@@ -53,7 +53,7 @@ public class ExerciseAnswerController {
     @RequestMapping(value="/queryExerciseAnswerInfoByExerciseId",method = RequestMethod.POST)
     public Object queryExerciseAnswerInfoByExerciseId(HttpServletRequest request){
         int exerciseId=Integer.valueOf(request.getParameter("exerciseId"));
-        return exerciseAnswerService.queryExerciseAnswerInfoByExerciseId(exerciseId);
+        return exerciseAnswerService.checkExerciseAnswerInfoByExerciseId(exerciseId);
     }
 
 
@@ -73,7 +73,7 @@ public class ExerciseAnswerController {
         exerciseAnswer.setExerciseAnswerOutput(exerciseAnswerOutput);
         exerciseAnswer.setExerciseAnswerInput(exerciseAnswerInput);
         exerciseAnswer.setExerciseAnswerId(exerciseAnswerId);
-        i=exerciseAnswerService.modifyExerciseAnswerInfo(exerciseAnswer);
+        i=exerciseAnswerService.alterExerciseAnswerInfo(exerciseAnswer);
         if(i!=0){
             return true;
         }
@@ -90,10 +90,10 @@ public class ExerciseAnswerController {
      * 输出成功返回true 失败返回false
      */
     @RequestMapping(value="/deleteExerciseAnswer",method = RequestMethod.POST)
-    public Boolean deleteExerciseAnswer(HttpServletRequest request){
+    public Boolean removeExerciseAnswer(HttpServletRequest request){
         int i=0;
 
-        i=exerciseAnswerService.deleteExerciseAnswer(Integer.valueOf(request.getParameter("exerciseAnswerId")));
+        i=exerciseAnswerService.cancelExerciseAnswer(Integer.valueOf(request.getParameter("exerciseAnswerId")));
         if(i!=0){
             return true;
         }

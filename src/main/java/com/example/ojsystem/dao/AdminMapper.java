@@ -10,5 +10,5 @@ public interface AdminMapper {
      * 输入adminAccount
      * 输出查询到的管理员密码
      */
-    public String adminLogin(@Param("adminAccount") String adminAccount);
+    public String selectAdminLoginInfo(@Param("adminAccount") String adminAccount);
 }

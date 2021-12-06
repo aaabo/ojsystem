@@ -19,8 +19,8 @@ public class UserServiceImpl implements UserService {
      *
      * @param user
      */
-    public User isUserExist(User user) {
-        return userMapper.isUserExist(user);
+    public User checkUserExist(User user) {
+        return userMapper.selectUserExist(user);
     }
 
     /**
@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserService {
      *
      * @param user
      */
-    public User isUserInfoExist(User user) {
-        return userMapper.isUserInfoExist(user);
+    public User checkUserInfoExist(User user) {
+        return userMapper.selectUserInfoExist(user);
     }
 
     /**
@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService {
      *
      * @param user
      */
-    public int addUserInfo(User user) {
-        return userMapper.addUserInfo(user);
+    public int saveUserInfo(User user) {
+        return userMapper.insertUserInfo(user);
     }
 
     /**
@@ -52,8 +52,8 @@ public class UserServiceImpl implements UserService {
      *
      * @param user
      */
-    public int addTeacherUserInfo(User user) {
-        return userMapper.addTeacherUserInfo(user);
+    public int saveTeacherUserInfo(User user) {
+        return userMapper.insertTeacherUserInfo(user);
     }
 
     /**
@@ -63,8 +63,8 @@ public class UserServiceImpl implements UserService {
      *
      * @param user
      */
-    public int modifyTeacherUserInfo(User user) {
-        return userMapper.modifyTeacherUserInfo(user);
+    public int alterTeacherUserInfo(User user) {
+        return userMapper.updateTeacherUserInfo(user);
     }
 
     /**
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
      *
      * @param userId
      */
-    public int deleteUserInfoByUserId(int userId) {
+    public int cancelUserInfoByUserId(int userId) {
         return userMapper.deleteUserInfoByUserId(userId);
     }
 
@@ -85,8 +85,8 @@ public class UserServiceImpl implements UserService {
      *
      * @param userId
      */
-    public User queryUserInfoById(int userId) {
-        return userMapper.queryUserInfoById(userId);
+    public User checkUserInfoById(int userId) {
+        return userMapper.selectUserInfoById(userId);
     }
 
 
@@ -98,8 +98,8 @@ public class UserServiceImpl implements UserService {
      *
      * @param user
      */
-    public int modifyUserInfo(User user) {
-        return userMapper.modifyUserInfo(user);
+    public int alterUserInfo(User user) {
+        return userMapper.updateUserInfo(user);
     }
 
     /**
@@ -109,8 +109,8 @@ public class UserServiceImpl implements UserService {
      *
      * @param userId
      */
-    public int queryUserPasswordInfo(int userId) {
-        return userMapper.queryUserPasswordInfo(userId);
+    public int checkUserPasswordInfo(int userId) {
+        return userMapper.selectUserPasswordInfo(userId);
     }
 
     /**
@@ -120,8 +120,8 @@ public class UserServiceImpl implements UserService {
      *
      * @param user
      */
-    public int modifyPassword(User user) {
-        return userMapper.modifyPassword(user);
+    public int alterPassword(User user) {
+        return userMapper.updatePassword(user);
     }
 
     /**
@@ -129,8 +129,8 @@ public class UserServiceImpl implements UserService {
      * 输入无
      * 输出List<User>
      */
-    public List<User> queryUserRankListInfo() {
-        return userMapper.queryUserRankListInfo();
+    public List<User> checkUserRankListInfo() {
+        return userMapper.selectUserRankListInfo();
     }
 
     /**
@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
      *
      * @param solved
      */
-    public int updateUserSubmitInfo(int solved,int userId) {
+    public int alterUserSubmitInfo(int solved,int userId) {
         return userMapper.updateUserSubmitInfo(solved,userId);
     }
 
@@ -149,8 +149,8 @@ public class UserServiceImpl implements UserService {
      * 输入无
      * 输出List<User>
      */
-    public List<User> queryTeacherUserInfo() {
-        return userMapper.queryTeacherUserInfo();
+    public List<User> checkTeacherUserInfo() {
+        return userMapper.selectTeacherUserInfo();
     }
 
     /**

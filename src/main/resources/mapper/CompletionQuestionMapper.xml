@@ -25,23 +25,23 @@
             <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint"/>
         </collection>
     </resultMap>
-    <insert id="addCompletionQuestionInfo" parameterType="com.example.ojsystem.entity.CompletionQuestion" useGeneratedKeys="true" keyProperty="completionQuestion.completionQuestionId" keyColumn="completionQuestionId">
+    <insert id="insertCompletionQuestionInfo" parameterType="com.example.ojsystem.entity.CompletionQuestion" useGeneratedKeys="true" keyProperty="completionQuestion.completionQuestionId" keyColumn="completionQuestionId">
       insert into completionquestion(userId,completionQuestionDifficulty,completionQuestionDescription,isPrivate)
       values(#{completionQuestion.user.userId},#{completionQuestion.completionQuestionDifficulty},#{completionQuestion.completionQuestionDescription},#{completionQuestion.isPrivate})
     </insert>
-    <update id="modifyCompletionQuestionInfo" parameterType="com.example.ojsystem.entity.CompletionQuestion">
+    <update id="updateCompletionQuestionInfo" parameterType="com.example.ojsystem.entity.CompletionQuestion">
         update completionquestion set completionQuestionDifficulty=#{completionQuestion.completionQuestionDifficulty},
         completionQuestionDescription=#{completionQuestion.completionQuestionDescription},isPrivate=#{completionQuestion.isPrivate} where completionQuestionId=#{completionQuestion.completionQuestionId}
     </update>
     <delete id="deleteCompletionQuestionInfoByCompletionQuestionId">
         delete from completionquestion where completionQuestionId=#{completionQuestionId}
     </delete>
-    <select id="queryCompletionQuestionInfoByUserId" resultType="com.example.ojsystem.entity.CompletionQuestion" parameterType="java.lang.Integer" resultMap="BaseCompletionQuestionResultMap">
+    <select id="selectCompletionQuestionInfoByUserId" resultType="com.example.ojsystem.entity.CompletionQuestion" parameterType="java.lang.Integer" resultMap="BaseCompletionQuestionResultMap">
         select * from completionquestion,user,completionquestionlabel,questionlabel,completionquestionanswer where  completionquestion.completionQuestionId=completionquestionlabel.completionQuestionId and completionquestion.userId=user.userId
         and completionquestionlabel.questionLabelId=questionlabel.questionLabelId	and completionquestion.completionQuestionId=completionquestionanswer.completionQuestionId   and (completionquestion.isPrivate=0 or (completionquestion.isPrivate=1 and completionquestion.userId=#{userId})) order by completionquestion.completionQuestionId
     </select>
-    <select id="queryCompletionQuestionIdBySearchInfo" resultType="com.example.ojsystem.entity.CompletionQuestion" resultMap="BaseCompletionQuestionResultMap">
-        select completionquestion.completionQuestionId from completionquestion,completionquestionlabel,questionlabel,user where completionquestion.completionQuestionId=completionquestionlabel.completionQuestionId and completionquestion.userId=user.userId
+    <select id="selectCompletionQuestionBySearchInfo" resultType="com.example.ojsystem.entity.CompletionQuestion" resultMap="BaseCompletionQuestionResultMap">
+        select * from completionquestion,completionquestionlabel,questionlabel,user where completionquestion.completionQuestionId=completionquestionlabel.completionQuestionId and completionquestion.userId=user.userId
         and completionquestionlabel.questionLabelId=questionlabel.questionLabelId
         <if test="completionQuestion.user.userId != null and completionQuestion.user.userId!=0">
             <if test="completionQuestion.user.userId==currentUserId">
@@ -64,11 +64,11 @@
             and questionlabel.questionLabelId = #{completionQuestion.questionLabels[0].questionLabelId}
         </if>
     </select>
-    <select id="queryCompletionQuestionIdByCompletionQuestionId" resultType="com.example.ojsystem.entity.CompletionQuestion" resultMap="BaseCompletionQuestionResultMap">
+    <select id="selectCompletionQuestionIdByCompletionQuestionId" resultType="com.example.ojsystem.entity.CompletionQuestion" resultMap="BaseCompletionQuestionResultMap">
         select * from completionquestion,user,completionquestionlabel,questionlabel,completionquestionanswer where  completionquestion.completionQuestionId=completionquestionlabel.completionQuestionId and completionquestion.userId=user.userId
         and completionquestionlabel.questionLabelId=questionlabel.questionLabelId	and completionquestion.completionQuestionId=completionquestionanswer.completionQuestionId and completionquestion.completionQuestionId=#{completionQuestionId} order by completionquestion.completionQuestionId
     </select>
-    <select id="queryCompletionQuestionInfoByExamId" resultType="com.example.ojsystem.entity.CompletionQuestion">
+    <select id="selectCompletionQuestionInfoByExamId" resultType="com.example.ojsystem.entity.CompletionQuestion">
         select choiceQuestionId from examquestion,completionquestion where examquestion.examId=#{examId} and examquestion.examQuestionId=completionquestion.completionQuestionId and examquestion.examQuestionType='completionQuestion'
     </select>
 

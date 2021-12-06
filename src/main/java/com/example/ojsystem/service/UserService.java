@@ -12,28 +12,28 @@ public interface UserService {
      * 输入user
      * 输出User
      */
-    public User isUserExist(User user);
+    public User checkUserExist(User user);
 
     /**
      * 根据用户账号查询学生信息判断是否注册过
      * 输入user
      * 输出注册过为true 没注册过返回false
      */
-    public User isUserInfoExist(User user);
+    public User checkUserInfoExist(User user);
 
     /**
      * 根据用户信息注册向数据库添加学生信息
      * 输入user
      * 输出int
      */
-    public int addUserInfo(User user);
+    public int saveUserInfo(User user);
 
     /**
      * 根据教师信息注册向数据库添加教师信息
      * 输入teacherUser
      * 输出int
      */
-    public int addTeacherUserInfo(User user);
+    public int saveTeacherUserInfo(User user);
 
 
     /**
@@ -41,21 +41,21 @@ public interface UserService {
      * 输入teacherUser
      * 输出int
      */
-    public int modifyTeacherUserInfo(User user);
+    public int alterTeacherUserInfo(User user);
 
     /**
      * 根据用户id删除用户
      * 输入userId
      * 输出int
      */
-    public int deleteUserInfoByUserId(int userId);
+    public int cancelUserInfoByUserId(int userId);
 
     /**
      * 根据用户id查询学生信息
      * 输入userId
      * 输出User
      */
-    public User queryUserInfoById(int userId);
+    public User checkUserInfoById(int userId);
 
 
 
@@ -64,7 +64,7 @@ public interface UserService {
      * 输入user
      * 输出int
      */
-    public int modifyUserInfo(User user);
+    public int alterUserInfo(User user);
 
 
     /**
@@ -72,7 +72,7 @@ public interface UserService {
      * 输入userId
      * 输出userPassword
      */
-    public int queryUserPasswordInfo(int userId);
+    public int checkUserPasswordInfo(int userId);
 
 
     /**
@@ -80,28 +80,28 @@ public interface UserService {
      * 输入user
      * 输出int
      */
-    public int modifyPassword(User user);
+    public int alterPassword(User user);
 
     /**
      * 查询用户排行榜
      * 输入无
      * 输出List<User>
      */
-    public List<User> queryUserRankListInfo();
+    public List<User> checkUserRankListInfo();
 
     /**
      * 修改用户提交信息
      * 输入solved 是否要添加解决问题次数  userId
      * 输出int
      */
-    public int updateUserSubmitInfo(int solved,int userId);
+    public int alterUserSubmitInfo(int solved,int userId);
 
     /**
      * 查询全部教师用户
      * 输入无
      * 输出List<User>
      */
-    public List<User> queryTeacherUserInfo();
+    public List<User> checkTeacherUserInfo();
 
     /**
      * 根据userAccount查询用户编号

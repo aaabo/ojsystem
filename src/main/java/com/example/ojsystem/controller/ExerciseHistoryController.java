@@ -27,32 +27,26 @@ public class ExerciseHistoryController {
     @RequestMapping(value="/addCodeInfo",method = RequestMethod.POST)
     public Boolean addCodeInfo(HttpServletRequest request) throws IOException, InterruptedException {
         int i=0;
-        String Code=request.getParameter("exerciseCode");
-                //System.out.println(Code);
-
-
         int userId=(Integer)request.getSession().getAttribute("userId");
         int exerciseId=Integer.valueOf(request.getParameter("exerciseId"));
-
         String exerciseSubmitTime=request.getParameter("exerciseSubmitTime");
-        String exerciseResult="dengdaizhong";
         String exerciseSubmitLanguage=request.getParameter("exerciseSubmitLanguage");
         String exerciseCode=request.getParameter("exerciseCode");
         ExerciseHistory exerciseHistory=new ExerciseHistory();
         exerciseHistory.setExerciseCode(exerciseCode);
         exerciseHistory.setExerciseSubmitTime(exerciseSubmitTime);
         exerciseHistory.setExerciseSubmitLanguage(exerciseSubmitLanguage);
-        exerciseHistory.setExerciseResult(exerciseResult);
         User user=new User();
         user.setUserId(userId);
         Exercise exercise=new Exercise();
         exercise.setExerciseId(exerciseId);
         exerciseHistory.setUser(user);
         exerciseHistory.setExercise(exercise);
-        i=exerciseHistoryService.addCodeInfo(exerciseHistory);
+        //在service层判断结果
+        i=exerciseHistoryService.saveCodeInfo(exerciseHistory);
         if(i!=0){
             //System.out.println(request.getParameter("exerciseCode"));
-            System.out.println(exerciseHistory.getExerciseResult());
+//            System.out.println(exerciseHistory.getExerciseResult());
             return true;
         }
         else{
@@ -87,7 +81,7 @@ public class ExerciseHistoryController {
         exerciseHistory.setUser(user);
         exerciseHistory.setExerciseResult(exerciseResult);
         exerciseHistory.setExerciseSubmitLanguage(exerciseSubmitLanguage);
-        return exerciseHistoryService.queryExerciseRealTimeStatusInfo(exerciseHistory);
+        return exerciseHistoryService.checkExerciseRealTimeStatusInfo(exerciseHistory);
 
     }
 
@@ -98,7 +92,7 @@ public class ExerciseHistoryController {
      */
     @RequestMapping(value="/queryExerciseStatisticsInfo",method = RequestMethod.POST)
     public Object queryExerciseStatisticsInfo(HttpServletRequest request){
-        return exerciseHistoryService.queryExerciseStatisticsInfo(Integer.valueOf(request.getParameter("exerciseId")));
+        return exerciseHistoryService.checkExerciseStatisticsInfo(Integer.valueOf(request.getParameter("exerciseId")));
     }
 
 
@@ -110,7 +104,7 @@ public class ExerciseHistoryController {
      */
     @RequestMapping(value="/queryUserExerciseIsSuccess",method = RequestMethod.POST)
     public int queryUserExerciseIsSuccess(HttpServletRequest request){
-        return exerciseHistoryService.queryUserExerciseIsSuccess(Integer.valueOf(request.getParameter("userId")),Integer.valueOf(request.getParameter("exerciseId")));
+        return exerciseHistoryService.checkUserExerciseIsSuccess(Integer.valueOf(request.getParameter("userId")),Integer.valueOf(request.getParameter("exerciseId")));
     }
 
 
@@ -121,7 +115,7 @@ public class ExerciseHistoryController {
      */
     @RequestMapping(value="/queryCodeInfoByExerciseHistoryId",method = RequestMethod.POST)
     public String queryCodeInfoByExerciseHistoryId(HttpServletRequest request){
-        return exerciseHistoryService.queryCodeInfoByExerciseHistoryId(Integer.valueOf(request.getParameter("exerciseHistoryId")));
+        return exerciseHistoryService.checkCodeInfoByExerciseHistoryId(Integer.valueOf(request.getParameter("exerciseHistoryId")));
     }
 
 
@@ -132,7 +126,7 @@ public class ExerciseHistoryController {
      */
     @RequestMapping(value="/queryExerciseIdByUserId",method = RequestMethod.POST)
     public Object queryExerciseIdByUserId(HttpServletRequest request){
-        return exerciseHistoryService.queryExerciseIdByUserId(Integer.valueOf(request.getParameter("userId")));
+        return exerciseHistoryService.checkExerciseIdByUserId(Integer.valueOf(request.getParameter("userId")));
     }
 
 
@@ -143,7 +137,7 @@ public class ExerciseHistoryController {
      */
     @RequestMapping(value="/queryExerciseResultInfo",method = RequestMethod.POST)
     public Object queryExerciseResultInfo(HttpServletRequest request){
-        return exerciseHistoryService.queryExerciseResultInfo(Integer.valueOf(request.getParameter("exerciseId")));
+        return exerciseHistoryService.checkExerciseResultInfo(Integer.valueOf(request.getParameter("exerciseId")));
     }
 
 }

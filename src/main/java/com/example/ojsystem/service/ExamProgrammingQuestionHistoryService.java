@@ -8,7 +8,7 @@ public interface ExamProgrammingQuestionHistoryService {
      * 输入examProgrammingQuestionHistory
      * 输出int
      */
-    public int addExamProgrammingQuestionHistoryInfo(ExamProgrammingQuestionHistory examProgrammingQuestionHistory,int userId,int examQuestionId);
+    public int saveExamProgrammingQuestionHistoryInfo(ExamProgrammingQuestionHistory examProgrammingQuestionHistory,int userId,int examQuestionId);
 
 
 }

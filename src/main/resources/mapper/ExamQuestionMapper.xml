@@ -80,28 +80,28 @@
         <result column="avgExamProgrammingScore" jdbcType="REAL" property="avgExamProgrammingScore" />
         <result column="exerciseTitle" jdbcType="VARCHAR" property="exerciseTitle" />
     </resultMap>
-    <insert id="addExamQuestion">
+    <insert id="insertExamQuestionInfo">
         insert into examquestion(examId,questionId,examQuestionType) values(#{examId},#{questionId},#{examQuestionType})
     </insert>
-    <delete id="deleteExamQuestion">
+    <delete id="deleteExamQuestionInfo">
         delete from examquestion where examId=#{examId} and questionId=#{questionId} and examQuestionType=#{examQuestionType}
     </delete>
-    <select id="queryExamQuestionChoiceByExamId" resultType="com.example.ojsystem.entity.ExamQuestion" resultMap="BaseExamQuestionResultMap">
+    <select id="selectExamQuestionChoiceByExamId" resultType="com.example.ojsystem.entity.ExamQuestion" resultMap="BaseExamQuestionResultMap">
        SELECT * FROM examquestion,choicequestion,questionlabel,choicequestionlabel where examquestion.questionId=choicequestion.choiceQuestionId
         and choicequestionlabel.choiceQuestionId=choicequestion.choiceQuestionId and choicequestionlabel.questionLabelId=questionlabel.questionLabelId  and examquestion.examId=#{examId} and examquestion.examQuestionType='choiceQuestion'
     </select>
-    <select id="queryExamQuestionCompletionByExamId" resultType="com.example.ojsystem.entity.CompletionQuestion"  resultMap="BaseExamQuestionResultMap">
+    <select id="selectExamQuestionCompletionByExamId" resultType="com.example.ojsystem.entity.CompletionQuestion"  resultMap="BaseExamQuestionResultMap">
           SELECT * FROM examquestion,completionquestion,questionlabel,completionquestionlabel,completionquestionanswer where examquestion.questionId=completionquestion.completionQuestionId
           and examquestion.examId=#{examId} and completionquestionlabel.completionQuestionId=completionquestion.completionQuestionId and completionquestionlabel.questionLabelId=questionlabel.questionLabelId and examquestion.examQuestionType='completionQuestion' and completionquestionanswer.completionQuestionId=completionQuestion.completionQuestionId
     </select>
-    <select id="queryExamQuestionProgrammingByExamId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExamQuestionResultMap">
+    <select id="selectExamQuestionProgrammingByExamId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExamQuestionResultMap">
          SELECT * FROM examquestion,exercise where examquestion.questionId=exercise.exerciseId and examquestion.examId=#{examId} and examquestion.examQuestionType='programmingQuestion'
     </select>
-    <select id="queryExamProgrammingResultScoreByExamId" resultType="com.example.ojsystem.entity.ExamProgrammingResultScoreTool" resultMap="BaseExamProgrammingResultScoreToolResultMap">
+    <select id="selectExamProgrammingResultScoreByExamId" resultType="com.example.ojsystem.entity.ExamProgrammingResultScoreTool" resultMap="BaseExamProgrammingResultScoreToolResultMap">
 	        SELECT exercise.exerciseTitle,SUM(examprogrammingquestionhistory.examProgrammingQuestionResultScore)/(select count(usergroup.userId) from usergroup,exam where usergroup.groupId=exam.groupId and exam.examId=#{examId}) as avgExamProgrammingScore FROM examquestion left join exercise on exercise.exerciseId=examquestion.questionId left join examprogrammingquestionhistory on  examquestion.examQuestionId=examprogrammingquestionhistory.examQuestionId
         where   examquestion.examId=#{examId} and  examquestion.examQuestionType='programmingQuestion' group by examprogrammingquestionhistory.examQuestionId
     </select>
-    <select id="queryUserExamScoreEachSegmentNumberByExamId" resultType="com.example.ojsystem.entity.UserExamScoreEachSegmentNumber">
+    <select id="selectUserExamScoreEachSegmentNumberByExamId" resultType="com.example.ojsystem.entity.UserExamScoreEachSegmentNumber">
         select sum(case when examChoiceQuestionTotals+examCompletionQuestionTotals+examProgrammingTotals &lt;60 then 1 else 0 end ) as 'SegmentNumber1',
             sum(case when examChoiceQuestionTotals+examCompletionQuestionTotals+examProgrammingTotals &gt;=60 and examChoiceQuestionTotals+examCompletionQuestionTotals+examProgrammingTotals &lt;70 then 1 else 0 end ) as 'SegmentNumber2',
             sum(case when examChoiceQuestionTotals+examCompletionQuestionTotals+examProgrammingTotals &gt;=70 and examChoiceQuestionTotals+examCompletionQuestionTotals+examProgrammingTotals &lt;80 then 1 else 0 end ) as 'SegmentNumber3',
@@ -109,7 +109,7 @@
             sum(case when examChoiceQuestionTotals+examCompletionQuestionTotals+examProgrammingTotals &gt;=90 and examChoiceQuestionTotals+examCompletionQuestionTotals+examProgrammingTotals &lt;=100 then 1 else 0 end ) as 'SegmentNumber5'
             from examhistory where examId=#{examId}
     </select>
-    <select id="queryExerciseAnswerInfoByExamQuestionId" resultType="com.example.ojsystem.entity.ExerciseAnswer">
+    <select id="selectExerciseAnswerInfoByExamQuestionId" resultType="com.example.ojsystem.entity.ExerciseAnswer">
        select * from examquestion,exercise,exerciseanswer where examquestion.questionId=exercise.exerciseId and exercise.exerciseId=exerciseanswer.exerciseId and examquestion.examQuestionId=#{examQuestionId}
     </select>
 

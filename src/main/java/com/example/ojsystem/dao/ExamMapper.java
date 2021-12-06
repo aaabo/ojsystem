@@ -14,14 +14,14 @@ public interface ExamMapper {
      * 输入exam
      * 输出int
      */
-    public int addExamInfo(@Param("exam") Exam exam);
+    public int insertExamInfo(@Param("exam") Exam exam);
 
     /**
      *查询用户能参加的考试信息
      * 输入无
      * 输出List<Exam>
      */
-    public List<Exam> queryExamInfoByUserId(@Param("userId") int userId);
+    public List<Exam> selectExamInfoByUserId(@Param("userId") int userId);
 
 
     /**
@@ -29,20 +29,20 @@ public interface ExamMapper {
      * 输入无
      * 输出List<Exam>
      */
-    public List<Exam> queryExamInfo();
+    public List<Exam> selectExamInfo();
 
     /**
      * 用户查询自己创建的的考试信息
      * 输入userId
      * 输出List<Exam>
      */
-    public List<Exam> userQueryExamInfo(@Param("userId") int userId);
+    public List<Exam> selectUserQueryExamInfo(@Param("userId") int userId);
     /**
      * 修改考试信息
      * 输入exam
      * 输出int
      */
-    public int modifyExamInfo(@Param("exam") Exam exam);
+    public int updateExamInfo(@Param("exam") Exam exam);
 
     /**
      * 删除考试信息
@@ -63,14 +63,14 @@ public interface ExamMapper {
      * 输入examId
      * 输出Exam
      */
-    public Exam queryExamInfoByExamId(@Param("examId") int examId);
+    public Exam selectExamInfoByExamId(@Param("examId") int examId);
 
     /**
      * 查询为结束的考试信息
      * 输入null
      * 输出Exam
      */
-    public List<Exam> queryNotFinishedExamInfo();
+    public List<Exam> selectNotFinishedExamInfo();
 
 
     /**
@@ -78,5 +78,5 @@ public interface ExamMapper {
      * 输入exam
      * 输出 List<Exam>
      */
-    public List<Exam> searchExamInfo(@Param("exam") Exam exam);
+    public List<Exam> selectSearchExamInfo(@Param("exam") Exam exam);
 }

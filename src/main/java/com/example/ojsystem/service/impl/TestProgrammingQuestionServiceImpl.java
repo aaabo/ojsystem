@@ -20,8 +20,8 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
      *
      * @param testProgrammingQuestion
      */
-    public int addTestProgrammingQuestionInfo(TestProgrammingQuestion testProgrammingQuestion) {
-        return testProgrammingQuestionMapper.addTestProgrammingQuestionInfo(testProgrammingQuestion);
+    public int saveTestProgrammingQuestionInfo(TestProgrammingQuestion testProgrammingQuestion) {
+        return testProgrammingQuestionMapper.insertTestProgrammingQuestionInfo(testProgrammingQuestion);
     }
 
     /**
@@ -31,7 +31,7 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
      *
      * @param testProgrammingQuestionId
      */
-    public int deleteTestProgrammingQuestionByTestProgrammingQuestionId(int testProgrammingQuestionId) {
+    public int cancelTestProgrammingQuestionByTestProgrammingQuestionId(int testProgrammingQuestionId) {
         return testProgrammingQuestionMapper.deleteTestProgrammingQuestionByTestProgrammingQuestionId(testProgrammingQuestionId);
     }
 
@@ -42,11 +42,11 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
      *
      * @param testId
      */
-    public List<Exercise> queryTestProgrammingQuestionAndIsSuccess(Integer testId,Integer userId) {
-        List<Exercise> exercises=testProgrammingQuestionMapper.queryTestProgrammingQuestionByTestId(testId);
+    public List<Exercise> checkTestProgrammingQuestionAndIsSuccess(Integer testId,Integer userId) {
+        List<Exercise> exercises=testProgrammingQuestionMapper.selectTestProgrammingQuestionByTestId(testId);
         for(int i=0;i<exercises.size();i++){
             //赋值习题描述为改用户的提交题目的结果
-            exercises.get(i).setExerciseDescription(testProgrammingQuestionMapper.queryTestProgrammingResultByUserIdAndTestProgrammingQuestionId(userId,exercises.get(i).getExerciseId()));
+            exercises.get(i).setExerciseDescription(testProgrammingQuestionMapper.selectTestProgrammingResultByUserIdAndTestProgrammingQuestionId(userId,exercises.get(i).getExerciseId()));
         }
 
         return exercises;
@@ -59,8 +59,8 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
      *
      * @param testId
      */
-    public List<Exercise> queryTestProgrammingQuestionByTestId(Integer testId) {
-        return testProgrammingQuestionMapper.queryTestProgrammingQuestionByTestId(testId);
+    public List<Exercise> checkTestProgrammingQuestionByTestId(Integer testId) {
+        return testProgrammingQuestionMapper.selectTestProgrammingQuestionByTestId(testId);
     }
 
     /**
@@ -70,8 +70,8 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
      *
      * @param testId
      */
-    public List<TestProgrammingQuestion> queryTestProgrammingQuestionInfoByTestId(Integer testId) {
-        return testProgrammingQuestionMapper.queryTestProgrammingQuestionInfoByTestId(testId);
+    public List<TestProgrammingQuestion> checkTestProgrammingQuestionInfoByTestId(Integer testId) {
+        return testProgrammingQuestionMapper.selectTestProgrammingQuestionInfoByTestId(testId);
     }
 
     /**
@@ -81,8 +81,8 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
      *
      * @param testProgrammingQuestionId
      */
-    public Exercise queryExerciseByTestProgrammingQuestionId(Integer testProgrammingQuestionId) {
-        return testProgrammingQuestionMapper.queryExerciseByTestProgrammingQuestionId(testProgrammingQuestionId);
+    public Exercise checkExerciseByTestProgrammingQuestionId(Integer testProgrammingQuestionId) {
+        return testProgrammingQuestionMapper.selectExerciseByTestProgrammingQuestionId(testProgrammingQuestionId);
     }
 
     /**
@@ -92,7 +92,7 @@ public class TestProgrammingQuestionServiceImpl implements TestProgrammingQuesti
      *
      * @param testProgrammingQuestionId
      */
-    public Integer queryTestIdByTestProgrammingQuestionId(Integer testProgrammingQuestionId) {
-        return testProgrammingQuestionMapper.queryTestIdByTestProgrammingQuestionId(testProgrammingQuestionId);
+    public Integer checkTestIdByTestProgrammingQuestionId(Integer testProgrammingQuestionId) {
+        return testProgrammingQuestionMapper.selectTestIdByTestProgrammingQuestionId(testProgrammingQuestionId);
     }
 }

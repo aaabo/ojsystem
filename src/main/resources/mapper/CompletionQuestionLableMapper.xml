@@ -5,7 +5,7 @@
 <mapper namespace="com.example.ojsystem.dao.CompletionQuestionLabelMapper">
 
 
-    <insert id="addCompletionQuestionLabelInfo">
+    <insert id="insertCompletionQuestionLabelInfo">
              insert into completionquestionlabel(completionQuestionId,questionLabelId) VALUES(#{completionQuestionId},#{questionLabelId})
     </insert>
     <delete id="deleteCompletionQuestionLabelInfoByCompletionQuestionId">

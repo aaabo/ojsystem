@@ -5,16 +5,16 @@
 <mapper namespace="com.example.ojsystem.dao.UserGroupMapper">
 
 
-    <insert id="addUserGroupInfo">
+    <insert id="insertUserGroupInfo">
         insert into usergroup (groupId,userId)  values(#{groupId},#{userId})
     </insert>
     <delete id="deleteUserGroupInfoByUserGroupId"  parameterType="java.lang.Integer">
            delete from usergroup where groupId=#{groupId} and userId=#{userId}
     </delete>
-    <select id="queryUserGroupInfoByGroupId" resultType="com.example.ojsystem.entity.User" parameterType="java.lang.Integer">
+    <select id="selectUserGroupInfoByGroupId" resultType="com.example.ojsystem.entity.User" parameterType="java.lang.Integer">
         select * from user,usergroup where user.userId=usergroup.userId and usergroup.groupId=#{groupId}
     </select>
-    <select id="queryUserIfInGroup" resultType="java.lang.Integer">
+    <select id="selectUserIfInGroup" resultType="java.lang.Integer">
         SELECT userGroupId FROM `usergroup` where groupId=#{groupId} and userId=#{userId}
     </select>
 

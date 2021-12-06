@@ -34,7 +34,7 @@ public class TestProgrammingQuestionHistoryController {
         User user=new User();
         user.setUserId((Integer)request.getSession().getAttribute("userId"));
         testProgrammingQuestionHistory.setUser(user);
-        i=testProgrammingQuestionHistoryService.addTestProgrammingQuestionHistoryInfo(testProgrammingQuestionHistory);
+        i=testProgrammingQuestionHistoryService.saveTestProgrammingQuestionHistoryInfo(testProgrammingQuestionHistory);
         if(i!=0){
             return true;
         }
@@ -50,8 +50,8 @@ public class TestProgrammingQuestionHistoryController {
      * 输出测试的状态
      */
     @RequestMapping(value="/queryTestRealStatus",method = RequestMethod.POST)
-    public Object queryTestRealStatus(HttpServletRequest request){
-        return testProgrammingQuestionHistoryService.queryTestRealStatus(Integer.valueOf(request.getParameter("testId")));
+    public Object queryTestStanding(HttpServletRequest request){
+        return testProgrammingQuestionHistoryService.checkTestStanding(Integer.valueOf(request.getParameter("testId")));
     }
 
 
@@ -62,7 +62,7 @@ public class TestProgrammingQuestionHistoryController {
      */
     @RequestMapping(value="/queryTestProgrammingRealStatus",method = RequestMethod.POST)
     public Object queryTestProgrammingRealStatus(HttpServletRequest request){
-        return testProgrammingQuestionHistoryService.queryTestProgrammingRealStatus(Integer.valueOf(request.getParameter("testId")));
+        return testProgrammingQuestionHistoryService.checkTestProgrammingRealStatus(Integer.valueOf(request.getParameter("testId")));
     }
 
     /**
@@ -72,7 +72,7 @@ public class TestProgrammingQuestionHistoryController {
      */
     @RequestMapping(value="/queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId",method = RequestMethod.POST)
     public Object queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(HttpServletRequest request){
-        return testProgrammingQuestionHistoryService.queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(Integer.valueOf(request.getParameter("testProgrammingQuestionHistoryId")));
+        return testProgrammingQuestionHistoryService.checkTestProgrammingHistoryByTestProgrammingQuestionHistoryId(Integer.valueOf(request.getParameter("testProgrammingQuestionHistoryId")));
     }
 
 
@@ -101,7 +101,7 @@ public class TestProgrammingQuestionHistoryController {
         testProgrammingQuestionHistory.setUser(user);
         testProgrammingQuestionHistory.setTestProgrammingResult(testProgrammingResult);
         testProgrammingQuestionHistory.setTestProgrammingQuestion(testProgrammingQuestion);
-        return testProgrammingQuestionHistoryService.queryTestProgrammingRealStatusBySearchInfo(testProgrammingQuestionHistory);
+        return testProgrammingQuestionHistoryService.checkTestProgrammingRealStatusBySearchInfo(testProgrammingQuestionHistory);
 
     }
 }

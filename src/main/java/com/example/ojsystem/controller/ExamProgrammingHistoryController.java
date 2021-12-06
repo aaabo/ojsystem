@@ -38,9 +38,9 @@ public class ExamProgrammingHistoryController {
         ExamProgrammingQuestionHistory examProgrammingQuestionHistory=new ExamProgrammingQuestionHistory();
         examProgrammingQuestionHistory.setExamProgrammingQuestionCode(examProgrammingQuestionCode);
 
-//        HttpSession session=request.getSession();
-//        int userId=(Integer)session.getAttribute("userId");
-        examProgrammingQuestionHistoryService.addExamProgrammingQuestionHistoryInfo(examProgrammingQuestionHistory,1,examQuestionId);
+        HttpSession session=request.getSession();
+        int userId=(Integer)session.getAttribute("userId");
+        examProgrammingQuestionHistoryService.saveExamProgrammingQuestionHistoryInfo(examProgrammingQuestionHistory,userId,examQuestionId);
         if(i!=0){
             return true;
         }

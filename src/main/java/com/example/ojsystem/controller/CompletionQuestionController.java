@@ -30,7 +30,7 @@ public class CompletionQuestionController {
     public Object addCompletionQuestionInfo(HttpServletRequest request){
         String completionQuestionInfo=request.getParameter("completionQuestionInfo");
         CompletionQuestion completionQuestion=JSON.parseObject(completionQuestionInfo,CompletionQuestion.class);
-        int i=completionQuestionService.addCompletionQuestionInfo(completionQuestion);
+        int i=completionQuestionService.saveCompletionQuestionInfo(completionQuestion);
         if(i!=0){
             return true;
         }
@@ -48,7 +48,7 @@ public class CompletionQuestionController {
     public Object modifyCompletionQuestionInfo(HttpServletRequest request){
         String completionQuestionInfo=request.getParameter("completionQuestionInfo");
         CompletionQuestion completionQuestion=JSON.parseObject(completionQuestionInfo,CompletionQuestion.class);
-        int i=completionQuestionService.modifyCompletionQuestionInfo(completionQuestion);
+        int i=completionQuestionService.alertCompletionQuestionInfo(completionQuestion);
         if(i!=0){
             return true;
         }
@@ -63,8 +63,8 @@ public class CompletionQuestionController {
      * 输出int
      */
     @RequestMapping(value="/deleteCompletionQuestionInfoByCompletionQuestionId",method = RequestMethod.POST)
-    public Object deleteCompletionQuestionInfoByCompletionQuestionId(HttpServletRequest request){
-        int i=completionQuestionService.deleteCompletionQuestionInfoByCompletionQuestionId(Integer.valueOf(request.getParameter("completionQuestionId")));
+    public Object removeCompletionQuestionInfoByCompletionQuestionId(HttpServletRequest request){
+        int i=completionQuestionService.cancelCompletionQuestionInfoByCompletionQuestionId(Integer.valueOf(request.getParameter("completionQuestionId")));
         if(i!=0){
             return true;
         }
@@ -81,7 +81,7 @@ public class CompletionQuestionController {
     @RequestMapping(value="/queryCompletionQuestionInfoByUserId",method = RequestMethod.POST)
     public Object queryCompletionQuestionInfoByUserId(HttpServletRequest request){
         HttpSession session=request.getSession();
-        return completionQuestionService.queryCompletionQuestionInfoByUserId((Integer)session.getAttribute("userId"));
+        return completionQuestionService.checkCompletionQuestionInfoByUserId((Integer)session.getAttribute("userId"));
     }
 
     /**
@@ -91,7 +91,7 @@ public class CompletionQuestionController {
      */
     @RequestMapping(value="/queryCompletionQuestionInfoBySearchInfo",method = RequestMethod.POST)
     public Object queryCompletionQuestionInfoBySearchInfo(HttpServletRequest request){
-        List<CompletionQuestion> completionQuestions1=new ArrayList<CompletionQuestion>();
+        List<CompletionQuestion> completionQuestions=new ArrayList<CompletionQuestion>();
         List<CompletionQuestion> completionQuestions2=new ArrayList<CompletionQuestion>();
         HttpSession session=request.getSession();
         int currentUserId=(Integer)session.getAttribute("userId");
@@ -120,13 +120,13 @@ public class CompletionQuestionController {
         completionQuestion.setUser(user);
         questionLabels.add(questionLabel);
         completionQuestion.setQuestionLabels(questionLabels);
-        completionQuestions1=completionQuestionService.queryCompletionQuestionIdBySearchInfo(completionQuestion,currentUserId);
-        for(int i=0;i<completionQuestions1.size();i++){
-            CompletionQuestion completionQuestion1=new CompletionQuestion();
-            completionQuestion1=completionQuestionService.queryCompletionQuestionIdByCompletionQuestionId(completionQuestions1.get(i).getCompletionQuestionId());
-            completionQuestions2.add(completionQuestion1);
-        }
-        return completionQuestions2;
+        completionQuestions=completionQuestionService.checkCompletionQuestionBySearchInfo(completionQuestion,currentUserId);
+//        for(int i=0;i<completionQuestions1.size();i++){
+//            CompletionQuestion completionQuestion1=new CompletionQuestion();
+//            completionQuestion1=completionQuestionService.queryCompletionQuestionIdByCompletionQuestionId(completionQuestions1.get(i).getCompletionQuestionId());
+//            completionQuestions2.add(completionQuestion1);
+//        }
+        return completionQuestions;
     }
 
     /**
@@ -136,7 +136,7 @@ public class CompletionQuestionController {
      */
     @RequestMapping(value="/queryCompletionQuestionInfoByExamId",method = RequestMethod.POST)
     public Object queryCompletionQuestionInfoByExamId(HttpServletRequest request){
-        return completionQuestionService.queryCompletionQuestionInfoByExamId(Integer.valueOf(request.getParameter("examId")));
+        return completionQuestionService.checkCompletionQuestionInfoByExamId(Integer.valueOf(request.getParameter("examId")));
     }
 
 }

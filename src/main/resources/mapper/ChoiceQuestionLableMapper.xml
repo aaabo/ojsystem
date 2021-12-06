@@ -5,7 +5,7 @@
 <mapper namespace="com.example.ojsystem.dao.ChoiceQuestionLabelMapper">
 
 
-    <insert id="addChoiceQuestionLabelInfo">
+    <insert id="insertChoiceQuestionLabelInfo">
         insert into choicequestionlabel(choiceQuestionId,questionLabelId) VALUES(#{choiceQuestionId},#{questionLabelId})
     </insert>
     <delete id="deleteChoiceQuestionLabelInfoByChoiceQuestionId">

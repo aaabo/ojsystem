@@ -27,7 +27,7 @@ public class ExerciseController {
      * 成功返回新增的习题id 失败返回0
      */
     @RequestMapping(value="/addExercise",method = RequestMethod.POST)
-    public int addExercise(HttpServletRequest request){
+    public int addExerciseInfo(HttpServletRequest request){
         int i=0;
         Exercise exercise=new Exercise();
         String exerciseTitle=request.getParameter("exerciseTitle");
@@ -50,7 +50,7 @@ public class ExerciseController {
         exercise.setExerciseSampleInput(exerciseSampleInput);
         exercise.setExerciseSampleOutput(exerciseSampleOutput);
         exercise.setQuestionLabel(questionLabel);
-        i=exerciseService.addExercise(exercise);
+        i=exerciseService.saveExerciseInfo(exercise);
         if(i!=0){
             return exercise.getExerciseId();
         }
@@ -68,7 +68,7 @@ public class ExerciseController {
     @RequestMapping(value="/queryExerciseInfo",method = RequestMethod.POST)
     public  Object  queryExerciseInfo(HttpServletRequest request){
         List<Exercise> exercises=new ArrayList<Exercise>();
-        exercises=exerciseService.queryExerciseInfo();
+        exercises=exerciseService.checkExerciseInfo();
         return exercises;
     }
 
@@ -101,7 +101,7 @@ public class ExerciseController {
         exercise.setExerciseSampleInput(exerciseSampleInput);
         exercise.setExerciseSampleOutput(exerciseSampleOutput);
         exercise.setQuestionLabel(questionLabel);
-        i=exerciseService.modifyExerciseInfo(exercise);
+        i=exerciseService.alterExerciseInfo(exercise);
         if(i!=0){
             return true;
         }
@@ -120,10 +120,10 @@ public class ExerciseController {
      * 输出删除成功返回true 修改失败返回false
      */
     @RequestMapping(value="/deleteExercise",method = RequestMethod.POST)
-    public Boolean deleteProblem(HttpServletRequest request){
+    public Boolean removeExerciseInfo(HttpServletRequest request){
         int i=0;
         int  exerciseId=Integer.valueOf(request.getParameter("exerciseId"));
-        i=exerciseService.deleteExercise(exerciseId);
+        i=exerciseService.cancelExerciseInfo(exerciseId);
         if(i!=0){
             return true;
         }
@@ -140,7 +140,7 @@ public class ExerciseController {
      */
     @RequestMapping(value="/queryExerciseDetailsInfoByExerciseId",method = RequestMethod.POST)
     public Object queryExerciseDetailsInfoByExerciseId(HttpServletRequest request){
-        return exerciseService.queryExerciseDetailsInfoByExerciseId(Integer.valueOf(request.getParameter("exerciseId")));
+        return exerciseService.checkExerciseDetailsInfoByExerciseId(Integer.valueOf(request.getParameter("exerciseId")));
     }
 
 

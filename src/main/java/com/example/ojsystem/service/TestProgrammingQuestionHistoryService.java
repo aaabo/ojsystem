@@ -1,7 +1,7 @@
 package com.example.ojsystem.service;
 
 import com.example.ojsystem.entity.TestProgrammingQuestionHistory;
-import com.example.ojsystem.entity.TestProgrammingQuestionResultTool;
+import com.example.ojsystem.entity.TestStanding;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,28 +12,28 @@ public interface TestProgrammingQuestionHistoryService {
      * 输入testProgrammingQuestionHistory
      * 输出int
      */
-    public int addTestProgrammingQuestionHistoryInfo(TestProgrammingQuestionHistory testProgrammingQuestionHistory);
+    public int saveTestProgrammingQuestionHistoryInfo(TestProgrammingQuestionHistory testProgrammingQuestionHistory);
 
     /**
      * 查询测试的提交状态
      * 输入testId
      * 输出测试的状态
      */
-    public List<TestProgrammingQuestionResultTool> queryTestRealStatus(int testId);
+    public List<TestStanding> checkTestStanding(int testId);
 
     /**
      * 查询测试的提交实时提交情况
      * 输入testId
      * 输出测试的提交实时提交状态
      */
-    public List<TestProgrammingQuestionHistory> queryTestProgrammingRealStatus(int testId);
+    public List<TestProgrammingQuestionHistory> checkTestProgrammingRealStatus(int testId);
 
     /**
      * 根据测试编程题记录编号来查询对应的测试编程题记录
      * 输入testProgrammingQuestionHistoryId
      * 输出TestProgrammingQuestionHistory
      */
-    public TestProgrammingQuestionHistory queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId(int testProgrammingQuestionHistoryId);
+    public TestProgrammingQuestionHistory checkTestProgrammingHistoryByTestProgrammingQuestionHistoryId(int testProgrammingQuestionHistoryId);
 
 
     /**
@@ -41,5 +41,5 @@ public interface TestProgrammingQuestionHistoryService {
      * 输入testId
      * 输出测试的提交实时提交状态
      */
-    public List<TestProgrammingQuestionHistory> queryTestProgrammingRealStatusBySearchInfo(@Param("testProgrammingQuestionHistory") TestProgrammingQuestionHistory testProgrammingQuestionHistory);
+    public List<TestProgrammingQuestionHistory> checkTestProgrammingRealStatusBySearchInfo(@Param("testProgrammingQuestionHistory") TestProgrammingQuestionHistory testProgrammingQuestionHistory);
 }

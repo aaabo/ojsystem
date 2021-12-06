@@ -22,11 +22,11 @@ public class ExamProgrammingQuestionHistoryServiceImpl implements ExamProgrammin
      *
      * @param examProgrammingQuestionHistory
      */
-    public int addExamProgrammingQuestionHistoryInfo(ExamProgrammingQuestionHistory examProgrammingQuestionHistory,int userId,int examQuestionId) {
+    public int saveExamProgrammingQuestionHistoryInfo(ExamProgrammingQuestionHistory examProgrammingQuestionHistory,int userId,int examQuestionId) {
         Integer i=0;
         int examProgrammingQuestionId=0;
         //查询是否存在
-        examProgrammingQuestionId=examProgrammingQuestionHistoryMapper.queryExamProgrammingQuestionHistoryByExamQuestionIdAndUserId(examQuestionId,userId);
+        examProgrammingQuestionId=examProgrammingQuestionHistoryMapper.selectExamProgrammingQuestionHistoryByExamQuestionIdAndUserId(examQuestionId,userId);
         //判断
         String result= JudgerC.start(examProgrammingQuestionHistory.getExamProgrammingQuestionCode(),examQuestionMapper.queryExerciseAnswerInfoByExamQuestionId(examQuestionId));
         examProgrammingQuestionHistory.setExamProgrammingQuestionResult(result);
@@ -35,11 +35,11 @@ public class ExamProgrammingQuestionHistoryServiceImpl implements ExamProgrammin
             User user=new User();
             user.setUserId(userId);
             examProgrammingQuestionHistory.setUser(user);
-            i=examProgrammingQuestionHistoryMapper.addExamProgrammingQuestionHistory(examProgrammingQuestionHistory);
+            i=examProgrammingQuestionHistoryMapper.insertExamProgrammingQuestionHistory(examProgrammingQuestionHistory);
         }else{
             //存在就更新
             examProgrammingQuestionHistory.setExamProgrammingQuestionHistoryId(examProgrammingQuestionId);
-            i=examProgrammingQuestionHistoryMapper.modifyExamProgrammingQuestionHistoryByExamProgrammingQuestionId(examProgrammingQuestionHistory);
+            i=examProgrammingQuestionHistoryMapper.updateExamProgrammingQuestionHistoryByExamProgrammingQuestionId(examProgrammingQuestionHistory);
         }
         return i;
     }

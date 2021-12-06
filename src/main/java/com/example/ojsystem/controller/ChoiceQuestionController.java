@@ -28,7 +28,7 @@ public class ChoiceQuestionController {
     @RequestMapping(value="/addChoiceQuestionInfo",method = RequestMethod.POST)
     public Object addChoiceQuestionInfo(HttpServletRequest request,@RequestBody ChoiceQuestion choiceQuestion){
 
-        int i=choiceQuestionService.addChoiceQuestionInfo(choiceQuestion);
+        int i=choiceQuestionService.saveChoiceQuestionInfo(choiceQuestion);
         if(i!=0){
             return true;
         }
@@ -45,7 +45,8 @@ public class ChoiceQuestionController {
      */
     @RequestMapping(value="/modifyChoiceQuestionInfo",method = RequestMethod.POST)
     public Object modifyChoiceQuestionInfo(HttpServletRequest request,@RequestBody ChoiceQuestion choiceQuestion){
-        int i=choiceQuestionService.modifyChoiceQuestionInfo(choiceQuestion);
+
+        int i=choiceQuestionService.alterChoiceQuestionInfo(choiceQuestion);
         if(i!=0){
             return true;
         }
@@ -64,7 +65,7 @@ public class ChoiceQuestionController {
     public Object queryChoiceQuestionInfo(HttpServletRequest request){
         HttpSession session=request.getSession();
         int userId=(Integer)session.getAttribute("userId");
-        return choiceQuestionService.queryChoiceQuestionInfo(userId);
+        return choiceQuestionService.checkChoiceQuestionInfo(userId);
     }
 
     /**
@@ -73,8 +74,8 @@ public class ChoiceQuestionController {
      * 输出int
      */
     @RequestMapping(value="/deleteChoiceQuestionInfoByChoiceQuestionId",method = RequestMethod.POST)
-    public Object deleteChoiceQuestionInfoByChoiceQuestionId(HttpServletRequest request){
-        int i=choiceQuestionService.deleteChoiceQuestionInfoByChoiceQuestionId(Integer.valueOf(request.getParameter("choiceQuestionId")));
+    public Object removeChoiceQuestionInfoByChoiceQuestionId(HttpServletRequest request){
+        int i=choiceQuestionService.cancelChoiceQuestionInfoByChoiceQuestionId(Integer.valueOf(request.getParameter("choiceQuestionId")));
         if(i!=0){
             return true;
         }
@@ -120,13 +121,13 @@ public class ChoiceQuestionController {
         }
         questionLabels.add(questionLabel);
         choiceQuestion.setQuestionLabels(questionLabels);
-        choiceQuestions= choiceQuestionService.queryChoiceQuestionIdBySearchInfo(choiceQuestion,currentUserId);
-        for(int i=0;i<choiceQuestions.size();i++){
-            ChoiceQuestion choiceQuestion2=new ChoiceQuestion();
-            choiceQuestion2=choiceQuestionService.queryChoiceQuestionInfoByChoiceQuestionId(choiceQuestions.get(i).getChoiceQuestionId());
-            choiceQuestions2.add(choiceQuestion2);
-        }
-        return  choiceQuestions2;
+        choiceQuestions= choiceQuestionService.checkChoiceQuestionIdBySearchInfo(choiceQuestion,currentUserId);
+//        for(int i=0;i<choiceQuestions.size();i++){
+//            ChoiceQuestion choiceQuestion2=new ChoiceQuestion();
+//            choiceQuestion2=choiceQuestionService.checkChoiceQuestionInfoByChoiceQuestionId(choiceQuestions.get(i).getChoiceQuestionId());
+//            choiceQuestions2.add(choiceQuestion2);
+//        }
+        return  choiceQuestions;
     }
 
 
@@ -139,6 +140,6 @@ public class ChoiceQuestionController {
      */
     @RequestMapping(value="/queryChoiceQuestionInfoByExamId",method = RequestMethod.POST)
     public Object queryChoiceQuestionInfoByExamId(HttpServletRequest request){
-        return choiceQuestionService.queryChoiceQuestionInfoByExamId(Integer.valueOf(request.getParameter("examId")));
+        return choiceQuestionService.checkChoiceQuestionInfoByExamId(Integer.valueOf(request.getParameter("examId")));
     }
 }

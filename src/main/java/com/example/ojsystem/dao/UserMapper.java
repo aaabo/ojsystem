@@ -14,7 +14,7 @@ public interface UserMapper {
      * 输入user
      * 输出User
      */
-    public User isUserExist(@Param("user") User user);
+    public User selectUserExist(@Param("user") User user);
 
 
     /**
@@ -22,14 +22,14 @@ public interface UserMapper {
      * 输入user
      * 输出注册过为true 没注册过返回false
      */
-    public User isUserInfoExist(@Param("user")  User user);
+    public User selectUserInfoExist(@Param("user")  User user);
 
     /**
      * 根据学生信息注册向数据库添加学生信息
      * 输入user
      * 输出int
      */
-    public int addUserInfo(@Param("user")User user);
+    public int insertUserInfo(@Param("user")User user);
 
 
     /**
@@ -37,14 +37,14 @@ public interface UserMapper {
      * 输入teacherUser
      * 输出int
      */
-    public int addTeacherUserInfo(@Param("user")User user);
+    public int insertTeacherUserInfo(@Param("user")User user);
 
     /**
      * 根据输入的教师信息修改数据库的教师信息
      * 输入teacherUser
      * 输出int
      */
-    public int modifyTeacherUserInfo(@Param("user")User user);
+    public int updateTeacherUserInfo(@Param("user")User user);
 
     /**
      * 根据用户id删除用户
@@ -58,7 +58,7 @@ public interface UserMapper {
      * 输入userId
      * 输出User
      */
-    public User queryUserInfoById(@Param("userId") int userId);
+    public User selectUserInfoById(@Param("userId") int userId);
 
 
 
@@ -67,14 +67,14 @@ public interface UserMapper {
      * 输入user
      * 输出int
      */
-    public int modifyUserInfo(@Param("user") User user);
+    public int updateUserInfo(@Param("user") User user);
 
     /**
      * 根据用户id查询用户密码
      * 输入userId
      * 输出userPassword
      */
-    public int queryUserPasswordInfo(@Param("userId") int userId);
+    public int selectUserPasswordInfo(@Param("userId") int userId);
 
 
     /**
@@ -82,14 +82,14 @@ public interface UserMapper {
      * 输入user
      * 输出int
      */
-    public int modifyPassword(@Param("user") User user);
+    public int updatePassword(@Param("user") User user);
 
     /**
      * 查询用户排行榜
      * 输入无
      * 输出List<User>
      */
-    public List<User> queryUserRankListInfo();
+    public List<User> selectUserRankListInfo();
 
     /**
      * 修改用户提交信息
@@ -104,13 +104,13 @@ public interface UserMapper {
      * 输入无
      * 输出List<User>
      */
-    public List<User> queryTeacherUserInfo();
+    public List<User> selectTeacherUserInfo();
 
     /**
      * 根据userAccount查询用户编号
      * 输入userAccount
      * 输出UserId
      */
-    public int queryUserIdByUserAccount(@Param("userAccount") String userAccount);
+    public int selectUserIdByUserAccount(@Param("userAccount") String userAccount);
 
 }

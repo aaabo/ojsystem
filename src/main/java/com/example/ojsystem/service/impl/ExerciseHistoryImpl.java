@@ -24,11 +24,10 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
      *
      * @param exerciseHistory
      */
-    public int addCodeInfo(ExerciseHistory exerciseHistory) {
-
-        String result= JudgerC.start(exerciseHistory.getExerciseCode(),exerciseAnswerMapper.queryExerciseAnswerInfoByExerciseId(exerciseHistory.getExercise().getExerciseId()));
+    public int saveCodeInfo(ExerciseHistory exerciseHistory) {
+        String result= JudgerC.start(exerciseHistory.getExerciseCode(),exerciseAnswerMapper.selectExerciseAnswerInfoByExerciseId(exerciseHistory.getExercise().getExerciseId()));
         exerciseHistory.setExerciseResult(result);
-        return exerciseHistoryMapper.addCodeInfo(exerciseHistory);
+        return exerciseHistoryMapper.insertCodeInfo(exerciseHistory);
     }
 
     /**
@@ -38,9 +37,9 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
      *
      * @param exerciseHistory
      */
-    public List<ExerciseHistory> queryExerciseRealTimeStatusInfo(ExerciseHistory exerciseHistory) {
+    public List<ExerciseHistory> checkExerciseRealTimeStatusInfo(ExerciseHistory exerciseHistory) {
 
-        return exerciseHistoryMapper.queryExerciseRealTimeStatusInfo(exerciseHistory);
+        return exerciseHistoryMapper.selectExerciseRealTimeStatusInfo(exerciseHistory);
     }
 
     /**
@@ -50,8 +49,8 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
      *
      * @param exerciseId
      */
-    public List<ExerciseHistory> queryExerciseStatisticsInfo(int exerciseId) {
-        return exerciseHistoryMapper.queryExerciseStatisticsInfo(exerciseId);
+    public List<ExerciseHistory> checkExerciseStatisticsInfo(int exerciseId) {
+        return exerciseHistoryMapper.selectExerciseStatisticsInfo(exerciseId);
     }
 
     /**
@@ -62,8 +61,8 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
      * @param userId
      * @param exerciseId
      */
-    public int queryUserExerciseIsSuccess(int userId, int exerciseId) {
-        return exerciseHistoryMapper.queryUserExerciseIsSuccess(userId,exerciseId);
+    public int checkUserExerciseIsSuccess(int userId, int exerciseId) {
+        return exerciseHistoryMapper.selectUserExerciseIsSuccess(userId,exerciseId);
     }
 
     /**
@@ -73,8 +72,8 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
      *
      * @param exerciseHistoryId
      */
-    public String queryCodeInfoByExerciseHistoryId(int exerciseHistoryId) {
-        return exerciseHistoryMapper.queryCodeInfoByExerciseHistoryId(exerciseHistoryId);
+    public String checkCodeInfoByExerciseHistoryId(int exerciseHistoryId) {
+        return exerciseHistoryMapper.selectCodeInfoByExerciseHistoryId(exerciseHistoryId);
     }
 
     /**
@@ -84,8 +83,8 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
      *
      * @param userId
      */
-    public List<Integer>  queryExerciseIdByUserId(int userId) {
-        return exerciseHistoryMapper.queryExerciseIdByUserId(userId);
+    public List<Integer>  checkExerciseIdByUserId(int userId) {
+        return exerciseHistoryMapper.selectExerciseIdByUserId(userId);
     }
 
     /**
@@ -95,7 +94,7 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
      *
      * @param exerciseId
      */
-    public List<ResultTool> queryExerciseResultInfo(int exerciseId) {
-        return exerciseHistoryMapper.queryExerciseResultInfo(exerciseId);
+    public List<ResultTool> checkExerciseResultInfo(int exerciseId) {
+        return exerciseHistoryMapper.selectExerciseResultInfo(exerciseId);
     }
 }

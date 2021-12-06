@@ -22,32 +22,33 @@
             <result column="important" jdbcType="BIT" property="important" />
         </association >
     </resultMap>
-    <insert id="addExercise" parameterType="com.example.ojsystem.entity.Exercise" useGeneratedKeys="true" keyProperty="exercise.exerciseId" keyColumn="exerciseId">
+    <insert id="insertExerciseInfo" parameterType="com.example.ojsystem.entity.Exercise" useGeneratedKeys="true" keyProperty="exercise.exerciseId" keyColumn="exerciseId">
         insert into exercise (exerciseTitle,exerciseCorrectTimes,exerciseSubmitTimes,exerciseDescription,exerciseInput,exerciseOutPut,exerciseSampleInput,exerciseSampleOutput)
          values(#{exercise.exerciseTitle},#{exercise.exerciseCorrectTimes},#{exercise.exerciseSubmitTimes},#{exercise.exerciseDescription},#{exercise.exerciseInput},#{exercise.exerciseOutPut},#{exercise.exerciseSampleInput},#{exercise.exerciseSampleOutput})
     </insert>
-    <update id="modifyExerciseInfo" parameterType="com.example.ojsystem.entity.Exercise">
+    <update id="updateExerciseInfo" parameterType="com.example.ojsystem.entity.Exercise">
          update exercise set exerciseTitle=#{exercise.exerciseTitle},exerciseDescription=#{exercise.exerciseDescription},exerciseInput=#{exercise.exerciseInput},exerciseOutPut=#{exercise.exerciseOutPut},
          exerciseSampleInput=#{exercise.exerciseSampleInput},exerciseSampleOutput=#{exercise.exerciseSampleOutput} where exerciseId=#{exercise.exerciseId}
     </update>
-    <delete id="deleteExercise"  parameterType="java.lang.Integer">
+    <delete id="deleteExerciseInfo"  parameterType="java.lang.Integer">
         delete from exercise where exerciseId=#{exerciseId}
     </delete>
 
-    <select id="queryExerciseInfo" resultType="com.example.ojsystem.entity.Exercise"  parameterType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
+    <select id="selectExerciseInfo" resultType="com.example.ojsystem.entity.Exercise"  parameterType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
        select * from exercisequestionlabel,questionlabel,exercise where exercise.exerciseId=exercisequestionlabel.exerciseId and exercisequestionlabel.questionLabelId=questionlabel.questionLabelId order by exercise.exerciseId
     </select>
-    <select id="queryExerciseDetailsInfoByExerciseId" resultType="com.example.ojsystem.entity.Exercise">
+    <select id="selectExerciseDetailsInfoByExerciseId" resultType="com.example.ojsystem.entity.Exercise">
         select * from exercise where exerciseId=#{exerciseId}
     </select>
-    <select id="queryExerciseInfoByLabelIds" resultType="com.example.ojsystem.entity.Exercise">
-        SELECT * FROM exerciselabel WHERE labelId in
-        <foreach collection="labels" index="index" item="item" open="(" separator="," close=")">
-            #{item.labelId}
-        </foreach>
-        GROUP BY exerciseId
-        HAVING COUNT( DISTINCT labelId ) = #{number} ;
-    </select>
+
+    <!--<select id="queryExerciseInfoByLabelIds" resultType="com.example.ojsystem.entity.Exercise">-->
+        <!--SELECT * FROM exerciselabel WHERE labelId in-->
+        <!--<foreach collection="labels" index="index" item="item" open="(" separator="," close=")">-->
+            <!--#{item.labelId}-->
+        <!--</foreach>-->
+        <!--GROUP BY exerciseId-->
+        <!--HAVING COUNT( DISTINCT labelId ) = #{number} ;-->
+    <!--</select>-->
 
 
 </mapper>

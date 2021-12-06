@@ -13,14 +13,14 @@ public interface ExamQuestionMapper {
      * 输入examId
      * 输出List<ExamQuestion>
      */
-    public List<ExamQuestion> queryExamQuestionChoiceByExamId(@Param("examId") int examId);
+    public List<ExamQuestion> selectExamQuestionChoiceByExamId(@Param("examId") int examId);
 
     /**
      * 根据考试id查询对应的选择题信息
      * 输入examId
      * 输出List<ExamQuestion>
      */
-    public List<ExamQuestion> queryExamQuestionCompletionByExamId(@Param("examId") int examId);
+    public List<ExamQuestion> selectExamQuestionCompletionByExamId(@Param("examId") int examId);
 
 
     /**
@@ -28,40 +28,40 @@ public interface ExamQuestionMapper {
      * 输入examId
      * 输出List<ExamQuestion>
      */
-    public List<ExamQuestion> queryExamQuestionProgrammingByExamId(@Param("examId")int examId);
+    public List<ExamQuestion> selectExamQuestionProgrammingByExamId(@Param("examId")int examId);
 
     /**
      * 根据题目类型和题目编号添加考试题目
      * 输入examId,questionId
      * 输出int
      */
-    public int addExamQuestion(@Param("examId") int examId,@Param("questionId")int questionId,@Param("examQuestionType")String examQuestionType);
+    public int insertExamQuestionInfo(@Param("examId") int examId,@Param("questionId")int questionId,@Param("examQuestionType")String examQuestionType);
 
     /**
      * 根据题目类型和题目编号题目类型删除对应的考试题目
      * 输入examId,questionId,examQuestionType
      * 输出int
      */
-    public int deleteExamQuestion(@Param("examId") int examId,@Param("questionId")int questionId,@Param("examQuestionType")String examQuestionType);
+    public int deleteExamQuestionInfo(@Param("examId") int examId,@Param("questionId")int questionId,@Param("examQuestionType")String examQuestionType);
 
     /**
      * 根据考试编号查询编程题的各题平均分
      * 输入examId
      * 输出List<ExamProgrammingResultScoreTool>
      */
-    public List<ExamProgrammingResultScoreTool> queryExamProgrammingResultScoreByExamId(@Param("examId") int examId);
+    public List<ExamProgrammingResultScoreTool> selectExamProgrammingResultScoreByExamId(@Param("examId") int examId);
 
     /**
      * 根据考试编号查询考试结果的各个分数段
      * 输入examId
      * 输出UserExamScoreEachSegmentNumber
      */
-    public UserExamScoreEachSegmentNumber queryUserExamScoreEachSegmentNumberByExamId(@Param("examId") int examId);
+    public UserExamScoreEachSegmentNumber selectUserExamScoreEachSegmentNumberByExamId(@Param("examId") int examId);
 
     /**
      * 根据考试题目编号查询编程题答案
      * 输入examQuestionId
      * 输出List<ExerciseAnswer>
      */
-    public List<ExerciseAnswer> queryExerciseAnswerInfoByExamQuestionId(@Param("examQuestionId") int examQuestionId);
+    public List<ExerciseAnswer> selectExerciseAnswerInfoByExamQuestionId(@Param("examQuestionId") int examQuestionId);
 }

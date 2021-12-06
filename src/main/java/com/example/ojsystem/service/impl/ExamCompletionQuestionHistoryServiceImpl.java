@@ -25,13 +25,13 @@ public class ExamCompletionQuestionHistoryServiceImpl implements ExamCompletionQ
      * @param examQuestionHistories
      * @param userId
      */
-    public int addExamCompletionQuestionHistoryInfo(List<ExamQuestionHistory> examQuestionHistories,int userId) {
+    public int saveExamCompletionQuestionHistoryInfo(List<ExamQuestionHistory> examQuestionHistories,int userId) {
         int result=0;
         for(int i=0;i<examQuestionHistories.size();i++){
             ExamCompletionQuestionHistory examCompletionQuestionHistory=examQuestionHistories.get(i).getExamCompletionQuestionHistory();
-            result=examCompletionQuestionHistoryMapper.addExamCompletionQuestionHistoryInfo(userId,examQuestionHistories.get(i).getExamQuestionId(),examCompletionQuestionHistory);
+            result=examCompletionQuestionHistoryMapper.insertExamCompletionQuestionHistoryInfo(userId,examQuestionHistories.get(i).getExamQuestionId(),examCompletionQuestionHistory);
             for(int o=0;o<examCompletionQuestionHistory.getExamCompletionQuestionAnswerHistories().size();o++){
-                result=examCompletionQuestionHistoryAnswerMapper.addExamCompletionQuestionAnswerHistoryInfo(examCompletionQuestionHistory.getExamCompletionQuestionHistoryId(),examCompletionQuestionHistory.getExamCompletionQuestionAnswerHistories().get(o).getExamCompletionQuestionUserAnswer(),examCompletionQuestionHistory.getExamCompletionQuestionAnswerHistories().get(o).getExamCompletionQuestionUserAnswerNumber());
+                result=examCompletionQuestionHistoryAnswerMapper.insertExamCompletionQuestionAnswerHistoryInfo(examCompletionQuestionHistory.getExamCompletionQuestionHistoryId(),examCompletionQuestionHistory.getExamCompletionQuestionAnswerHistories().get(o).getExamCompletionQuestionUserAnswer(),examCompletionQuestionHistory.getExamCompletionQuestionAnswerHistories().get(o).getExamCompletionQuestionUserAnswerNumber());
             }
        }
         return result;

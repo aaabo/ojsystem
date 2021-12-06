@@ -26,7 +26,7 @@ public class ExamController {
      * 输出新的examId
      */
     @RequestMapping(value="/addExamInfo",method = RequestMethod.POST)
-    public int addClasses(HttpServletRequest request){
+    public int addExamInfo(HttpServletRequest request){
         int i=0;
 
         String examStartTime=request.getParameter("examStartTime");
@@ -54,7 +54,7 @@ public class ExamController {
         exam.setExamChoiceQuestionScore(examChoiceQuestionScore);
         exam.setExamCompletionQuestionScore(examCompletionQuestionScore);
         exam.setExamProgrammingScore(examProgrammingScore);
-        i=examService.addExamInfo(exam);
+        i=examService.saveExamInfo(exam);
         if(i!=0){
             return exam.getExamId();
         }
@@ -69,8 +69,8 @@ public class ExamController {
      * 输出List<Exam>
      */
     @RequestMapping(value="/userQueryExamInfo",method = RequestMethod.POST)
-    public Object userQueryExamInfo(HttpServletRequest request){
-        return  examService.userQueryExamInfo((Integer) request.getSession().getAttribute("userId"));
+    public Object queryUserQueryExamInfo(HttpServletRequest request){
+        return  examService.checkUserQueryExamInfo((Integer) request.getSession().getAttribute("userId"));
     }
 
 
@@ -81,7 +81,7 @@ public class ExamController {
      */
     @RequestMapping(value="/queryExamInfo",method = RequestMethod.POST)
     public Object queryExamInfo(HttpServletRequest request){
-        return  examService.queryExamInfo();
+        return  examService.checkExamInfo();
     }
 
     /**
@@ -92,7 +92,7 @@ public class ExamController {
     @RequestMapping(value="/queryExamInfoByUserId",method = RequestMethod.POST)
     public Object queryExamInfoByUserId(HttpServletRequest request){
         HttpSession session=request.getSession();
-        return  examService.queryExamInfoByUserId((Integer)(session.getAttribute("userId")));
+        return  examService.checkExamInfoByUserId((Integer)(session.getAttribute("userId")));
     }
 
 
@@ -127,7 +127,7 @@ public class ExamController {
         exam.setExamChoiceQuestionScore(examChoiceQuestionScore);
         exam.setExamCompletionQuestionScore(examCompletionQuestionScore);
         exam.setExamProgrammingScore(examProgrammingScore);
-        i=examService.modifyExamInfo(exam);
+        i=examService.alertExamInfo(exam);
         if(i!=0){
             return true;
         }
@@ -143,9 +143,9 @@ public class ExamController {
      * 输出成功返回true 失败返回false
      */
     @RequestMapping(value="/deleteExamInfo",method = RequestMethod.POST)
-    public Boolean deleteExamInfo(HttpServletRequest request){
+    public Boolean removeExamInfo(HttpServletRequest request){
         int i=0;
-        i=examService.deleteExamInfo(Integer.valueOf(request.getParameter("examId")));
+        i=examService.cancelExamInfo(Integer.valueOf(request.getParameter("examId")));
         if(i!=0){
             return true;
         }
@@ -160,14 +160,14 @@ public class ExamController {
      * 输出成功返回true 失败返回false
      */
     @RequestMapping(value="/updateExamStatus",method = RequestMethod.POST)
-    public Boolean updateExamType(HttpServletRequest request){
+    public Boolean modifyExamType(HttpServletRequest request){
         int i=0;
         int examId=Integer.valueOf(request.getParameter("examId"));
         String examStatus=request.getParameter("examStatus");
         Exam exam=new Exam();
         exam.setExamId(examId);
         exam.setExamStatus(examStatus);
-        i=examService.updateExamStatus(exam);
+        i=examService.alertExamStatus(exam);
         if(i!=0){
             return true;
         }
@@ -184,7 +184,7 @@ public class ExamController {
      */
     @RequestMapping(value="/queryExamInfoByExamId",method = RequestMethod.POST)
     public Object queryExamInfoByExamId(HttpServletRequest request){
-        return examService.queryExamInfoByExamId(Integer.valueOf(request.getParameter("examId")));
+        return examService.checkExamInfoByExamId(Integer.valueOf(request.getParameter("examId")));
     }
 
 
@@ -195,7 +195,7 @@ public class ExamController {
      */
     @RequestMapping(value="/queryNotFinishedExamInfo",method = RequestMethod.POST)
     public Object queryNotFinishedExamInfo(HttpServletRequest request){
-        return examService.queryNotFinishedExamInfo();
+        return examService.checkNotFinishedExamInfo();
     }
 
 
@@ -205,7 +205,7 @@ public class ExamController {
      * 输出 List<Exam>
      */
     @RequestMapping(value="/searchExamInfo",method = RequestMethod.POST)
-    public Object searchExamInfo(HttpServletRequest request){
+    public Object querySearchExamInfo(HttpServletRequest request){
         String examName=request.getParameter("examName");
         String examStatus=request.getParameter("examStatus");
         String userName=request.getParameter("userName");
@@ -223,7 +223,7 @@ public class ExamController {
             user.setUserName("%"+userName+"%");
         }
         exam.setUser(user);
-        return examService.searchExamInfo(exam);
+        return examService.checkSearchExamInfo(exam);
     }
 
 

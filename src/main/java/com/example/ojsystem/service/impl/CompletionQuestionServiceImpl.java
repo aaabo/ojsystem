@@ -27,16 +27,16 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      *
      * @param completionQuestion
      */
-    public int addCompletionQuestionInfo(CompletionQuestion completionQuestion) {
-        int i=completionQuestionMapper.addCompletionQuestionInfo(completionQuestion);
+    public int saveCompletionQuestionInfo(CompletionQuestion completionQuestion) {
+        int i=completionQuestionMapper.insertCompletionQuestionInfo(completionQuestion);
         if(i!=0){
             for(int o=0;o<completionQuestion.getCompletionQuestionAnswers().size();o++){
-                i=completionQuestionAnswerMapper.addCompletionQuestionAnswerInfo(completionQuestion.getCompletionQuestionAnswers().get(o),completionQuestion.getCompletionQuestionId());
+                i=completionQuestionAnswerMapper.insertCompletionQuestionAnswerInfo(completionQuestion.getCompletionQuestionAnswers().get(o),completionQuestion.getCompletionQuestionId());
             }
         }
         if(i!=0){
             for(int o=0;o<completionQuestion.getQuestionLabels().size();o++){
-                i=completionQuestionLabelMapper.addCompletionQuestionLabelInfo(completionQuestion.getCompletionQuestionId(),completionQuestion.getQuestionLabels().get(o).getQuestionLabelId());
+                i=completionQuestionLabelMapper.insertCompletionQuestionLabelInfo(completionQuestion.getCompletionQuestionId(),completionQuestion.getQuestionLabels().get(o).getQuestionLabelId());
             }
         }
 
@@ -50,8 +50,8 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      *
      * @param completionQuestion
      */
-    public int modifyCompletionQuestionInfo(CompletionQuestion completionQuestion) {
-        int i=completionQuestionMapper.modifyCompletionQuestionInfo(completionQuestion);
+    public int alertCompletionQuestionInfo(CompletionQuestion completionQuestion) {
+        int i=completionQuestionMapper.updateCompletionQuestionInfo(completionQuestion);
         //先删除答案
         if(i!=0){
             i=completionQuestionAnswerMapper.deleteCompletionQuestionAnswerInfoByCompletionQuestionId(completionQuestion.getCompletionQuestionId());
@@ -59,7 +59,7 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
         //后添加答案
         if(i!=0){
             for(int o=0;o<completionQuestion.getCompletionQuestionAnswers().size();o++){
-                i=completionQuestionAnswerMapper.addCompletionQuestionAnswerInfo(completionQuestion.getCompletionQuestionAnswers().get(o),completionQuestion.getCompletionQuestionId());
+                i=completionQuestionAnswerMapper.insertCompletionQuestionAnswerInfo(completionQuestion.getCompletionQuestionAnswers().get(o),completionQuestion.getCompletionQuestionId());
             }
         }
         //先删除标签
@@ -69,7 +69,7 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
         //后添加标签
         if(i!=0){
             for(int o=0;o<completionQuestion.getQuestionLabels().size();o++){
-                completionQuestionLabelMapper.addCompletionQuestionLabelInfo(completionQuestion.getCompletionQuestionId(),completionQuestion.getQuestionLabels().get(o).getQuestionLabelId());
+                completionQuestionLabelMapper.insertCompletionQuestionLabelInfo(completionQuestion.getCompletionQuestionId(),completionQuestion.getQuestionLabels().get(o).getQuestionLabelId());
             }
         }
         return i;
@@ -82,7 +82,7 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      *
      * @param completionQuestionId
      */
-    public int deleteCompletionQuestionInfoByCompletionQuestionId(int completionQuestionId) {
+    public int cancelCompletionQuestionInfoByCompletionQuestionId(int completionQuestionId) {
         return completionQuestionMapper.deleteCompletionQuestionInfoByCompletionQuestionId(completionQuestionId);
     }
 
@@ -93,8 +93,8 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      *
      * @param userId
      */
-    public List<CompletionQuestion> queryCompletionQuestionInfoByUserId(int userId) {
-        return completionQuestionMapper.queryCompletionQuestionInfoByUserId(userId);
+    public List<CompletionQuestion> checkCompletionQuestionInfoByUserId(int userId) {
+        return completionQuestionMapper.selectCompletionQuestionInfoByUserId(userId);
     }
 
     /**
@@ -105,8 +105,8 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      * @param completionQuestion
      * @param currentUserId
      */
-    public List<CompletionQuestion> queryCompletionQuestionIdBySearchInfo(CompletionQuestion completionQuestion, int currentUserId) {
-        return completionQuestionMapper.queryCompletionQuestionIdBySearchInfo(completionQuestion,currentUserId);
+    public List<CompletionQuestion> checkCompletionQuestionBySearchInfo(CompletionQuestion completionQuestion, int currentUserId) {
+        return completionQuestionMapper.selectCompletionQuestionBySearchInfo(completionQuestion,currentUserId);
     }
 
     /**
@@ -116,8 +116,8 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      *
      * @param completionQuestionId
      */
-    public CompletionQuestion queryCompletionQuestionIdByCompletionQuestionId(int completionQuestionId) {
-        return completionQuestionMapper.queryCompletionQuestionIdByCompletionQuestionId(completionQuestionId);
+    public CompletionQuestion checkCompletionQuestionIdByCompletionQuestionId(int completionQuestionId) {
+        return completionQuestionMapper.selectCompletionQuestionIdByCompletionQuestionId(completionQuestionId);
     }
 
     /**
@@ -127,8 +127,8 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      *
      * @param examId
      */
-    public List<CompletionQuestion> queryCompletionQuestionInfoByExamId(int examId) {
-        return completionQuestionMapper.queryCompletionQuestionInfoByExamId(examId);
+    public List<CompletionQuestion> checkCompletionQuestionInfoByExamId(int examId) {
+        return completionQuestionMapper.selectCompletionQuestionInfoByExamId(examId);
     }
 
 }

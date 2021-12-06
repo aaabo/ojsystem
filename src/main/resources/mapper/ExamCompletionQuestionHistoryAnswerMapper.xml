@@ -9,7 +9,7 @@
         <result column="examCompletionQuestionUserAnswer" jdbcType="VARCHAR" property="examCompletionQuestionUserAnswer" />
         <result column="examCompletionQuestionUserAnswerNumber" jdbcType="INTEGER" property="examCompletionQuestionUserAnswerNumber" />
     </resultMap>
-    <insert id="addExamCompletionQuestionAnswerHistoryInfo">
+    <insert id="insertExamCompletionQuestionAnswerHistoryInfo">
         insert into examcompletionquestionanswerhistory(examCompletionQuestionHistoryId,examCompletionQuestionUserAnswer,examCompletionQuestionUserAnswerNumber)
         values(#{examQuestionHistoryId},#{examCompletionQuestionUserAnswer},#{examCompletionQuestionUserAnswerNumber})
     </insert>

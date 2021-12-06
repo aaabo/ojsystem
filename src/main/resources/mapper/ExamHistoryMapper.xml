@@ -27,39 +27,39 @@
         <result column="examNotSubmitUser" jdbcType="INTEGER" property="examNotSubmitUser" />
     </resultMap>
 
-    <select id="queryExamRankById" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
+    <select id="selectExamRankById" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
      select * from user,usergroup left join exam on exam.groupId=usergroup.groupId left join examhistory on usergroup.userId=examhistory.userId and examhistory.examId=exam.examId   where exam.examId=#{examId} and user.userId=usergroup.userId order by examhistory.examCompletionQuestionTotals+examhistory.examChoiceQuestionTotals+examhistory.examProgrammingTotals DESC
     </select>
-    <select id="queryExamHistoryInfoByUserId" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
+    <select id="selectExamHistoryInfoByUserId" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
          SELECT  user.userId,user.userName,examhistory.examChoiceQuestionTotals,examhistory.examProgrammingTotals,exam.examId,exam.examName,
          examhistory.examCompletionQuestionTotals,examhistory.examChoiceQuestionTotals+examhistory.examProgrammingTotals+examhistory.examCompletionQuestionTotals as total
          FROM examhistory,user,exam where examhistory.examId =exam.examId  and user.userId=examhistory.userId and user.userId=#{userId} order by total desc
     </select>
-    <select id="queryUserIfJoinExam" resultType="java.lang.Integer">
+    <select id="selectUserIfJoinExam" resultType="java.lang.Integer">
         select * from examhistory where userId=#{userId} and examId=#{examId}
     </select>
-    <select id="queryExamUserJoinInfo" resultType="com.example.ojsystem.entity.ExamUserJoinTool" resultMap="BasExamUserJoinToolResultMap">
+    <select id="selectExamUserJoinInfo" resultType="com.example.ojsystem.entity.ExamUserJoinTool" resultMap="BasExamUserJoinToolResultMap">
              select count(*) as examUser,count(if(examhistory.examId is NULL,1,null)) as  examNotSubmitUser ,count(*)-count(if(examhistory.examId is NULL,1,null)) as examSubmitUser from usergroup
          left join examhistory on usergroup.userId=examhistory.userId and examhistory.examId=#{examId} left join exam on exam.groupId=usergroup.groupId    where exam.examId=#{examId}
     </select>
 
-    <insert id="addExamHistory" parameterType="com.example.ojsystem.entity.ExamHistory">
+    <insert id="insertExamHistory" parameterType="com.example.ojsystem.entity.ExamHistory">
         INSERT INTO examhistory(userId,examId,examChoiceQuestionTotals,examCompletionQuestionTotals,examProgrammingTotals)
         VALUES(#{userId},#{examId},#{examChoiceQuestionTotals},#{examCompletionQuestionTotals},#{examProgrammingTotals});
     </insert>
-    <select id="queryExamChoiceQuestionResultScore" resultType="java.lang.Integer">
+    <select id="selectExamChoiceQuestionResultScore" resultType="java.lang.Integer">
         SELECT ifnull(SUM(examChoiceQuestionResultScore),'1111') FROM examchoicequestionhistory,examquestion
         where examId=#{examId} and examquestion.examQuestionId=examchoicequestionhistory.examQuestionId and userId=#{userId};
     </select>
-    <select id="queryExamCompletionQuestionResultScore" resultType="java.lang.Integer">
+    <select id="selectExamCompletionQuestionResultScore" resultType="java.lang.Integer">
         SELECT ifnull(SUM(examCompletionQuestionResultScore),'1111') FROM examcompletionquestionhistory,examquestion
         where examId=#{examId} and examquestion.examQuestionId=examcompletionquestionhistory.examQuestionId and userId=#{userId};
     </select>
-    <select id="queryExamProgrammingQuestionResultScore" resultType="java.lang.Integer">
+    <select id="selectExamProgrammingQuestionResultScore" resultType="java.lang.Integer">
         SELECT ifnull(SUM(examProgrammingQuestionResultScore),'1111') FROM examprogrammingquestionhistory,examquestion
         where examId=#{examId} and examquestion.examQuestionId=examprogrammingquestionhistory.examQuestionId and userId=#{userId};
     </select>
-    <select id="queryExamHistoryInfo" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
+    <select id="selectExamHistoryInfo" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
         select * from examhistory,user where examhistory.examId=#{examId} and examhistory.userId=user.userId
     </select>
 

@@ -11,12 +11,12 @@ public interface CompletionQuestionAnswerService {
      * 输入completionQuestionAnswer,completionQuestionId
      * 输出int
      */
-    public int addCompletionQuestionAnswerInfo(CompletionQuestionAnswer completionQuestionAnswer, int completionQuestionId);
+    public int saveCompletionQuestionAnswerInfo(CompletionQuestionAnswer completionQuestionAnswer, int completionQuestionId);
 
     /**
      * 根据填空题编号删除对应的填空题答案信息
      * 输入completionQuestionId
      * 输出int
      */
-    public int deleteCompletionQuestionAnswerInfoByCompletionQuestionId(int completionQuestionId);
+    public int cancelCompletionQuestionAnswerInfoByCompletionQuestionId(int completionQuestionId);
 }

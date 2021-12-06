@@ -11,25 +11,25 @@
         <result column="secondKnowledgePoint" jdbcType="VARCHAR" property="secondKnowledgePoint" />
         <result column="important" jdbcType="BIT" property="important" />
     </resultMap>
-    <insert id="addQuestionLabelInfo" parameterType="com.example.ojsystem.entity.QuestionLabel">
+    <insert id="insertQuestionLabelInfo" parameterType="com.example.ojsystem.entity.QuestionLabel">
         insert into questionlabel (chapter,firstKnowledgePoint,secondKnowledgePoint,important)  values(#{questionLabel.chapter},#{questionLabel.firstKnowledgePoint},#{questionLabel.secondKnowledgePoint},#{questionLabel.important})
     </insert>
-    <update id="modifyQuestionLabelInfo">
+    <update id="updateQuestionLabelInfo">
         update questionlabel set chapter=#{questionLabel.chapter},firstKnowledgePoint=#{questionLabel.firstKnowledgePoint},secondKnowledgePoint=#{questionLabel.secondKnowledgePoint},important=#{questionLabel.important} where  questionLabelId=#{questionLabel.questionLabelId}
     </update>
     <delete id="deleteQuestionLabelInfo" parameterType="java.lang.Integer">
         delete from questionlabel where questionLabelId=#{questionLabelId}
     </delete>
-    <select id="queryQuestionLabelInfo" resultType="com.example.ojsystem.entity.QuestionLabel">
+    <select id="selectQuestionLabelInfo" resultType="com.example.ojsystem.entity.QuestionLabel">
         select * from questionlabel
     </select>
-    <select id="queryChapterInfo" resultType="java.lang.String">
+    <select id="selectChapterInfo" resultType="java.lang.String">
         SELECT distinct chapter FROM questionlabel
     </select>
-    <select id="queryFirstKnowledgePointInfoByChapter" resultType="java.lang.String">
+    <select id="selectFirstKnowledgePointInfoByChapter" resultType="java.lang.String">
         SELECT distinct firstKnowledgePoint FROM questionlabel where chapter=#{chapter}
     </select>
-    <select id="querySecondKnowledgePointInfoByChapter" resultType="com.example.ojsystem.entity.QuestionLabel">
+    <select id="selectSecondKnowledgePointInfoByChapter" resultType="com.example.ojsystem.entity.QuestionLabel">
         select * from questionlabel where chapter=#{chapter} and firstKnowledgePoint=#{firstKnowledgePoint}
     </select>
 

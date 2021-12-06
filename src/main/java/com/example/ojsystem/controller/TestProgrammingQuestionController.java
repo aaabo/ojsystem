@@ -36,7 +36,7 @@ public class TestProgrammingQuestionController {
         exercise.setExerciseId(Integer.valueOf(request.getParameter("exerciseId")));
         testProgrammingQuestion.setTest(test);
         testProgrammingQuestion.setExercise(exercise);
-        i= testProgrammingQuestionService.addTestProgrammingQuestionInfo(testProgrammingQuestion);
+        i= testProgrammingQuestionService.saveTestProgrammingQuestionInfo(testProgrammingQuestion);
         if(i!=0){
             return true;
         }
@@ -65,7 +65,7 @@ public class TestProgrammingQuestionController {
             test.setTestId((Integer)jsonObject.get("testId"));
             testProgrammingQuestion1.setExercise(exercise);
             testProgrammingQuestion1.setTest(test);
-            i= testProgrammingQuestionService.addTestProgrammingQuestionInfo(testProgrammingQuestion1);
+            i= testProgrammingQuestionService.saveTestProgrammingQuestionInfo(testProgrammingQuestion1);
         }
 
         if(i!=0){
@@ -82,9 +82,9 @@ public class TestProgrammingQuestionController {
      * 输出int
      */
     @RequestMapping(value="/deleteTestProgrammingQuestionByTestProgrammingQuestionId",method = RequestMethod.POST)
-    public Object deleteTestProgrammingQuestionByTestProgrammingQuestionId(HttpServletRequest request){
+    public Object removeTestProgrammingQuestionByTestProgrammingQuestionId(HttpServletRequest request){
         int i=0;
-        i= testProgrammingQuestionService.deleteTestProgrammingQuestionByTestProgrammingQuestionId(Integer.valueOf(request.getParameter("testProgrammingQuestionId")));
+        i= testProgrammingQuestionService.cancelTestProgrammingQuestionByTestProgrammingQuestionId(Integer.valueOf(request.getParameter("testProgrammingQuestionId")));
         if(i!=0){
             return true;
         }
@@ -100,7 +100,7 @@ public class TestProgrammingQuestionController {
      */
     @RequestMapping(value="/queryTestProgrammingQuestionAndIsSuccess",method = RequestMethod.POST)
     public Object queryTestProgrammingQuestionAndIsSuccess(HttpServletRequest request){
-        return testProgrammingQuestionService.queryTestProgrammingQuestionAndIsSuccess(Integer.valueOf(request.getParameter("testId")),(Integer)request.getSession().getAttribute("userId"));
+        return testProgrammingQuestionService.checkTestProgrammingQuestionAndIsSuccess(Integer.valueOf(request.getParameter("testId")),(Integer)request.getSession().getAttribute("userId"));
     }
 
     /**
@@ -110,7 +110,7 @@ public class TestProgrammingQuestionController {
      */
     @RequestMapping(value="/queryTestProgrammingQuestionByTestId",method = RequestMethod.POST)
     public Object queryTestProgrammingQuestionByTestId(HttpServletRequest request){
-        return testProgrammingQuestionService.queryTestProgrammingQuestionByTestId(Integer.valueOf(request.getParameter("testId")));
+        return testProgrammingQuestionService.checkTestProgrammingQuestionByTestId(Integer.valueOf(request.getParameter("testId")));
     }
 
     /**
@@ -120,7 +120,7 @@ public class TestProgrammingQuestionController {
      */
     @RequestMapping(value="/queryTestProgrammingQuestionInfoByTestId",method = RequestMethod.POST)
     public Object queryTestProgrammingQuestionInfoByTestId(HttpServletRequest request){
-        return testProgrammingQuestionService.queryTestProgrammingQuestionInfoByTestId(Integer.valueOf(request.getParameter("testId")));
+        return testProgrammingQuestionService.checkTestProgrammingQuestionInfoByTestId(Integer.valueOf(request.getParameter("testId")));
     }
     /**
      * 根据测试编程题编号查询对应的习题信息
@@ -129,7 +129,7 @@ public class TestProgrammingQuestionController {
      */
     @RequestMapping(value="/queryExerciseByTestProgrammingQuestionId",method = RequestMethod.POST)
     public Object queryExerciseByTestProgrammingQuestionId(HttpServletRequest request){
-        return testProgrammingQuestionService.queryExerciseByTestProgrammingQuestionId(Integer.valueOf(request.getParameter("testProgrammingQuestionId")));
+        return testProgrammingQuestionService.checkExerciseByTestProgrammingQuestionId(Integer.valueOf(request.getParameter("testProgrammingQuestionId")));
     }
 
     /**
@@ -139,6 +139,6 @@ public class TestProgrammingQuestionController {
      */
     @RequestMapping(value="/queryTestIdByTestProgrammingQuestionId",method = RequestMethod.POST)
     public Object queryTestIdByTestProgrammingQuestionId(HttpServletRequest request){
-        return testProgrammingQuestionService.queryTestIdByTestProgrammingQuestionId(Integer.valueOf(request.getParameter("testProgrammingQuestionId")));
+        return testProgrammingQuestionService.checkTestIdByTestProgrammingQuestionId(Integer.valueOf(request.getParameter("testProgrammingQuestionId")));
     }
 }

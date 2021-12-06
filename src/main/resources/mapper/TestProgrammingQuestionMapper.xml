@@ -65,29 +65,29 @@
         </association >
     </resultMap>
 
-    <insert id="addTestProgrammingQuestionInfo" parameterType="com.example.ojsystem.entity.TestProgrammingQuestion">
+    <insert id="insertTestProgrammingQuestionInfo" parameterType="com.example.ojsystem.entity.TestProgrammingQuestion">
         insert into testprogrammingquestion (testId,exerciseId) values(#{testProgrammingQuestion.test.testId},#{testProgrammingQuestion.exercise.exerciseId})
     </insert>
     <delete id="deleteTestProgrammingQuestionByTestProgrammingQuestionId">
         delete from testprogrammingquestion where testProgrammingQuestionId=#{testProgrammingQuestionId}
     </delete>
-    <select id="queryTestProgrammingQuestionByTestId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseUpdateExerciseResultMap">
+    <select id="selectTestProgrammingQuestionByTestId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseUpdateExerciseResultMap">
        SELECT testprogrammingquestion.testProgrammingQuestionId,exercise.exerciseTitle,count(if(testprogrammingquestionhistory.testProgrammingResult='success',1,null)) as 'success',count(testprogrammingquestionhistory.testProgrammingResult) as 'submit'
     FROM testprogrammingquestion left join testprogrammingquestionhistory on testprogrammingquestion.testProgrammingQuestionId=testprogrammingquestionhistory.testProgrammingQuestionId
     left join exercise on exercise.exerciseId=testprogrammingquestion.exerciseId
   where testprogrammingquestion.testId=#{testId}  GROUP BY exercise.exerciseId order by testprogrammingquestion.testProgrammingQuestionId
     </select>
-    <select id="queryTestProgrammingResultByUserIdAndTestProgrammingQuestionId" resultType="java.lang.String">
+    <select id="selectTestProgrammingResultByUserIdAndTestProgrammingQuestionId" resultType="java.lang.String">
         	select distinct testProgrammingResult from testprogrammingquestionhistory where testProgrammingQuestionId=#{testProgrammingQuestionId} and userId=#{userId} and testProgrammingResult='success'
     </select>
 
-    <select id="queryExerciseByTestProgrammingQuestionId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
+    <select id="selectExerciseByTestProgrammingQuestionId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">
         select * from exercise,testprogrammingquestion where exercise.exerciseId=testprogrammingquestion.exerciseId and testprogrammingquestion.testProgrammingQuestionId=#{testProgrammingQuestionId}
     </select>
-    <select id="queryTestIdByTestProgrammingQuestionId" resultType="java.lang.Integer">
+    <select id="selectTestIdByTestProgrammingQuestionId" resultType="java.lang.Integer">
         select testId from testprogrammingquestion where testProgrammingQuestionId=#{testProgrammingQuestionId}
     </select>
-    <select id="queryTestProgrammingQuestionInfoByTestId" resultType="com.example.ojsystem.entity.TestProgrammingQuestion" resultMap="BaseTestProgrammingQuestionResultMap">
+    <select id="selectTestProgrammingQuestionInfoByTestId" resultType="com.example.ojsystem.entity.TestProgrammingQuestion" resultMap="BaseTestProgrammingQuestionResultMap">
        select * from test,testprogrammingquestion,exercise where test.testId=testprogrammingquestion.testId and exercise.exerciseId=testprogrammingquestion.exerciseId and test.testId=#{testId}
     </select>
 

@@ -18,7 +18,7 @@
         </association>
     </resultMap>
 
-    <resultMap id="BaseTestProgrammingQuestionResultToolResultMap" type="com.example.ojsystem.entity.TestProgrammingQuestionResultTool">
+    <resultMap id="BaseTestProgrammingQuestionResultToolResultMap" type="com.example.ojsystem.entity.TestStanding">
         <id column="userId" jdbcType="BIGINT" property="userId" />
         <result column="userName" jdbcType="VARCHAR" property="userName"/>
         <collection property="testProgrammingQuestionResultStateTools" ofType="com.example.ojsystem.entity.TestProgrammingQuestionResultStateTool">
@@ -32,7 +32,7 @@
         <id column="noSuccess" jdbcType="BIGINT" property="noSuccess" />
     </resultMap>
 
-    <insert id="addTestProgrammingQuestionHistoryInfo" parameterType="com.example.ojsystem.entity.TestProgrammingQuestionHistory">
+    <insert id="insertTestProgrammingQuestionHistoryInfo" parameterType="com.example.ojsystem.entity.TestProgrammingQuestionHistory">
         insert into testprogrammingquestionhistory (testProgrammingQuestionId,userId,testProgrammingSubmitTime,testProgrammingResult,testProgrammingCode)
          values(#{testProgrammingQuestionHistory.testProgrammingQuestion.testProgrammingQuestionId},#{testProgrammingQuestionHistory.user.userId},#{testProgrammingQuestionHistory.testProgrammingSubmitTime},
          #{testProgrammingQuestionHistory.testProgrammingResult},#{testProgrammingQuestionHistory.testProgrammingCode})
@@ -40,25 +40,25 @@
 
 
 
-    <select id="queryTestUserAndTestProgrammingQuestionId" resultMap="BaseTestProgrammingQuestionResultToolResultMap">
+    <select id="selectTestUserAndTestProgrammingQuestionId" resultMap="BaseTestProgrammingQuestionResultToolResultMap">
        select * from user,usergroup,test,testprogrammingquestion where test.testId=#{testId} and user.userId=usergroup.userId and test.groupId=usergroup.groupId and test.testId=testprogrammingquestion.testId
     </select>
 
 
-    <select id="queryTestProgrammingQuestionUserSubmitStateByTestProgrammingQuestionIdAndUserId" resultMap="BaseTestProgrammingQuestionUserSubmitStateToolResultMap">
+    <select id="selectTestProgrammingQuestionUserSubmitStateByTestProgrammingQuestionIdAndUserId" resultMap="BaseTestProgrammingQuestionUserSubmitStateToolResultMap">
       select count(if(testProgrammingResult='success',1,null)) as success ,count(if(testProgrammingResult!='success',1,null)) as noSuccess  from testprogrammingquestionhistory  where userId=#{userId}  and testProgrammingQuestionId=#{testProgrammingQuestionId}
     </select>
-    <select id="queryTestProgrammingRealStatus" resultType="com.example.ojsystem.entity.TestProgrammingQuestionHistory" resultMap="BaseTestProgrammingQuestionHistoryResultMap">
+    <select id="selectTestProgrammingRealStatus" resultType="com.example.ojsystem.entity.TestProgrammingQuestionHistory" resultMap="BaseTestProgrammingQuestionHistoryResultMap">
         select * from testprogrammingquestionhistory,test,testprogrammingquestion,user
         where test.testId=testprogrammingquestion.testId and testprogrammingquestion.testProgrammingQuestionId=testprogrammingquestionhistory.testProgrammingQuestionId and user.userId=testprogrammingquestionhistory.userId and test.testId=#{testId} order by testprogrammingquestionhistory.testProgrammingQuestionHistoryId  desc
     </select>
-    <select id="queryTestProgrammingQuestionOrder" resultType="java.lang.Integer">
+    <select id="selectTestProgrammingQuestionOrder" resultType="java.lang.Integer">
         select count(*) from testprogrammingquestion where testId=#{testId} and testProgrammingQuestionId&lt;#{testProgrammingQuestionId}
     </select>
-    <select id="queryTestProgrammingHistoryByTestProgrammingQuestionHistoryId" resultType="com.example.ojsystem.entity.TestProgrammingQuestionHistory">
+    <select id="selectTestProgrammingHistoryByTestProgrammingQuestionHistoryId" resultType="com.example.ojsystem.entity.TestProgrammingQuestionHistory">
         select * from testprogrammingquestionhistory where testProgrammingQuestionHistoryId=#{testProgrammingQuestionHistoryId}
     </select>
-    <select id="queryTestProgrammingRealStatusBySearchInfo" resultType="com.example.ojsystem.entity.TestProgrammingQuestionHistory" resultMap="BaseTestProgrammingQuestionHistoryResultMap">
+    <select id="selectTestProgrammingRealStatusBySearchInfo" resultType="com.example.ojsystem.entity.TestProgrammingQuestionHistory" resultMap="BaseTestProgrammingQuestionHistoryResultMap">
         select * from testprogrammingquestionhistory,test,testprogrammingquestion,user
         where test.testId=testprogrammingquestion.testId and testprogrammingquestion.testProgrammingQuestionId=testprogrammingquestionhistory.testProgrammingQuestionId and user.userId=testprogrammingquestionhistory.userId and test.testId=#{testProgrammingQuestionHistory.testProgrammingQuestion.test.testId}
         <if test="testProgrammingQuestionHistory.testProgrammingQuestion.testProgrammingQuestionId != null and testProgrammingQuestionHistory.testProgrammingQuestion.testProgrammingQuestionId!=0">

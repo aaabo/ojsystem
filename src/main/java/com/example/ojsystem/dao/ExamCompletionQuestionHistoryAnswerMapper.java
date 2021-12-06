@@ -10,5 +10,5 @@ public interface ExamCompletionQuestionHistoryAnswerMapper {
      * 输入examQuestionHistoryId,examCompletionQuestionUserAnswer,examCompletionQuestionUserAnswerNumber
      * 输出int
      */
-    public int addExamCompletionQuestionAnswerHistoryInfo(@Param("examQuestionHistoryId") int examQuestionHistoryId, @Param("examCompletionQuestionUserAnswer") String examCompletionQuestionUserAnswer, @Param("examCompletionQuestionUserAnswerNumber")int examCompletionQuestionUserAnswerNumber);
+    public int insertExamCompletionQuestionAnswerHistoryInfo(@Param("examQuestionHistoryId") int examQuestionHistoryId, @Param("examCompletionQuestionUserAnswer") String examCompletionQuestionUserAnswer, @Param("examCompletionQuestionUserAnswerNumber")int examCompletionQuestionUserAnswerNumber);
 }

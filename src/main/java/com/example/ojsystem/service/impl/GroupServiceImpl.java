@@ -24,8 +24,8 @@ public class GroupServiceImpl implements GroupService{
      *
      * @param group
      */
-    public int addGroupInfo(Group group) {
-        return groupMapper.addGroupInfo(group);
+    public int saveGroupInfo(Group group) {
+        return groupMapper.insertGroupInfo(group);
     }
 
     /**
@@ -35,7 +35,7 @@ public class GroupServiceImpl implements GroupService{
      *
      * @param groupId
      */
-    public int deleteGroupInfo(int groupId) {
+    public int cancelGroupInfo(int groupId) {
         return groupMapper.deleteGroupInfo(groupId);
     }
 
@@ -46,8 +46,8 @@ public class GroupServiceImpl implements GroupService{
      *
      * @param group
      */
-    public int modifyGroupInfo(Group group) {
-        return groupMapper.modifyGroupInfo(group);
+    public int alterGroupInfo(Group group) {
+        return groupMapper.updateGroupInfo(group);
     }
 
     /**
@@ -55,7 +55,7 @@ public class GroupServiceImpl implements GroupService{
      * 输入无
      * 成功输出ist<Group>
      */
-    public List<Group> queryGroupInfo() {
-        return groupMapper.queryGroupInfo();
+    public List<Group> checkGroupInfo() {
+        return groupMapper.selectGroupInfo();
     }
 }

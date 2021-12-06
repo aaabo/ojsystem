@@ -10,7 +10,7 @@ public interface CompletionQuestionLabelMapper {
      * 输入completionQuestionId questionLabelId
      * 成功输出true 失败输出false
      */
-    public int addCompletionQuestionLabelInfo(@Param("completionQuestionId") int completionQuestionId, @Param("questionLabelId") int questionLabelId);
+    public int insertCompletionQuestionLabelInfo(@Param("completionQuestionId") int completionQuestionId, @Param("questionLabelId") int questionLabelId);
 
     /**
      * 根据填空题编号删除对应的标签

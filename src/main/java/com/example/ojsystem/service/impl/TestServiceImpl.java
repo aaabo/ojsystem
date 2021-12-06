@@ -21,8 +21,8 @@ public class TestServiceImpl implements TestService{
      *
      * @param test
      */
-    public int addTestInfo(Test test) {
-        return testMapper.addTestInfo(test);
+    public int saveTestInfo(Test test) {
+        return testMapper.insertTestInfo(test);
     }
 
     /**
@@ -32,8 +32,8 @@ public class TestServiceImpl implements TestService{
      *
      * @param test
      */
-    public int modifyTestInfo(Test test) {
-        return testMapper.modifyTestInfo(test);
+    public int alterTestInfo(Test test) {
+        return testMapper.updateTestInfo(test);
     }
 
     /**
@@ -43,7 +43,7 @@ public class TestServiceImpl implements TestService{
      *
      * @param testId
      */
-    public int deleteTestInfoByTestId(int testId) {
+    public int cancelTestInfoByTestId(int testId) {
         return testMapper.deleteTestInfoByTestId(testId);
     }
 
@@ -52,8 +52,8 @@ public class TestServiceImpl implements TestService{
      * 输入null
      * 输出List<Test>
      */
-    public List<Test> queryTestInfoByTestStatus() {
-        return testMapper.queryTestInfoByTestStatus();
+    public List<Test> checkTestInfoByTestStatus() {
+        return testMapper.selectTestInfoByTestStatus();
     }
 
     /**
@@ -63,8 +63,8 @@ public class TestServiceImpl implements TestService{
      *
      * @param test
      */
-    public int modifyTestStatusByTestId(Test test) {
-        return testMapper.modifyTestStatusByTestId(test);
+    public int alterTestStatusByTestId(Test test) {
+        return testMapper.updateTestStatusByTestId(test);
     }
 
     /**
@@ -74,8 +74,8 @@ public class TestServiceImpl implements TestService{
      *
      * @param test
      */
-    public List<Test> searchTestInfo(Test test) {
-        return testMapper.searchTestInfo(test);
+    public List<Test> checkSearchTestInfo(Test test) {
+        return testMapper.selectSearchTestInfo(test);
     }
 
     /**
@@ -83,8 +83,8 @@ public class TestServiceImpl implements TestService{
      * 输入null
      * 输出List<Test>
      */
-    public List<Test> queryNotFinishTestInfo() {
-        return testMapper.queryNotFinishTestInfo();
+    public List<Test> checkNotFinishTestInfo() {
+        return testMapper.selectNotFinishTestInfo();
     }
 
     /**
@@ -94,7 +94,7 @@ public class TestServiceImpl implements TestService{
      *
      * @param testId
      */
-    public Test queryTestInfoByTestId(int testId) {
-        return testMapper.queryTestInfoByTestId(testId);
+    public Test checkTestInfoByTestId(int testId) {
+        return testMapper.selectTestInfoByTestId(testId);
     }
 }

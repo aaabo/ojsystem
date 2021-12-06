@@ -39,7 +39,7 @@ public class TestController {
         User user=new User();
         user.setUserId((Integer) request.getSession().getAttribute("userId"));
         test.setUser(user);
-        i= testService.addTestInfo(test);
+        i= testService.saveTestInfo(test);
         if(i!=0){
             return true;
         }
@@ -66,7 +66,7 @@ public class TestController {
         Group  group=new Group();
         group.setGroupId(Integer.valueOf(request.getParameter("groupId")));
         test.setGroup(group);
-        i= testService.modifyTestInfo(test);
+        i= testService.alterTestInfo(test);
         if(i!=0){
             return true;
         }
@@ -81,9 +81,9 @@ public class TestController {
      * 输出成功输出true 失败输出false
      */
     @RequestMapping(value="/deleteTestInfoByTestId",method = RequestMethod.POST)
-    public Object deleteTestInfoByTestId(HttpServletRequest request){
+    public Object removeTestInfoByTestId(HttpServletRequest request){
         int i=0;
-        i= testService.deleteTestInfoByTestId(Integer.valueOf(request.getParameter("testId")));
+        i= testService.cancelTestInfoByTestId(Integer.valueOf(request.getParameter("testId")));
         if(i!=0){
             return true;
         }
@@ -99,7 +99,7 @@ public class TestController {
      */
     @RequestMapping(value="/queryTestInfoByTestStatus",method = RequestMethod.POST)
     public Object queryTestInfoByTestStatus(HttpServletRequest request){
-        return testService.queryTestInfoByTestStatus();
+        return testService.checkTestInfoByTestStatus();
     }
 
     /**
@@ -113,7 +113,7 @@ public class TestController {
         Test test=new Test();
         test.setTestId(Integer.valueOf(request.getParameter("testId")));
         test.setTestStatus(request.getParameter("testStatus"));
-        i=testService.modifyTestStatusByTestId(test);
+        i=testService.alterTestStatusByTestId(test);
         if(i!=0){
             return true;
         }
@@ -129,7 +129,7 @@ public class TestController {
      *
      */
     @RequestMapping(value="/searchTestInfo",method = RequestMethod.POST)
-    public Object searchTestInfo(HttpServletRequest request){
+    public Object querySearchTestInfo(HttpServletRequest request){
         Test test=new Test();
         String testName=request.getParameter("testName");
         String testStatus=request.getParameter("testStatus");
@@ -147,7 +147,7 @@ public class TestController {
             user.setUserName("%"+userName+"%");
         }
         test.setUser(user);
-        return testService.searchTestInfo(test);
+        return testService.checkSearchTestInfo(test);
     }
 
 
@@ -158,7 +158,7 @@ public class TestController {
      */
     @RequestMapping(value="/queryNotFinishTestInfo",method = RequestMethod.POST)
     public Object queryNotFinishTestInfo(HttpServletRequest request){
-        return testService.queryNotFinishTestInfo();
+        return testService.checkNotFinishTestInfo();
     }
 
     /**
@@ -168,7 +168,7 @@ public class TestController {
      */
     @RequestMapping(value="/queryTestInfoByTestId",method = RequestMethod.POST)
     public Object queryTestInfoByTestId(HttpServletRequest request){
-        return testService.queryTestInfoByTestId(Integer.valueOf(request.getParameter("testId")));
+        return testService.checkTestInfoByTestId(Integer.valueOf(request.getParameter("testId")));
     }
 
 }

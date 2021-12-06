@@ -33,7 +33,7 @@ public class CompletionQuestionAnswerController {
         CompletionQuestionAnswer completionQuestionAnswer1=new CompletionQuestionAnswer();
         completionQuestionAnswer1.setCompletionQuestionAnswerContent(completionQuestionAnswer);
         completionQuestionAnswer1.setCompletionQuestionAnswerNumber(completionQuestionAnswerNumber);
-        i=completionQuestionAnswerService.addCompletionQuestionAnswerInfo(completionQuestionAnswer1,completionQuestionId);
+        i=completionQuestionAnswerService.saveCompletionQuestionAnswerInfo(completionQuestionAnswer1,completionQuestionId);
         if(i!=0){
             return true;
         }
@@ -48,10 +48,10 @@ public class CompletionQuestionAnswerController {
      * 输出int
      */
     @RequestMapping(value="/deleteCompletionQuestionAnswerInfoByCompletionQuestionId",method = RequestMethod.POST)
-    public Object deleteCompletionQuestionAnswerInfoByCompletionQuestionId(HttpServletRequest request){
+    public Object removeCompletionQuestionAnswerInfoByCompletionQuestionId(HttpServletRequest request){
         int i=0;
         int completionQuestionId=Integer.valueOf(request.getParameter("completionQuestionId"));
-        i=completionQuestionAnswerService.deleteCompletionQuestionAnswerInfoByCompletionQuestionId(completionQuestionId);
+        i=completionQuestionAnswerService.cancelCompletionQuestionAnswerInfoByCompletionQuestionId(completionQuestionId);
         if(i!=0){
             return true;
         }

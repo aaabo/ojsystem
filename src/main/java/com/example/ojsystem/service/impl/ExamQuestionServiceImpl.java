@@ -19,8 +19,8 @@ public class ExamQuestionServiceImpl implements ExamQuestionService{
      *
      * @param examId
      */
-    public List<ExamQuestion> queryExamQuestionChoiceByExamId(int examId) {
-        return examQuestionMapper.queryExamQuestionChoiceByExamId(examId);
+    public List<ExamQuestion> checkExamQuestionChoiceByExamId(int examId) {
+        return examQuestionMapper.selectExamQuestionChoiceByExamId(examId);
     }
 
     /**
@@ -30,8 +30,8 @@ public class ExamQuestionServiceImpl implements ExamQuestionService{
      *
      * @param examId
      */
-    public List<ExamQuestion> queryExamQuestionCompletionByExamId(int examId) {
-        return examQuestionMapper.queryExamQuestionCompletionByExamId(examId);
+    public List<ExamQuestion> checkExamQuestionCompletionByExamId(int examId) {
+        return examQuestionMapper.selectExamQuestionCompletionByExamId(examId);
     }
 
     /**
@@ -41,8 +41,8 @@ public class ExamQuestionServiceImpl implements ExamQuestionService{
      *
      * @param examId
      */
-    public List<ExamQuestion> queryExamQuestionProgrammingByExamId(int examId) {
-        return examQuestionMapper.queryExamQuestionProgrammingByExamId(examId);
+    public List<ExamQuestion> checkExamQuestionProgrammingByExamId(int examId) {
+        return examQuestionMapper.selectExamQuestionProgrammingByExamId(examId);
     }
 
     /**
@@ -54,8 +54,8 @@ public class ExamQuestionServiceImpl implements ExamQuestionService{
      * @param questionId
      * @param examQuestionType
      */
-    public int addExamQuestion(int examId, int questionId, String examQuestionType) {
-        return examQuestionMapper.addExamQuestion(examId,questionId,examQuestionType);
+    public int saveExamQuestionInfo(int examId, int questionId, String examQuestionType) {
+        return examQuestionMapper.insertExamQuestionInfo(examId,questionId,examQuestionType);
     }
 
     /**
@@ -67,8 +67,8 @@ public class ExamQuestionServiceImpl implements ExamQuestionService{
      * @param questionId
      * @param examQuestionType
      */
-    public int deleteExamQuestion(int examId, int questionId, String examQuestionType) {
-        return examQuestionMapper.deleteExamQuestion(examId,questionId,examQuestionType);
+    public int cancelExamQuestionInfo(int examId, int questionId, String examQuestionType) {
+        return examQuestionMapper.deleteExamQuestionInfo(examId,questionId,examQuestionType);
     }
 
     /**
@@ -78,8 +78,8 @@ public class ExamQuestionServiceImpl implements ExamQuestionService{
      *
      * @param examId
      */
-    public List<ExamProgrammingResultScoreTool> queryExamProgrammingResultScoreByExamId(int examId) {
-        return examQuestionMapper.queryExamProgrammingResultScoreByExamId(examId);
+    public List<ExamProgrammingResultScoreTool> checkExamProgrammingResultScoreByExamId(int examId) {
+        return examQuestionMapper.selectExamProgrammingResultScoreByExamId(examId);
     }
 
     /**
@@ -89,7 +89,7 @@ public class ExamQuestionServiceImpl implements ExamQuestionService{
      *
      * @param examId
      */
-    public UserExamScoreEachSegmentNumber queryUserExamScoreEachSegmentNumberByExamId(int examId) {
-        return examQuestionMapper.queryUserExamScoreEachSegmentNumberByExamId(examId);
+    public UserExamScoreEachSegmentNumber checkUserExamScoreEachSegmentNumberByExamId(int examId) {
+        return examQuestionMapper.selectUserExamScoreEachSegmentNumberByExamId(examId);
     }
 }

@@ -6,5 +6,5 @@ public interface AdminService {
      * 输入adminAccount
      * 输出查询到的管理员密码
      */
-    public String adminLogin(String adminAccount);
+    public String checkAdminLoginInfo(String adminAccount);
 }

@@ -14,7 +14,7 @@ public interface GroupMapper {
      * 输入group
      * 成功输入true 失败输出false
      */
-    public int addGroupInfo(@Param("group") Group group);
+    public int insertGroupInfo(@Param("group") Group group);
 
     /**
      * 删除组别信息
@@ -28,11 +28,11 @@ public interface GroupMapper {
      * 输入group users
      * 修改成功返回true 失败返回false
      */
-    public int modifyGroupInfo(Group group);
+    public int updateGroupInfo(Group group);
     /**
      * 获取组别信息
      * 输入无
      * 成功输出ist<Group>
      */
-    public List<Group> queryGroupInfo();
+    public List<Group> selectGroupInfo();
 }

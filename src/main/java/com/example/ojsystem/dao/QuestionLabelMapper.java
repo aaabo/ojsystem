@@ -13,14 +13,14 @@ public interface QuestionLabelMapper {
      * 输入questionLabel
      * 成功输出true 失败输出false
      */
-    public int addQuestionLabelInfo(@Param("questionLabel") QuestionLabel questionLabel);
+    public int insertQuestionLabelInfo(@Param("questionLabel") QuestionLabel questionLabel);
 
     /**
      * 获取全部的问题标签信息
      * 输入无
      * 成功输出List<QuestionLabel>
      */
-    public List<QuestionLabel> queryQuestionLabelInfo();
+    public List<QuestionLabel> selectQuestionLabelInfo();
 
     /**
      * 删除对应的问题标签信息
@@ -34,26 +34,26 @@ public interface QuestionLabelMapper {
      * 输入questionLabel
      * 成功输出true 失败输出false
      */
-    public int modifyQuestionLabelInfo(@Param("questionLabel") QuestionLabel questionLabel);
+    public int updateQuestionLabelInfo(@Param("questionLabel") QuestionLabel questionLabel);
 
     /**
      * 获取全部的问题标签的章节信息(去重)
      * 输入无
      * 成功输出List<String>
      */
-    public List<String> queryChapterInfo();
+    public List<String> selectChapterInfo();
 
     /**
      * 获取全部的问题标签的章节信息查询第一知识点
      * 输入chapter
      * 成功输出List<String>
      */
-    public List<String> queryFirstKnowledgePointInfoByChapter(@Param("chapter") String chapter);
+    public List<String> selectFirstKnowledgePointInfoByChapter(@Param("chapter") String chapter);
 
     /**
      * 根据章节和第一知识点查询问题标签信息
      * 输入chapter firstKnowledgePoint
      * 成功输出List<QuestionLabel>
      */
-    public List<QuestionLabel> querySecondKnowledgePointInfoByChapter(@Param("chapter") String chapter,@Param("firstKnowledgePoint") String firstKnowledgePoint);
+    public List<QuestionLabel> selectSecondKnowledgePointInfoByChapter(@Param("chapter") String chapter,@Param("firstKnowledgePoint") String firstKnowledgePoint);
 }

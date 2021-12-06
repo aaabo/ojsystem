@@ -11,7 +11,7 @@ public interface ExerciseAnswerService {
      * 输入习题答案信息
      * 输出int
      */
-    public int addExerciseAnswer(ExerciseAnswer exerciseAnswer);
+    public int saveExerciseAnswerInfo(ExerciseAnswer exerciseAnswer);
 
 
     /**
@@ -19,7 +19,7 @@ public interface ExerciseAnswerService {
      * 输入无
      * 输出List<ExerciseAnswer>
      */
-    public List<ExerciseAnswer> queryExerciseAnswerInfoByExerciseId(int exerciseId);
+    public List<ExerciseAnswer> checkExerciseAnswerInfoByExerciseId(int exerciseId);
 
 
     /**
@@ -27,13 +27,13 @@ public interface ExerciseAnswerService {
      * 输入习题答案信息
      * 输出int
      */
-    public int modifyExerciseAnswerInfo(ExerciseAnswer exerciseAnswer);
+    public int alterExerciseAnswerInfo(ExerciseAnswer exerciseAnswer);
 
     /**
      * 删除习题答案信息
      * 输入习题答案信息id
      * 输出int
      */
-    public int deleteExerciseAnswer(int exerciseAnswerId);
+    public int cancelExerciseAnswer(int exerciseAnswerId);
 
 }

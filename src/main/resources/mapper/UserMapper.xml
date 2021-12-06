@@ -16,24 +16,24 @@
         <result column="userIdentity" jdbcType="VARCHAR" property="userIdentity" />
 
     </resultMap>
-    <insert id="addUserInfo" parameterType="com.example.ojsystem.entity.User">
+    <insert id="insertUserInfo" parameterType="com.example.ojsystem.entity.User">
           insert into user (userAccount,userPassword,userName,userSolved,userSubmit,userEmail,userIdentity)
            values(#{user.userAccount},#{user.userPassword},#{user.userName},0,0,#{user.userEmail},'student')
     </insert>
-    <insert id="addTeacherUserInfo" parameterType="com.example.ojsystem.entity.User">
+    <insert id="insertTeacherUserInfo" parameterType="com.example.ojsystem.entity.User">
         insert into user (userAccount,userPassword,userName,userSolved,userSubmit,userIdentity)
            values(#{user.userAccount},#{user.userPassword},#{user.userName},0,0,'teacher')
     </insert>
-    <update id="modifyUserInfo" parameterType="com.example.ojsystem.entity.User">
+    <update id="updateUserInfo" parameterType="com.example.ojsystem.entity.User">
          update user set userName=#{user.userName},userProfile=#{user.userProfile} where userId=#{user.userId}
     </update>
-    <update id="modifyPassword" parameterType="com.example.ojsystem.entity.User">
+    <update id="updatePassword" parameterType="com.example.ojsystem.entity.User">
            update user set userPassword=#{user.userPassword} where userId=#{user.userId}
     </update>
     <update id="updateUserSubmitInfo" parameterType="java.lang.Integer">
         update user set userSolved=userSolved+#{solved},userSubmit=userSubmit+1 where userId=#{userId}
     </update>
-    <update id="modifyTeacherUserInfo" parameterType="com.example.ojsystem.entity.User">
+    <update id="updateTeacherUserInfo" parameterType="com.example.ojsystem.entity.User">
           update user set userName=#{user.userName},userPassword=#{user.userPassword} where userId=#{user.userId}
     </update>
     <delete id="deleteUserInfoByUserId">
@@ -41,25 +41,25 @@
     </delete>
 
 
-    <select id="isUserExist" resultType="com.example.ojsystem.entity.User" parameterType="com.example.ojsystem.entity.User" resultMap="BaseUserResultMap">
+    <select id="selectUserExist" resultType="com.example.ojsystem.entity.User" parameterType="com.example.ojsystem.entity.User" resultMap="BaseUserResultMap">
         select * from user where userAccount=#{user.userAccount} and userPassword=#{user.userPassword}
     </select>
-    <select id="isUserInfoExist" resultType="com.example.ojsystem.entity.User" resultMap="BaseUserResultMap">
+    <select id="selectUserInfoExist" resultType="com.example.ojsystem.entity.User" resultMap="BaseUserResultMap">
         select * from user where userAccount=#{user.userAccount}
     </select>
-    <select id="queryUserInfoById" resultType="com.example.ojsystem.entity.User" resultMap="BaseUserResultMap">
+    <select id="selectUserInfoById" resultType="com.example.ojsystem.entity.User" resultMap="BaseUserResultMap">
         select * from user where user.userId=#{userId}
     </select>
-    <select id="queryUserPasswordInfo" resultType="java.lang.Integer">
+    <select id="selectUserPasswordInfo" resultType="java.lang.Integer">
         select userPassword from user where userId=#{userId}
     </select>
-    <select id="queryUserRankListInfo" resultType="com.example.ojsystem.entity.User">
+    <select id="selectUserRankListInfo" resultType="com.example.ojsystem.entity.User">
         select userId,userName,userProfile,userSolved,userSubmit,userSolved/userSubmit as acRate from user order by userSolved desc,acRate desc
     </select>
-    <select id="queryTeacherUserInfo" resultType="com.example.ojsystem.entity.User">
+    <select id="selectTeacherUserInfo" resultType="com.example.ojsystem.entity.User">
         select * from user where userIdentity="teacher"
     </select>
-    <select id="queryUserIdByUserAccount" resultType="java.lang.Integer">
+    <select id="selectUserIdByUserAccount" resultType="java.lang.Integer">
         select userId from user where userAccount=#{userAccount}
     </select>
 

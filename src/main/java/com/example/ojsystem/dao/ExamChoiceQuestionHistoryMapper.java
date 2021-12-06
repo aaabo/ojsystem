@@ -14,7 +14,7 @@ public interface ExamChoiceQuestionHistoryMapper {
      * 输入userId,examQuestionId,examChoiceQuestionUserSelection
      * 输出int
      */
-    public int addExamChoiceQuestionHistory(@Param("userId") int userId,@Param("examQuestionId")int examQuestionId,@Param("examChoiceQuestionUserSelection")String examChoiceQuestionUserSelection,@Param("examChoiceQuestionResultScore")Float examChoiceQuestionResultScore);
+    public int insertExamChoiceQuestionHistory(@Param("userId") int userId,@Param("examQuestionId")int examQuestionId,@Param("examChoiceQuestionUserSelection")String examChoiceQuestionUserSelection,@Param("examChoiceQuestionResultScore")Float examChoiceQuestionResultScore);
 
 
 }

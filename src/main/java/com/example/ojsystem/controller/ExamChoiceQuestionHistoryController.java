@@ -38,7 +38,7 @@ public class ExamChoiceQuestionHistoryController {
         examQuestionHistories= JSON.parseArray(addExamQuestionHistories,ExamQuestionHistory.class);//把前台接收的string数组转化为json数组
         HttpSession session=request.getSession();
         int userId=(Integer)session.getAttribute("userId");
-        examChoiceQuestionHistoryService.addExamChoiceQuestionHistoryInfo(examQuestionHistories,userId);
+        examChoiceQuestionHistoryService.saveExamChoiceQuestionHistoryInfo(examQuestionHistories,userId);
         if(i!=0){
             return true;
         }

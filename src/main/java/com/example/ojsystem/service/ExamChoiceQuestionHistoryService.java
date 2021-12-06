@@ -11,7 +11,7 @@ public interface ExamChoiceQuestionHistoryService {
      * 输入examQuestionHistories,userId
      * 输出int
      */
-    public int addExamChoiceQuestionHistoryInfo(List<ExamQuestionHistory> examQuestionHistories, int userId);
+    public int saveExamChoiceQuestionHistoryInfo(List<ExamQuestionHistory> examQuestionHistories, int userId);
 
 
 }

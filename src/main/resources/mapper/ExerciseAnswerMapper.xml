@@ -10,16 +10,16 @@
         <result column="exerciseAnswerOutput" jdbcType="VARCHAR" property="exerciseAnswerOutput" />
     </resultMap>
 
-    <insert id="addExerciseAnswer" parameterType="com.example.ojsystem.entity.ExerciseAnswer" useGeneratedKeys="true" keyProperty="exerciseAnswer.exerciseAnswerId" keyColumn="exerciseAnswerId">
+    <insert id="insertExerciseAnswerInfo" parameterType="com.example.ojsystem.entity.ExerciseAnswer" useGeneratedKeys="true" keyProperty="exerciseAnswer.exerciseAnswerId" keyColumn="exerciseAnswerId">
         insert into exerciseanswer(exerciseId,exerciseAnswerInput,exerciseAnswerOutput) values(#{exerciseAnswer.exercise.exerciseId},#{exerciseAnswer.exerciseAnswerInput},#{exerciseAnswer.exerciseAnswerOutput})
     </insert>
-    <update id="modifyExerciseAnswerInfo" parameterType="com.example.ojsystem.entity.ExerciseAnswer">
+    <update id="updateExerciseAnswerInfo" parameterType="com.example.ojsystem.entity.ExerciseAnswer">
          update exerciseanswer set exerciseAnswerInput=#{exerciseAnswer.exerciseAnswerInput},exerciseAnswerOutput=#{exerciseAnswer.exerciseAnswerOutput} where exerciseAnswerId=#{exerciseAnswer.exerciseAnswerId}
     </update>
     <delete id="deleteExerciseAnswer" parameterType="java.lang.Integer">
            delete from exerciseanswer where exerciseAnswerId=#{exerciseAnswerId}
     </delete>
-    <select id="queryExerciseAnswerInfoByExerciseId" resultType="com.example.ojsystem.entity.ExerciseAnswer" parameterType="java.lang.Integer">
+    <select id="selectExerciseAnswerInfoByExerciseId" resultType="com.example.ojsystem.entity.ExerciseAnswer" parameterType="java.lang.Integer">
         select * from exerciseanswer where exerciseId=#{exerciseId}
     </select>
 

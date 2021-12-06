@@ -37,7 +37,7 @@ public class UserGroupController {
         Integer groupId=Integer.parseInt(String.valueOf(jsonArray.get(1)));
 
         for(int o=0;o<userAccounts.size();o++){
-            i=userGroupService.addUserGroupInfo(groupId,userAccounts.get(o));
+            i=userGroupService.saveUserGroupInfo(groupId,userAccounts.get(o));
         }
         if(i>0){
             return true;
@@ -55,7 +55,7 @@ public class UserGroupController {
     @RequestMapping(value="/queryUserGroupInfoByGroupId",method = RequestMethod.POST)
     public List<User> queryUserGroupInfoByGroupId(HttpServletRequest request){
 
-        return userGroupService.queryUserGroupInfoByGroupId(Integer.valueOf(request.getParameter("groupId")));
+        return userGroupService.checkUserGroupInfoByGroupId(Integer.valueOf(request.getParameter("groupId")));
 
     }
 
@@ -65,11 +65,11 @@ public class UserGroupController {
      * 成功输出true 失败输出false
      */
     @RequestMapping(value="/deleteUserGroupInfoByGroupIdAndUserId",method = RequestMethod.POST)
-    public Object  deleteUserGroupInfoByGroupIdAndUserId(HttpServletRequest request){
+    public Object  removeUserGroupInfoByGroupIdAndUserId(HttpServletRequest request){
         int i=0;
         int userId=Integer.valueOf(request.getParameter("userId"));
         int groupId=Integer.valueOf(request.getParameter("groupId"));
-        i=userGroupService.deleteUserGroupInfoByGroupIdAndUserId(groupId,userId);
+        i=userGroupService.cancelUserGroupInfoByGroupIdAndUserId(groupId,userId);
         if(i>0){
             return true;
         }else{
@@ -88,11 +88,8 @@ public class UserGroupController {
         int i=0;
         int userId=(Integer)request.getSession().getAttribute("userId");
         int groupId=Integer.valueOf(request.getParameter("groupId"));
-        if(userGroupService.queryUserIfInGroup(groupId,userId)!=null){
-            i=userGroupService.queryUserIfInGroup(groupId,userId);
-        }else{
-            i=0;
-        }
+        i=userGroupService.checkUserIfInGroup(groupId,userId);
+
         if(i>0){
             return true;
         }else{

@@ -24,11 +24,16 @@ public class ExerciseServiceImpl implements ExerciseService{
      *
      * @param exercise
      */
-    public int addExercise(Exercise exercise) {
+    public int saveExerciseInfo(Exercise exercise) {
+        int exerciseId=0;
+        exerciseId=exerciseMapper.insertExerciseInfo(exercise);
         int i=0;
-        i=exerciseMapper.addExercise(exercise);
-        exerciseLabelMapper.addExerciseLabelInfo(exercise.getExerciseId(),exercise.getQuestionLabel().getQuestionLabelId());
-        return i;
+        i=exerciseLabelMapper.insertExerciseLabelInfo(exercise.getExerciseId(),exercise.getQuestionLabel().getQuestionLabelId());
+        if(i!=0){
+            return exerciseId;
+        }else{
+            return 0;
+        }
     }
 
     /**
@@ -36,8 +41,8 @@ public class ExerciseServiceImpl implements ExerciseService{
      * 输入无
      * 输出List<Exercise>
      */
-    public List<Exercise> queryExerciseInfo() {
-        return exerciseMapper.queryExerciseInfo();
+    public List<Exercise> checkExerciseInfo() {
+        return exerciseMapper.selectExerciseInfo();
     }
 
     /**
@@ -47,12 +52,20 @@ public class ExerciseServiceImpl implements ExerciseService{
      *
      * @param exercise
      */
-    public int modifyExerciseInfo(Exercise exercise) {
+    public int alterExerciseInfo(Exercise exercise) {
+        int i=0;
         //先删除原来的
-        exerciseLabelMapper.deleteExerciseLabelInfoByExerciseId(exercise.getExerciseId());
+        i=exerciseLabelMapper.deleteExerciseLabelInfoByExerciseId(exercise.getExerciseId());
         //再添加新的
-        exerciseLabelMapper.addExerciseLabelInfo(exercise.getExerciseId(),exercise.getQuestionLabel().getQuestionLabelId());
-        return exerciseMapper.modifyExerciseInfo(exercise);
+        if(i!=0){
+            i=exerciseLabelMapper.insertExerciseLabelInfo(exercise.getExerciseId(),exercise.getQuestionLabel().getQuestionLabelId());
+        }
+        if(i!=0){
+            i=exerciseMapper.updateExerciseInfo(exercise);
+        }
+
+
+        return i;
     }
 
     /**
@@ -62,8 +75,8 @@ public class ExerciseServiceImpl implements ExerciseService{
      *
      * @param exerciseId
      */
-    public int deleteExercise(int exerciseId) {
-        return exerciseMapper.deleteExercise(exerciseId);
+    public int cancelExerciseInfo(int exerciseId) {
+        return exerciseMapper.deleteExerciseInfo(exerciseId);
     }
 
     /**
@@ -73,8 +86,8 @@ public class ExerciseServiceImpl implements ExerciseService{
      *
      * @param exerciseId
      */
-    public Exercise queryExerciseDetailsInfoByExerciseId(int exerciseId) {
-        return exerciseMapper.queryExerciseDetailsInfoByExerciseId(exerciseId);
+    public Exercise checkExerciseDetailsInfoByExerciseId(int exerciseId) {
+        return exerciseMapper.selectExerciseDetailsInfoByExerciseId(exerciseId);
     }
 
     /**

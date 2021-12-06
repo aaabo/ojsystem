@@ -12,16 +12,16 @@
             <result column="userName" jdbcType="VARCHAR" property="userName" />
         </association>
     </resultMap>
-    <insert id="addGroupInfo"  useGeneratedKeys="true" keyProperty="group.groupId" keyColumn="groupId">
+    <insert id="insertGroupInfo"  useGeneratedKeys="true" keyProperty="group.groupId" keyColumn="groupId">
           insert into `group` (groupName,userId)  values(#{group.groupName},#{group.user.userId})
     </insert>
-    <update id="modifyGroupInfo" parameterType="com.example.ojsystem.entity.Group">
+    <update id="updateGroupInfo" parameterType="com.example.ojsystem.entity.Group">
            update `group` set groupName=#{group.groupName} groupId=#{groupId}
     </update>
     <delete id="deleteGroupInfo" parameterType="java.lang.Integer">
           delete from `group` where groupId=#{groupId}
     </delete>
-    <select id="queryGroupInfo" resultType="com.example.ojsystem.entity.Group" resultMap="BaseGroupResultMap">
+    <select id="selectGroupInfo" resultType="com.example.ojsystem.entity.Group" resultMap="BaseGroupResultMap">
         select * from `group`,user where user.userId=`group`.userId
     </select>
 

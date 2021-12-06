@@ -12,6 +12,6 @@ public interface ExamCompletionQuestionHistoryMapper {
      * 输入userId,examQuestionId
      * 输出int
      */
-    public int addExamCompletionQuestionHistoryInfo(@Param("userId") int userId, @Param("examQuestionId")int examQuestionId,@Param("examCompletionQuestionHistory") ExamCompletionQuestionHistory examCompletionQuestionHistory);
+    public int insertExamCompletionQuestionHistoryInfo(@Param("userId") int userId, @Param("examQuestionId")int examQuestionId,@Param("examCompletionQuestionHistory") ExamCompletionQuestionHistory examCompletionQuestionHistory);
 
 }
