@@ -74,12 +74,24 @@ public class ExamQuestionController {
     }
 
     /**
+     * 根据考试id查询对应的编程题信息
+     * 输入examId
+     * 输出List<ExamQuestion>
+     */
+    @RequestMapping(value="/queryExamQuestionProgrammingByExamIdAndExamQuestionType",method = RequestMethod.POST)
+    public Object queryExamQuestionProgrammingByExamIdAndExamQuestionType(HttpServletRequest request){
+        int examId=Integer.valueOf(request.getParameter("examId"));
+        String examQuestionType= request.getParameter("examQuestionType");
+        return  examQuestionService.checkExamQuestionProgrammingByExamIdAndExamQuestionType(examId,examQuestionType);
+    }
+
+    /**
      * 根据题目类型和题目编号添加考试题目
      * 输入examId,questionId
      * 输出int
      */
     @RequestMapping(value="/addExamQuestion",method = RequestMethod.POST)
-    public Object addExamQuestion(HttpServletRequest request){
+    public Object addExamQuestionInfo(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         int questionId=Integer.valueOf(request.getParameter("questionId"));
         String examQuestionType=request.getParameter("examQuestionType");
@@ -100,7 +112,7 @@ public class ExamQuestionController {
      * 输出成功输入true失败false
      */
     @RequestMapping(value="/addExamQuestions",method = RequestMethod.POST)
-    public Object addExamQuestionInfo(HttpServletRequest request){
+    public Object addExamQuestionInfos(HttpServletRequest request){
         String addExamQuestions = request.getParameter("addExamQuestions");
         JSONArray jsonArray=JSONArray.parseArray(addExamQuestions);//把前台接收的string数组转化为json数组
 //        System.out.println(jsonArray);

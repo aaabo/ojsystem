@@ -97,6 +97,9 @@
     <select id="selectExamQuestionProgrammingByExamId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExamQuestionResultMap">
          SELECT * FROM examquestion,exercise where examquestion.questionId=exercise.exerciseId and examquestion.examId=#{examId} and examquestion.examQuestionType='programmingQuestion'
     </select>
+    <select id="selectExamQuestionProgrammingByExamIdAndExamQuestionType" resultType="com.example.ojsystem.entity.ExamQuestion">
+         SELECT * FROM examquestion,exercise where examquestion.questionId=exercise.exerciseId and examquestion.examId=#{examId} and examquestion.examQuestionType=#{examQuestionType}
+    </select>
     <select id="selectExamProgrammingResultScoreByExamId" resultType="com.example.ojsystem.entity.ExamProgrammingResultScoreTool" resultMap="BaseExamProgrammingResultScoreToolResultMap">
 	        SELECT exercise.exerciseTitle,SUM(examprogrammingquestionhistory.examProgrammingQuestionResultScore)/(select count(usergroup.userId) from usergroup,exam where usergroup.groupId=exam.groupId and exam.examId=#{examId}) as avgExamProgrammingScore FROM examquestion left join exercise on exercise.exerciseId=examquestion.questionId left join examprogrammingquestionhistory on  examquestion.examQuestionId=examprogrammingquestionhistory.examQuestionId
         where   examquestion.examId=#{examId} and  examquestion.examQuestionType='programmingQuestion' group by examprogrammingquestionhistory.examQuestionId
@@ -112,6 +115,7 @@
     <select id="selectExerciseAnswerInfoByExamQuestionId" resultType="com.example.ojsystem.entity.ExerciseAnswer">
        select * from examquestion,exercise,exerciseanswer where examquestion.questionId=exercise.exerciseId and exercise.exerciseId=exerciseanswer.exerciseId and examquestion.examQuestionId=#{examQuestionId}
     </select>
+
 
 
 </mapper>

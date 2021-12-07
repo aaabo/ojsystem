@@ -46,6 +46,18 @@ public class ExamQuestionServiceImpl implements ExamQuestionService{
     }
 
     /**
+     * 根据考试id查询对应的编程题信息
+     * 输入examId
+     * 输出List<ExamQuestion>
+     *
+     * @param examId
+     * @param examQuestionType
+     */
+    public List<ExamQuestion> checkExamQuestionProgrammingByExamIdAndExamQuestionType(int examId, String examQuestionType) {
+        return examQuestionMapper.selectExamQuestionProgrammingByExamIdAndExamQuestionType(examId,examQuestionType);
+    }
+
+    /**
      * 根据题目类型和题目编号添加考试题目
      * 输入examId,questionId
      * 输出int

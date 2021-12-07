@@ -19,7 +19,7 @@ public interface TestProgrammingQuestionHistoryService {
      * 输入testId
      * 输出测试的状态
      */
-    public List<TestStanding> checkTestStanding(int testId);
+    public List<TestStanding> checkTestStandingInfo(int testId);
 
     /**
      * 查询测试的提交实时提交情况
