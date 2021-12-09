@@ -39,7 +39,7 @@ public interface ExamService {
      * 输入exam
      * 输出int
      */
-    public int alertExamInfo(Exam exam);
+    public int alterExamInfo(Exam exam);
 
     /**
      * 删除考试信息
@@ -53,7 +53,7 @@ public interface ExamService {
      * 输入exam
      * 输出int
      */
-    public int alertExamStatus(Exam exam);
+    public int alterExamStatus(Exam exam);
 
     /**
      * 根据考试id查询考试信息

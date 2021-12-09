@@ -159,7 +159,7 @@ public class UserServiceImpl implements UserService {
      * 输出UserId
      */
     public int queryUserIdByUserAccount(String userAccount) {
-        return userMapper.queryUserIdByUserAccount(userAccount);
+        return userMapper.selectUserIdByUserAccount(userAccount);
     }
 
 

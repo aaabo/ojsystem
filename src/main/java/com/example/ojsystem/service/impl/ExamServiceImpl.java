@@ -61,7 +61,7 @@ public class ExamServiceImpl implements ExamService{
      *
      * @param exam
      */
-    public int alertExamInfo(Exam exam) {
+    public int alterExamInfo(Exam exam) {
         return examMapper.updateExamInfo(exam);
     }
 
@@ -83,7 +83,7 @@ public class ExamServiceImpl implements ExamService{
      *
      * @param exam
      */
-    public int alertExamStatus(Exam exam) {
+    public int alterExamStatus(Exam exam) {
         return examMapper.updateExamStatus(exam);
     }
 

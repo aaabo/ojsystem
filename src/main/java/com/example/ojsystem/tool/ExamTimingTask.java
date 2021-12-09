@@ -26,8 +26,8 @@ public class ExamTimingTask {
     //或直接指定时间间隔，例如：30秒
     //@Scheduled(fixedRate=5000)
     private void configureTasks() {
-        List<Exam> exams=examService.queryNotFinishedExamInfo();
-        List<Test> tests=testService.queryNotFinishTestInfo();
+        List<Exam> exams=examService.checkNotFinishedExamInfo();
+        List<Test> tests=testService.checkNotFinishTestInfo();
         //考试
         for(int i=0;i<exams.size();i++){
             Exam exam=exams.get(i);
@@ -45,7 +45,7 @@ public class ExamTimingTask {
                         Exam exam1=new Exam();
                         exam1.setExamStatus("Running");
                         exam1.setExamId(exam.getExamId());
-                        examService.updateExamStatus(exam1);
+                        examService.alterExamStatus(exam1);
                     }
 
                 }else{
@@ -54,7 +54,7 @@ public class ExamTimingTask {
                         Exam exam2=new Exam();
                         exam2.setExamStatus("Ended");
                         exam2.setExamId(exam.getExamId());
-                        examService.updateExamStatus(exam2);
+                        examService.alterExamStatus(exam2);
                     }
                 }
             } catch (ParseException e) {
@@ -78,7 +78,7 @@ public class ExamTimingTask {
                         Test test1=new Test();
                         test1.setTestStatus("Running");
                         test1.setTestId(test.getTestId());
-                        testService.modifyTestStatusByTestId(test1);
+                        testService.alterTestStatusByTestId(test1);
                     }
 
                 }else{
@@ -87,7 +87,7 @@ public class ExamTimingTask {
                         Test test2=new Test();
                         test2.setTestStatus("Ended");
                         test2.setTestId(test.getTestId());
-                        testService.modifyTestStatusByTestId(test2);
+                        testService.alterTestStatusByTestId(test2);
                     }
                 }
             } catch (ParseException e) {

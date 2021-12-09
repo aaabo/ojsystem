@@ -127,7 +127,7 @@ public class ExamController {
         exam.setExamChoiceQuestionScore(examChoiceQuestionScore);
         exam.setExamCompletionQuestionScore(examCompletionQuestionScore);
         exam.setExamProgrammingScore(examProgrammingScore);
-        i=examService.alertExamInfo(exam);
+        i=examService.alterExamInfo(exam);
         if(i!=0){
             return true;
         }
@@ -167,7 +167,7 @@ public class ExamController {
         Exam exam=new Exam();
         exam.setExamId(examId);
         exam.setExamStatus(examStatus);
-        i=examService.alertExamStatus(exam);
+        i=examService.alterExamStatus(exam);
         if(i!=0){
             return true;
         }

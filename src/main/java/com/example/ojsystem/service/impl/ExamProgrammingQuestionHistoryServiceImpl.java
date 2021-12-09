@@ -28,7 +28,7 @@ public class ExamProgrammingQuestionHistoryServiceImpl implements ExamProgrammin
         //查询是否存在
         examProgrammingQuestionId=examProgrammingQuestionHistoryMapper.selectExamProgrammingQuestionHistoryByExamQuestionIdAndUserId(examQuestionId,userId);
         //判断
-        String result= JudgerC.start(examProgrammingQuestionHistory.getExamProgrammingQuestionCode(),examQuestionMapper.queryExerciseAnswerInfoByExamQuestionId(examQuestionId));
+        String result= JudgerC.start(examProgrammingQuestionHistory.getExamProgrammingQuestionCode(),examQuestionMapper.selectExerciseAnswerInfoByExamQuestionId(examQuestionId));
         examProgrammingQuestionHistory.setExamProgrammingQuestionResult(result);
         //不存在
         if(examProgrammingQuestionId==0){

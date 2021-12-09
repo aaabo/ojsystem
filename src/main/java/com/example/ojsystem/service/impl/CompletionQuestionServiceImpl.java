@@ -50,7 +50,7 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      *
      * @param completionQuestion
      */
-    public int alertCompletionQuestionInfo(CompletionQuestion completionQuestion) {
+    public int alterCompletionQuestionInfo(CompletionQuestion completionQuestion) {
         int i=completionQuestionMapper.updateCompletionQuestionInfo(completionQuestion);
         //先删除答案
         if(i!=0){

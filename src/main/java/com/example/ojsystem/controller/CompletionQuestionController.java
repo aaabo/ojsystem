@@ -48,7 +48,7 @@ public class CompletionQuestionController {
     public Object modifyCompletionQuestionInfo(HttpServletRequest request){
         String completionQuestionInfo=request.getParameter("completionQuestionInfo");
         CompletionQuestion completionQuestion=JSON.parseObject(completionQuestionInfo,CompletionQuestion.class);
-        int i=completionQuestionService.alertCompletionQuestionInfo(completionQuestion);
+        int i=completionQuestionService.alterCompletionQuestionInfo(completionQuestion);
         if(i!=0){
             return true;
         }

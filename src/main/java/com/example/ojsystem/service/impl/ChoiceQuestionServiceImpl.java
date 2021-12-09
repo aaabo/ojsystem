@@ -26,9 +26,12 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
      * @param choiceQuestion
      */
     public int saveChoiceQuestionInfo(ChoiceQuestion choiceQuestion) {
-        int o=choiceQuestionMapper.insertChoiceQuestionInfo(choiceQuestion);
+        int o=0;
+        o=choiceQuestionMapper.insertChoiceQuestionInfo(choiceQuestion);
         for(int i=0;i<choiceQuestion.getQuestionLabels().size();i++){
-            choiceQuestionLabelMapper.insertChoiceQuestionLabelInfo(choiceQuestion.getChoiceQuestionId(),choiceQuestion.getQuestionLabels().get(i).getQuestionLabelId());
+            if(o!=0){
+                choiceQuestionLabelMapper.insertChoiceQuestionLabelInfo(choiceQuestion.getChoiceQuestionId(),choiceQuestion.getQuestionLabels().get(i).getQuestionLabelId());
+            }
         }
         return o;
     }
@@ -41,13 +44,20 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
      * @param choiceQuestion
      */
     public int alterChoiceQuestionInfo(ChoiceQuestion choiceQuestion) {
+        int o=0;
         //先删除
-        choiceQuestionLabelMapper.deleteChoiceQuestionLabelInfoByChoiceQuestionId(choiceQuestion.getChoiceQuestionId());
+        o=choiceQuestionLabelMapper.deleteChoiceQuestionLabelInfoByChoiceQuestionId(choiceQuestion.getChoiceQuestionId());
         //后添加
         for(int i=0;i<choiceQuestion.getQuestionLabels().size();i++){
-            choiceQuestionLabelMapper.insertChoiceQuestionLabelInfo(choiceQuestion.getChoiceQuestionId(),choiceQuestion.getQuestionLabels().get(i).getQuestionLabelId());
+            if(o!=0){
+                o=choiceQuestionLabelMapper.insertChoiceQuestionLabelInfo(choiceQuestion.getChoiceQuestionId(),choiceQuestion.getQuestionLabels().get(i).getQuestionLabelId());
+            }
         }
-        return choiceQuestionMapper.updateChoiceQuestionInfo(choiceQuestion);
+        if(o!=0){
+            o=choiceQuestionMapper.updateChoiceQuestionInfo(choiceQuestion);
+        }
+
+        return o;
     }
 
     /**

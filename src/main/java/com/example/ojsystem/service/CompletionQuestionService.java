@@ -18,7 +18,7 @@ public interface CompletionQuestionService {
      * 输入completionQuestion
      * 输出int
      */
-    public int alertCompletionQuestionInfo(CompletionQuestion completionQuestion);
+    public int alterCompletionQuestionInfo(CompletionQuestion completionQuestion);
 
     /**
      * 根据输入的填空题编号删除对应的填空题信息
