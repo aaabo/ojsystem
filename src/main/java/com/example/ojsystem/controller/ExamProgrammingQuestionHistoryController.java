@@ -21,7 +21,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/examProgrammingHistory")
-public class ExamProgrammingHistoryController {
+public class ExamProgrammingQuestionHistoryController {
 
     @Autowired
     ExamProgrammingQuestionHistoryService examProgrammingQuestionHistoryService;
