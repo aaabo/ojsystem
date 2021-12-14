@@ -6,6 +6,12 @@ import java.util.List;
 
 public interface ExamQuestionService {
     /**
+     * 根据考试id查询对应的考试题目信息
+     * 输入examId
+     * 输出List<ExamQuestion>
+     */
+    public List<ExamQuestion> checkExamQuestionByExamId(int examId);
+    /**
      * 根据考试id查询对应的选择题信息
      * 输入examId
      * 输出List<ExamQuestion>

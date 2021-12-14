@@ -6,12 +6,29 @@ import com.example.ojsystem.service.ExamQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ExamQuestionServiceImpl implements ExamQuestionService{
     @Autowired
     ExamQuestionMapper examQuestionMapper;
+
+    /**
+     * 根据考试id查询对应的考试题目信息
+     * 输入examId
+     * 输出List<ExamQuestion>
+     *
+     * @param examId
+     */
+    public List<ExamQuestion> checkExamQuestionByExamId(int examId) {
+        List<ExamQuestion> examQuestions=new ArrayList<ExamQuestion>();
+        examQuestions=examQuestionMapper.selectExamQuestionChoiceByExamId(examId);
+        examQuestions.addAll(examQuestionMapper.selectExamQuestionCompletionByExamId(examId));
+        examQuestions.addAll(examQuestionMapper.selectExamQuestionProgrammingByExamId(examId));
+        return examQuestions;
+    }
+
     /**
      * 根据考试id查询对应的选择题信息
      * 输入examId
