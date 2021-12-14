@@ -34,9 +34,8 @@ public class ExamQuestionController {
     public Object queryExamQuestionByExamId(HttpServletRequest request){
         int examId=Integer.valueOf(request.getParameter("examId"));
         List<ExamQuestion> examQuestions=new ArrayList<ExamQuestion>();
-        examQuestions=examQuestionService.checkExamQuestionChoiceByExamId(examId);
-        examQuestions.addAll(examQuestionService.checkExamQuestionCompletionByExamId(examId));
-        examQuestions.addAll(examQuestionService.checkExamQuestionProgrammingByExamId(examId));
+        examQuestions=examQuestionService.checkExamQuestionByExamId(examId);
+
         return examQuestions;
     }
 
