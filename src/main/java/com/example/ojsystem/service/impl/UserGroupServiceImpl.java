@@ -24,7 +24,10 @@ public class UserGroupServiceImpl implements UserGroupService{
      * @param userAccount
      */
     public int saveUserGroupInfo(int groupId, String userAccount) {
-        int userId=userMapper.selectUserIdByUserAccount(userAccount);
+        Integer userId=userMapper.selectUserIdByUserAccount(userAccount);
+        if(userId==null){
+            return 0;
+        }
         return userGroupMapper.insertUserGroupInfo(groupId,userId);
     }
 

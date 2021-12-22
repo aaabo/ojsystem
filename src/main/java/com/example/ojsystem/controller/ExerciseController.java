@@ -73,6 +73,16 @@ public class ExerciseController {
     }
 
 
+    /**
+     * 根据习题id查询习题信息是否存在
+     * 输入exerciseId
+     * 输出int
+     */
+    @RequestMapping(value="/queryExerciseInfoIsExit",method = RequestMethod.POST)
+    public  Object  queryExerciseInfoIsExit(HttpServletRequest request){
+        return exerciseService.checkExerciseInfoIsExit(Integer.valueOf(request.getParameter("exerciseId")));
+
+    }
 
     /**
      * 修改选中的习题信息

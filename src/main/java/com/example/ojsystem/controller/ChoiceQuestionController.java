@@ -122,12 +122,14 @@ public class ChoiceQuestionController {
         questionLabels.add(questionLabel);
         choiceQuestion.setQuestionLabels(questionLabels);
         choiceQuestions= choiceQuestionService.checkChoiceQuestionIdBySearchInfo(choiceQuestion,currentUserId);
-//        for(int i=0;i<choiceQuestions.size();i++){
-//            ChoiceQuestion choiceQuestion2=new ChoiceQuestion();
-//            choiceQuestion2=choiceQuestionService.checkChoiceQuestionInfoByChoiceQuestionId(choiceQuestions.get(i).getChoiceQuestionId());
-//            choiceQuestions2.add(choiceQuestion2);
-//        }
-        return  choiceQuestions;
+        //查询出来的选择题只有选中的一个标签 需要用对应的id查询全部的标签
+        for(int i=0;i<choiceQuestions.size();i++){
+            ChoiceQuestion choiceQuestion2=new ChoiceQuestion();
+            choiceQuestion2=choiceQuestionService.checkChoiceQuestionInfoByChoiceQuestionId(choiceQuestions.get(i).getChoiceQuestionId());
+            choiceQuestions2.add(choiceQuestion2);
+        }
+
+        return  choiceQuestions2;
     }
 
 
@@ -141,5 +143,16 @@ public class ChoiceQuestionController {
     @RequestMapping(value="/queryChoiceQuestionInfoByExamId",method = RequestMethod.POST)
     public Object queryChoiceQuestionInfoByExamId(HttpServletRequest request){
         return choiceQuestionService.checkChoiceQuestionInfoByExamId(Integer.valueOf(request.getParameter("examId")));
+    }
+
+
+    /**
+     * 根据输入choiceQuestionId判断是否在考试或测试中
+     * 输入choiceQuestionId
+     * 输出true 或者false
+     */
+    @RequestMapping(value="/queryChoiceQuestionIsExamByChoiceQuestionId",method = RequestMethod.POST)
+    public Object queryChoiceQuestionIsExamByChoiceQuestionId(HttpServletRequest request){
+        return choiceQuestionService.checkChoiceQuestionIsExamByChoiceQuestionId(Integer.valueOf(request.getParameter("choiceQuestionId")));
     }
 }

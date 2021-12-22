@@ -114,4 +114,20 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
     public List<ChoiceQuestion> checkChoiceQuestionInfoByExamId(int examId) {
         return choiceQuestionMapper.selectChoiceQuestionInfoByExamId(examId);
     }
+
+    /**
+     * 根据输入choiceQuestionId判断是否在考试或测试中
+     * 输入choiceQuestionId
+     * 输出true 或者false
+     *
+     * @param choiceQuestionId
+     */
+    public Boolean checkChoiceQuestionIsExamByChoiceQuestionId(int choiceQuestionId) {
+        Integer i=choiceQuestionMapper.selectChoiceQuestionIsExamByChoiceQuestionId(choiceQuestionId);
+        if(i!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

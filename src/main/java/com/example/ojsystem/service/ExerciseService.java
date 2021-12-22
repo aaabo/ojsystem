@@ -19,6 +19,13 @@ public interface ExerciseService {
      */
     public List<Exercise> checkExerciseInfo();
 
+    /**
+     * 根据习题id查询习题信息是否存在
+     * 输入exerciseId
+     * 输出int
+     */
+    public Boolean checkExerciseInfoIsExit(int exerciseId);
+
 
     /**
      * 修改选中的习题信息

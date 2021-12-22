@@ -99,4 +99,7 @@
     <select id="selectChoiceQuestionInfoByExamId" resultType="com.example.ojsystem.entity.ChoiceQuestion">
         select choiceQuestionId from examquestion,choicequestion where examquestion.examId=#{examId} and examquestion.examQuestionId=choicequestion.choiceQuestionId and examquestion.examQuestionType='choiceQuestion'
     </select>
+    <select id="selectChoiceQuestionIsExamByChoiceQuestionId" resultType="java.lang.Integer">
+        select questionId from examquestion,exam where examquestion.examQuestionType='choiceQuestion' and examquestion.questionId=#{choiceQuestionId} and examquestion.examId=exam.examId and exam.examStatus='Running'
+    </select>
 </mapper>

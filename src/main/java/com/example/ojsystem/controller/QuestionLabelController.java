@@ -76,7 +76,7 @@ public class QuestionLabelController {
      * 输入questionLabel
      * 成功输出true 失败输出false
      */
-    @RequestMapping(value="/modifyQuestionLabelInfo",method = RequestMethod.GET)
+    @RequestMapping(value="/modifyQuestionLabelInfo",method = RequestMethod.POST)
     public Object modifyQuestionLabelInfo(HttpServletRequest request){
         int i=0;
         QuestionLabel questionLabel=new QuestionLabel();

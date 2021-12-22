@@ -56,4 +56,11 @@ public interface ChoiceQuestionMapper {
      * 输出List<ChoiceQuestion>
      */
     public List<ChoiceQuestion> selectChoiceQuestionInfoByExamId(@Param("examId") int examId);
+
+    /**
+     * 根据输入choiceQuestionId判断是否在考试或测试中
+     * 输入choiceQuestionId
+     * 输出true 或者false
+     */
+    public Integer selectChoiceQuestionIsExamByChoiceQuestionId(int choiceQuestionId);
 }

@@ -54,4 +54,11 @@ public interface ChoiceQuestionService {
      * 输出List<ChoiceQuestion>
      */
     public List<ChoiceQuestion> checkChoiceQuestionInfoByExamId(int examId);
+
+    /**
+     * 根据输入choiceQuestionId判断是否在考试或测试中
+     * 输入choiceQuestionId
+     * 输出true 或者false
+     */
+    public Boolean checkChoiceQuestionIsExamByChoiceQuestionId(int choiceQuestionId);
 }

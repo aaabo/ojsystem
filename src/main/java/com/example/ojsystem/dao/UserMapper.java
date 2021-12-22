@@ -111,6 +111,6 @@ public interface UserMapper {
      * 输入userAccount
      * 输出UserId
      */
-    public int selectUserIdByUserAccount(@Param("userAccount") String userAccount);
+    public Integer selectUserIdByUserAccount(@Param("userAccount") String userAccount);
 
 }

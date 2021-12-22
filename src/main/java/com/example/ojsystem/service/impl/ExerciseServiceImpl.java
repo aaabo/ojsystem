@@ -46,6 +46,23 @@ public class ExerciseServiceImpl implements ExerciseService{
     }
 
     /**
+     * 根据习题id查询习题信息是否存在
+     * 输入exerciseId
+     * 输出int
+     *
+     * @param exerciseId
+     */
+    public Boolean checkExerciseInfoIsExit(int exerciseId) {
+        Integer i= exerciseMapper.selectExerciseInfoIsExit(exerciseId);
+        if(i!=null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
      * 修改选中的习题信息
      * 输入exercise
      * 输出int

@@ -38,6 +38,9 @@ public class UserGroupController {
 
         for(int o=0;o<userAccounts.size();o++){
             i=userGroupService.saveUserGroupInfo(groupId,userAccounts.get(o));
+            if(i==0){
+                return userAccounts.get(o);
+            }
         }
         if(i>0){
             return true;

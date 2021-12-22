@@ -23,6 +23,13 @@ public interface ExerciseMapper {
     public List<Exercise> selectExerciseInfo();
 
     /**
+     * 根据习题id查询习题信息是否存在
+     * 输入exerciseId
+     * 输出int
+     */
+    public Integer selectExerciseInfoIsExit(@Param("exerciseId") int exerciseId);
+
+    /**
      * 修改选中的习题信息
      * 输入exercise
      * 输出int

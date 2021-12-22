@@ -121,12 +121,13 @@ public class CompletionQuestionController {
         questionLabels.add(questionLabel);
         completionQuestion.setQuestionLabels(questionLabels);
         completionQuestions=completionQuestionService.checkCompletionQuestionBySearchInfo(completionQuestion,currentUserId);
-//        for(int i=0;i<completionQuestions1.size();i++){
-//            CompletionQuestion completionQuestion1=new CompletionQuestion();
-//            completionQuestion1=completionQuestionService.queryCompletionQuestionIdByCompletionQuestionId(completionQuestions1.get(i).getCompletionQuestionId());
-//            completionQuestions2.add(completionQuestion1);
-//        }
-        return completionQuestions;
+        //查询出来的选择题只有选中的一个标签 需要用对应的id查询全部的标签
+        for(int i=0;i<completionQuestions.size();i++){
+            CompletionQuestion completionQuestion1=new CompletionQuestion();
+            completionQuestion1=completionQuestionService.checkCompletionQuestionIdByCompletionQuestionId(completionQuestions.get(i).getCompletionQuestionId());
+            completionQuestions2.add(completionQuestion1);
+        }
+        return completionQuestions2;
     }
 
     /**

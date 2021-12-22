@@ -40,6 +40,9 @@
     <select id="selectExerciseDetailsInfoByExerciseId" resultType="com.example.ojsystem.entity.Exercise">
         select * from exercise where exerciseId=#{exerciseId}
     </select>
+    <select id="selectExerciseInfoIsExit" resultType="java.lang.Integer">
+        select exerciseId from exercise where exerciseId=#{exerciseId}
+    </select>
 
     <!--<select id="queryExerciseInfoByLabelIds" resultType="com.example.ojsystem.entity.Exercise">-->
         <!--SELECT * FROM exerciselabel WHERE labelId in-->

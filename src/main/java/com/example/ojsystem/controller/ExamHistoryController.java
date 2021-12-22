@@ -103,7 +103,7 @@ public class ExamHistoryController {
      * 输入examId
      * 输出List<ExamHistory>
      */
-    @RequestMapping(value="/queryExamHistoryInfo",method = RequestMethod.GET)
+    @RequestMapping(value="/queryExamHistoryInfo",method = RequestMethod.POST)
     public Object queryExamHistoryInfo(HttpServletRequest request){
         List<Point> points=new ArrayList<Point>();
         List<ExamHistory> examHistories=examHistoryService.checkExamHistoryInfo(Integer.valueOf(request.getParameter("examId")));
