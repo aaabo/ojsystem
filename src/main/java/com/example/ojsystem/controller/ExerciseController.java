@@ -166,4 +166,15 @@ public class ExerciseController {
 //        labels=JSON.parseArray(request.getParameter("labels"),Label.class);
 //        return exerciseService.queryExerciseInfoByFirstPoint(labels);
 //    }
+
+
+    /**
+     * 根据输入exerciseId判断是否在考试或测试中
+     * 输入exerciseId
+     * 输出true 或者false
+     */
+    @RequestMapping(value="/queryExerciseIsExamByExerciseId",method = RequestMethod.POST)
+    public Object queryExerciseIsExamByExerciseId(HttpServletRequest request){
+        return exerciseService.checkExerciseIsExamByExerciseId(Integer.valueOf(request.getParameter("exerciseId")));
+    }
 }

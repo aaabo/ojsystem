@@ -108,6 +108,22 @@ public class ExerciseServiceImpl implements ExerciseService{
     }
 
     /**
+     * 根据输入exerciseId判断是否在考试或测试中
+     * 输入exerciseId
+     * 输出true 或者false
+     *
+     * @param exerciseId
+     */
+    public Boolean checkExerciseIsExamByExerciseId(int exerciseId) {
+        Integer i=exerciseMapper.selectExerciseIsExamByExerciseId(exerciseId);
+        if(i!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
      * 根据习题标签查询对应的习题信息
      * 输入labelIds
      * 输出List<Exercise>

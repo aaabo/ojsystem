@@ -57,5 +57,11 @@ public interface ExerciseService {
      */
 //    public List<Exercise> queryExerciseInfoByFirstPoint(List<Label> labels);
 
+    /**
+     * 根据输入exerciseId判断是否在考试或测试中
+     * 输入exerciseId
+     * 输出true 或者false
+     */
+    public Boolean checkExerciseIsExamByExerciseId(int exerciseId);
 
 }

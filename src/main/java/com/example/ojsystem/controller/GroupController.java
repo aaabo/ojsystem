@@ -86,4 +86,16 @@ public class GroupController {
     public Object queryGroupInfo(HttpServletRequest request){
         return groupService.checkGroupInfo();
     }
+
+
+
+    /**
+     * 根据输入groupId判断是否在考试或测试中
+     * 输入groupId
+     * 输出true 或者false
+     */
+    @RequestMapping(value="/queryGroupIsExamByGroupId",method = RequestMethod.POST)
+    public Object queryGroupIsExamByGroupId(HttpServletRequest request){
+        return groupService.checkGroupIsExamByGroupId(Integer.valueOf(request.getParameter("groupId")));
+    }
 }

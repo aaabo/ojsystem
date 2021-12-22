@@ -131,4 +131,21 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
         return completionQuestionMapper.selectCompletionQuestionInfoByExamId(examId);
     }
 
+    /**
+     * 根据输入completionQuestionId判断是否在考试或测试中
+     * 输入completionQuestionId
+     * 输出true 或者false
+     *
+     * @param completionQuestionId
+     */
+    public Boolean checkCompletionQuestionIsExamByCompletionQuestionId(int completionQuestionId) {
+        Integer i=completionQuestionMapper.selectCompletionQuestionIsExamByCompletionQuestionId(completionQuestionId);
+        if(i!=null){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
 }

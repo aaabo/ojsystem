@@ -33,4 +33,11 @@ public interface GroupService {
      * 成功输出ist<Group>
      */
     public List<Group> checkGroupInfo();
+
+    /**
+     * 根据输入groupId判断是否在考试或测试中
+     * 输入groupId
+     * 输出true 或者false
+     */
+    public Boolean checkGroupIsExamByGroupId(int groupId);
 }

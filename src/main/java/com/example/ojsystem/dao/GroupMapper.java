@@ -35,4 +35,11 @@ public interface GroupMapper {
      * 成功输出ist<Group>
      */
     public List<Group> selectGroupInfo();
+
+    /**
+     * 根据输入groupId判断是否在考试或测试中
+     * 输入groupId
+     * 输出true 或者false
+     */
+    public Integer selectGroupIsExamByGroupId(@Param("groupId") int groupId);
 }

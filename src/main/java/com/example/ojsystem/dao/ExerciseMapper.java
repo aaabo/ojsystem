@@ -59,4 +59,12 @@ public interface ExerciseMapper {
      *
      */
 //    public List<Exercise> queryExerciseInfoByLabelIds(@Param("labels") List<Label> labels,@Param("number") int number);
+
+
+    /**
+     * 根据输入exerciseId判断是否在考试或测试中
+     * 输入exerciseId
+     * 输出true 或者false
+     */
+    public Integer selectExerciseIsExamByExerciseId(int exerciseId);
 }

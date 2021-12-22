@@ -54,4 +54,11 @@ public interface CompletionQuestionService {
      * 输出List<CompletionQuestion>
      */
     public List<CompletionQuestion> checkCompletionQuestionInfoByExamId(int examId);
+
+    /**
+     * 根据输入completionQuestionId判断是否在考试或测试中
+     * 输入completionQuestionId
+     * 输出true 或者false
+     */
+    public Boolean checkCompletionQuestionIsExamByCompletionQuestionId(int completionQuestionId);
 }

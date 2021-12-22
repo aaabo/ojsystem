@@ -140,4 +140,14 @@ public class CompletionQuestionController {
         return completionQuestionService.checkCompletionQuestionInfoByExamId(Integer.valueOf(request.getParameter("examId")));
     }
 
+    /**
+     * 根据输入completionQuestionId判断是否在考试或测试中
+     * 输入completionQuestionId
+     * 输出true 或者false
+     */
+    @RequestMapping(value="/queryCompletionQuestionIsExamByCompletionQuestionId",method = RequestMethod.POST)
+    public Object queryCompletionQuestionIsExamByCompletionQuestionId(HttpServletRequest request){
+        return completionQuestionService.checkCompletionQuestionIsExamByCompletionQuestionId(Integer.valueOf(request.getParameter("completionQuestionId")));
+    }
+
 }

@@ -58,4 +58,20 @@ public class GroupServiceImpl implements GroupService{
     public List<Group> checkGroupInfo() {
         return groupMapper.selectGroupInfo();
     }
+
+    /**
+     * 根据输入groupId判断是否在考试或测试中
+     * 输入groupId
+     * 输出true 或者false
+     *
+     * @param groupId
+     */
+    public Boolean checkGroupIsExamByGroupId(int groupId) {
+        Integer i=groupMapper.selectGroupIsExamByGroupId(groupId);
+        if(i!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

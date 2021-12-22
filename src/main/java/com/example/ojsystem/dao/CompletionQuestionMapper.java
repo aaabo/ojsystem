@@ -56,4 +56,11 @@ public interface CompletionQuestionMapper {
      * 输出List<CompletionQuestion>
      */
     public List<CompletionQuestion> selectCompletionQuestionInfoByExamId(@Param("examId") int examId);
+
+    /**
+     * 根据输入completionQuestionId判断是否在考试或测试中
+     * 输入completionQuestionId
+     * 输出true 或者false
+     */
+    public Integer selectCompletionQuestionIsExamByCompletionQuestionId(@Param("completionQuestionId") int completionQuestionId);
 }
