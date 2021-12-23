@@ -35,15 +35,15 @@ public class UserGroupController {
         List<String> userAccounts = new ArrayList<String>();
         userAccounts= JSON.parseArray(String.valueOf(jsonArray.get(0)), String.class);
         Integer groupId=Integer.parseInt(String.valueOf(jsonArray.get(1)));
-
+        List errorAccounts=new ArrayList();
         for(int o=0;o<userAccounts.size();o++){
             i=userGroupService.saveUserGroupInfo(groupId,userAccounts.get(o));
             if(i==0){
-                return userAccounts.get(o);
+                errorAccounts.add(userAccounts.get(o));
             }
         }
-        if(i>0){
-            return true;
+        if(errorAccounts.size()>0){
+            return errorAccounts;
         }else{
             return false;
         }
