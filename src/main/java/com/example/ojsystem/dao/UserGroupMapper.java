@@ -37,4 +37,11 @@ public interface UserGroupMapper {
      * 成功输入true 失败输出false
      */
     public Integer  selectUserIfInGroup(@Param("groupId") int groupId,@Param("userId")int userId);
+
+    /**
+     * 根据examId查询对应考试的全部用户信息
+     * 输入examId
+     * 输出List<User>
+     */
+    public List<User>  selectUserGroupInfoByExamId(@Param("examId")int examId);
 }

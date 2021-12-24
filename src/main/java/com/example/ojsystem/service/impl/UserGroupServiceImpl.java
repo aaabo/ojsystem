@@ -1,5 +1,6 @@
 package com.example.ojsystem.service.impl;
 
+import com.example.ojsystem.dao.ExamUserGroupHistoryMapper;
 import com.example.ojsystem.dao.UserGroupMapper;
 import com.example.ojsystem.dao.UserMapper;
 import com.example.ojsystem.entity.User;
@@ -15,6 +16,8 @@ public class UserGroupServiceImpl implements UserGroupService{
     UserGroupMapper userGroupMapper;
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    ExamUserGroupHistoryMapper examUserGroupHistoryMapper;
     /**
      * 获取组别的用户信息并添加
      * 输入groupId userAccount

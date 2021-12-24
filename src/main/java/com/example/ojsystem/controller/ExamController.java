@@ -75,7 +75,7 @@ public class ExamController {
 
 
     /**
-     * 查询全部的考试信息
+     * 查询全部的考试信息  //过时了好像
      * 输入无
      * 输出List<Exam>
      */

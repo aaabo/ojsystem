@@ -17,6 +17,9 @@
     <select id="selectUserIfInGroup" resultType="java.lang.Integer">
         SELECT userGroupId FROM `usergroup` where groupId=#{groupId} and userId=#{userId}
     </select>
+    <select id="selectUserGroupInfoByExamId" resultType="com.example.ojsystem.entity.User" parameterType="java.lang.Integer">
+        select * from usergroup,exam where exam.groupId=usergroup.groupId and exam.examId=#{examId}
+    </select>
 
 
 </mapper>

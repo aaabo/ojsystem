@@ -28,7 +28,7 @@
     </resultMap>
 
     <select id="selectExamRankById" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
-     select * from user,usergroup left join exam on exam.groupId=usergroup.groupId left join examhistory on usergroup.userId=examhistory.userId and examhistory.examId=exam.examId   where exam.examId=#{examId} and user.userId=usergroup.userId order by examhistory.examCompletionQuestionTotals+examhistory.examChoiceQuestionTotals+examhistory.examProgrammingTotals DESC
+      select * from user,examusergrouphistory left join exam on exam.groupId=examusergrouphistory.groupId and examusergrouphistory.examId=exam.examId left join examhistory on examusergrouphistory.userId=examhistory.userId and examhistory.examId=exam.examId   where exam.examId=#{examId} and user.userId=examusergrouphistory.userId order by examhistory.examCompletionQuestionTotals+examhistory.examChoiceQuestionTotals+examhistory.examProgrammingTotals DESC
     </select>
     <select id="selectExamHistoryInfoByUserId" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
          SELECT  user.userId,user.userName,examhistory.examChoiceQuestionTotals,examhistory.examProgrammingTotals,exam.examId,exam.examName,
@@ -39,8 +39,8 @@
         select examHistoryId from examhistory where userId=#{userId} and examId=#{examId}
     </select>
     <select id="selectExamUserJoinInfo" resultType="com.example.ojsystem.entity.ExamUserJoinTool" resultMap="BasExamUserJoinToolResultMap">
-             select count(*) as examUser,count(if(examhistory.examId is NULL,1,null)) as  examNotSubmitUser ,count(*)-count(if(examhistory.examId is NULL,1,null)) as examSubmitUser from usergroup
-         left join examhistory on usergroup.userId=examhistory.userId and examhistory.examId=#{examId} left join exam on exam.groupId=usergroup.groupId    where exam.examId=#{examId}
+             select count(*) as examUser,count(if(examhistory.examId is NULL,1,null)) as  examNotSubmitUser ,count(*)-count(if(examhistory.examId is NULL,1,null)) as examSubmitUser from examusergrouphistory
+         left join examhistory on examusergrouphistory.userId=examhistory.userId and examhistory.examId=#{examId} left join exam on exam.groupId=examusergrouphistory.groupId  and exam.examId=examusergrouphistory.examId   where exam.examId=#{examId}
     </select>
 
     <insert id="insertExamHistory" parameterType="com.example.ojsystem.entity.ExamHistory">

@@ -1,8 +1,12 @@
 package com.example.ojsystem.service.impl;
 
 import com.example.ojsystem.dao.ExamMapper;
+import com.example.ojsystem.dao.ExamUserGroupHistoryMapper;
+import com.example.ojsystem.dao.UserGroupMapper;
 import com.example.ojsystem.entity.Exam;
+import com.example.ojsystem.entity.User;
 import com.example.ojsystem.service.ExamService;
+import com.example.ojsystem.service.UserGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +16,10 @@ import java.util.List;
 public class ExamServiceImpl implements ExamService{
     @Autowired
     ExamMapper examMapper;
-
-
+    @Autowired
+    ExamUserGroupHistoryMapper examUserGroupHistoryMapper;
+    @Autowired
+    UserGroupMapper userGroupMapper;
     /**
      * 根据考试信息添加考试
      * 输入exam
@@ -22,6 +28,11 @@ public class ExamServiceImpl implements ExamService{
      * @param exam
      */
     public int saveExamInfo(Exam exam) {
+        //添加一个考试用户信息记录
+        List<User> users=userGroupMapper.selectUserGroupInfoByExamId(exam.getExamId());
+        for(int i=0;i<users.size();i++){
+            examUserGroupHistoryMapper.insertExamUserGroupHistoryInfo(exam.getExamId(),users.get(i).getUserId());
+        }
         return examMapper.insertExamInfo(exam);
     }
 
@@ -62,6 +73,13 @@ public class ExamServiceImpl implements ExamService{
      * @param exam
      */
     public int alterExamInfo(Exam exam) {
+        //删除考试用户信息
+        examUserGroupHistoryMapper.deleteExamUserGroupHistoryInfoByExamId(exam.getExamId());
+        //添加一个考试用户信息记录
+        List<User> users=userGroupMapper.selectUserGroupInfoByExamId(exam.getExamId());
+        for(int i=0;i<users.size();i++){
+            examUserGroupHistoryMapper.insertExamUserGroupHistoryInfo(exam.getExamId(),users.get(i).getUserId());
+        }
         return examMapper.updateExamInfo(exam);
     }
 

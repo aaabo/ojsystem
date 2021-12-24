@@ -43,10 +43,10 @@
       select * from exam,`group`,usergroup where exam.groupId=`group`.groupId and `group`.groupId=usergroup.groupId and usergroup.userId=#{userId} ORDER BY (case exam.examStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
     <select id="selectUserQueryExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
-         select * from exam,`group` where exam.userId=#{userId} and exam.groupId=group.groupId ORDER BY (case exam.examStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
+         select * from exam,examusergrouphistory where exam.userId=#{userId} and exam.groupId=examusergrouphistory.groupId and exam.examId =examusergrouphistory.examId ORDER BY (case exam.examStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
     <select id="selectExamInfo" resultType="com.example.ojsystem.entity.Exam" resultMap="BaseExamResultMap">
-         select * from exam,user,`group` where exam.userId=user.userId and exam.groupId=`group`.groupId ORDER BY (case exam.examStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
+         select * from exam,user,examusergrouphistory where exam.userId=user.userId and exam.groupId=examusergrouphistory.groupId and exam.examId =examusergrouphistory.examId ORDER BY (case exam.examStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>
     <select id="selectExamInfoByExamId" resultType="com.example.ojsystem.entity.Exam" parameterType="java.lang.Integer">
         select * from exam where examId=#{examId}

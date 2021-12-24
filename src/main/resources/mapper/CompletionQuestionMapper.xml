@@ -72,7 +72,7 @@
         select choiceQuestionId from examquestion,completionquestion where examquestion.examId=#{examId} and examquestion.examQuestionId=completionquestion.completionQuestionId and examquestion.examQuestionType='completionQuestion'
     </select>
     <select id="selectCompletionQuestionIsExamByCompletionQuestionId" resultType="java.lang.Integer">
-                select questionId from examquestion,exam where examquestion.examQuestionType='completionQuestion' and examquestion.questionId=#{completionQuestionId} and examquestion.examId=exam.examId and exam.examStatus='Running'
+                select questionId from examquestion,exam where examquestion.examQuestionType='completionQuestion' and examquestion.questionId=#{completionQuestionId} and examquestion.examId=exam.examId and (exam.examStatus='Running' or exam.examStatus='Pending')
     </select>
 
 

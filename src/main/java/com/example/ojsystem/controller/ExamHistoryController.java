@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 @RestController
@@ -39,7 +40,9 @@ public class ExamHistoryController {
      */
     @RequestMapping(value="/queryExamHistoryInfoByUserId",method = RequestMethod.POST)
     public Object queryExamHistoryInfoByUserId(HttpServletRequest request){
-        return  examHistoryService.checkExamHistoryInfoByUserId(Integer.valueOf(request.getParameter("userId")));
+        HttpSession session=request.getSession();
+
+        return  examHistoryService.checkExamHistoryInfoByUserId((Integer)(session.getAttribute("userId")));
     }
 
     /**

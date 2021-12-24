@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ojsystem.dao.ExamUserGroupHistoryMapper">
+
+
+    <insert id="insertExamUserGroupHistoryInfo" >
+        insert into examusergrouphistory(examId,groupId,userId) values(#{examId},(select groupId from exam where examId=#{examId}),#{userId})
+    </insert>
+    <delete id="deleteExamUserGroupHistoryInfoByExamId">
+        delete from examusergrouphistory where where examId=#{examId}
+    </delete>
+</mapper>
