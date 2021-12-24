@@ -9,6 +9,7 @@ import com.example.ojsystem.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,6 +37,7 @@ public class GroupServiceImpl implements GroupService{
      * @param groupId
      */
     public int cancelGroupInfo(int groupId) {
+
         return groupMapper.deleteGroupInfo(groupId);
     }
 
@@ -56,7 +58,19 @@ public class GroupServiceImpl implements GroupService{
      * 成功输出ist<Group>
      */
     public List<Group> checkGroupInfo() {
-        return groupMapper.selectGroupInfo();
+        List<Group> groups=new ArrayList<Group>();
+        groups=groupMapper.selectGroupInfo();
+        for(int i=0;i<groups.size();i++){
+            Group group=groups.get(i);
+            Integer o=groupMapper.selectGroupIsExamByGroupId(group.getGroupId());
+            if(o!=null){
+                group.setIsExam(true);
+            }else{
+                group.setIsExam(false);
+            }
+        }
+        return groups;
+
     }
 
     /**

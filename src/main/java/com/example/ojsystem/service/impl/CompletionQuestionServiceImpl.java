@@ -117,7 +117,15 @@ public class CompletionQuestionServiceImpl implements CompletionQuestionService{
      * @param completionQuestionId
      */
     public CompletionQuestion checkCompletionQuestionIdByCompletionQuestionId(int completionQuestionId) {
-        return completionQuestionMapper.selectCompletionQuestionIdByCompletionQuestionId(completionQuestionId);
+        Integer i=completionQuestionMapper.selectCompletionQuestionIsExamByCompletionQuestionId(completionQuestionId);
+        CompletionQuestion completionQuestion=completionQuestionMapper.selectCompletionQuestionIdByCompletionQuestionId(completionQuestionId);
+        if(i!=null){
+            completionQuestion.setIsExam(true);
+        }else{
+            completionQuestion.setIsExam(false);
+        }
+        return completionQuestion;
+
     }
 
     /**

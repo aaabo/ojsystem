@@ -25,7 +25,7 @@
         select * from `group`,user where user.userId=`group`.userId
     </select>
     <select id="selectGroupIsExamByGroupId" resultType="java.lang.Integer">
-        select `group`.groupId from `group`,exam where `group`.groupId=exam.groupId and exam.examStatus='Running' and groupId=#{groupId}
+        select `group`.groupId from `group`,exam where `group`.groupId=exam.groupId and exam.examStatus='Running' and `group`.groupId=#{groupId}
     </select>
 
 

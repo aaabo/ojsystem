@@ -27,7 +27,7 @@ public interface ExamHistoryMapper {
      * 输入userId,examId
      * 输出List<ExamHistory>
      */
-    public int selectUserIfJoinExam(@Param("userId") int userId,@Param("examId") int examId);
+    public Integer selectUserIfJoinExam(@Param("userId") int userId,@Param("examId") int examId);
 
     /**
      * 查询考试用户参加情况

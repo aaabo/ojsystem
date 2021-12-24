@@ -8,6 +8,9 @@
     <insert id="insertCompletionQuestionLabelInfo">
              insert into completionquestionlabel(completionQuestionId,questionLabelId) VALUES(#{completionQuestionId},#{questionLabelId})
     </insert>
+    <update id="updateCompletionQuestionLabelInfoToNullByQuestionLabelId">
+                update completionquestionlabel set questionLabelId=1111 where questionLabelId=#{questionLabelId}
+    </update>
     <delete id="deleteCompletionQuestionLabelInfoByCompletionQuestionId">
         delete from completionquestionlabel where completionQuestionId=#{completionQuestionId}
     </delete>

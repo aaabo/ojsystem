@@ -3,7 +3,7 @@ package com.example.ojsystem.entity;
 public class Group {
     private int groupId;
     private String groupName;
-
+    private Boolean isExam;
     private User user;
 
 
@@ -31,6 +31,13 @@ public class Group {
         this.user = user;
     }
 
+    public Boolean getIsExam() {
+        return isExam;
+    }
+
+    public void setIsExam(Boolean isExam) {
+        this.isExam = isExam;
+    }
     @Override
     public String toString() {
         return "Group{" +

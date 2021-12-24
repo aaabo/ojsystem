@@ -56,7 +56,7 @@
 
     <select id="selectExerciseIsExamByExerciseId" resultType="java.lang.Integer">
       select exercise.exerciseId from exercise,examquestion,exam where  exercise.exerciseId=#{exerciseId} and
-      exercise.exerciseId=examquestion.questionId and exam.examStatus='Running' and examquestion.examQuestionType='programmingQuestion'
+      exercise.exerciseId=examquestion.questionId and exam.examStatus='Running' and examquestion.examQuestionType='programmingQuestion' and examquestion.examId=exam.examId
     </select>
 
 </mapper>

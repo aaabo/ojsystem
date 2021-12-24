@@ -36,7 +36,7 @@
          FROM examhistory,user,exam where examhistory.examId =exam.examId  and user.userId=examhistory.userId and user.userId=#{userId} order by total desc
     </select>
     <select id="selectUserIfJoinExam" resultType="java.lang.Integer">
-        select * from examhistory where userId=#{userId} and examId=#{examId}
+        select examHistoryId from examhistory where userId=#{userId} and examId=#{examId}
     </select>
     <select id="selectExamUserJoinInfo" resultType="com.example.ojsystem.entity.ExamUserJoinTool" resultMap="BasExamUserJoinToolResultMap">
              select count(*) as examUser,count(if(examhistory.examId is NULL,1,null)) as  examNotSubmitUser ,count(*)-count(if(examhistory.examId is NULL,1,null)) as examSubmitUser from usergroup

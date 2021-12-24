@@ -138,7 +138,7 @@ public class ExamController {
 
 
     /**
-     * 删除考试信息
+     * 删除考试信息  需要级联删除
      * 输入examId
      * 输出成功返回true 失败返回false
      */

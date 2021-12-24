@@ -8,6 +8,9 @@
     <insert id="insertExerciseLabelInfo" parameterType="java.lang.Integer">
         insert into exercisequestionlabel(exerciseId,questionLabelId) values(#{exerciseId},#{questionLabelId})
     </insert>
+    <update id="updateExerciseLabelInfoToNullByQuestionLabelId">
+        update exercisequestionlabel set questionLabelId=1111 where questionLabelId=#{questionLabelId}
+    </update>
     <delete id="deleteExerciseLabelInfoByExerciseId" parameterType="java.lang.Integer">
         delete from exercisequestionlabel where exerciseId=#{exerciseId}
     </delete>

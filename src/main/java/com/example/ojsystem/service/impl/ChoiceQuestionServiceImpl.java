@@ -101,7 +101,15 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService{
      * @param choiceQuestionId
      */
     public ChoiceQuestion checkChoiceQuestionInfoByChoiceQuestionId(int choiceQuestionId) {
-        return choiceQuestionMapper.selectChoiceQuestionInfoByChoiceQuestionId(choiceQuestionId);
+        Integer i=choiceQuestionMapper.selectChoiceQuestionIsExamByChoiceQuestionId(choiceQuestionId);
+        ChoiceQuestion choiceQuestion=choiceQuestionMapper.selectChoiceQuestionInfoByChoiceQuestionId(choiceQuestionId);
+        if(i!=null){
+            choiceQuestion.setIsExam(true);
+        }else{
+            choiceQuestion.setIsExam(false);
+        }
+
+        return choiceQuestion;
     }
 
     /**

@@ -42,7 +42,19 @@ public class ExerciseServiceImpl implements ExerciseService{
      * 输出List<Exercise>
      */
     public List<Exercise> checkExerciseInfo() {
-        return exerciseMapper.selectExerciseInfo();
+
+        List<Exercise> exercises=new ArrayList<Exercise>();
+        exercises=exerciseMapper.selectExerciseInfo();
+        for(int i=0;i<exercises.size();i++){
+            Exercise exercise=exercises.get(i);
+            Integer o=exerciseMapper.selectExerciseIsExamByExerciseId(exercise.getExerciseId());
+            if(o!=null){
+                exercise.setIsExam(true);
+            }else{
+                exercise.setIsExam(false);
+            }
+        }
+        return exercises;
     }
 
     /**

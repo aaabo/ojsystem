@@ -18,4 +18,11 @@ public interface CompletionQuestionLabelMapper {
      * 成功输出true 失败输出false
      */
     public int deleteCompletionQuestionLabelInfoByCompletionQuestionId(@Param("completionQuestionId") int completionQuestionId);
+
+    /**
+     * 在标签被删除时级联删除对应的填空题标签并修改为无标签状态
+     * 输入questionLabelId
+     * 成功输出true 失败输出false
+     */
+    public int updateCompletionQuestionLabelInfoToNullByQuestionLabelId(@Param("questionLabelId") int questionLabelId);
 }

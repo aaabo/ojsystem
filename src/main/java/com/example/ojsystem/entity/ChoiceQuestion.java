@@ -12,7 +12,7 @@ public class ChoiceQuestion {
     private String choiceQuestionCorrectOption;
     private String choiceQuestionDifficulty;
     private Boolean isPrivate;
-
+    private Boolean isExam;
     private User user;
     private List<QuestionLabel> questionLabels;
 
@@ -102,6 +102,16 @@ public class ChoiceQuestion {
 
     public void setQuestionLabels(List<QuestionLabel> questionLabels) {
         this.questionLabels = questionLabels;
+    }
+
+
+
+    public Boolean getIsExam() {
+        return isExam;
+    }
+
+    public void setIsExam(Boolean isExam) {
+        this.isExam = isExam;
     }
 
     @Override

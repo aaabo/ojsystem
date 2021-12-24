@@ -26,7 +26,7 @@ public interface ExamHistoryService {
      * 输入userId,examId
      * 输出List<ExamHistory>
      */
-    public int checkUserIfJoinExam(int userId,int examId);
+    public Boolean checkUserIfJoinExam(int userId,int examId);
     /**
      * 查询考试用户参加情况
      * 输入examId

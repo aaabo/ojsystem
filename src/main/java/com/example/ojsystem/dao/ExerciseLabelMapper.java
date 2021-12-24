@@ -18,4 +18,11 @@ public interface ExerciseLabelMapper {
      * 成功输入true 失败输出false
      */
     public int deleteExerciseLabelInfoByExerciseId(@Param("exerciseId") int exerciseId);
+
+    /**
+     * 在标签被删除时级联删除对应的编程题标签并修改为无标签状态
+     * 输入questionLabelId
+     * 成功输出true 失败输出false
+     */
+    public int updateExerciseLabelInfoToNullByQuestionLabelId(@Param("questionLabelId") int questionLabelId);
 }

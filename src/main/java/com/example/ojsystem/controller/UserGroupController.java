@@ -88,15 +88,10 @@ public class UserGroupController {
      */
     @RequestMapping(value="/queryUserIfInGroup",method = RequestMethod.POST)
     public Object  queryUserIfInGroup(HttpServletRequest request){
-        int i=0;
         int userId=(Integer)request.getSession().getAttribute("userId");
         int groupId=Integer.valueOf(request.getParameter("groupId"));
-        i=userGroupService.checkUserIfInGroup(groupId,userId);
 
-        if(i>0){
-            return true;
-        }else{
-            return false;
-        }
+        return userGroupService.checkUserIfInGroup(groupId,userId);
+
     }
 }

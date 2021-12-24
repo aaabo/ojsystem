@@ -7,6 +7,7 @@ public class CompletionQuestion {
     private String completionQuestionDifficulty;
     private String completionQuestionDescription;
     private Boolean isPrivate;
+    private Boolean isExam;
 
     private User user;
     private List<CompletionQuestionAnswer> completionQuestionAnswers;
@@ -70,7 +71,13 @@ public class CompletionQuestion {
         this.user = user;
     }
 
+    public Boolean getIsExam() {
+        return isExam;
+    }
 
+    public void setIsExam(Boolean isExam) {
+        this.isExam = isExam;
+    }
 
     @Override
     public String toString() {
@@ -79,6 +86,7 @@ public class CompletionQuestion {
                 ", completionQuestionDifficulty='" + completionQuestionDifficulty + '\'' +
                 ", completionQuestionDescription='" + completionQuestionDescription + '\'' +
                 ", isPrivate=" + isPrivate +
+                ", isExam=" + isExam +
                 ", user=" + user +
                 ", completionQuestionAnswers=" + completionQuestionAnswers +
                 ", questionLabels=" + questionLabels +

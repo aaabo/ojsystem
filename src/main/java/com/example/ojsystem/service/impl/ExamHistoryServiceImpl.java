@@ -44,8 +44,13 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
      * @param userId
      * @param examId
      */
-    public int checkUserIfJoinExam(int userId, int examId) {
-        return examHistoryMapper.selectUserIfJoinExam(userId,examId);
+    public Boolean checkUserIfJoinExam(int userId, int examId) {
+        Integer i=examHistoryMapper.selectUserIfJoinExam(userId,examId);
+        if(i!=null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

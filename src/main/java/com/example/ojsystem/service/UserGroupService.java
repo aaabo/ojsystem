@@ -32,5 +32,5 @@ public interface UserGroupService {
      * 输入groupId和userId
      * 成功输入true 失败输出false
      */
-    public Integer  checkUserIfInGroup(int groupId,int userId);
+    public Boolean  checkUserIfInGroup(int groupId,int userId);
 }

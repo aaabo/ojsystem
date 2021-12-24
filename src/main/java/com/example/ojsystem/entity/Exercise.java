@@ -12,7 +12,7 @@ public class Exercise {
     private String exerciseOutPut;
     private  String exerciseSampleInput;
     private  String exerciseSampleOutput;
-
+    private Boolean isExam;
     private QuestionLabel questionLabel;
 
     public Exercise(){
@@ -103,6 +103,13 @@ public class Exercise {
         this.questionLabel = questionLabel;
     }
 
+    public Boolean getIsExam() {
+        return isExam;
+    }
+
+    public void setIsExam(Boolean isExam) {
+        this.isExam = isExam;
+    }
     @Override
     public String toString() {
         return "Exercise{" +

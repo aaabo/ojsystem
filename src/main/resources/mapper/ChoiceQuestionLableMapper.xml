@@ -8,6 +8,9 @@
     <insert id="insertChoiceQuestionLabelInfo">
         insert into choicequestionlabel(choiceQuestionId,questionLabelId) VALUES(#{choiceQuestionId},#{questionLabelId})
     </insert>
+    <update id="updateChoiceQuestionLabelInfoToNullByQuestionLabelId">
+        update choicequestionlabel set questionLabelId=1111 where questionLabelId=#{questionLabelId}
+    </update>
     <delete id="deleteChoiceQuestionLabelInfoByChoiceQuestionId">
         delete from choicequestionlabel where choiceQuestionId=#{choiceQuestionId}
     </delete>

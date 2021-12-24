@@ -54,7 +54,7 @@ public class QuestionLabelController {
     }
 
     /**
-     * 删除对应的问题标签信息
+     * 删除对应的问题标签信息  级联删除选择 填空 编程的标签
      * 输入questionLabelId
      * 成功输出true 失败输出false
      */

@@ -62,8 +62,13 @@ public class UserGroupServiceImpl implements UserGroupService{
      * @param groupId
      * @param userId
      */
-    public Integer checkUserIfInGroup(int groupId, int userId) {
-        return userGroupMapper.selectUserIfInGroup(groupId,userId);
+    public Boolean checkUserIfInGroup(int groupId, int userId) {
+        Integer i=userGroupMapper.selectUserIfInGroup(groupId,userId);
+        if(i!=null){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

@@ -32,7 +32,7 @@
         update test set testStatus=#{test.testStatus} where testId=#{test.testId}
     </update>
     <delete id="deleteTestInfoByTestId" parameterType="java.lang.Integer">
-        delete from test where testId=#{test.testId}
+        delete from test where testId=#{testId}
     </delete>
     <select id="selectTestInfoByTestStatus" resultMap="BaseTestResultMap">
         SELECT * FROM test ORDER BY (case testStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC

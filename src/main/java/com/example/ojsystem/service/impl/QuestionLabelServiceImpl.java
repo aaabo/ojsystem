@@ -1,6 +1,6 @@
 package com.example.ojsystem.service.impl;
 
-import com.example.ojsystem.dao.QuestionLabelMapper;
+import com.example.ojsystem.dao.*;
 import com.example.ojsystem.entity.QuestionLabel;
 import com.example.ojsystem.service.QuestionLabelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,12 @@ import java.util.List;
 public class QuestionLabelServiceImpl implements QuestionLabelService{
     @Autowired
     QuestionLabelMapper questionLabelMapper;
-
+    @Autowired
+    ChoiceQuestionLabelMapper choiceQuestionLabelMapper;
+    @Autowired
+    CompletionQuestionLabelMapper completionQuestionLabelMapper;
+    @Autowired
+    ExerciseLabelMapper exerciseLabelMapper;
     /**
      * 获取问题标签信息并添加
      * 输入questionLabel
@@ -41,6 +46,9 @@ public class QuestionLabelServiceImpl implements QuestionLabelService{
      * @param questionLabelId
      */
     public int cancelQuestionLabelInfo(int questionLabelId) {
+        choiceQuestionLabelMapper.updateChoiceQuestionLabelInfoToNullByQuestionLabelId(questionLabelId);
+        completionQuestionLabelMapper.updateCompletionQuestionLabelInfoToNullByQuestionLabelId(questionLabelId);
+        exerciseLabelMapper.updateExerciseLabelInfoToNullByQuestionLabelId(questionLabelId);
         return questionLabelMapper.deleteQuestionLabelInfo(questionLabelId);
     }
 
