@@ -28,12 +28,13 @@ public class ExamServiceImpl implements ExamService{
      * @param exam
      */
     public int saveExamInfo(Exam exam) {
+        int o=examMapper.insertExamInfo(exam);
         //添加一个考试用户信息记录
         List<User> users=userGroupMapper.selectUserGroupInfoByExamId(exam.getExamId());
         for(int i=0;i<users.size();i++){
             examUserGroupHistoryMapper.insertExamUserGroupHistoryInfo(exam.getExamId(),users.get(i).getUserId());
         }
-        return examMapper.insertExamInfo(exam);
+        return o;
     }
 
     /**
@@ -73,6 +74,7 @@ public class ExamServiceImpl implements ExamService{
      * @param exam
      */
     public int alterExamInfo(Exam exam) {
+        int o=examMapper.updateExamInfo(exam);
         //删除考试用户信息
         examUserGroupHistoryMapper.deleteExamUserGroupHistoryInfoByExamId(exam.getExamId());
         //添加一个考试用户信息记录
@@ -80,7 +82,7 @@ public class ExamServiceImpl implements ExamService{
         for(int i=0;i<users.size();i++){
             examUserGroupHistoryMapper.insertExamUserGroupHistoryInfo(exam.getExamId(),users.get(i).getUserId());
         }
-        return examMapper.updateExamInfo(exam);
+        return o;
     }
 
     /**
