@@ -162,7 +162,7 @@ public class UserController {
     }
 
     /**
-     * 查询自己的学生信息
+     * 查询自己的信息
      * 输入userId
      * 输出User
      */

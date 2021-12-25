@@ -6,7 +6,7 @@
 
 
     <insert id="insertExamUserGroupHistoryInfo" >
-        insert into examusergrouphistory(examId,groupId,groupName,userId) values(#{examId},(select groupId from exam where examId=#{examId}),(select groupName from `group` where examId=#{examId}),#{userId})
+        insert into examusergrouphistory(examId,groupId,groupName,userId) values(#{examId},(select groupId from exam where examId=#{examId}),(select groupName from `group` where groupId=(select groupId from exam where examId=#{examId})),#{userId})
     </insert>
     <delete id="deleteExamUserGroupHistoryInfoByExamId">
         delete from examusergrouphistory where  examId=#{examId}
