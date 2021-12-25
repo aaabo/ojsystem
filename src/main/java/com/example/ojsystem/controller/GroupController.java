@@ -49,6 +49,7 @@ public class GroupController {
         int groupId=Integer.valueOf(request.getParameter("groupId"));
         int i=0;
         i=groupService.cancelGroupInfo(groupId);
+
         if(i>0){
             return true;
         }

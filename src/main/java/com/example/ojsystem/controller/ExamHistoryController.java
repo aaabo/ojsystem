@@ -40,9 +40,9 @@ public class ExamHistoryController {
      */
     @RequestMapping(value="/queryExamHistoryInfoByUserId",method = RequestMethod.POST)
     public Object queryExamHistoryInfoByUserId(HttpServletRequest request){
-        HttpSession session=request.getSession();
 
-        return  examHistoryService.checkExamHistoryInfoByUserId((Integer)(session.getAttribute("userId")));
+
+        return  examHistoryService.checkExamHistoryInfoByUserId(Integer.valueOf(request.getParameter("userId")));
     }
 
     /**

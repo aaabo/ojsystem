@@ -3,13 +3,31 @@ package com.example.ojsystem.entity;
 public class ExamProgrammingQuestionHistory {
     private int examProgrammingQuestionHistoryId;
     private  String examProgrammingQuestionResult;
+
+
+
+    private  float examProgrammingQuestionResultScore;
     private String examProgrammingQuestionCode;
 
     private CompletionQuestion completionQuestion;
     private  User user;
+    private ExamQuestion examQuestion;
 
+    public float getExamProgrammingQuestionResultScore() {
+        return examProgrammingQuestionResultScore;
+    }
 
+    public void setExamProgrammingQuestionResultScore(float examProgrammingQuestionResultScore) {
+        this.examProgrammingQuestionResultScore = examProgrammingQuestionResultScore;
+    }
 
+    public ExamQuestion getExamQuestion() {
+        return examQuestion;
+    }
+
+    public void setExamQuestion(ExamQuestion examQuestion) {
+        this.examQuestion = examQuestion;
+    }
 
     public ExamProgrammingQuestionHistory(){
 

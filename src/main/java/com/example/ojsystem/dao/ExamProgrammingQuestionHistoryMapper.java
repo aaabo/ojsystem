@@ -18,7 +18,7 @@ public interface ExamProgrammingQuestionHistoryMapper {
      * 输入examQuestionId,userId
      * 输出examProgrammingQuestionId
      */
-    public int selectExamProgrammingQuestionHistoryByExamQuestionIdAndUserId(@Param("examQuestionId") int examQuestionId,@Param("userId") int userId);
+    public Integer selectExamProgrammingQuestionHistoryByExamQuestionIdAndUserId(@Param("examQuestionId") int examQuestionId,@Param("userId") int userId);
 
 
     /**
@@ -27,5 +27,10 @@ public interface ExamProgrammingQuestionHistoryMapper {
      * 输出int
      */
     public int updateExamProgrammingQuestionHistoryByExamProgrammingQuestionId(@Param("examProgrammingQuestionHistory") ExamProgrammingQuestionHistory examProgrammingQuestionHistory);
-
+    /**
+     查看用户提交过的考试编程题结果
+     输入examQuestionId,userId
+     输出examProgrammingQuestionResult
+     **/
+    public String selectExamProgrammingQuestionResultHistoryByExamQuestionIdAndUserId(@Param("examQuestionId") int examQuestionId,@Param("userId") int userId);
 }

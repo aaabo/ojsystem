@@ -32,25 +32,29 @@ public class JudgerC       //执行前 启动docker容器 82092ddcabb6 ！！！
             System.out.println("容器："+line);   //容器名称
         }
         process.waitFor();
-        System.out.println(process.exitValue());
-        readErrFile();
+        System.out.println("程序结束状态码："+process.exitValue());
         String ifError=readErrFile();      //读取编译报错文件
-        System.out.println(ifError+"\nerror文件长度:"+ifError.length());   //报错文件内容
-        System.out.println("running可执行文件");
+
         File test=new File("/home/zk/docker/gcc_docker/myapp"); //可执行文件
         long compileStart=System.currentTimeMillis();
         while (!test.exists()&&ifError.length()==0){    //等待可执行文件的存在
+            ifError=readErrFile();
             long compileEnd=System.currentTimeMillis();
-            if(compileEnd-compileStart>5000)
+            if(compileEnd-compileStart>2000) {
+                System.out.println("System Error!!");
                 break;
+            }
         }
+        System.out.println(ifError+"\nerror文件长度:"+ifError.length());   //报错文件内容
 
         if(test.exists()) {     //可执行文件存在，判断代码
-            System.out.println("file exists");
+            System.out.println("appFile exists");
             //Runtime.getRuntime().exec("chmod 777 /home/zk/docker/gcc_docker/myapp");    //可执行文件加权
             String result = null; //代码运行结果
             int limitTime = 3;    //代码单次运行时间限制
             float solved=exerciseAnswer.length;     //测试用例通过率undefined
+            if(exerciseAnswer.length==0)
+                System.out.println("对应答案不存在!!!");
             for(int i=0;i<exerciseAnswer.length;i++)
             {
                 String in=exerciseAnswer[i].getExerciseAnswerInput();       //测试用例输入数据
@@ -87,12 +91,12 @@ public class JudgerC       //执行前 启动docker容器 82092ddcabb6 ！！！
                         System.out.println("答案正确--耗时" + runningTime + "ms");
                         CodeResult = "accept";
                     } else if (runningTime <= limitTime * 1000) {
-                        System.out.println("答案错误--耗时" + runningTime + "ms");
-                        CodeResult = "wrong answer"+","+i/solved;
+                        System.out.println("答案错误--耗时" + runningTime + "ms");        //答案错误+通过率+错误用例
+                        CodeResult = "wrong answer"+","+i/solved+","+"用例输入:"+in+"、用例输出:"+answer+"、您的输出:"+result;
                         break;
                     } else {
-                        System.out.println("运行超时--耗时" + runningTime + "ms");
-                        CodeResult = "time-limit exceeded"+","+i/solved;
+                        System.out.println("运行超时--耗时" + runningTime + "ms");    //运行超市+通过率+错误用例+耗时
+                        CodeResult = "time-limit exceeded"+","+i/solved+","+"用例输入:"+in+"、用例输出:"+answer+"、您的输出:"+result+","+runningTime;
                         break;
                     }
                     //System.out.println("开始时间："+startTime+"  结束时间:"+endTime);
@@ -108,16 +112,18 @@ public class JudgerC       //执行前 启动docker容器 82092ddcabb6 ！！！
 
         }else if(ifError.length()!=0){
             System.out.println("编译错误！！！");
-            CodeResult="compile error";
+            CodeResult="compile error"+","+ifError;     //编译错误+错误信息
+            return;
         }else {
             if(readErrFile().length()!=0){      //??error文件未读出  unknow...
-                CodeResult="compile error";
+                CodeResult="compile error"+","+ifError;
                 System.out.println();
             }
             else {
-                System.out.println("系统错误");
-                CodeResult = "not compile";
+                System.out.println("系统错误!!请检查运行环境");
+                CodeResult = "system error!";
             }
+            return;
         }
     }
 
@@ -174,30 +180,31 @@ public class JudgerC       //执行前 启动docker容器 82092ddcabb6 ！！！
         }
     }
     private static String readErrFile(){    //读取error文件（编译错误信息重定向文件）
-        FileInputStream fis=null;
-        String s=null;
-        try{
-            fis=new FileInputStream("/home/zk/docker/gcc_docker/error.txt");
-            byte[] data=new byte[4096];
-            int i=0,n= fis.read();
-            while (n!=-1){
-                data[i]=(byte) n;
-                i++;
-                n=fis.read();
+        File file = new File("/home/zk/docker/gcc_docker/error.txt");
+        BufferedReader reader = null;
+        String tempString = null,s="";
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            while ((tempString = reader.readLine()) != null) {
+                //System.out.println("Line"+ line + ":" +tempString);
+                s+=tempString+"\n";
             }
-            s=new String(data,0,i);
-            return s;
-        }catch (Exception e){
+            reader.close();
+            return  s;
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }finally {
-            try{
-                assert fis != null;
-                fis.close();
-            }catch (Exception e) {
-                e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            if(reader != null){
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        return null;
+        return  null;
     }
 //    public Connection getConnection() { // 建立返回值为Connection的方法
 //        try { // 加载数据库驱动类

@@ -34,6 +34,9 @@
     <delete id="deleteTestInfoByTestId" parameterType="java.lang.Integer">
         delete from test where testId=#{testId}
     </delete>
+    <delete id="deleteTestInfoByGroupId">
+         delete from test where groupId=#{groupId}
+    </delete>
     <select id="selectTestInfoByTestStatus" resultMap="BaseTestResultMap">
         SELECT * FROM test ORDER BY (case testStatus when 'Pending' then 3 when 'Running' then 2 else 1 end) DESC
     </select>

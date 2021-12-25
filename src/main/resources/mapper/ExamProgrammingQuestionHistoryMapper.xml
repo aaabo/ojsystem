@@ -14,17 +14,19 @@
 
 
     <insert id="insertExamProgrammingQuestionHistory" parameterType="com.example.ojsystem.entity.ExamProgrammingQuestionHistory">
-         insert into examprogrammingquestionhistory(examQuestionId,userId,examProgrammingQuestionResult,examProgrammingCode)
-          values(#{examProgrammingQuestionHistory.examQuestion.examQuestionId},#{examProgrammingQuestionHistory.user.userId},
-          #{examProgrammingQuestionHistory.examProgrammingQuestionResult},#{examProgrammingQuestionHistory.examProgrammingCode})
+        insert into examprogrammingquestionhistory(examQuestionId,userId,examProgrammingQuestionResult,examProgrammingQuestionCode,examProgrammingQuestionResultScore)
+        values(#{examProgrammingQuestionHistory.examQuestion.examQuestionId},#{examProgrammingQuestionHistory.user.userId},
+        #{examProgrammingQuestionHistory.examProgrammingQuestionResult},#{examProgrammingQuestionHistory.examProgrammingQuestionCode},#{examProgrammingQuestionHistory.examProgrammingQuestionResultScore})
     </insert>
     <update id="updateExamProgrammingQuestionHistoryByExamProgrammingQuestionId">
-          update examprogrammingquestionhistory set examProgrammingQuestionResult=#{examProgrammingQuestionHistory.examProgrammingQuestionResult},examProgrammingQuestionResult=#{examProgrammingQuestionHistory.examProgrammingQuestionResult}
-          where examProgrammingQuestionHistoryId=#{examProgrammingQuestionHistory.examProgrammingQuestionHistoryId}
+        update examprogrammingquestionhistory set examProgrammingQuestionResult=#{examProgrammingQuestionHistory.examProgrammingQuestionResult},examProgrammingQuestionResult=#{examProgrammingQuestionHistory.examProgrammingQuestionResult}
+        where examProgrammingQuestionHistoryId=#{examProgrammingQuestionHistory.examProgrammingQuestionHistoryId}
     </update>
     <select id="selectExamProgrammingQuestionHistoryByExamQuestionIdAndUserId" resultType="java.lang.Integer">
         select examProgrammingQuestionHistoryId from examprogrammingquestionhistory where examQuestionId=#{examQuestionId} and userId=#{userId}
     </select>
-
+    <select id="selectExamProgrammingQuestionResultHistoryByExamQuestionIdAndUserId" resultType="java.lang.String">
+        select examProgrammingQuestionResult from examprogrammingquestionhistory where examQuestionId=#{examQuestionId} and userId=#{userId}
+    </select>
 
 </mapper>

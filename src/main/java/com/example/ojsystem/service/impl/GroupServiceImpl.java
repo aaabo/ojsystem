@@ -2,6 +2,7 @@ package com.example.ojsystem.service.impl;
 
 
 import com.example.ojsystem.dao.GroupMapper;
+import com.example.ojsystem.dao.TestMapper;
 import com.example.ojsystem.dao.UserGroupMapper;
 import com.example.ojsystem.entity.Group;
 import com.example.ojsystem.entity.User;
@@ -16,7 +17,8 @@ import java.util.List;
 public class GroupServiceImpl implements GroupService{
     @Autowired
     GroupMapper groupMapper;
-
+    @Autowired
+    TestMapper testMapper;
 
     /**
      * 获取学生组别信息并添加
@@ -37,7 +39,7 @@ public class GroupServiceImpl implements GroupService{
      * @param groupId
      */
     public int cancelGroupInfo(int groupId) {
-
+        testMapper.deleteTestInfoByGroupId(groupId);
         return groupMapper.deleteGroupInfo(groupId);
     }
 

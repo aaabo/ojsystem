@@ -92,7 +92,7 @@
     </select>
     <select id="selectExamQuestionCompletionByExamId" resultType="com.example.ojsystem.entity.CompletionQuestion"  resultMap="BaseExamQuestionResultMap">
           SELECT * FROM examquestion,completionquestion,questionlabel,completionquestionlabel,completionquestionanswer where examquestion.questionId=completionquestion.completionQuestionId
-          and examquestion.examId=#{examId} and completionquestionlabel.completionQuestionId=completionquestion.completionQuestionId and completionquestionlabel.questionLabelId=questionlabel.questionLabelId and examquestion.examQuestionType='completionQuestion' and completionquestionanswer.completionQuestionId=completionQuestion.completionQuestionId
+          and examquestion.examId=#{examId} and completionquestionlabel.completionQuestionId=completionquestion.completionQuestionId and completionquestionlabel.questionLabelId=questionlabel.questionLabelId and examquestion.examQuestionType='completionQuestion' and completionquestionanswer.completionQuestionId=completionquestion.completionQuestionId
     </select>
     <select id="selectExamQuestionProgrammingByExamId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExamQuestionResultMap">
          SELECT * FROM examquestion,exercise where examquestion.questionId=exercise.exerciseId and examquestion.examId=#{examId} and examquestion.examQuestionType='programmingQuestion'

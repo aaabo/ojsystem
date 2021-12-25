@@ -48,15 +48,15 @@
         VALUES(#{userId},#{examId},#{examChoiceQuestionTotals},#{examCompletionQuestionTotals},#{examProgrammingTotals});
     </insert>
     <select id="selectExamChoiceQuestionResultScore" resultType="java.lang.Integer">
-        SELECT ifnull(SUM(examChoiceQuestionResultScore),'1111') FROM examchoicequestionhistory,examquestion
+        SELECT ifnull(SUM(examChoiceQuestionResultScore),'0') FROM examchoicequestionhistory,examquestion
         where examId=#{examId} and examquestion.examQuestionId=examchoicequestionhistory.examQuestionId and userId=#{userId};
     </select>
     <select id="selectExamCompletionQuestionResultScore" resultType="java.lang.Integer">
-        SELECT ifnull(SUM(examCompletionQuestionResultScore),'1111') FROM examcompletionquestionhistory,examquestion
+        SELECT ifnull(SUM(examCompletionQuestionResultScore),'0') FROM examcompletionquestionhistory,examquestion
         where examId=#{examId} and examquestion.examQuestionId=examcompletionquestionhistory.examQuestionId and userId=#{userId};
     </select>
     <select id="selectExamProgrammingQuestionResultScore" resultType="java.lang.Integer">
-        SELECT ifnull(SUM(examProgrammingQuestionResultScore),'1111') FROM examprogrammingquestionhistory,examquestion
+        SELECT ifnull(SUM(examProgrammingQuestionResultScore),'0') FROM examprogrammingquestionhistory,examquestion
         where examId=#{examId} and examquestion.examQuestionId=examprogrammingquestionhistory.examQuestionId and userId=#{userId};
     </select>
     <select id="selectExamHistoryInfo" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">

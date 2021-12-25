@@ -8,7 +8,12 @@ public interface ExamProgrammingQuestionHistoryService {
      * 输入examProgrammingQuestionHistory
      * 输出int
      */
-    public int saveExamProgrammingQuestionHistoryInfo(ExamProgrammingQuestionHistory examProgrammingQuestionHistory,int userId,int examQuestionId);
-
+    public int addExamProgrammingQuestionHistoryInfo(int examProgrammingQuestionScore,ExamProgrammingQuestionHistory examProgrammingQuestionHistory,int userId,int examQuestionId);
+    /**
+     根据用户id和考题id查询编程题结果
+     输入examQuestionId,userId
+     输出String
+     **/
+    public String checkExamProgrammingQuestionResultHistoryByExamQuestionIdAndUserId(int examQuestionId,int userId);
 
 }
