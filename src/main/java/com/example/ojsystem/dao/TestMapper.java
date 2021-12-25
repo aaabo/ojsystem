@@ -63,4 +63,11 @@ public interface TestMapper {
      * 输出Test
      */
     public Test selectTestInfoByTestId(@Param("testId")int testId);
+
+    /**
+     * 根据groupId来删除对应的测试信息
+     * 输入groupId
+     * 输出Integer
+     */
+    public Integer deleteTestInfoByGroupId(@Param("groupId")int groupId);
 }
