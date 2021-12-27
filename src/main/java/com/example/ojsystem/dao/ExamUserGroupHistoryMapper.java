@@ -14,10 +14,17 @@ public interface ExamUserGroupHistoryMapper {
     public int insertExamUserGroupHistoryInfo(@Param("examId") int examId,@Param("userId") int userId);
 
     /**
-     * 修改考试组别时
+     * 删除考试组别用户信息
      * 输入examId,userId
      * 输出int
      */
     public int deleteExamUserGroupHistoryInfoByExamId(@Param("examId") int examId);
+
+    /**
+     * 修改考试组别用户信息
+     * 输入groupId
+     * 输出int
+     */
+    public int updateExamUserGroupHistoryInfoByGroupId(@Param("groupId") int groupId,@Param("groupName") String groupName);
 
 }

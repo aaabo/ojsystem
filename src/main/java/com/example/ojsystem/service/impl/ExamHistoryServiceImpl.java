@@ -2,6 +2,7 @@ package com.example.ojsystem.service.impl;
 
 import com.example.ojsystem.dao.ExamHistoryMapper;
 import com.example.ojsystem.entity.ExamHistory;
+import com.example.ojsystem.entity.ExamProgrammingScoreTool;
 import com.example.ojsystem.entity.ExamUserJoinTool;
 import com.example.ojsystem.service.ExamHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,17 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
      */
     public List<ExamHistory> checkExamHistoryInfo(int examId) {
         return examHistoryMapper.selectExamHistoryInfo(examId);
+    }
+
+    /**
+     * 查询考试的用户的编程题记录信息
+     * 输入examId
+     * 输出List<ExamProgrammingScoreTool>
+     *
+     * @param examId
+     */
+    public List<ExamProgrammingScoreTool> checkExamUserProgrammingQuestionHistoryInfo(int examId) {
+        return examHistoryMapper.selectExamUserProgrammingQuestionHistoryInfo(examId);
     }
 
     public int checkExamChoiceQuestionResultScore(int examId,int userId){

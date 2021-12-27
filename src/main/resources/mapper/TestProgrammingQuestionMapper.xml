@@ -72,13 +72,13 @@
         delete from testprogrammingquestion where testProgrammingQuestionId=#{testProgrammingQuestionId}
     </delete>
     <select id="selectTestProgrammingQuestionByTestId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseUpdateExerciseResultMap">
-       SELECT testprogrammingquestion.testProgrammingQuestionId,exercise.exerciseTitle,count(if(testprogrammingquestionhistory.testProgrammingResult='success',1,null)) as 'success',count(testprogrammingquestionhistory.testProgrammingResult) as 'submit'
+       SELECT testprogrammingquestion.testProgrammingQuestionId,exercise.exerciseTitle,count(if(testprogrammingquestionhistory.testProgrammingResult='accept',1,null)) as 'success',count(testprogrammingquestionhistory.testProgrammingResult) as 'submit'
     FROM testprogrammingquestion left join testprogrammingquestionhistory on testprogrammingquestion.testProgrammingQuestionId=testprogrammingquestionhistory.testProgrammingQuestionId
     left join exercise on exercise.exerciseId=testprogrammingquestion.exerciseId
   where testprogrammingquestion.testId=#{testId}  GROUP BY exercise.exerciseId order by testprogrammingquestion.testProgrammingQuestionId
     </select>
     <select id="selectTestProgrammingResultByUserIdAndTestProgrammingQuestionId" resultType="java.lang.String">
-        	select distinct testProgrammingResult from testprogrammingquestionhistory where testProgrammingQuestionId=#{testProgrammingQuestionId} and userId=#{userId} and testProgrammingResult='success'
+        	select distinct testProgrammingResult from testprogrammingquestionhistory where testProgrammingQuestionId=#{testProgrammingQuestionId} and userId=#{userId} and testProgrammingResult='accept'
     </select>
 
     <select id="selectExerciseByTestProgrammingQuestionId" resultType="com.example.ojsystem.entity.Exercise" resultMap="BaseExerciseResultMap">

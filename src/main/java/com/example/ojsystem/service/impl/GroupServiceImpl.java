@@ -1,6 +1,7 @@
 package com.example.ojsystem.service.impl;
 
 
+import com.example.ojsystem.dao.ExamUserGroupHistoryMapper;
 import com.example.ojsystem.dao.GroupMapper;
 import com.example.ojsystem.dao.TestMapper;
 import com.example.ojsystem.dao.UserGroupMapper;
@@ -19,6 +20,8 @@ public class GroupServiceImpl implements GroupService{
     GroupMapper groupMapper;
     @Autowired
     TestMapper testMapper;
+    @Autowired
+    ExamUserGroupHistoryMapper examUserGroupHistoryMapper;
 
     /**
      * 获取学生组别信息并添加
@@ -51,6 +54,7 @@ public class GroupServiceImpl implements GroupService{
      * @param group
      */
     public int alterGroupInfo(Group group) {
+        examUserGroupHistoryMapper.updateExamUserGroupHistoryInfoByGroupId(group.getGroupId(),group.getGroupName());
         return groupMapper.updateGroupInfo(group);
     }
 

@@ -27,6 +27,23 @@
         <result column="examNotSubmitUser" jdbcType="INTEGER" property="examNotSubmitUser" />
     </resultMap>
 
+    <resultMap id="BaseExamProgrammingScoreToolResultMap" type="com.example.ojsystem.entity.ExamProgrammingScoreTool">
+        <association property="user" javaType="com.example.ojsystem.entity.User">
+            <id column="userId" jdbcType="INTEGER" property="userId" />
+            <result column="userName" jdbcType="VARCHAR" property="userName" />
+            <result column="userAccount" jdbcType="VARCHAR" property="userAccount" />
+        </association>
+        <collection  property="examProgrammingQuestionHistories" resultMap="BaseExamProgrammingQuestionHistoryResultMap">
+        </collection >
+    </resultMap>
+
+
+    <resultMap id="BaseExamProgrammingQuestionHistoryResultMap" type="com.example.ojsystem.entity.ExamProgrammingQuestionHistory">
+        <id column="questionId" jdbcType="BIGINT" property="examProgrammingQuestionHistoryId" />
+        <result column="examProgrammingQuestionResultScore" jdbcType="VARCHAR" property="examProgrammingQuestionResultScore" />
+
+    </resultMap>
+
     <select id="selectExamRankById" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
       select * from user,examusergrouphistory left join exam on exam.groupId=examusergrouphistory.groupId and examusergrouphistory.examId=exam.examId left join examhistory on examusergrouphistory.userId=examhistory.userId and examhistory.examId=exam.examId   where exam.examId=#{examId} and user.userId=examusergrouphistory.userId order by examhistory.examCompletionQuestionTotals+examhistory.examChoiceQuestionTotals+examhistory.examProgrammingTotals DESC
     </select>
@@ -62,5 +79,11 @@
     <select id="selectExamHistoryInfo" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
         select * from examhistory,user where examhistory.examId=#{examId} and examhistory.userId=user.userId
     </select>
+
+    <select id="selectExamUserProgrammingQuestionHistoryInfo" resultType="com.example.ojsystem.entity.ExamProgrammingScoreTool" resultMap="BaseExamProgrammingScoreToolResultMap">
+        select * from exam,examusergrouphistory,examquestion left join examprogrammingquestionhistory on examprogrammingquestionhistory.examQuestionId=examquestion.examQuestionId
+        where exam.examId=examusergrouphistory.examId and exam.groupId=examusergrouphistory.groupId and exam.examId=#{examId} and examquestion.examId=exam.examId and examquestion.examQuestionType='programmingQuestion'
+    </select>
+
 
 </mapper>

@@ -19,7 +19,7 @@
         #{examProgrammingQuestionHistory.examProgrammingQuestionResult},#{examProgrammingQuestionHistory.examProgrammingQuestionCode},#{examProgrammingQuestionHistory.examProgrammingQuestionResultScore})
     </insert>
     <update id="updateExamProgrammingQuestionHistoryByExamProgrammingQuestionId">
-        update examprogrammingquestionhistory set examProgrammingQuestionResult=#{examProgrammingQuestionHistory.examProgrammingQuestionResult},examProgrammingQuestionResult=#{examProgrammingQuestionHistory.examProgrammingQuestionResult}
+    update examprogrammingquestionhistory set examProgrammingQuestionResultScore=#{examProgrammingQuestionHistory.examProgrammingQuestionResultScore},examProgrammingQuestionCode=#{examProgrammingQuestionHistory.examProgrammingQuestionCode},examProgrammingQuestionResult=#{examProgrammingQuestionHistory.examProgrammingQuestionResult}
         where examProgrammingQuestionHistoryId=#{examProgrammingQuestionHistory.examProgrammingQuestionHistoryId}
     </update>
     <select id="selectExamProgrammingQuestionHistoryByExamQuestionIdAndUserId" resultType="java.lang.Integer">

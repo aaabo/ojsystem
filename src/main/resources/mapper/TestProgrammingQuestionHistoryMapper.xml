@@ -46,7 +46,7 @@
 
 
     <select id="selectTestProgrammingQuestionUserSubmitStateByTestProgrammingQuestionIdAndUserId" resultMap="BaseTestProgrammingQuestionUserSubmitStateToolResultMap">
-      select count(if(testProgrammingResult='success',1,null)) as success ,count(if(testProgrammingResult!='success',1,null)) as noSuccess  from testprogrammingquestionhistory  where userId=#{userId}  and testProgrammingQuestionId=#{testProgrammingQuestionId}
+      select count(if(testProgrammingResult='accept',1,null)) as success ,count(if(testProgrammingResult!='accept',1,null)) as noSuccess  from testprogrammingquestionhistory  where userId=#{userId}  and testProgrammingQuestionId=#{testProgrammingQuestionId}
     </select>
     <select id="selectTestProgrammingRealStatus" resultType="com.example.ojsystem.entity.TestProgrammingQuestionHistory" resultMap="BaseTestProgrammingQuestionHistoryResultMap">
         select * from testprogrammingquestionhistory,test,testprogrammingquestion,user

@@ -1,6 +1,7 @@
 package com.example.ojsystem.service;
 
 import com.example.ojsystem.entity.ExamHistory;
+import com.example.ojsystem.entity.ExamProgrammingScoreTool;
 import com.example.ojsystem.entity.ExamUserJoinTool;
 
 import java.util.List;
@@ -40,6 +41,13 @@ public interface ExamHistoryService {
      * 输出List<ExamHistory>
      */
     public List<ExamHistory> checkExamHistoryInfo(int examId);
+
+    /**
+     * 查询考试的用户的编程题记录信息
+     * 输入examId
+     * 输出List<ExamProgrammingScoreTool>
+     */
+    public List<ExamProgrammingScoreTool> checkExamUserProgrammingQuestionHistoryInfo(int examId);
 
     public int checkExamChoiceQuestionResultScore(int examId,int userId);
 

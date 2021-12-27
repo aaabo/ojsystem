@@ -4,6 +4,7 @@ import com.example.ojsystem.clustering.Kmeans;
 import com.example.ojsystem.clustering.Point;
 import com.example.ojsystem.dao.ExamHistoryMapper;
 import com.example.ojsystem.entity.ExamHistory;
+import com.example.ojsystem.entity.ExamProgrammingScoreTool;
 import com.example.ojsystem.entity.ExamUserJoinTool;
 import com.example.ojsystem.service.ExamHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +101,18 @@ public class ExamHistoryController {
         examHistory.setExamCompletionQuestionTotals(completion);
         examHistory.setExamProgrammingTotals(program);
         return examHistory;
+    }
+
+
+    /**
+     * 查询考试的用户的编程题记录信息
+     * 输入examId
+     * 输出List<ExamProgrammingScoreTool>
+     *
+     */
+    @RequestMapping(value = "/queryExamUserProgrammingQuestionHistoryInfo",method = RequestMethod.GET)
+    public Object queryExamUserProgrammingQuestionHistoryInfo(HttpServletRequest request){
+        return examHistoryService.checkExamUserProgrammingQuestionHistoryInfo(Integer.valueOf(request.getParameter("examId")));
     }
 
     /**
