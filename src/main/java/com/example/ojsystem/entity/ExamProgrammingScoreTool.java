@@ -3,15 +3,15 @@ package com.example.ojsystem.entity;
 import java.util.List;
 
 public class ExamProgrammingScoreTool {
-    private User user;
+    private Integer userId;
     private List<ExamProgrammingQuestionHistory> examProgrammingQuestionHistories;
 
-    public User getUser() {
-        return user;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public List<ExamProgrammingQuestionHistory> getExamProgrammingQuestionHistories() {
@@ -22,11 +22,5 @@ public class ExamProgrammingScoreTool {
         this.examProgrammingQuestionHistories = examProgrammingQuestionHistories;
     }
 
-    @Override
-    public String toString() {
-        return "ExamProgrammingScoreTool{" +
-                "user=" + user +
-                ", examProgrammingQuestionHistories=" + examProgrammingQuestionHistories +
-                '}';
-    }
+
 }
