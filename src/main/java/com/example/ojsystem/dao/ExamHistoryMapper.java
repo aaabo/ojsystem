@@ -1,8 +1,6 @@
 package com.example.ojsystem.dao;
 
-import com.example.ojsystem.entity.ExamHistory;
-import com.example.ojsystem.entity.ExamProgrammingScoreTool;
-import com.example.ojsystem.entity.ExamUserJoinTool;
+import com.example.ojsystem.entity.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -50,6 +48,15 @@ public interface ExamHistoryMapper {
      * 输出List<ExamProgrammingScoreTool>
      */
     public List<ExamProgrammingScoreTool> selectExamUserProgrammingQuestionHistoryInfo(@Param("examId") int examId);
+
+    /**
+     * 查询各个考试编程题总分和编程题画图用
+     * 输入examId
+     * 输出List<ExamProgrammingScoreTool>
+     *
+     * @param examId
+     */
+    public List<ExamProgrammingTotalAndScore> selectExamUserProgrammingQuestionScoreInfoDrawInfo(@Param("examId") int examId);
 
     public int selectExamChoiceQuestionResultScore(@Param("examId") int examId,@Param("userId") int userId);
 

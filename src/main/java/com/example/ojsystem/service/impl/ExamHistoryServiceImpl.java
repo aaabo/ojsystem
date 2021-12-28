@@ -1,13 +1,14 @@
 package com.example.ojsystem.service.impl;
 
 import com.example.ojsystem.dao.ExamHistoryMapper;
-import com.example.ojsystem.entity.ExamHistory;
-import com.example.ojsystem.entity.ExamProgrammingScoreTool;
-import com.example.ojsystem.entity.ExamUserJoinTool;
+import com.example.ojsystem.dao.ExamProgrammingQuestionHistoryMapper;
+import com.example.ojsystem.dao.ExamQuestionMapper;
+import com.example.ojsystem.entity.*;
 import com.example.ojsystem.service.ExamHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,6 +16,10 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
 
     @Autowired
     ExamHistoryMapper examHistoryMapper;
+    @Autowired
+    ExamQuestionMapper examQuestionMapper;
+    @Autowired
+    ExamProgrammingQuestionHistoryMapper examProgrammingQuestionHistoryMapper;
     /**
      * 根据考试Id查询考试排行榜
      * 输入examId
@@ -85,6 +90,37 @@ public class ExamHistoryServiceImpl implements ExamHistoryService{
      */
     public List<ExamProgrammingScoreTool> checkExamUserProgrammingQuestionHistoryInfo(int examId) {
         return examHistoryMapper.selectExamUserProgrammingQuestionHistoryInfo(examId);
+    }
+
+    /**
+     * 查询各个考试编程题总分和编程题画图用
+     * 输入examId
+     * 输出List<ExamProgrammingScoreTool>
+     *
+     * @param examId
+     */
+    public List<UserExamProgrammingDrawTool> checkExamUserProgrammingQuestionScoreInfoDrawInfo(int examId) {
+        List<ExamQuestion> examQuestions=examQuestionMapper.selectExamQuestionProgrammingByExamId(examId);
+        List<UserExamProgrammingDrawTool> userExamProgrammingDrawTools=new ArrayList<UserExamProgrammingDrawTool>();
+        List<ExamProgrammingTotalAndScore> examProgrammingTotalAndScores=new ArrayList<ExamProgrammingTotalAndScore>();
+        for(int i=0;i<examQuestions.size();i++){
+            UserExamProgrammingDrawTool userExamProgrammingDrawTool=new UserExamProgrammingDrawTool();
+            examProgrammingTotalAndScores=examHistoryMapper.selectExamUserProgrammingQuestionScoreInfoDrawInfo(examId);
+            userExamProgrammingDrawTool.setExamQuestionId(examQuestions.get(i).getExamQuestionId());
+            for(int o=0;o<examProgrammingTotalAndScores.size();o++){
+                Integer score=examProgrammingQuestionHistoryMapper.selectExamProgrammingQuestionScoreHistoryByExamQuestionIdAndUserId(examQuestions.get(i).getExamQuestionId(),examProgrammingTotalAndScores.get(o).getUserId());
+                if(score==null){
+                    examProgrammingTotalAndScores.get(o).setScore(0);
+                }else{
+                    examProgrammingTotalAndScores.get(o).setScore(score);
+                }
+
+            }
+            userExamProgrammingDrawTool.setExamProgrammingTotalAndScores(examProgrammingTotalAndScores);
+            userExamProgrammingDrawTools.add(userExamProgrammingDrawTool);
+        }
+
+        return userExamProgrammingDrawTools;
     }
 
     public int checkExamChoiceQuestionResultScore(int examId,int userId){

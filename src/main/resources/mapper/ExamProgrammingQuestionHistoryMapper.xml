@@ -28,5 +28,8 @@
     <select id="selectExamProgrammingQuestionResultHistoryByExamQuestionIdAndUserId" resultType="java.lang.String">
         select examProgrammingQuestionResult from examprogrammingquestionhistory where examQuestionId=#{examQuestionId} and userId=#{userId}
     </select>
+    <select id="selectExamProgrammingQuestionScoreHistoryByExamQuestionIdAndUserId" resultType="java.lang.Integer">
+        select examProgrammingQuestionResultScore from examprogrammingquestionhistory where examQuestionId=#{examQuestionId} and userId=#{userId}
+    </select>
 
 </mapper>

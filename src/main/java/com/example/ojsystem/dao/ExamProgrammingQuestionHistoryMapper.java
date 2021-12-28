@@ -33,4 +33,11 @@ public interface ExamProgrammingQuestionHistoryMapper {
      输出examProgrammingQuestionResult
      **/
     public String selectExamProgrammingQuestionResultHistoryByExamQuestionIdAndUserId(@Param("examQuestionId") int examQuestionId,@Param("userId") int userId);
+
+    /**
+     查看用户提交过的考试编程题得分
+     输入examQuestionId,userId
+     输出examProgrammingQuestionResult
+     **/
+    public Integer selectExamProgrammingQuestionScoreHistoryByExamQuestionIdAndUserId(@Param("examQuestionId") int examQuestionId,@Param("userId") int userId);
 }

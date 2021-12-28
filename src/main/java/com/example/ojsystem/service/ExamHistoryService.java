@@ -3,6 +3,7 @@ package com.example.ojsystem.service;
 import com.example.ojsystem.entity.ExamHistory;
 import com.example.ojsystem.entity.ExamProgrammingScoreTool;
 import com.example.ojsystem.entity.ExamUserJoinTool;
+import com.example.ojsystem.entity.UserExamProgrammingDrawTool;
 
 import java.util.List;
 
@@ -48,6 +49,15 @@ public interface ExamHistoryService {
      * 输出List<ExamProgrammingScoreTool>
      */
     public List<ExamProgrammingScoreTool> checkExamUserProgrammingQuestionHistoryInfo(int examId);
+
+    /**
+     * 查询各个考试编程题总分和编程题画图用
+     * 输入examId
+     * 输出List<ExamProgrammingScoreTool>
+     *
+     * @param examId
+     */
+    public List<UserExamProgrammingDrawTool> checkExamUserProgrammingQuestionScoreInfoDrawInfo(int examId);
 
     public int checkExamChoiceQuestionResultScore(int examId,int userId);
 

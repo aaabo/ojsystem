@@ -39,6 +39,12 @@
     </resultMap>
 
 
+    <resultMap id="BaseExamProgrammingTotalAndScoreResultMap" type="com.example.ojsystem.entity.ExamProgrammingTotalAndScore">
+            <id column="userId" jdbcType="BIGINT" property="userId" />
+            <result column="total" jdbcType="INTEGER" property="total" />
+            <result column="score" jdbcType="INTEGER" property="score" />
+    </resultMap>
+
 
 
     <select id="selectExamRankById" resultType="com.example.ojsystem.entity.ExamHistory" resultMap="BaseExamHistoryResultMap">
@@ -79,7 +85,12 @@
 
     <select id="selectExamUserProgrammingQuestionHistoryInfo" resultType="com.example.ojsystem.entity.ExamProgrammingScoreTool" resultMap="BaseExamProgrammingScoreToolResultMap">
         select examusergrouphistory.userId,examprogrammingquestionhistory.examProgrammingQuestionResultScore,examquestion.questionId from exam,examusergrouphistory,examquestion left join examprogrammingquestionhistory on examprogrammingquestionhistory.examQuestionId=examquestion.examQuestionId
-        where exam.examId=examusergrouphistory.examId and exam.groupId=examusergrouphistory.groupId and exam.examId=#{examId} and examquestion.examId=exam.examId and examquestion.examQuestionType='programmingQuestion'
+        where exam.examId=examusergrouphistory.examId and exam.groupId=examusergrouphistory.groupId and exam.examId=#{examId} and examquestion.examId=exam.examId and examquestion.examQuestionType='programmingQuestion' and examprogrammingquestionhistory.userId=examusergrouphistory.userId
+    </select>
+    <select id="selectExamUserProgrammingQuestionScoreInfoDrawInfo" resultType="com.example.ojsystem.entity.ExamProgrammingTotalAndScore" resultMap="BaseExamProgrammingTotalAndScoreResultMap">
+        select examusergrouphistory.userId,sum(examprogrammingquestionhistory.examProgrammingQuestionResultScore) as total from  (examusergrouphistory,exam,examquestion) left join examprogrammingquestionhistory on examquestion.examQuestionId=examprogrammingquestionhistory.examQuestionId  and  examprogrammingquestionhistory.userId=examusergrouphistory.userId where exam.groupId=examusergrouphistory.groupId and examusergrouphistory.examId=exam.examId  and exam.examId=#{examId}  and
+        examquestion.examQuestionId in (select  examquestion.examQuestionId from  examquestion  where examquestion.examId=#{examId}  and examquestion.examQuestionType='programmingQuestion')
+        group by  examusergrouphistory.userId
     </select>
 
 
