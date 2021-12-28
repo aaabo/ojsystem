@@ -119,7 +119,7 @@ public class ExamHistoryController {
      * 输入examId
      * 输出List<ExamProgrammingScoreTool>
      */
-    @RequestMapping(value = "/queryExamUserProgrammingQuestionScoreInfoDrawInfo",method = RequestMethod.GET)
+    @RequestMapping(value = "/queryExamUserProgrammingQuestionScoreInfoDrawInfo",method = RequestMethod.POST)
     public Object queryExamUserProgrammingQuestionScoreInfoDrawInfo(HttpServletRequest request) {
         return examHistoryService.checkExamUserProgrammingQuestionScoreInfoDrawInfo(Integer.valueOf(request.getParameter("examId")));
     }
