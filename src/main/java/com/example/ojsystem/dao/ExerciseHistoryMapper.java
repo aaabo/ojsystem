@@ -57,4 +57,6 @@ public interface ExerciseHistoryMapper {
      * 输出查到的习题结果信息
      */
     public List<ResultTool> selectExerciseResultInfo(@Param("exerciseId") int exerciseId);
+
+
 }

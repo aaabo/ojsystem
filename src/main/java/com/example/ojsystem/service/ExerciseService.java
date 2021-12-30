@@ -13,11 +13,23 @@ public interface ExerciseService {
     public int saveExerciseInfo(Exercise exercise);
 
     /**
-     * 查询全部习题信息
+     * 查询全部不在考试中习题信息
      * 输入无
      * 输出List<Exercise>
      */
     public List<Exercise> checkExerciseInfo();
+
+    /**
+     * 查询全部的习题信息并判断对应用户的做题情况
+     * 输入无
+     * 输出List<Exercise>
+     */
+    /**
+     * 查询全部不在考试中习题信息
+     * 输入无
+     * 输出List<Exercise>
+     */
+    public List<Exercise> queryExerciseInfoAndPersonSubmitStatus(Integer userId);
 
     /**
      * 根据习题id查询习题信息是否存在

@@ -7,6 +7,7 @@ public class Exercise {
     private String exerciseTitle;
     private int exerciseCorrectTimes;
     private int exerciseSubmitTimes;
+    private String exerciseSubmitStatus;
     private String exerciseDescription;
     private String exerciseInput;
     private String exerciseOutPut;
@@ -19,7 +20,13 @@ public class Exercise {
 
     }
 
+    public String getExerciseSubmitStatus() {
+        return exerciseSubmitStatus;
+    }
 
+    public void setExerciseSubmitStatus(String exerciseSubmitStatus) {
+        this.exerciseSubmitStatus = exerciseSubmitStatus;
+    }
 
     public int getExerciseId() {
         return exerciseId;

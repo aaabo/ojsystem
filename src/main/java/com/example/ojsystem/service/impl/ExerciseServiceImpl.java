@@ -37,7 +37,7 @@ public class ExerciseServiceImpl implements ExerciseService{
     }
 
     /**
-     * 查询全部习题信息
+     * 查询全部不在考试中的习题信息
      * 输入无
      * 输出List<Exercise>
      */
@@ -52,6 +52,33 @@ public class ExerciseServiceImpl implements ExerciseService{
                 exercise.setIsExam(true);
             }else{
                 exercise.setIsExam(false);
+            }
+        }
+        return exercises;
+    }
+
+    /**
+     * 查询全部不在考试中习题信息
+     * 输入无
+     * 输出List<Exercise>
+     */
+    public List<Exercise> queryExerciseInfoAndPersonSubmitStatus(Integer userId) {
+        List<Exercise> exercises=new ArrayList<Exercise>();
+        exercises=exerciseMapper.selectExerciseInfo();
+        if(userId!=null){
+            for(int i=0;i<exercises.size();i++){
+                Exercise exercise=exercises.get(i);
+                Integer success=exerciseMapper.selectUserExerciseSubmitSuccessTimes(exercise.getExerciseId(),userId);
+                if(success==0){
+                    Integer error=exerciseMapper.selectUserExerciseSubmitErrorTimes(exercise.getExerciseId(),userId);
+                    if(error==0){
+                        exercise.setExerciseSubmitStatus("null");
+                    }else{
+                        exercise.setExerciseSubmitStatus("error");
+                    }
+                }else{
+                    exercise.setExerciseSubmitStatus("accept");
+                }
             }
         }
         return exercises;

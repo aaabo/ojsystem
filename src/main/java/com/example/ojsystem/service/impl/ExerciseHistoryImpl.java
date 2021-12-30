@@ -2,6 +2,8 @@ package com.example.ojsystem.service.impl;
 
 import com.example.ojsystem.dao.ExerciseAnswerMapper;
 import com.example.ojsystem.dao.ExerciseHistoryMapper;
+import com.example.ojsystem.dao.ExerciseMapper;
+import com.example.ojsystem.dao.UserMapper;
 import com.example.ojsystem.entity.ExerciseHistory;
 import com.example.ojsystem.judger.JudgerC;
 import com.example.ojsystem.service.ExerciseHistoryService;
@@ -17,6 +19,10 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
     ExerciseHistoryMapper exerciseHistoryMapper;
     @Autowired
     ExerciseAnswerMapper exerciseAnswerMapper;
+    @Autowired
+    UserMapper userMapper;
+    @Autowired
+    ExerciseMapper exerciseMapper;
     /**
      * 根据提交的代码 添加习题记录
      * 输入exerciseHistory
@@ -27,6 +33,14 @@ public class ExerciseHistoryImpl implements ExerciseHistoryService{
     public int saveCodeInfo(ExerciseHistory exerciseHistory) {
         String result= JudgerC.start(exerciseHistory.getExerciseCode(),exerciseAnswerMapper.selectExerciseAnswerInfoByExerciseId(exerciseHistory.getExercise().getExerciseId()));
         exerciseHistory.setExerciseResult(result);
+        if(result.equals("accept")){
+            userMapper.updateUserSubmitInfo(1,exerciseHistory.getUser().getUserId());
+            exerciseMapper.updateExerciseSubmitInfo(1,exerciseHistory.getExercise().getExerciseId());
+        }else{
+            userMapper.updateUserSubmitInfo(0,exerciseHistory.getUser().getUserId());
+            exerciseMapper.updateExerciseSubmitInfo(0,exerciseHistory.getExercise().getExerciseId());
+        }
+
         return exerciseHistoryMapper.insertCodeInfo(exerciseHistory);
     }
 

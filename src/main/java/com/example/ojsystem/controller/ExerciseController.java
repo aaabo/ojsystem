@@ -61,7 +61,7 @@ public class ExerciseController {
 
 
     /**
-     * 查询全部习题信息
+     * 查询全部不在考试中的习题信息
      * 输入无
      * 输出List<Exercise>
      */
@@ -69,6 +69,21 @@ public class ExerciseController {
     public  Object  queryExerciseInfo(HttpServletRequest request){
         List<Exercise> exercises=new ArrayList<Exercise>();
         exercises=exerciseService.checkExerciseInfo();
+        return exercises;
+    }
+
+    /**
+     * 查询全部的习题信息并判断对应用户的做题情况
+     * 输入无
+     * 输出List<Exercise>
+     */
+    @RequestMapping(value="/queryExerciseInfoAndPersonSubmitStatus",method = RequestMethod.POST)
+    public  Object  queryExerciseInfoAndPersonSubmitStatus(HttpServletRequest request){
+
+        List<Exercise> exercises=new ArrayList<Exercise>();
+        Integer userId=(Integer)request.getSession().getAttribute("userId");
+
+        exercises=exerciseService.queryExerciseInfoAndPersonSubmitStatus(userId);
         return exercises;
     }
 

@@ -59,4 +59,15 @@
       exercise.exerciseId=examquestion.questionId and (exam.examStatus='Running' or exam.examStatus='Pending') and examquestion.examQuestionType='programmingQuestion' and examquestion.examId=exam.examId
     </select>
 
+    <update id="updateExerciseSubmitInfo" parameterType="java.lang.Integer">
+        update exercise set exerciseCorrectTimes=exerciseCorrectTimes+#{solved},exerciseSubmitTimes=exerciseSubmitTimes+1 where exerciseId=#{exerciseId}
+    </update>
+
+
+    <select id="selectUserExerciseSubmitErrorTimes" resultType="java.lang.Integer">
+        select  count(if(exercisehistory.exerciseResult!='accept','accept',null))  from exercisehistory where exercisehistory.exerciseId=#{exerciseId} and exercisehistory.userId=#{userId}
+    </select>
+    <select id="selectUserExerciseSubmitSuccessTimes" resultType="java.lang.Integer">
+          select  count(if(exercisehistory.exerciseResult='accept','accept',null))  from exercisehistory where exercisehistory.exerciseId=#{exerciseId} and exercisehistory.userId=#{userId}
+    </select>
 </mapper>

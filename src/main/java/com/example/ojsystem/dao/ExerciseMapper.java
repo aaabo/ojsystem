@@ -67,4 +67,25 @@ public interface ExerciseMapper {
      * 输出true 或者false
      */
     public Integer selectExerciseIsExamByExerciseId(int exerciseId);
+
+    /**
+     * 修改习题提交信息
+     * 输入solved 是否要添加解决问题次数  exerciseId
+     * 输出int
+     */
+    public int updateExerciseSubmitInfo(@Param("solved") int solved,@Param("exerciseId") int exerciseId);
+
+    /**
+     * 查询用户的对应习题提交次数
+     * 输入exerciseId
+     * 输出String
+     */
+    public Integer selectUserExerciseSubmitSuccessTimes(@Param("exerciseId") int exerciseId,@Param("userId") int userId);
+
+    /**
+     * 查询用户的对应习题提交次数
+     * 输入exerciseId
+     * 输出String
+     */
+    public Integer selectUserExerciseSubmitErrorTimes(@Param("exerciseId") int exerciseId,@Param("userId") int userId);
 }
